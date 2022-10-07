@@ -3,4 +3,6 @@
     <string name="btn_paleta_calcular">Calcular</string>
     <string name="paleta_texto">LetMeDoIt</string>
     <string name="paleta_text_imput_hint">email</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
