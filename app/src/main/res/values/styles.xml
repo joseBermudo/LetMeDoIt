@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.LetMeDoIT.principalButton" parent="Widget.AppCompat.Button">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:backgroundTint">@color/azul_marino</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Widget.LetMeDoIt.title1" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/azul_marino</item>
+        <item name="android:textSize">@dimen/title1_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.LetMeDoIt.title2" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/negro</item>
+        <item name="android:textSize">@dimen/title2_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.LetMeDoIt.text" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/negro</item>
+        <item name="android:textSize">@dimen/text_size</item>
+    </style>
+
+    <style name="Widget.LetMeDoIt.subtext" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/secundario_gris</item>
+        <item name="android:textSize">@dimen/subtext_size</item>
+    </style>
+
+    <style name="Widget.LetMeDoIt.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintEnabled">false</item>
+        <item name="marginHorizontal">@dimen/padding_horizontal_cl</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+    </style>
+
+    <style name="Widget.LetMeDoIt.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
+        <item name="buttonTint">@color/azul_marino</item>
+    </style>
+
+    <style name="Widget.LetMeDoIt.TextArea" parent="ThemeOverlay.Material3.TextInputEditText.FilledBox">
+        <item name="height">200dp</item>
+        <item name="android:scrollbarThumbVertical">@color/azul_marino</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:gravity">top</item>
+    </style>
+</resources>
