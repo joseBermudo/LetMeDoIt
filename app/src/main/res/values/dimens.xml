@@ -8,4 +8,7 @@
     <dimen name="subtext_size">14sp</dimen>
     <dimen name="marginTop_title">24dp</dimen>
     <dimen name="marginStart_title">24dp</dimen>
+    <dimen name="paleta_titulo_1">24dp</dimen>
+    <dimen name="paleta_text">32dp</dimen>
+    <dimen name="paleta_sub_text">48dp</dimen>
 </resources>
