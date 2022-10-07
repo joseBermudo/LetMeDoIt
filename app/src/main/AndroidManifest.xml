@@ -13,6 +13,26 @@
         android:theme="@style/Theme.LetMeDoIt"
         tools:targetApi="31">
         <activity
+            android:name=".CUSTOMSPINNER"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <receiver
+            android:name=".LetMeDoIt_CustomSpinner"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/let_me_do_it__custom_spinner_info" />
+        </receiver>
+
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

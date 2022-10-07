@@ -8,4 +8,19 @@
     <dimen name="subtext_size">14sp</dimen>
     <dimen name="marginTop_title">24dp</dimen>
     <dimen name="marginStart_title">24dp</dimen>
+
+    <!-- Spinner Personalizado -->
+    <dimen name="spinner_radius">10dp</dimen>
+    <dimen name="spinner_stroke">2dp</dimen>
+    <dimen name="spinner_right_padding">10dp</dimen>
+    <dimen name="spinner_text_padding_start">10dp</dimen>
+    <dimen name="spinner_text_padding">5dp</dimen>
+    <dimen name="spinner_layout_margin">5dp</dimen>
+    <dimen name="relative_layout_spinner_margin">20dp</dimen>
+
+    <!--
+Refer to App Widget Documentation for margin information
+http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
+    -->
+    <dimen name="widget_margin">0dp</dimen>
 </resources>
