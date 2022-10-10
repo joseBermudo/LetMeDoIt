@@ -19,4 +19,14 @@
     <dimen name="marginEnd_inputNewPasswordA">24dp</dimen>
     <dimen name="marginStart_btn_changePassword">24dp</dimen>
     <dimen name="btn_marginTop_newPassword">32dp</dimen>
+    <dimen name="marginStart_forgotPassword">32dp</dimen>
+    <dimen name="marginTop_forgotPassword">64dp</dimen>
+    <dimen name="marginTop_enter_email">24dp</dimen>
+    <dimen name="marginStart_enter_email">32dp</dimen>
+    <dimen name="marginStart_inputEmail">24dp</dimen>
+    <dimen name="marginTop_inputEmail">24dp</dimen>
+    <dimen name="marginEnd_inputEmail">24dp</dimen>
+    <dimen name="marginStart_btnEmail">24dp</dimen>
+    <dimen name="marginTop_btnEmail">32dp</dimen>
+    <dimen name="marginEnd_btnEmail">24dp</dimen>
 </resources>
