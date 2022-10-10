@@ -2,6 +2,7 @@
 <resources>
 
     <style name="Widget.LetMeDoIT.principalButton" parent="Widget.AppCompat.Button">
+        <item name="android:textAllCaps">false</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:backgroundTint">@color/azul_marino</item>
         <item name="android:textColor">@android:color/white</item>
@@ -43,7 +44,7 @@
     </style>
 
     <style name="Widget.LetMeDoIt.TextArea" parent="ThemeOverlay.Material3.TextInputEditText.FilledBox">
-        <item name="height">200dp</item>
+        <item name="android:layout_height">200dp</item>
         <item name="android:scrollbarThumbVertical">@color/azul_marino</item>
         <item name="android:scrollbars">vertical</item>
         <item name="android:gravity">top</item>

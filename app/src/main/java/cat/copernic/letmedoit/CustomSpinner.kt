@@ -2,8 +2,6 @@ package cat.copernic.letmedoit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import cat.copernic.letmedoit.databinding.ActivityCustomspinnerBinding
 
 class CustomSpinner : AppCompatActivity() {
@@ -11,8 +9,7 @@ class CustomSpinner : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCustomspinnerBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
 
         //EJEMPLO DE USO DEL SPINNER --> HAY QUE IMPLEMENTARLO SI NO NO IRÁ

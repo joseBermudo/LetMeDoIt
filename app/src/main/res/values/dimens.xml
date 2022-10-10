@@ -17,5 +17,10 @@
     <dimen name="spinner_text_padding">5dp</dimen>
     <dimen name="spinner_layout_margin">5dp</dimen>
     <dimen name="relative_layout_spinner_margin">20dp</dimen>
+    <dimen name="logo_dimen">128dp</dimen>
+    <dimen name="margin_forgot_password">16dp</dimen>
+    <dimen name="btn_height">56dp</dimen>
+    <dimen name="register_button_marginTop">48dp</dimen>
+    <dimen name="register_alreadyHaveAccount">-48dp</dimen>
 
 </resources>

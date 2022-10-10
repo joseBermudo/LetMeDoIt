@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">LetMeDoIt</string>
+    <string name="string_splash_screen">Imagen del logo al cargar la pantalla</string>
+    <string name="string_splash_screen_loading">Loading...</string>
+    <string name="txt_home_welcome">Hi there! Nice to see you again.</string>
+    <string name="txt_login_forgotPassword">Forgot Password?</string>
+    <string name="txt_login_signIn">Sign In</string>
+    <string name="txt_login_signUp">Sign Up</string>
+    <string name="txt_password">Password</string>
+    <string name="txt_username">Username</string>
+    <string name="txt_register_title">Lets Get Started!</string>
+    <string name="txt_register_welcome">Create and account and start exchanging</string>
+    <string name="txt_email">Email</string>
+    <string name="txt_register_alreadyAccount">Already have an account?</string>
+    <string name="txt_confirm_password">Confirm Password</string>
 </resources>
