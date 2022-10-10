@@ -6,7 +6,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import cat.copernic.letmedoit.databinding.ActivityCustomspinnerBinding
 
-class CUSTOMSPINNER : AppCompatActivity() {
+class CustomSpinner : AppCompatActivity() {
     private lateinit var binding: ActivityCustomspinnerBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,11 +23,8 @@ class CUSTOMSPINNER : AppCompatActivity() {
         list.add("B")
         list.add("C")
 
-        CrearSpinner(list, spinner)
-    }
+        Utils.AsignarPopUpSpinner(this,list,spinner)
 
-    private fun CrearSpinner(list : ArrayList<String>, spinner : Spinner){
-        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(this, R.layout.spinner_items,list)
-        spinner.adapter  = adapter
+        //
     }
 }
