@@ -29,4 +29,8 @@
     <dimen name="marginStart_btnEmail">24dp</dimen>
     <dimen name="marginTop_btnEmail">32dp</dimen>
     <dimen name="marginEnd_btnEmail">24dp</dimen>
+    <dimen name="marginTop_AdminTitle">24dp</dimen>
+    <dimen name="marginTop_Divider">8dp</dimen>
+    <dimen name="btn_margin_admin">32dp</dimen>
+    <dimen name="btn_marginTop_signOff_admin">128dp</dimen>
 </resources>

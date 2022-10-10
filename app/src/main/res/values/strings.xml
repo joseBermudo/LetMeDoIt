@@ -15,4 +15,11 @@
     <string name="enter_your_email">Enter your email</string>
     <string name="email_hint">Email</string>
     <string name="get_recovery_code">Get Recovery Code</string>
+    <string name="admin_users">Users</string>
+    <string name="banned_users">Banned users</string>
+    <string name="reports">Reports</string>
+    <string name="archived_reports">Archived reports</string>
+    <string name="categories">Categories</string>
+    <string name="create_admin">Create admin</string>
+    <string name="sign_off">Sign off</string>
 </resources>
