@@ -5,4 +5,10 @@
     <string name="paleta_text_imput_hint">email</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="paleta_mensage">mensage</string>
+    <string name="recover_password_a">Recover Password</string>
+    <string name="enter_the_new_password">Enter the new password</string>
+    <string name="password">Password</string>
+    <string name="confirm_the_password">Confirm the password</string>
+    <string name="change_password">Change password</string>
 </resources>

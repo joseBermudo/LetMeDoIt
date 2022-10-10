@@ -11,4 +11,12 @@
     <dimen name="paleta_titulo_1">24dp</dimen>
     <dimen name="paleta_text">32dp</dimen>
     <dimen name="paleta_sub_text">48dp</dimen>
+    <dimen name="start_margin_title_recovery_new_password">32dp</dimen>
+    <dimen name="top_margin_title_recovery_new_password">64dp</dimen>
+    <dimen name="top_margin_recovery_new_password_subtext">24dp</dimen>
+    <dimen name="marginTop_imputNewPassword">24dp</dimen>
+    <dimen name="marginEnd_inputNewPassword">24dp</dimen>
+    <dimen name="marginEnd_inputNewPasswordA">24dp</dimen>
+    <dimen name="marginStart_btn_changePassword">24dp</dimen>
+    <dimen name="btn_marginTop_newPassword">32dp</dimen>
 </resources>

@@ -77,7 +77,23 @@
             android:id="@+id/paleta_text_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textWebEmailAddress"
             android:hint="@string/paleta_text_imput_hint" />
     </com.google.android.material.textfield.TextInputLayout>
-    
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            style="@style/Widget.LetMeDoIt.TextArea"
+            android:layout_height="200dp"
+            android:hint="hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
