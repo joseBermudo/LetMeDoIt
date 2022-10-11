@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Widget.LetMeDoIT.principalButton" parent="Widget.AppCompat.Button">
-        <item name="android:gravity">center_vertical</item>
+    <style name="Widget.LetMeDoIT.principalButton" parent="Widget.AppCompat.Button.Colored">
         <item name="android:backgroundTint">@color/azul_marino</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
