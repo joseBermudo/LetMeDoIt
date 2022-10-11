@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/azul_marino</item>
         <item name="colorPrimaryVariant">@color/azul_marino</item>
         <item name="colorOnPrimary">@color/principal_blanco</item>
+        <item name="android:textAllCaps">false</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secundario_gris</item>
         <item name="colorSecondaryVariant">@color/secundario_gris</item>

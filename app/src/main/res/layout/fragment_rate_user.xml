@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="@dimen/padding_vertical_cl"
-    android:paddingVertical="@dimen/padding_vertical_cl"
+
     tools:context=".rate_user">
 
     <!-- TODO: Update blank fragment layout -->
@@ -13,7 +12,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/padding_vertical_cl"
+        android:paddingVertical="@dimen/padding_vertical_cl">
 
 
         <ImageView
@@ -43,7 +44,7 @@
             android:layout_marginStart="@dimen/margins_start_end"
             android:layout_marginEnd="@dimen/margins_start_end"
             android:layout_marginTop="14dp"
-            android:text="Name Surname"
+            android:text="@string/name_surname"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/icon_user" />
 
@@ -54,12 +55,13 @@
             android:layout_marginStart="@dimen/margins_start_end"
             android:layout_marginEnd="@dimen/margins_start_end"
             android:layout_marginTop="14dp"
-            android:text="Rating:"
+            android:text="@string/rating"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user" />
 
         <RatingBar
             android:id="@+id/ratingBar"
+            android:theme="@style/RatingBar.Style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margins_start_end"
@@ -73,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margins_start_end"
             android:layout_marginEnd="@dimen/margins_start_end"
-            android:text="Comment:"
+            android:text="@string/comment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
@@ -92,12 +94,13 @@
                 style="@style/Widget.LetMeDoIt.TextArea"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:hint="Type here"
+                android:hint="@string/type_here"
                 android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/save_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margins_start_end"
@@ -105,7 +108,7 @@
             android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="Save"
+            android:text="@string/save"
             app:layout_constraintTop_toBottomOf="@+id/opinion_input" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
