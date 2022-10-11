@@ -27,7 +27,6 @@
 
     <Button
         android:id="@+id/btn_Users"
-        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/btn_margin_admin"
@@ -40,7 +39,6 @@
 
     <Button
         android:id="@+id/btn_bannedUsers"
-        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/btn_margin_admin"
@@ -52,7 +50,6 @@
 
     <Button
         android:id="@+id/btn_reports"
-        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/btn_margin_admin"
@@ -65,7 +62,6 @@
 
     <Button
         android:id="@+id/btn_archivedReports"
-        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/btn_margin_admin"
@@ -77,7 +73,6 @@
 
     <Button
         android:id="@+id/btn_categories"
-        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/btn_margin_admin"
@@ -90,7 +85,6 @@
 
     <Button
         android:id="@+id/btn_createAdmin"
-        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/btn_margin_admin"
@@ -103,7 +97,6 @@
 
     <Button
         android:id="@+id/btn_singOff"
-        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/btn_margin_admin"
