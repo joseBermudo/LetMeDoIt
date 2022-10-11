@@ -1,5 +1,20 @@
 <resources>
     <string name="app_name">LetMeDoIt</string>
+    <string name="save">Save</string>
+    <string name="type_here">Type here</string>
+    <string name="coment">Coment:</string>
+    <string name="deny">Deny</string>
+    <string name="accept">Accept</string>
+    <string name="descriptionContent">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="description">Description</string>
+    <string name="math_teacher">Math teacher</string>
+    <string name="his_service">His service</string>
+    <string name="cut_hair">Cut hair</string>
+    <string name="my_service">My Service</string>
+    <string name="name_surname">Name Surname</string>
+    <string name="enter_code">Enter code</string>
+    <string name="recovery_code_message">Enter the recovery code that we sent you by mail</string>
+    <string name="recovery_code">Recovery Code</string>
     <string name="string_splash_screen">Imagen del logo al cargar la pantalla</string>
     <string name="string_splash_screen_loading">Loading...</string>
     <string name="txt_home_welcome">Hi there! Nice to see you again.</string>

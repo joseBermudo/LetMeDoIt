@@ -49,6 +49,9 @@
         <item name="android:gravity">top</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/secundario_gris</item>
+        <item name="colorControlActivated">@color/azul_marino</item>
     <style name="CustomSpinnerLayout">
         <item name="android:background">@drawable/spinner_frame_layout_style</item>
     </style>
@@ -61,5 +64,10 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">4dp</item>
         <item name="android:background">?android:attr/listDivider</item>
+    </style>
+
+    <style name="RatingBar.Style" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/secundario_gris</item>
+        <item name="colorControlActivated">@color/azul_marino</item>
     </style>
 </resources>
