@@ -8,6 +8,7 @@
     <dimen name="subtext_size">14sp</dimen>
     <dimen name="marginTop_title">24dp</dimen>
     <dimen name="marginStart_title">24dp</dimen>
+    <dimen name="margins_start_end">24dp</dimen>
     <!-- Spinner Personalizado -->
     <dimen name="spinner_radius">10dp</dimen>
     <dimen name="spinner_stroke">2dp</dimen>
@@ -50,6 +51,4 @@
     <dimen name="user_image_w">100dp</dimen>
     <dimen name="user_image_h">100dp</dimen>
     <dimen name="marginTop_userImage">8dp</dimen>
-
-
 </resources>
