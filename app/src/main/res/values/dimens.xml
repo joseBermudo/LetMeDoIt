@@ -33,4 +33,10 @@
     <dimen name="marginTop_Divider">8dp</dimen>
     <dimen name="btn_margin_admin">32dp</dimen>
     <dimen name="btn_marginTop_signOff_admin">128dp</dimen>
+    <dimen name="marginTop_createDeal_title">32dp</dimen>
+    <dimen name="user_image_w">100dp</dimen>
+    <dimen name="user_image_h">100dp</dimen>
+    <dimen name="marginTop_userImage">8dp</dimen>
+
+
 </resources>
