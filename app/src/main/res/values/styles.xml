@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Widget.LetMeDoIT.principalButton" parent="Widget.AppCompat.Button">
-        <item name="android:gravity">center_vertical</item>
+    <style name="Widget.LetMeDoIT.principalButton" parent="Widget.AppCompat.Button.Colored">
         <item name="android:backgroundTint">@color/azul_marino</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="textAllCaps">false</item>
@@ -44,14 +43,19 @@
     </style>
 
     <style name="Widget.LetMeDoIt.TextArea" parent="ThemeOverlay.Material3.TextInputEditText.FilledBox">
-        <item name="height">200dp</item>
+        <item name="android:layout_height">200dp</item>
         <item name="android:scrollbarThumbVertical">@color/azul_marino</item>
         <item name="android:scrollbars">vertical</item>
         <item name="android:gravity">top</item>
     </style>
 
+    <style name="CustomSpinnerLayout">
+        <item name="android:background">@drawable/spinner_frame_layout_style</item>
+    </style>
 
-
+    <style name="Widget.LetMeDoIt.CustomSpinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:popupBackground">@drawable/bg_rounded</item>
+    </style>
 
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
