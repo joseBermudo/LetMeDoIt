@@ -19,6 +19,8 @@
 
         <item name="textInputStyle">@style/Widget.LetMeDoIt.TextInputLayout</item>
 
+
+
         <item name="checkboxStyle">@style/Widget.LetMeDoIt.CheckBox</item>
 
         <item name="android:spinnerStyle">@style/Widget.LetMeDoIt.CustomSpinner</item>
