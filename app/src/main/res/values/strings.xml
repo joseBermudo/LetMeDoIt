@@ -15,4 +15,45 @@
     <string name="enter_code">Enter code</string>
     <string name="recovery_code_message">Enter the recovery code that we sent you by mail</string>
     <string name="recovery_code">Recovery Code</string>
+    <string name="string_splash_screen">Imagen del logo al cargar la pantalla</string>
+    <string name="string_splash_screen_loading">Loading...</string>
+    <string name="txt_home_welcome">Hi there! Nice to see you again.</string>
+    <string name="txt_login_forgotPassword">Forgot Password?</string>
+    <string name="txt_login_signIn">Sign In</string>
+    <string name="txt_login_signUp">Sign Up</string>
+    <string name="txt_password">Password</string>
+    <string name="txt_username">Username</string>
+    <string name="txt_register_title">Lets Get Started!</string>
+    <string name="txt_register_welcome">Create and account and start exchanging</string>
+    <string name="txt_email">Email</string>
+    <string name="txt_register_alreadyAccount">Already have an account?</string>
+    <string name="txt_confirm_password">Confirm Password</string>
+    <string name="txt_administrador">Administrator</string>
+    <string name="txt_create">Create</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_paleta_calcular">Calcular</string>
+    <string name="paleta_texto">LetMeDoIt</string>
+    <string name="paleta_text_imput_hint">email</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="paleta_mensage">mensage</string>
+    <string name="recover_password_a">Recover Password</string>
+    <string name="enter_the_new_password">Enter the new password</string>
+    <string name="password">Password</string>
+    <string name="confirm_the_password">Confirm the password</string>
+    <string name="change_password">Change password</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="email_hint">Email</string>
+    <string name="get_recovery_code">Get Recovery Code</string>
+    <string name="admin_users">Users</string>
+    <string name="banned_users">Banned users</string>
+    <string name="reports">Reports</string>
+    <string name="archived_reports">Archived reports</string>
+    <string name="categories">Categories</string>
+    <string name="create_admin">Create admin</string>
+    <string name="sign_off">Sign off</string>
+    <string name="create_deal">Create deal</string>
+    <string name="name_surname">Name Surname</string>
 </resources>

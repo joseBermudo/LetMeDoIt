@@ -9,6 +9,19 @@
     <dimen name="marginTop_title">24dp</dimen>
     <dimen name="marginStart_title">24dp</dimen>
     <dimen name="margins_start_end">24dp</dimen>
+    <!-- Spinner Personalizado -->
+    <dimen name="spinner_radius">10dp</dimen>
+    <dimen name="spinner_stroke">2dp</dimen>
+    <dimen name="spinner_right_padding">10dp</dimen>
+    <dimen name="spinner_text_padding_start">10dp</dimen>
+    <dimen name="spinner_text_padding">5dp</dimen>
+    <dimen name="spinner_layout_margin">5dp</dimen>
+    <dimen name="relative_layout_spinner_margin">20dp</dimen>
+    <dimen name="logo_dimen">128dp</dimen>
+    <dimen name="margin_forgot_password">16dp</dimen>
+    <dimen name="btn_height">56dp</dimen>
+    <dimen name="register_button_marginTop">48dp</dimen>
+    <dimen name="register_alreadyHaveAccount">-48dp</dimen>
     <dimen name="paleta_titulo_1">24dp</dimen>
     <dimen name="paleta_text">32dp</dimen>
     <dimen name="paleta_sub_text">48dp</dimen>
@@ -34,4 +47,8 @@
     <dimen name="marginTop_Divider">8dp</dimen>
     <dimen name="btn_margin_admin">32dp</dimen>
     <dimen name="btn_marginTop_signOff_admin">128dp</dimen>
+    <dimen name="marginTop_createDeal_title">32dp</dimen>
+    <dimen name="user_image_w">100dp</dimen>
+    <dimen name="user_image_h">100dp</dimen>
+    <dimen name="marginTop_userImage">8dp</dimen>
 </resources>
