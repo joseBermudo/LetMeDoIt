@@ -4,6 +4,8 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:backgroundTint">@color/azul_marino</item>
         <item name="android:textColor">@android:color/white</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="Widget.LetMeDoIt.title1" parent="Widget.AppCompat.TextView">
@@ -46,5 +48,14 @@
         <item name="android:scrollbarThumbVertical">@color/azul_marino</item>
         <item name="android:scrollbars">vertical</item>
         <item name="android:gravity">top</item>
+    </style>
+
+
+
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:background">?android:attr/listDivider</item>
     </style>
 </resources>
