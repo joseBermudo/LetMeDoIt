@@ -1,27 +1,18 @@
 <resources>
     <string name="app_name">LetMeDoIt</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="btn_paleta_calcular">Calcular</string>
-    <string name="paleta_texto">LetMeDoIt</string>
-    <string name="paleta_text_imput_hint">email</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="paleta_mensage">mensage</string>
-    <string name="recover_password_a">Recover Password</string>
-    <string name="enter_the_new_password">Enter the new password</string>
-    <string name="password">Password</string>
-    <string name="confirm_the_password">Confirm the password</string>
-    <string name="change_password">Change password</string>
-    <string name="forgot_password">Forgot Password</string>
-    <string name="enter_your_email">Enter your email</string>
-    <string name="email_hint">Email</string>
-    <string name="get_recovery_code">Get Recovery Code</string>
-    <string name="admin_users">Users</string>
-    <string name="banned_users">Banned users</string>
-    <string name="reports">Reports</string>
-    <string name="archived_reports">Archived reports</string>
-    <string name="categories">Categories</string>
-    <string name="create_admin">Create admin</string>
-    <string name="sign_off">Sign off</string>
+    <string name="save">Save</string>
+    <string name="type_here">Type here</string>
+    <string name="coment">Coment:</string>
+    <string name="deny">Deny</string>
+    <string name="accept">Accept</string>
+    <string name="descriptionContent">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="description">Description</string>
+    <string name="math_teacher">Math teacher</string>
+    <string name="his_service">His service</string>
+    <string name="cut_hair">Cut hair</string>
+    <string name="my_service">My Service</string>
+    <string name="name_surname">Name Surname</string>
+    <string name="enter_code">Enter code</string>
+    <string name="recovery_code_message">Enter the recovery code that we sent you by mail</string>
+    <string name="recovery_code">Recovery Code</string>
 </resources>
