@@ -68,4 +68,9 @@
     <dimen name="filtroCategorias_btnDone_margin">32dp</dimen>
     <dimen name="filtroCategorias_btnDone_marginTop">168dp</dimen>
     <dimen name="createDeal_iconButton_marginStart">8dp</dimen>
+    <dimen name="userReport_userImage_marginTop">64dp</dimen>
+    <dimen name="userReport_userName_marginTop">8dp</dimen>
+    <dimen name="userReport_byTitle_marginTop">32dp</dimen>
+    <dimen name="userReport_comment_marginTop">16dp</dimen>
+    <dimen name="userReport_comment_h">160dp</dimen>
 </resources>

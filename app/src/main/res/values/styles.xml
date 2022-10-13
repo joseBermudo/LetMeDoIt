@@ -40,6 +40,7 @@
 
     <style name="Widget.LetMeDoIt.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
         <item name="buttonTint">@color/azul_marino</item>
+        <item name="android:textColor">@color/secundario_gris</item>
     </style>
 
     <style name="Widget.LetMeDoIt.TextArea" parent="ThemeOverlay.Material3.TextInputEditText.FilledBox">
