@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Users.FiltroCategoriasTest"
+    android:paddingHorizontal="@dimen/padding_horizontal_cl"
+    android:paddingVertical="@dimen/padding_vertical_cl">
+
+    <ImageView
+        android:id="@+id/back_arrow_filtro_categorias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_back" />
+
+    <TextView
+        android:id="@+id/filter_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/filtroCategorias_titleFilter_marginTop"
+        android:text="@string/filter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/category_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/filtroCategorias_titleCategory_marginTop"
+        android:text="@string/category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter_title" />
+
+    <RelativeLayout
+        android:id="@+id/spinner_category"
+        style="@style/CustomSpinnerLayout"
+        android:layout_width="@dimen/relative_layout_w"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/filtroCategorias_spinnerCategorias_marginTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category_title"
+        tools:ignore="MissingConstraints">
+
+        <Spinner
+            android:id="@+id/spinner_category_s"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/subCategory_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/filtroCategorias_spinnerCategorias_marginTop"
+        android:text="Subcategory"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_category" />
+
+    <RelativeLayout
+        android:id="@+id/spinner_subcategory"
+        style="@style/CustomSpinnerLayout"
+        android:layout_width="@dimen/relative_layout_w"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/filtroCategorias_spinnerCategorias_marginTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subCategory_title"
+        tools:ignore="MissingConstraints">
+
+        <Spinner
+            android:id="@+id/spinner_subcategory_s"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/orderBy_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/filtrarCategorias_orderByTitle_marginTop"
+        android:text="@string/order_by"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_subcategory" />
+
+    <RelativeLayout
+        android:id="@+id/spinner_orderby"
+        style="@style/CustomSpinnerLayout"
+        android:layout_width="@dimen/relative_layout_w"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/filtroCategorias_spinnerCategorias_marginTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/orderBy_title"
+        tools:ignore="MissingConstraints">
+
+        <Spinner
+            android:id="@+id/spinner_orderby_s"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/filtroCategorias_btnDone_margin"
+        android:layout_marginTop="@dimen/filtroCategorias_btnDone_marginTop"
+        android:layout_marginEnd="@dimen/filtroCategorias_btnDone_margin"
+        android:text="@string/done"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_orderby" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

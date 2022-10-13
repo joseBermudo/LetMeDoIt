@@ -61,4 +61,10 @@
     <dimen name="create_deal_btn_marginStart">48dp</dimen>
     <dimen name="create_deal_btn_marginEnd">48dp</dimen>
     <dimen name="create_deal_btnCreate_marginTop">32dp</dimen>
+    <dimen name="filtroCategorias_titleFilter_marginTop">48dp</dimen>
+    <dimen name="filtroCategorias_titleCategory_marginTop">32dp</dimen>
+    <dimen name="filtroCategorias_spinnerCategorias_marginTop">32dp</dimen>
+    <dimen name="filtrarCategorias_orderByTitle_marginTop">32dp</dimen>
+    <dimen name="filtroCategorias_btnDone_margin">32dp</dimen>
+    <dimen name="filtroCategorias_btnDone_marginTop">168dp</dimen>
 </resources>
