@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".EditService">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_horizontal_cl">
+
+            <TextView
+                android:id="@+id/txt_title_editService"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_edit_service_editService" />
+
+            <TextView
+                android:id="@+id/txt_title_title"
+                app:layout_constraintStart_toStartOf="@+id/txt_title_editService"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title_editService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop_AdminTitle"
+                android:text="@string/txt_new_service_title"
+                android:textSize="@dimen/title2_size" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout2"
+                app:layout_constraintStart_toStartOf="@+id/txt_title_title"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_service_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/txt_new_service_serviceTitle"
+                    android:padding="@dimen/dimen_newService_padding_editText" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txt_title_title2"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/btn_marginTop_newPassword"
+                android:text="@string/txt_new_service_category"
+                android:textSize="@dimen/title2_size" />
+
+            <RelativeLayout
+                android:id="@+id/container_spinner_category"
+                style="@style/CustomSpinnerLayout"
+                app:layout_constraintStart_toStartOf="@+id/txt_title_title2"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title_title2"
+                android:layout_width="@dimen/dimen_width_newService_spinnerLayout"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_margin_newService_spinnerLayout"
+                tools:ignore="MissingConstraints">
+
+                <Spinner
+                    android:id="@+id/spinner_category"
+                    android:layout_width="@dimen/dimen_width_newService_spinnerLayout"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/txt_title_category"
+                app:layout_constraintStart_toStartOf="@+id/container_spinner_category"
+                app:layout_constraintTop_toBottomOf="@+id/container_spinner_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/btn_marginTop_newPassword"
+                android:text="@string/txt_new_service_subcategory"
+                android:textSize="@dimen/title2_size" />
+
+            <TextView
+                android:id="@+id/txt_title_description"
+                app:layout_constraintStart_toStartOf="@+id/container_spinner_subcategory"
+                app:layout_constraintTop_toBottomOf="@+id/container_spinner_subcategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/btn_marginTop_newPassword"
+                android:text="@string/txt_new_service_description"
+                android:textSize="@dimen/title2_size" />
+
+            <RelativeLayout
+                android:id="@+id/container_spinner_subcategory"
+                style="@style/CustomSpinnerLayout"
+                app:layout_constraintStart_toStartOf="@+id/txt_title_category"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title_category"
+                android:layout_width="@dimen/dimen_width_newService_spinnerLayout"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_margin_newService_spinnerLayout"
+                tools:ignore="MissingConstraints">
+
+                <Spinner
+                    android:id="@+id/spinner_subcategory"
+                    android:layout_width="@dimen/dimen_width_newService_spinnerLayout"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout3"
+                app:layout_constraintStart_toStartOf="@+id/txt_title_description"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_description"
+                    style="@style/Widget.LetMeDoIt.TextArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_width_newService_spinnerLayout"
+                    android:hint="@string/txt_new_service_description"
+                    android:padding="@dimen/dimen_newService_padding_editText" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txt_title_images"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/btn_marginTop_newPassword"
+                android:text="@string/txt_new_service_images"
+                android:textSize="@dimen/title2_size" />
+
+            <TextView
+                android:id="@+id/btn_add_image"
+                app:layout_constraintEnd_toStartOf="@+id/btn_remove_image"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+                android:layout_width="@dimen/dimen_newService_width"
+                android:layout_height="@dimen/dimen_newService_width"
+                android:layout_marginTop="@dimen/btn_marginTop_newPassword"
+                android:background="@drawable/upload_icon_colored" />
+
+            <TextView
+                android:id="@+id/btn_remove_image"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+                android:layout_width="@dimen/dimen_newService_width"
+                android:layout_height="@dimen/dimen_newService_width"
+                android:layout_marginTop="@dimen/btn_marginTop_newPassword"
+                android:background="@drawable/remove_icon" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_images"
+                app:layout_constraintStart_toStartOf="@+id/txt_title_images"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title_images"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
+            <Button
+                android:id="@+id/btn_save"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/list_images"
+                app:layout_constraintTop_toBottomOf="@+id/list_images"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/btn_marginTop_newPassword"
+                android:text="@string/save" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>

@@ -53,8 +53,10 @@
         <item name="colorControlNormal">@color/secundario_gris</item>
         <item name="colorControlActivated">@color/azul_marino</item>
     </style>
+
     <style name="CustomSpinnerLayout">
         <item name="android:background">@drawable/spinner_frame_layout_style</item>
+        <item name="android:padding">10dp</item>
     </style>
 
     <style name="Widget.LetMeDoIt.CustomSpinner" parent="Widget.AppCompat.Spinner">

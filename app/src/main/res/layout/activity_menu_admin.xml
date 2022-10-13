@@ -47,7 +47,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_Users" />
-
     <Button
         android:id="@+id/btn_reports"
         android:layout_width="match_parent"

@@ -51,4 +51,8 @@
     <dimen name="user_image_w">100dp</dimen>
     <dimen name="user_image_h">100dp</dimen>
     <dimen name="marginTop_userImage">8dp</dimen>
+    <dimen name="dimen_newService_padding_editText">8dp</dimen>
+    <dimen name="dimen_margin_newService_spinnerLayout">0dp</dimen>
+    <dimen name="dimen_width_newService_spinnerLayout">200dp</dimen>
+    <dimen name="dimen_newService_width">24dp</dimen>
 </resources>
