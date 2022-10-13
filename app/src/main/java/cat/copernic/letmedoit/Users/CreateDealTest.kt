@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.Admin
+package cat.copernic.letmedoit.Users
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

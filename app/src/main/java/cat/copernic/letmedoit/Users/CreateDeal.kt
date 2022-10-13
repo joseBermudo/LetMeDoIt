@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.Admin
+package cat.copernic.letmedoit.Users
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
