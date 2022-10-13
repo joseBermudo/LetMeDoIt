@@ -3,6 +3,7 @@ package cat.copernic.letmedoit
 import android.content.Context
 import android.widget.Spinner
 import android.widget.ArrayAdapter
+import cat.copernic.letmedoit.Users.CreateDeal
 
 abstract class Utils {
     //Companion Object --> permite llamar a la función sin instanciar la clase
@@ -16,10 +17,14 @@ abstract class Utils {
      *  @param layout El archivo xml que será el diseño del PopUp
      */
     companion object{
-        fun AsignarPopUpSpinner(context: Context,list: ArrayList<String>, spinner: Spinner, layout : Int=R.layout.spinner_items) {
+        fun AsignarPopUpSpinner(
+            context: Context,
+            list: ArrayList<String>, spinner: Spinner, layout: Int=R.layout.spinner_items) {
             val adapter: ArrayAdapter<String> = ArrayAdapter<String>(context, R.layout.spinner_items, list)
             spinner.adapter = adapter
         }
+
+
 
         fun createList():ArrayList<String>{
             var itemList: ArrayList<String> = ArrayList<String>()
@@ -52,6 +57,8 @@ abstract class Utils {
             return itemList
 
         }
+
+
     }
 
 }
