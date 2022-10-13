@@ -60,4 +60,5 @@
     <dimen name="create_deal_textArea_editText_h">120dp</dimen>
     <dimen name="create_deal_btn_marginStart">48dp</dimen>
     <dimen name="create_deal_btn_marginEnd">48dp</dimen>
+    <dimen name="create_deal_btnCreate_marginTop">32dp</dimen>
 </resources>

@@ -1,7 +1,8 @@
-package cat.copernic.letmedoit
+package cat.copernic.letmedoit.Admin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import cat.copernic.letmedoit.R
 
 class MenuAdmin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

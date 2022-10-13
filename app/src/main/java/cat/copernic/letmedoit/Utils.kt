@@ -20,6 +20,38 @@ abstract class Utils {
             val adapter: ArrayAdapter<String> = ArrayAdapter<String>(context, R.layout.spinner_items, list)
             spinner.adapter = adapter
         }
+
+        fun createList():ArrayList<String>{
+            var itemList: ArrayList<String> = ArrayList<String>()
+            itemList.add("Clases de matematicas")
+            itemList.add("Desarrollo de apps web")
+            itemList.add("Limpieza del hogar")
+            itemList.add("Cocina italiana")
+            itemList.add("Transporte de mudanza")
+            itemList.add("Mantenimiento de piscinas")
+            itemList.add("Consultas psicologicas")
+            itemList.add("Soporte tecnico sobre ordenadores")
+            itemList.add("Diseño de apps (Android)")
+            itemList.add("Personalización de teclados")
+            itemList.add("Cortes de cabello")
+            itemList.add("Manicura")
+            itemList.add("Puñetazos")
+            itemList.add("Clases de KungFu")
+            itemList.add("Clases de cocina")
+            itemList.add("Colocación de azulejos")
+            itemList.add("Limpiar gafas")
+            itemList.add("Masajes")
+            itemList.add("Reparación vidrio")
+            itemList.add("Destrucion de planetas")
+            itemList.add("Doblaje")
+            itemList.add("Retratos")
+            itemList.add("Edición de memorias")
+            itemList.add("Instalación de software de oficina")
+            itemList.add("Reparación de ordenadores")
+            itemList.add("Panaderia")
+            return itemList
+
+        }
     }
 
 }
