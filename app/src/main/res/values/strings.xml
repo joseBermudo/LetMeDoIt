@@ -63,4 +63,14 @@
     <string name="txt_new_service_description">Description</string>
     <string name="txt_new_service_images">Images</string>
     <string name="txt_edit_service_editService">Edit Service</string>
+    <string name="name_username">Name Username</string>
+    <string name="password_example">Password Example</string>
+    <string name="about_me">About Me</string>
+    <string name="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis tortor ut quam interdum dignissim. Nulla lobortis id tellus sed placerat. Curabitur varius metus magna, vitae ultrices orci gravida vel. Pellentesque vel erat vel lacus porta mattis vestibulum vel felis. In tellus arcu, pulvinar eget dolor id, ultrices egestas sem. Fusce finibus sapien vehicula nisl finibus, sed condimentum orci tempor. Cras viverra maximus massa, nec posuere velit commodo eget. Etiam in lacus venenatis, porttitor metus ut, pellentesque dolor. Donec et faucibus turpis. Duis eu dapibus turpis. Proin ultrices, neque lacinia hendrerit posuere, augue ipsum tincidunt nisi, at bibendum dui ipsum vitae metus.</string>
+    <string name="curriculum_title">Curriculum</string>
+    <string name="schedule_title">Schedule</string>
+    <string name="schedule_text">10:00 - 20:00</string>
+    <string name="contact_info">Contact Info</string>
+    <string name="location_title">Location</string>
+    <string name="location_text">Location</string>
 </resources>
