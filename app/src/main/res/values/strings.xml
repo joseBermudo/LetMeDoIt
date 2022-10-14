@@ -58,4 +58,7 @@
     <string name="category">Category</string>
     <string name="tittle">Tittle</string>
     <string name="conclude">Conclude</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="lenguage">Lenguage</string>
+    <string name="edit_profile">Edit Profile</string>
 </resources>

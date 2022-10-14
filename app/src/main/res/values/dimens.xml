@@ -51,4 +51,8 @@
     <dimen name="user_image_w">100dp</dimen>
     <dimen name="user_image_h">100dp</dimen>
     <dimen name="marginTop_userImage">8dp</dimen>
+    <dimen name="profile_options_dimens">128dp</dimen>
+    <dimen name="arrow_profile_dimens">24sp</dimen>
+    <dimen name="divider_16dp_margin_top">16dp</dimen>
+    <dimen name="opciones_cuenta_margin_top_bot_intolayouts">6sp</dimen>
 </resources>
