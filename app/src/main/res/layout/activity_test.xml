@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".TEST">
 
-    <fragment android:name="cat.copernic.letmedoit.Users.UserReport"
+    <fragment android:name="cat.copernic.letmedoit.Visitante.registroOpcionesCuenta"
         android:id="@+id/test"
         android:layout_weight="1"
         android:layout_width="match_parent"
