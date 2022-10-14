@@ -14,11 +14,11 @@
 
         <ImageView
             android:id="@+id/arrow_back_registerVisit"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="56dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="56dp"
+            android:layout_width="@dimen/registroOpcionesCuenta_arrow_wh"
+            android:layout_height="@dimen/registroOpcionesCuenta_arrow_wh"
+            android:layout_marginTop="@dimen/registroOpcionesCuenta_arrow_marginTop"
+            android:layout_marginEnd="@dimen/registroOpcionesCuenta_arrow_marginEnd"
+            android:layout_marginBottom="@dimen/registroOpcionesCuenta_arrow_marginBottom"
             android:src="@drawable/ic_baseline_arrow_forward_ios_24"
             app:layout_constraintBottom_toTopOf="@+id/divider"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,17 +28,17 @@
             android:id="@+id/divider"
             style="@style/Divider"
             android:layout_width="match_parent"
-            android:layout_height="6dp"
-            android:layout_marginTop="32dp"
+            android:layout_height="@dimen/registroOpcionesCuenta_divider_h"
+            android:layout_marginTop="@dimen/registroOpcionesCuenta_divider_marginTop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleSignIn" />
 
         <ImageView
             android:id="@+id/userImage"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="@dimen/registroOpcionesCuenta_userImage_wh"
+            android:layout_height="@dimen/registroOpcionesCuenta_userImage_wh"
+            android:layout_marginTop="@dimen/registroOpcionesCuenta_userImage_marginTop"
             android:src="@drawable/ic_baseline_account_circle_24"
             app:layout_constraintEnd_toEndOf="parent"
 
@@ -49,7 +49,7 @@
             android:id="@+id/titleSignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign In or Register"
+            android:text="@string/sign_in_or_register"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userImage" />

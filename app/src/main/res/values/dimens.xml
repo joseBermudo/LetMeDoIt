@@ -76,4 +76,12 @@
     <dimen name="userReport_btnReport_marginStart">32dp</dimen>
     <dimen name="userReport_btnReport_marginTop">24dp</dimen>
     <dimen name="userReport_btnReport_marginEnd">32dp</dimen>
+    <dimen name="registroOpcionesCuenta_arrow_wh">32dp</dimen>
+    <dimen name="registroOpcionesCuenta_arrow_marginTop">56dp</dimen>
+    <dimen name="registroOpcionesCuenta_arrow_marginEnd">24dp</dimen>
+    <dimen name="registroOpcionesCuenta_arrow_marginBottom">56dp</dimen>
+    <dimen name="registroOpcionesCuenta_divider_h">6dp</dimen>
+    <dimen name="registroOpcionesCuenta_divider_marginTop">32dp</dimen>
+    <dimen name="registroOpcionesCuenta_userImage_wh">128dp</dimen>
+    <dimen name="registroOpcionesCuenta_userImage_marginTop">24dp</dimen>
 </resources>
