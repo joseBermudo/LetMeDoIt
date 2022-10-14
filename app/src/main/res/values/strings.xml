@@ -52,7 +52,7 @@
     <string name="create_admin">Create admin</string>
     <string name="sign_off">Sign off</string>
     <string name="create_deal">Create deal</string>
-    <string name="name_surname">Name Surname</string>
+    <string name="name_surname">%s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="txt_new_service">New Service</string>
