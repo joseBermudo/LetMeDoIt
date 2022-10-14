@@ -60,4 +60,6 @@
     <string name="category">Category</string>
     <string name="order_by">Order by</string>
     <string name="done">Done</string>
+    <string name="by">By:</string>
+    <string name="report">Report</string>
 </resources>

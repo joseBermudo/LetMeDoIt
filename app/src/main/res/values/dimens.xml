@@ -73,4 +73,7 @@
     <dimen name="userReport_byTitle_marginTop">32dp</dimen>
     <dimen name="userReport_comment_marginTop">16dp</dimen>
     <dimen name="userReport_comment_h">160dp</dimen>
+    <dimen name="userReport_btnReport_marginStart">32dp</dimen>
+    <dimen name="userReport_btnReport_marginTop">24dp</dimen>
+    <dimen name="userReport_btnReport_marginEnd">32dp</dimen>
 </resources>
