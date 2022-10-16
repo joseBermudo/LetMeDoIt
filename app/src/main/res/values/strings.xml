@@ -15,7 +15,7 @@
     <string name="recovery_code_message">Enter the recovery code that we sent you by mail</string>
     <string name="recovery_code">Recovery Code</string>
     <string name="string_splash_screen">Imagen del logo al cargar la pantalla</string>
-    <string name="string_splash_screen_loading">Loading...</string>
+    <string name="string_splash_screen_loading">Loading</string>
     <string name="txt_home_welcome">Hi there! Nice to see you again.</string>
     <string name="txt_login_forgotPassword">Forgot Password?</string>
     <string name="txt_login_signIn">Sign In</string>

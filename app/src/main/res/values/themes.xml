@@ -26,5 +26,13 @@
         <item name="textAllCaps">false</item>
 
         <item name="ratingBarStyle">@style/RatingBar.Style</item>
+
+    </style>
+    <!-- Tema de inicialización de la aplicación -->
+    <style name="Theme.LetMeDoIt.Starting" parent ="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/azul_marino</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="android:animationDuration">300</item>
+        <item name="postSplashScreenTheme">@style/Theme.LetMeDoIt</item>
     </style>
 </resources>
