@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Visitante.registroOpcionesCuenta">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/arrow_back_registerVisit"
+            android:layout_width="@dimen/registroOpcionesCuenta_arrow_wh"
+            android:layout_height="@dimen/registroOpcionesCuenta_arrow_wh"
+            android:layout_marginTop="@dimen/registroOpcionesCuenta_arrow_marginTop"
+            android:layout_marginEnd="@dimen/registroOpcionesCuenta_arrow_marginEnd"
+            android:layout_marginBottom="@dimen/registroOpcionesCuenta_arrow_marginBottom"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider"
+            style="@style/Divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/registroOpcionesCuenta_divider_h"
+            android:layout_marginTop="@dimen/registroOpcionesCuenta_divider_marginTop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleSignIn" />
+
+        <ImageView
+            android:id="@+id/userImage"
+            android:layout_width="@dimen/registroOpcionesCuenta_userImage_wh"
+            android:layout_height="@dimen/registroOpcionesCuenta_userImage_wh"
+            android:layout_marginTop="@dimen/registroOpcionesCuenta_userImage_marginTop"
+            android:src="@drawable/ic_baseline_account_circle_24"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titleSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_in_or_register"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userImage" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
