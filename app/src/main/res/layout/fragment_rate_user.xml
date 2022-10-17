@@ -7,7 +7,6 @@
 
     tools:context=".rate_user">
 
-    <!-- TODO: Update blank fragment layout -->
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,7 +66,7 @@
             android:layout_marginStart="@dimen/margins_start_end"
             android:contentDescription="@string/app_name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rating" />
+            app:layout_constraintTop_toBottomOf="@+id/rating"/>
 
         <TextView
             android:id="@+id/comment"
