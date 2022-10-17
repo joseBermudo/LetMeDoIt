@@ -33,14 +33,18 @@
             app:tabIndicatorHeight="40dp"
             app:tabSelectedTextColor="@color/principal_blanco"
             app:tabTextColor="@color/negro"
+            app:tabRippleColor="@null"
+
             >
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/profiles_select"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Profiles" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/services_selecte"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Services" />
