@@ -51,6 +51,13 @@
     <dimen name="user_image_w">100dp</dimen>
     <dimen name="user_image_h">100dp</dimen>
     <dimen name="marginTop_userImage">8dp</dimen>
+
+    <dimen name="profile_options_dimens">128dp</dimen>
+    <dimen name="arrow_profile_dimens">24sp</dimen>
+    <dimen name="divider_16dp_margin_top">16dp</dimen>
+    <dimen name="opciones_cuenta_margin_top_bot_intolayouts">6sp</dimen>
+    <dimen name="padding_vertical_start_end_8">8dp</dimen>
+
     <dimen name="relative_layout_w">200dp</dimen>
     <dimen name="revalite_layout_marginEnd">8dp</dimen>
     <dimen name="his_service_marginTop">16dp</dimen>
@@ -92,4 +99,5 @@
     <dimen name="visFav_btn_marginTop">24dp</dimen>
     <dimen name="uploadServicesVis_desp_marginTop">16dp</dimen>
     <dimen name="UploadServicesVis_btn_marginTop">32dp</dimen>
+
 </resources>
