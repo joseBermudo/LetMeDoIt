@@ -55,4 +55,5 @@
     <dimen name="arrow_profile_dimens">24sp</dimen>
     <dimen name="divider_16dp_margin_top">16dp</dimen>
     <dimen name="opciones_cuenta_margin_top_bot_intolayouts">6sp</dimen>
+    <dimen name="padding_vertical_start_end_8">8dp</dimen>
 </resources>

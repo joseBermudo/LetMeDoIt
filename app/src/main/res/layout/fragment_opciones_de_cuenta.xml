@@ -63,6 +63,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ratingBar3" />
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -74,16 +75,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                style="@style/LinearLayotPaddingVerticalStartEnd">
 
 
                 <TextView
                     android:id="@+id/editProfile"
                     style="@style/Widget.LetMeDoIt.text"
-                    android:layout_marginTop="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
-                    android:layout_marginBottom="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
+                    android:layout_marginBottom="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:text="@string/edit_profile" />
 
                 <LinearLayout
@@ -114,7 +116,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                style="@style/LinearLayotPaddingVerticalStartEnd">
 
 
                 <TextView
@@ -136,11 +139,12 @@
                         android:id="@+id/arrowLenguage"
                         android:layout_width="@dimen/arrow_profile_dimens"
                         android:layout_height="@dimen/arrow_profile_dimens"
-                        android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+                        android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                        android:rotation="90"/>
                 </LinearLayout>
             </LinearLayout>
-            <!-- Divider !-->
 
+            <!-- Divider !-->
             <View
                 android:id="@+id/divider_lenguage_darkTheme"
                 style="@style/Divider"
@@ -149,11 +153,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/ratingBar3" />
 
             <!-- Apartado Dark Theme !-->
+
+            <!-- Divider !-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                style="@style/LinearLayotPaddingVerticalStartEnd">
 
 
                 <TextView
@@ -174,11 +181,12 @@
                     <Switch
                         android:id="@+id/switchDarkTheme"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:theme="@style/Swtich.Style"
+                        tools:ignore="TouchTargetSizeCheck" />
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Divider !-->
             <View
                 android:id="@+id/divider_darkTheme_signOff"
                 style="@style/Divider"
@@ -191,7 +199,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                style="@style/LinearLayotPaddingVerticalStartEnd">
 
 
                 <TextView
