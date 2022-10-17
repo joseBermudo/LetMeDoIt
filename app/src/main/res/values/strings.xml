@@ -69,4 +69,7 @@
     <string name="visFav_desp">From here you will access the profiles</string>
     <string name="visFavSev_desp">From here you will access the services</string>
     <string name="sign_in">Sign In</string>
+    <string name="no_messages_yet">No messages yet</string>
+    <string name="messagesVis_desp">Chatting on LetMeDoIt is often the start of a nice deal.</string>
+    <string name="messagesVis_desp_a">Sign in and open your first conversation!</string>
 </resources>
