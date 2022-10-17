@@ -16,7 +16,7 @@ class CUSTOMSPINNER : AppCompatActivity() {
 
 
         //EJEMPLO DE USO DEL SPINNER --> HAY QUE IMPLEMENTARLO SI NO NO IRÁ
-        val spinner = binding.spinnerSubcategory
+        val spinner = binding.spinner
 
         var list: ArrayList<String> = ArrayList<String>()
         list.add("A")

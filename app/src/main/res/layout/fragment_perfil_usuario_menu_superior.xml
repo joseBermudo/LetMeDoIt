@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PerfilUsuarioMenuSuperior">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/back_arrow"
+            android:layout_width="@dimen/app_icon_size_small"
+            android:layout_height="@dimen/app_icon_size_small"
+            android:layout_margin="@dimen/padding_horizontal_cl"
+            android:background="@drawable/arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/favorites"
+            android:layout_width="@dimen/app_icon_size_small"
+            android:layout_height="@dimen/app_icon_size_small"
+            android:layout_margin="@dimen/padding_horizontal_cl"
+            android:background="@drawable/favorites_icon_colored"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/back_arrow"
+            app:srcCompat="@drawable/bottom_menu_profile_selector" />
+
+        <TextView
+            android:id="@+id/profile_name_surname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_surname"
+            android:textColor="@color/negro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_image" />
+
+        <RatingBar
+            android:id="@+id/rating"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:theme="@style/RatingBar.Style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginStart_title"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:scaleY="2"
+            android:scaleX="2"
+            android:rating="2.5"
+            android:stepSize="0.1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_name_surname" />
+
+        <TextView
+            android:id="@+id/report"
+            android:layout_width="@dimen/app_icon_size_small"
+            android:layout_height="@dimen/app_icon_size_small"
+            android:layout_marginEnd="@dimen/padding_horizontal_cl"
+            android:background="@drawable/report_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rating" />
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/marginTop_title"
+            android:background="@color/divider_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/report" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tablayout_user_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/separator"
+            app:tabTextAppearance="@style/Widget.LetMeDoIt.text">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabitem_services"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%s \n Services" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabitem_opinions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%s \n Opinions" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabitem_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+ \n Info" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <View
+            android:id="@+id/bottom_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@drawable/down_shadow"
+            app:layout_constraintStart_toStartOf="@+id/tablayout_user_profile"
+            app:layout_constraintTop_toBottomOf="@id/tablayout_user_profile" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_profile_option"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bottom_shadow" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</FrameLayout>
