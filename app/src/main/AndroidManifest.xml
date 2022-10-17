@@ -13,7 +13,7 @@
         android:theme="@style/Theme.LetMeDoIt"
         tools:targetApi="31">
         <activity
-            android:name=".TEST"
+            android:name=".Utils.TEST"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -22,35 +22,35 @@
 
 
         <activity
-            android:name=".RecoveryCode"
+            android:name=".Users.view.activities.RecoveryCode"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Admin.MenuAdmin"
+            android:name=".Admin.view.activities.MenuAdmin"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RecoveryPassword_email"
+            android:name=".Users.view.activities.RecoveryPassword_email"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RecoveryPasswordNewPassword"
+            android:name=".Users.view.activities.RecoveryPasswordNewPassword"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".PaletaEstilos"
+            android:name=".Utils.PaletaEstilos"
             android:exported="true">
 
             <meta-data
@@ -58,21 +58,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Register"
+            android:name=".Visitante.view.activities.Register"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Login"
+            android:name=".Visitante.view.activities.Login"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".splash_screen"
+            android:name=".General.view.fragments.splash_screen"
             android:exported="true"
             android:theme="@style/Theme.LetMeDoIt.Starting">
             <intent-filter>
@@ -85,21 +85,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".CUSTOMSPINNER"
+            android:name=".Utils.CustomSpinner"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Home"
+            android:name=".General.view.activities.Home"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Admin.CreateUser"
+            android:name=".Admin.view.activities.CreateUser"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

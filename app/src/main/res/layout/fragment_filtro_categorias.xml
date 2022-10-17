@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Users.FiltroCategorias">
+    tools:context=".Users.view.fragments.FiltroCategorias">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,7 +25,7 @@
             android:id="@+id/filter_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/filtroCategorias_titleFilter_marginTop"
+            android:layout_marginTop="@dimen/margins_start_end_extra_plus"
             android:text="@string/filter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +34,7 @@
             android:id="@+id/category_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/filtroCategorias_titleCategory_marginTop"
+            android:layout_marginTop="@dimen/marginTop_extra"
             android:text="@string/category"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/filter_title" />
@@ -44,7 +44,7 @@
             style="@style/CustomSpinnerLayout"
             android:layout_width="@dimen/relative_layout_w"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/filtroCategorias_spinnerCategorias_marginTop"
+            android:layout_marginTop="@dimen/marginTop_extra"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/category_title"
             tools:ignore="MissingConstraints">
@@ -60,7 +60,7 @@
             android:id="@+id/subCategory_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/filtroCategorias_spinnerCategorias_marginTop"
+            android:layout_marginTop="@dimen/marginTop_extra"
             android:text="Subcategory"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner_category" />
@@ -70,7 +70,7 @@
             style="@style/CustomSpinnerLayout"
             android:layout_width="@dimen/relative_layout_w"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/filtroCategorias_spinnerCategorias_marginTop"
+            android:layout_marginTop="@dimen/marginTop_extra"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subCategory_title"
             tools:ignore="MissingConstraints">
@@ -86,7 +86,7 @@
             android:id="@+id/orderBy_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/filtrarCategorias_orderByTitle_marginTop"
+            android:layout_marginTop="@dimen/marginTop_extra"
             android:text="@string/order_by"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner_subcategory" />
@@ -96,7 +96,7 @@
             style="@style/CustomSpinnerLayout"
             android:layout_width="@dimen/relative_layout_w"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/filtroCategorias_spinnerCategorias_marginTop"
+            android:layout_marginTop="@dimen/marginTop_extra"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/orderBy_title"
             tools:ignore="MissingConstraints">
@@ -112,9 +112,9 @@
             android:id="@+id/btn_done"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/filtroCategorias_btnDone_margin"
-            android:layout_marginTop="@dimen/filtroCategorias_btnDone_marginTop"
-            android:layout_marginEnd="@dimen/filtroCategorias_btnDone_margin"
+            android:layout_marginStart="@dimen/margins_start_end_extra"
+            android:layout_marginTop="@dimen/logo_dimen"
+            android:layout_marginEnd="@dimen/margins_start_end_extra"
             android:text="@string/done"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

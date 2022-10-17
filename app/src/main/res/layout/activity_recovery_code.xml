@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="@dimen/padding_vertical_cl"
     android:paddingVertical="@dimen/padding_vertical_cl"
-    tools:context=".RecoveryCode">
+    tools:context=".Users.view.activities.RecoveryCode">
 
     <ImageView
         android:id="@+id/imageView"

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Visitante.MessagesVis">
+    tools:context=".Visitante.view.fragments.MessagesVis">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,7 +15,7 @@
             android:id="@+id/contenedor_logo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/visFavoProf_log_marginTop"
+            android:layout_marginTop="@dimen/marginTop_extra"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -41,7 +41,7 @@
             android:id="@+id/desp_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/visFavProfiles_despTtitle_marginTop"
+            android:layout_marginTop="@dimen/marginTop"
             android:text="@string/no_messages_yet"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,9 +74,9 @@
             android:id="@+id/signIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/visFav_btn_margin"
-            android:layout_marginTop="@dimen/visFav_btn_marginTop"
-            android:layout_marginEnd="@dimen/visFav_btn_margin"
+            android:layout_marginStart="@dimen/margins_start_end_extra"
+            android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginEnd="@dimen/margins_start_end_extra"
             android:text="@string/sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

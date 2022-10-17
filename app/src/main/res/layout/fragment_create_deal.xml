@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Users.CreateDeal">
+    tools:context=".Users.view.fragments.CreateDeal">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:id="@+id/create_deal_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/marginTop_createDeal_title"
+                android:layout_marginTop="@dimen/marginTop_extra"
                 android:text="@string/create_deal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -90,14 +90,14 @@
                     android:id="@+id/add_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/createDeal_iconButton_marginStart"
+                    android:layout_marginStart="@dimen/create_deal_iconButton_marginStart"
                     android:src="@drawable/ic_baseline_add_circle_24" />
 
                 <ImageView
                     android:id="@+id/edit_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/createDeal_iconButton_marginStart"
+                    android:layout_marginStart="@dimen/create_deal_iconButton_marginStart"
                     android:src="@drawable/ic_baseline_edit_24" />
 
             </LinearLayout>
@@ -143,7 +143,7 @@
                 android:id="@+id/description_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/description_text_create_deal_marginTop"
+                android:layout_marginTop="@dimen/marginTop_extra"
                 android:text="@string/description"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linear_layout_his_service" />
@@ -167,9 +167,9 @@
                 android:id="@+id/btn_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/create_deal_btn_marginStart"
-                android:layout_marginTop="@dimen/create_deal_btnCreate_marginTop"
-                android:layout_marginEnd="@dimen/create_deal_btn_marginEnd"
+                android:layout_marginStart="@dimen/margins_start_end_extra_plus"
+                android:layout_marginTop="@dimen/marginTop_extra"
+                android:layout_marginEnd="@dimen/margins_start_end_extra_plus"
                 android:text="@string/create"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

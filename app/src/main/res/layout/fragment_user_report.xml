@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Users.UserReport">
+    tools:context=".Users.view.fragments.UserReport">
 
 
     <ScrollView
@@ -31,7 +31,7 @@
                 android:id="@+id/userIamge"
                 android:layout_width="@dimen/user_image_w"
                 android:layout_height="@dimen/user_image_h"
-                android:layout_marginTop="@dimen/userReport_userImage_marginTop"
+                android:layout_marginTop="@dimen/marginTop_extra_big"
                 android:src="@drawable/ic_baseline_account_circle_24"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +50,7 @@
                 android:id="@+id/by"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/userReport_byTitle_marginTop"
+                android:layout_marginTop="@dimen/marginTop_extra"
                 android:text="@string/by"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/userName" />
@@ -107,9 +107,9 @@
                 android:id="@+id/btn_report"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/userReport_btnReport_marginStart"
-                android:layout_marginTop="@dimen/userReport_btnReport_marginTop"
-                android:layout_marginEnd="@dimen/userReport_btnReport_marginEnd"
+                android:layout_marginStart="@dimen/margins_start_end_extra"
+                android:layout_marginTop="@dimen/marginTop"
+                android:layout_marginEnd="@dimen/margins_start_end_extra"
                 android:text="@string/report"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
