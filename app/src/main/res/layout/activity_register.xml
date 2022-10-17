@@ -167,7 +167,7 @@
                 android:layout_height="@dimen/btn_height"
                 android:layout_marginTop="@dimen/register_button_marginTop"
                 android:layout_marginBottom="@dimen/marginTop_title"
-                android:text="@string/txt_login_signIn"
+                android:text="@string/txt_login_signUp"
                 app:layout_constraintBottom_toTopOf="@+id/txt_signIn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
