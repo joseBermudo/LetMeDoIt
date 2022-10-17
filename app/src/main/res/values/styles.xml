@@ -38,6 +38,7 @@
 
     <style name="Widget.LetMeDoIt.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
         <item name="buttonTint">@color/azul_marino</item>
+        <item name="android:textColor">@color/secundario_gris</item>
     </style>
 
     <style name="Widget.LetMeDoIt.TextArea" parent="ThemeOverlay.Material3.TextInputEditText.FilledBox">
@@ -58,7 +59,6 @@
     <style name="Widget.LetMeDoIt.CustomSpinner" parent="Widget.AppCompat.Spinner">
         <item name="android:popupBackground">@drawable/bg_rounded</item>
     </style>
-
 
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
