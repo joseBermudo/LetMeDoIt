@@ -19,13 +19,20 @@
 
         <item name="textInputStyle">@style/Widget.LetMeDoIt.TextInputLayout</item>
 
-
-
         <item name="checkboxStyle">@style/Widget.LetMeDoIt.CheckBox</item>
 
-        <item name="android:spinnerStyle">@style/Widget.LetMeDoIt.CustomSpinner</item>
+        <item name="spinnerStyle">@style/Widget.LetMeDoIt.CustomSpinner</item>
 
         <item name="textAllCaps">false</item>
 
+        <item name="ratingBarStyle">@style/RatingBar.Style</item>
+
+    </style>
+    <!-- Tema de inicialización de la aplicación -->
+    <style name="Theme.LetMeDoIt.Starting" parent ="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/azul_marino</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="android:animationDuration">300</item>
+        <item name="postSplashScreenTheme">@style/Theme.LetMeDoIt</item>
     </style>
 </resources>

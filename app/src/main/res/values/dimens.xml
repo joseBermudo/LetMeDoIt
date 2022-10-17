@@ -9,6 +9,7 @@
     <dimen name="marginTop_title">24dp</dimen>
     <dimen name="marginStart_title">24dp</dimen>
     <dimen name="margins_start_end">24dp</dimen>
+    <dimen name="app_icon_size_small">24dp</dimen>
     <!-- Spinner Personalizado -->
     <dimen name="spinner_radius">10dp</dimen>
     <dimen name="spinner_stroke">2dp</dimen>
@@ -51,7 +52,10 @@
     <dimen name="user_image_w">100dp</dimen>
     <dimen name="user_image_h">100dp</dimen>
     <dimen name="marginTop_userImage">8dp</dimen>
-
+    <dimen name="dimen_newService_padding_editText">8dp</dimen>
+    <dimen name="dimen_margin_newService_spinnerLayout">0dp</dimen>
+    <dimen name="dimen_width_newService_spinnerLayout">200dp</dimen>
+    <dimen name="dimen_newService_width">24dp</dimen>
     <dimen name="profile_options_dimens">128dp</dimen>
     <dimen name="arrow_profile_dimens">24sp</dimen>
     <dimen name="divider_16dp_margin_top">16dp</dimen>
@@ -99,5 +103,4 @@
     <dimen name="visFav_btn_marginTop">24dp</dimen>
     <dimen name="uploadServicesVis_desp_marginTop">16dp</dimen>
     <dimen name="UploadServicesVis_btn_marginTop">32dp</dimen>
-
 </resources>
