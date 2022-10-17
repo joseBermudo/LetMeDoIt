@@ -63,4 +63,8 @@
     <string name="by">By:</string>
     <string name="report">Report</string>
     <string name="sign_in_or_register">Sign In or Register</string>
+    <string name="visFav_descrtiption_title">Profiles that you like</string>
+    <string name="visFav_desp_a">that you mark as Favorites using the icon</string>
+    <string name="visFav_desp">From here you will access the profiles</string>
+    <string name="sign_in">Sign In</string>
 </resources>

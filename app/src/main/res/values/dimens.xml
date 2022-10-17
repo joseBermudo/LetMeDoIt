@@ -84,4 +84,10 @@
     <dimen name="registroOpcionesCuenta_divider_marginTop">32dp</dimen>
     <dimen name="registroOpcionesCuenta_userImage_wh">128dp</dimen>
     <dimen name="registroOpcionesCuenta_userImage_marginTop">24dp</dimen>
+    <dimen name="visFavoProf_log_marginTop">32dp</dimen>
+    <dimen name="visFavProfiles_despTtitle_marginTop">24dp</dimen>
+    <dimen name="visFavProf_desp_marginTop">8dp</dimen>
+    <dimen name="visFavProfiles_icon_marginStart">4dp</dimen>
+    <dimen name="visFav_btn_margin">32dp</dimen>
+    <dimen name="visFav_btn_marginTop">24dp</dimen>
 </resources>
