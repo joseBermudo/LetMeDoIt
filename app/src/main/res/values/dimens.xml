@@ -90,4 +90,6 @@
     <dimen name="visFavProfiles_icon_marginStart">4dp</dimen>
     <dimen name="visFav_btn_margin">32dp</dimen>
     <dimen name="visFav_btn_marginTop">24dp</dimen>
+    <dimen name="uploadServicesVis_desp_marginTop">16dp</dimen>
+    <dimen name="UploadServicesVis_btn_marginTop">32dp</dimen>
 </resources>
