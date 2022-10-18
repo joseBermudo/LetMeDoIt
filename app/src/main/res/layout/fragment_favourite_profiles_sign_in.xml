@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Visitante.view.fragments.FavouriteProfilesSignIn">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/padding_horizontal_cl"
+        android:paddingVertical="@dimen/padding_vertical_cl">
+
+        <FrameLayout
+            android:id="@+id/contenedor_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop_extra"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/frame_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:cardCornerRadius="@dimen/spinner_radius">
+
+                <ImageView
+                    android:id="@+id/img_logo"
+                    android:layout_width="@dimen/logo_dimen"
+                    android:layout_height="@dimen/logo_dimen"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/logo_letmedoit" />
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/desp_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            android:text="@string/visFav_descrtiption_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contenedor_logo" />
+
+        <TextView
+            android:id="@+id/text_desp"
+            style="@style/Widget.LetMeDoIt.subtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/visFavProf_desp_marginTop"
+            android:gravity="center"
+            android:text="@string/visFav_desp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/desp_title" />
+
+        <TextView
+            android:id="@+id/text_desp_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/visFav_desp_a"
+            style="@style/Widget.LetMeDoIt.subtext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/text_desp" />
+
+        <ImageView
+            android:id="@+id/favoriteIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/visFavProfiles_icon_marginStart"
+            android:src="@drawable/ic_round_favorite_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/text_desp_a"
+            app:layout_constraintTop_toBottomOf="@+id/text_desp" />
+
+        <Button
+            android:id="@+id/signIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margins_start_end_extra"
+            android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginEnd="@dimen/margins_start_end_extra"
+            android:text="@string/sign_in"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_desp_a" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

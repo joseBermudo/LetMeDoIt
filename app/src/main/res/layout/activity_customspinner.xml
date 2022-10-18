@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CUSTOMSPINNER">
+    tools:context=".Utils.CustomSpinner">
 
     <!-- EJEMPLO DE CREACIÓN DE SPINNER, HAY QUE IMPLEMENTAR EL CODIGO DE CUSTOMSPINNER -->
     <RelativeLayout
@@ -15,7 +15,7 @@
         tools:ignore="MissingConstraints">
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/spinner_subcategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </RelativeLayout>

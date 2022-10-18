@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="@dimen/padding_horizontal_cl"
     android:paddingVertical="@dimen/padding_vertical_cl"
-    tools:context=".Login">
+    tools:context=".Visitante.view.activities.Login">
 
     <ImageView
         android:id="@+id/btn_exit_login"
@@ -74,7 +74,7 @@
             android:id="@+id/layout_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginTop_title"
+            android:layout_marginTop="@dimen/marginTop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             app:startIconDrawable="@drawable/person_icon"
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_username"
-            android:layout_marginTop="@dimen/marginTop_title"
+            android:layout_marginTop="@dimen/marginTop"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/azul_marino"
             app:startIconDrawable="@drawable/lock_icon"
@@ -125,7 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/btn_height"
             android:text="@string/txt_login_signIn"
-            android:layout_marginBottom="@dimen/marginTop_title"
+            android:layout_marginBottom="@dimen/marginTop"
             app:layout_constraintBottom_toTopOf="@+id/btn_signOut"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
