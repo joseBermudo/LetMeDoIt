@@ -1,11 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Dimensiones Principales -->
     <dimen name="padding_vertical_cl">24dp</dimen>
     <dimen name="padding_horizontal_cl">24dp</dimen>
     <dimen name="title1_size">24sp</dimen>
     <dimen name="title2_size">20sp</dimen>
     <dimen name="text_size">16sp</dimen>
     <dimen name="subtext_size">14sp</dimen>
-    <dimen name="marginTop_title">24dp</dimen>
-    <dimen name="marginStart_title">24dp</dimen>
+
+    <dimen name="marginTop">24dp</dimen>
+    <dimen name="marginTop_extra">32dp</dimen>
+    <dimen name="marginTop_extra_big">64dp</dimen>
+
+    <dimen name="margins_start_end">24dp</dimen>
+    <dimen name="margins_start_end_extra">32dp</dimen>
+    <dimen name="margins_start_end_extra_plus">48dp</dimen>
+
+    <dimen name="app_icon_size_small">24dp</dimen>
+    <dimen name="logo_dimen">128dp</dimen>
+    <dimen name="btn_height">56dp</dimen>
+
+    <!-- Spinner Personalizado -->
+    <dimen name="spinner_radius">10dp</dimen>
+    <dimen name="spinner_stroke">2dp</dimen>
+    <dimen name="spinner_text_padding_start">10dp</dimen>
+    <dimen name="spinner_text_padding">5dp</dimen>
+    <dimen name="spinner_layout_margin">5dp</dimen>
+    <dimen name="relative_layout_spinner_margin">20dp</dimen>
+
+    <!-- Paleta de Estilos -->
+    <dimen name="paleta_text">32dp</dimen>
+    <dimen name="paleta_sub_text">48dp</dimen>
+
+    <!-- Register -->
+    <dimen name="register_button_marginTop">48dp</dimen>
+    <dimen name="register_alreadyHaveAccount">-48dp</dimen>
+
+    <!-- Forgot Password -->
+    <dimen name="margin_forgot_password">16dp</dimen>
+
+    <!-- Divider -->
+    <dimen name="marginTop_Divider">8dp</dimen>
+
+    <!-- Admin -->
+    <dimen name="btn_marginTop_signOff_admin">128dp</dimen>
+
+    <!-- User Image -->
+    <dimen name="user_image_w">100dp</dimen>
+    <dimen name="user_image_h">100dp</dimen>
+    <dimen name="marginTop_userImage">8dp</dimen>
+
+    <!-- New service -->
+    <dimen name="dimen_newService_padding_editText">8dp</dimen>
+    <dimen name="dimen_margin_newService_spinnerLayout">0dp</dimen>
+    <dimen name="dimen_width_newService_spinnerLayout">200dp</dimen>
+    <dimen name="dimen_newService_width">24dp</dimen>
+    <dimen name="profile_options_dimens">128dp</dimen>
+    <dimen name="arrow_profile_dimens">24sp</dimen>
+    <dimen name="divider_16dp_margin_top">16dp</dimen>
+    <dimen name="opciones_cuenta_margin_top_bot_intolayouts">6sp</dimen>
+    <dimen name="padding_vertical_start_end_8">8dp</dimen>
+
+    <!-- Relative Layout -->
+    <dimen name="relative_layout_w">200dp</dimen>
+    <dimen name="revalite_layout_marginEnd">8dp</dimen>
+
+    <!-- His Service -->
+    <dimen name="his_service_marginTop">16dp</dimen>
+    <dimen name="his_service_spinner_w">200dp</dimen>
+
+    <!-- Create deal -->
+    <dimen name="create_deal_text_area_marginTop">8dp</dimen>
+    <dimen name="create_deal_textArea_editText_h">120dp</dimen>
+    <dimen name="create_deal_iconButton_marginStart">8dp</dimen>
+
+    <!-- Filtro Categorías -->
+    <dimen name="filtroCategorias_btnDone_marginTop">168dp</dimen>
+
+    <!-- User Report -->
+    <dimen name="userReport_userName_marginTop">8dp</dimen>
+    <dimen name="userReport_comment_marginTop">16dp</dimen>
+    <dimen name="userReport_comment_h">160dp</dimen>
+
+    <!-- Registro opciones cuenta -->
+    <dimen name="registroOpcionesCuenta_arrow_wh">32dp</dimen>
+    <dimen name="registroOpcionesCuenta_arrow_marginTop">56dp</dimen>
+    <dimen name="registroOpcionesCuenta_arrow_marginEnd">24dp</dimen>
+    <dimen name="registroOpcionesCuenta_arrow_marginBottom">56dp</dimen>
+    <dimen name="registroOpcionesCuenta_divider_h">6dp</dimen>
+    <dimen name="registroOpcionesCuenta_divider_marginTop">32dp</dimen>
+    <dimen name="registroOpcionesCuenta_userImage_wh">128dp</dimen>
+    <dimen name="registroOpcionesCuenta_userImage_marginTop">24dp</dimen>
+
+    <!-- Vista Favoritos -->
+    <dimen name="visFavProf_desp_marginTop">8dp</dimen>
+    <dimen name="visFavProfiles_icon_marginStart">4dp</dimen>
+
+    <!-- Upload Services -->
+    <dimen name="uploadServicesVis_desp_marginTop">16dp</dimen>
+
 </resources>

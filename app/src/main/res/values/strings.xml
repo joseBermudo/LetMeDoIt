@@ -1,3 +1,102 @@
 <resources>
     <string name="app_name">LetMeDoIt</string>
+    <string name="save">Save</string>
+    <string name="type_here">Type here</string>
+    <string name="coment">Coment:</string>
+    <string name="deny">Deny</string>
+    <string name="accept">Accept</string>
+    <string name="descriptionContent">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="description">Description</string>
+    <string name="math_teacher">Math teacher</string>
+    <string name="his_service">His service</string>
+    <string name="cut_hair">Cut hair</string>
+    <string name="my_service">My Service</string>
+    <string name="enter_code">Enter code</string>
+    <string name="recovery_code_message">Enter the recovery code that we sent you by mail</string>
+    <string name="recovery_code">Recovery Code</string>
+    <string name="string_splash_screen">Imagen del logo al cargar la pantalla</string>
+    <string name="string_splash_screen_loading">Loading</string>
+    <string name="txt_home_welcome">Hi there! Nice to see you again.</string>
+    <string name="txt_login_forgotPassword">Forgot Password?</string>
+    <string name="txt_login_signIn">Sign In</string>
+    <string name="txt_login_signUp">Sign Up</string>
+    <string name="txt_password">Password</string>
+    <string name="txt_username">Username</string>
+    <string name="txt_register_title">Lets Get Started!</string>
+    <string name="txt_register_welcome">Create and account and start exchanging</string>
+    <string name="txt_email">Email</string>
+    <string name="txt_register_alreadyAccount">Already have an account?</string>
+    <string name="txt_confirm_password">Confirm Password</string>
+    <string name="txt_administrador">Administrator</string>
+    <string name="txt_create">Create</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="btn_paleta_calcular">Calcular</string>
+    <string name="paleta_texto">LetMeDoIt</string>
+    <string name="paleta_text_imput_hint">email</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="recover_password_a">Recover Password</string>
+    <string name="enter_the_new_password">Enter the new password</string>
+    <string name="password">Password</string>
+    <string name="confirm_the_password">Confirm the password</string>
+    <string name="change_password">Change password</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="email_hint">Email</string>
+    <string name="get_recovery_code">Get Recovery Code</string>
+    <string name="admin_users">Users</string>
+    <string name="banned_users">Banned users</string>
+    <string name="reports">Reports</string>
+    <string name="archived_reports">Archived reports</string>
+    <string name="categories">Categories</string>
+    <string name="create_admin">Create admin</string>
+    <string name="sign_off">Sign off</string>
+    <string name="create_deal">Create deal</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="txt_new_service">New Service</string>
+    <string name="txt_new_service_title">Title</string>
+    <string name="txt_new_service_serviceTitle">Service Title</string>
+    <string name="txt_new_service_category">Category</string>
+    <string name="txt_new_service_subcategory">Subcategory</string>
+    <string name="txt_new_service_description">Description</string>
+    <string name="txt_new_service_images">Images</string>
+    <string name="txt_edit_service_editService">Edit Service</string>
+    <string name="name_username">Name Username</string>
+    <string name="password_example">Password Example</string>
+    <string name="about_me">About Me</string>
+    <string name="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis tortor ut quam interdum dignissim. Nulla lobortis id tellus sed placerat. Curabitur varius metus magna, vitae ultrices orci gravida vel. Pellentesque vel erat vel lacus porta mattis vestibulum vel felis. In tellus arcu, pulvinar eget dolor id, ultrices egestas sem. Fusce finibus sapien vehicula nisl finibus, sed condimentum orci tempor. Cras viverra maximus massa, nec posuere velit commodo eget. Etiam in lacus venenatis, porttitor metus ut, pellentesque dolor. Donec et faucibus turpis. Duis eu dapibus turpis. Proin ultrices, neque lacinia hendrerit posuere, augue ipsum tincidunt nisi, at bibendum dui ipsum vitae metus.</string>
+    <string name="curriculum_title">Curriculum</string>
+    <string name="schedule_title">Schedule</string>
+    <string name="schedule_text">10:00 - 20:00</string>
+    <string name="contact_info">Contact Info</string>
+    <string name="location_title">Location</string>
+    <string name="location_text">Location</string>
+    <string name="name_surname">Name Surname</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="tittle">Tittle</string>
+    <string name="conclude">Conclude</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="lenguage">Lenguage</string>
+    <string name="edit_profile">Edit Profile</string>
+
+    <string name="create">Create</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="filter">Filter</string>
+    <string name="category">Category</string>
+    <string name="order_by">Order by</string>
+    <string name="done">Done</string>
+    <string name="by">By:</string>
+    <string name="report">Report</string>
+    <string name="sign_in_or_register">Sign In or Register</string>
+    <string name="visFav_descrtiption_title">Profiles that you like</string>
+    <string name="visFavSev_descrtiption_title">Services that you like</string>
+    <string name="visFav_desp_a">that you mark as Favorites using the icon</string>
+    <string name="visFav_desp">From here you will access the profiles</string>
+    <string name="visFavSev_desp">From here you will access the services</string>
+    <string name="sign_in">Sign In</string>
+    <string name="no_messages_yet">No messages yet</string>
+    <string name="messagesVis_desp">Chatting on LetMeDoIt is often the start of a nice deal.</string>
+    <string name="messagesVis_desp_a">Sign in and open your first conversation!</string>
+    <string name="UploadServicesVis_desp">Sign in to start uploading services to LetMeDoIt.</string>
+
 </resources>
