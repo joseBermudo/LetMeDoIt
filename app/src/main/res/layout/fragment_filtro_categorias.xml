@@ -17,6 +17,7 @@
             android:id="@+id/back_arrow_filtro_categorias"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/txt_volver_atras"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/arrow_back" />
@@ -61,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/marginTop_extra"
-            android:text="Subcategory"
+            android:text="@string/txt_subcategory"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner_category" />
 
