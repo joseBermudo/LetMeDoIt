@@ -30,6 +30,7 @@
 
         <ImageView
             android:id="@+id/profile_image"
+            android:contentDescription="@string/txt_profile_image"
             android:layout_width="128dp"
             android:layout_height="128dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -96,19 +97,19 @@
                 android:id="@+id/tabitem_services"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="%s \n Services" />
+                android:text="@string/txt_num_services" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tabitem_opinions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="%s \n Opinions" />
+                android:text="@string/txt_num_opinions" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tabitem_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+ \n Info" />
+                android:text="@string/txt_num_info" />
 
         </com.google.android.material.tabs.TabLayout>
 

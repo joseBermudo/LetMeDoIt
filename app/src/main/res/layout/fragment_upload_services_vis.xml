@@ -31,6 +31,7 @@
                 <ImageView
                     android:id="@+id/img_logo"
                     android:layout_width="@dimen/logo_dimen"
+                    android:contentDescription="@string/txt_logo_app"
                     android:layout_height="@dimen/logo_dimen"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/logo_letmedoit" />
@@ -43,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/marginTop"
-            android:text="Upload Services"
+            android:text="@string/txt_upload_services"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/contenedor_logo" />
