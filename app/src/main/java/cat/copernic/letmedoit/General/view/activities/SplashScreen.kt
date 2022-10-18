@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.General.view.fragments
+package cat.copernic.letmedoit.General.view.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +9,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import cat.copernic.letmedoit.Visitante.view.activities.Login
 import cat.copernic.letmedoit.databinding.ActivitySplashScreenBinding
 
-class Splash_screen : AppCompatActivity() {
+class SplashScreen : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         val screenSplash = installSplashScreen()

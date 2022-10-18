@@ -72,7 +72,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".General.view.fragments.splash_screen"
+            android:name=".General.view.activities.SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.LetMeDoIt.Starting">
             <intent-filter>
