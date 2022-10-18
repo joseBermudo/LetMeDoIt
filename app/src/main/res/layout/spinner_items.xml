@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="left"
+    android:gravity="start"
     android:padding="@dimen/spinner_text_padding"
     android:paddingStart="@dimen/spinner_text_padding_start"
     android:textColor="@color/azul_marino"
-    android:textSize="@dimen/text_size" />
+    android:textSize="@dimen/text_size"
+    tools:ignore="RtlSymmetry" />

@@ -19,7 +19,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             style="@style/Widget.LetMeDoIt.text"
-            android:text="About Me"/>
+            android:text="@string/txt_about_me"/>
         <TextView
             android:id="@+id/about_me_text"
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             android:maxLines="50"
             android:textStyle="normal"
             style="@style/Widget.LetMeDoIt.subtext"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis tortor ut quam interdum dignissim. Nulla lobortis id tellus sed placerat. Curabitur varius metus magna, vitae ultrices orci gravida vel. Pellentesque vel erat vel lacus porta mattis vestibulum vel felis. In tellus arcu, pulvinar eget dolor id, ultrices egestas sem. Fusce finibus sapien vehicula nisl finibus, sed condimentum orci tempor. Cras viverra maximus massa, nec posuere velit commodo eget. Etiam in lacus venenatis, porttitor metus ut, pellentesque dolor. Donec et faucibus turpis. Duis eu dapibus turpis. Proin ultrices, neque lacinia hendrerit posuere, augue ipsum tincidunt nisi, at bibendum dui ipsum vitae metus."
+            android:text="@string/txt_aboutMe_description"
             app:layout_constraintTop_toBottomOf="@id/about_me_title"
             app:layout_constraintStart_toStartOf="@id/about_me_title"
             />
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/divider_about_me"
             app:layout_constraintStart_toStartOf="@id/divider_about_me"
-            android:text="Curriculum"/>
+            android:text="@string/txt_curriculum"/>
         <TextView
             android:id="@+id/btn_pdf"
             android:layout_width="@dimen/padding_horizontal_cl"
@@ -72,14 +72,14 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/divider_curriculum"
             app:layout_constraintStart_toStartOf="@id/divider_curriculum"
-            android:text="Schedule"/>
+            android:text="@string/txt_schedule"/>
 
         <TextView
             android:id="@+id/schedule_text"
             style="@style/Widget.LetMeDoIt.subtext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10:00 - 20:00"
+            android:text="@string/txt_time"
             app:layout_constraintStart_toStartOf="@id/schedule_title"
             app:layout_constraintTop_toBottomOf="@id/schedule_title" />
         <View
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/divider_schedule"
             app:layout_constraintStart_toStartOf="@id/divider_schedule"
-            android:text="Contact Info"/>
+            android:text="@string/txt_contact_info"/>
         <TextView
             android:id="@+id/btn_email"
             android:layout_width="@dimen/padding_horizontal_cl"
@@ -132,7 +132,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/divider_mobile"
             app:layout_constraintStart_toStartOf="@id/divider_mobile"
-            android:text="Location"/>
+            android:text="@string/txt_location"/>
         <TextView
             android:id="@+id/location_text"
             style="@style/Widget.LetMeDoIt.subtext"
@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/location_title"
             app:layout_constraintStart_toStartOf="@id/location_title"
-            android:text="Location"/>
+            android:text="@string/txt_location_text"/>
         <TextView
             android:id="@+id/location_icon"
             android:background="@drawable/map_location_icon"

@@ -68,13 +68,13 @@
         <item name="colorControlActivated">@color/azul_marino</item>
     </style>
 
-    <style name="LinearLayotPaddingVerticalStartEnd">
+    <style name="LinearLayoutPaddingVerticalStartEnd">
         <item name="android:paddingStart">@dimen/padding_vertical_start_end_8</item>
         <item name="android:paddingEnd">@dimen/padding_vertical_start_end_8</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/padding_vertical_start_end_8</item>
     </style>
 
-    <style name="Swtich.Style" parent="Theme.AppCompat.Light">
+    <style name="Switch.Style" parent="Theme.AppCompat.Light">
         <!-- active thumb & track color (30% transparency) -->
         <item name="colorControlActivated">@color/azul_marino</item>
         <!-- inactive thumb color -->
