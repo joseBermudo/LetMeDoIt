@@ -92,7 +92,7 @@
             android:layout_width="match_parent"
             style="@style/Widget.LetMeDoIt.TextArea"
             android:layout_height="200dp"
-            android:hint="hint" />
+            android:hint="@string/txt_hint" />
     </com.google.android.material.textfield.TextInputLayout>
 
 

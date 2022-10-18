@@ -41,13 +41,13 @@
                 android:id="@+id/profiles_select"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profiles" />
+                android:text="@string/txt_profiles" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/services_selecte"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Services" />
+                android:text="@string/txt_services" />
 
 
         </com.google.android.material.tabs.TabLayout>

@@ -14,6 +14,7 @@
 
         <ImageView
             android:id="@+id/arrow_back_registerVisit"
+            android:contentDescription="@string/txt_sign_in_or_register"
             android:layout_width="@dimen/registroOpcionesCuenta_arrow_wh"
             android:layout_height="@dimen/registroOpcionesCuenta_arrow_wh"
             android:layout_marginTop="@dimen/registroOpcionesCuenta_arrow_marginTop"
@@ -36,6 +37,7 @@
 
         <ImageView
             android:id="@+id/userImage"
+            android:contentDescription="@null"
             android:layout_width="@dimen/registroOpcionesCuenta_userImage_wh"
             android:layout_height="@dimen/registroOpcionesCuenta_userImage_wh"
             android:layout_marginTop="@dimen/registroOpcionesCuenta_userImage_marginTop"

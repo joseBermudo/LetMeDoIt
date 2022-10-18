@@ -98,5 +98,7 @@
 
     <!-- Upload Services -->
     <dimen name="uploadServicesVis_desp_marginTop">16dp</dimen>
+    <dimen name="divider_height">2dp</dimen>
+    <dimen name="width_rating_service">150dp</dimen>
 
 </resources>
