@@ -31,6 +31,7 @@
 
                 <ImageView
                     android:id="@+id/img_logo"
+                    android:contentDescription="@string/txt_profile_image"
                     android:layout_width="@dimen/logo_dimen"
                     android:layout_height="@dimen/logo_dimen"
                     android:layout_gravity="center_horizontal"
@@ -74,6 +75,7 @@
 
         <ImageView
             android:id="@+id/favoriteIcon"
+            android:contentDescription="@string/txt_favorites_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/visFavProfiles_icon_marginStart"

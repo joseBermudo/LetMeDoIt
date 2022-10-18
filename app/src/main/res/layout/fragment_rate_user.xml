@@ -19,6 +19,7 @@
         <ImageView
             android:id="@+id/arrow_back"
             android:layout_width="wrap_content"
+            android:contentDescription="@string/txt_volver_atras"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,6 +28,7 @@
         <ImageView
             android:id="@+id/icon_user"
             android:layout_width="100dp"
+            android:contentDescription="@string/txt_profile_image"
             android:layout_height="100dp"
             android:layout_marginStart="@dimen/margins_start_end"
             android:layout_marginEnd="@dimen/margins_start_end"
@@ -43,7 +45,7 @@
             android:layout_marginStart="@dimen/margins_start_end"
             android:layout_marginEnd="@dimen/margins_start_end"
             android:layout_marginTop="14dp"
-            android:text="NameSurname"
+            android:text="@string/txt_name_surname"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/icon_user" />
 
@@ -54,7 +56,7 @@
             android:layout_marginStart="@dimen/margins_start_end"
             android:layout_marginEnd="@dimen/margins_start_end"
             android:layout_marginTop="14dp"
-            android:text="Rating:"
+            android:text="@string/txt_rating"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user" />
 

@@ -15,6 +15,7 @@
 
         <ImageView
             android:id="@+id/imageView2"
+            android:contentDescription="@string/txt_volver_atras"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/arrow_back"
@@ -37,21 +38,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Deal" />
+                android:text="@string/txt_deal" />
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="right"
-                android:text="0/2" />
+                android:gravity="end"
+                android:text="@string/txt_deal_progress" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/icon_user"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:contentDescription="@string/txt_profile_image"
             android:layout_marginStart="@dimen/margins_start_end"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="@dimen/margins_start_end"

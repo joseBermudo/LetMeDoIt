@@ -48,7 +48,8 @@
             android:inputType="textPassword"
             android:text="@string/password_example"
             app:layout_constraintStart_toEndOf="@+id/profile_image"
-            app:layout_constraintTop_toBottomOf="@id/name_surname" />
+            app:layout_constraintTop_toBottomOf="@id/name_surname"
+            tools:ignore="TextViewEdits" />
 
         <View
             android:id="@+id/divider_profile"
