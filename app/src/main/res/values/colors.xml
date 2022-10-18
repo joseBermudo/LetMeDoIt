@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <color name="azul_marino">#008db1</color>
     <color name="secundario_gris">#7a7a7a</color>
     <color name="negro">#FF000000</color>
