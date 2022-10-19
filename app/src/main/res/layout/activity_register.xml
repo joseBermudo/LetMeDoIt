@@ -55,6 +55,7 @@
 
                     <ImageView
                         android:id="@+id/img_logo"
+                        android:contentDescription="@string/txt_volver_atras"
                         android:layout_width="@dimen/logo_dimen"
                         android:layout_height="@dimen/logo_dimen"
                         android:layout_gravity="center_horizontal"
