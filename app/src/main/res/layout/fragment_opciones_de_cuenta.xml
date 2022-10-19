@@ -45,7 +45,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageUser" />
 
         <RatingBar
-            android:id="@+id/ratingBar3"
+            android:id="@+id/my_rating_bar"
             style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
             style="@style/Divider"
             android:layout_marginTop="@dimen/divider_16dp_margin_top"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBar3" />
+            app:layout_constraintTop_toBottomOf="@+id/my_rating_bar" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -74,6 +74,7 @@
             <!-- Edit Profile !-->
 
             <LinearLayout
+                android:id="@+id/btn_edit_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -117,6 +118,7 @@
 
             <!-- Apartado lenguage !-->
             <LinearLayout
+                android:id="@+id/btn_language"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -161,6 +163,7 @@
 
             <!-- Divider !-->
             <LinearLayout
+                android:id="@+id/btn_dark_theme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -201,6 +204,7 @@
 
             <!-- Apartado Sign Off !-->
             <LinearLayout
+                android:id="@+id/btn_sign_off"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"

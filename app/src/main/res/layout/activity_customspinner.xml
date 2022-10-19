@@ -6,7 +6,7 @@
     tools:context=".Utils.CustomSpinner">
 
     <!-- EJEMPLO DE CREACIÓN DE SPINNER, HAY QUE IMPLEMENTAR EL CODIGO DE CUSTOMSPINNER -->
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/relative_layout_spinner_margin"
@@ -17,5 +17,5 @@
             android:id="@+id/spinner_subcategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </RelativeLayout>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

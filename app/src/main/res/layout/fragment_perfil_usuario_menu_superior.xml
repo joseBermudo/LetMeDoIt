@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/back_arrow"
+            android:id="@+id/btn_back"
             android:layout_width="@dimen/app_icon_size_small"
             android:layout_height="@dimen/app_icon_size_small"
             android:layout_margin="@dimen/padding_horizontal_cl"
@@ -20,7 +20,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/favorites"
+            android:id="@+id/btn_favorites"
             android:layout_width="@dimen/app_icon_size_small"
             android:layout_height="@dimen/app_icon_size_small"
             android:layout_margin="@dimen/padding_horizontal_cl"
@@ -35,7 +35,7 @@
             android:layout_height="128dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/back_arrow"
+            app:layout_constraintTop_toBottomOf="@id/btn_back"
             app:srcCompat="@drawable/bottom_menu_profile_selector" />
 
         <TextView
@@ -49,7 +49,7 @@
             app:layout_constraintTop_toBottomOf="@id/profile_image" />
 
         <RatingBar
-            android:id="@+id/rating"
+            android:id="@+id/user_rating"
             style="@style/Widget.AppCompat.RatingBar.Small"
             android:theme="@style/RatingBar.Style"
             android:layout_width="wrap_content"
@@ -66,13 +66,13 @@
             app:layout_constraintTop_toBottomOf="@id/profile_name_surname" />
 
         <TextView
-            android:id="@+id/report"
+            android:id="@+id/btn_report"
             android:layout_width="@dimen/app_icon_size_small"
             android:layout_height="@dimen/app_icon_size_small"
             android:layout_marginEnd="@dimen/padding_horizontal_cl"
             android:background="@drawable/report_icon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rating" />
+            app:layout_constraintTop_toBottomOf="@id/user_rating" />
 
         <View
             android:id="@+id/separator"
@@ -82,7 +82,7 @@
             android:background="@color/divider_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/report" />
+            app:layout_constraintTop_toBottomOf="@id/btn_report" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tablayout_user_profile"
@@ -94,19 +94,19 @@
             app:tabTextAppearance="@style/Widget.LetMeDoIt.text">
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabitem_services"
+                android:id="@+id/tabitem_btn_services"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_num_services" />
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabitem_opinions"
+                android:id="@+id/tabitem_btn_opinions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_num_opinions" />
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabitem_info"
+                android:id="@+id/tabitem_btn_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_num_info" />

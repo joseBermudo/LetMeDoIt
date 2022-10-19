@@ -40,8 +40,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/filter_title" />
 
-        <RelativeLayout
-            android:id="@+id/spinner_category"
+        <FrameLayout
+            android:id="@+id/layout_spinner_category"
             style="@style/CustomSpinnerLayout"
             android:layout_width="@dimen/relative_layout_w"
             android:layout_height="wrap_content"
@@ -51,11 +51,11 @@
             tools:ignore="MissingConstraints">
 
             <Spinner
-                android:id="@+id/spinner_category_s"
+                android:id="@+id/spinner_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-        </RelativeLayout>
+        </FrameLayout>
 
         <TextView
             android:id="@+id/subCategory_title"
@@ -64,10 +64,10 @@
             android:layout_marginTop="@dimen/marginTop_extra"
             android:text="@string/txt_subcategory"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_category" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_spinner_category" />
 
-        <RelativeLayout
-            android:id="@+id/spinner_subcategory"
+        <FrameLayout
+            android:id="@+id/layout_spinner_subcategory"
             style="@style/CustomSpinnerLayout"
             android:layout_width="@dimen/relative_layout_w"
             android:layout_height="wrap_content"
@@ -77,11 +77,11 @@
             tools:ignore="MissingConstraints">
 
             <Spinner
-                android:id="@+id/spinner_subcategory_s"
+                android:id="@+id/spinner_subcategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-        </RelativeLayout>
+        </FrameLayout>
 
         <TextView
             android:id="@+id/orderBy_title"
@@ -90,10 +90,10 @@
             android:layout_marginTop="@dimen/marginTop_extra"
             android:text="@string/order_by"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_subcategory" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_spinner_subcategory" />
 
-        <RelativeLayout
-            android:id="@+id/spinner_orderby"
+        <FrameLayout
+            android:id="@+id/layout_spinner_orderby"
             style="@style/CustomSpinnerLayout"
             android:layout_width="@dimen/relative_layout_w"
             android:layout_height="wrap_content"
@@ -103,11 +103,11 @@
             tools:ignore="MissingConstraints">
 
             <Spinner
-                android:id="@+id/spinner_orderby_s"
+                android:id="@+id/spinner_orderby"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-        </RelativeLayout>
+        </FrameLayout>
 
         <Button
             android:id="@+id/btn_done"
@@ -119,7 +119,7 @@
             android:text="@string/done"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_orderby" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_spinner_orderby" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
