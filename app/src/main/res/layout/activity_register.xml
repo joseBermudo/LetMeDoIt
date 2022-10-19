@@ -59,7 +59,6 @@
                         android:layout_width="@dimen/logo_dimen"
                         android:layout_height="@dimen/logo_dimen"
                         android:layout_gravity="center_horizontal"
-                        android:contentDescription="@string/txt_volver_atras"
                         android:src="@drawable/logo_letmedoit" />
                 </androidx.cardview.widget.CardView>
 
