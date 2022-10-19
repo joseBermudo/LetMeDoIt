@@ -13,7 +13,7 @@
 
 
         <ImageView
-            android:id="@+id/flechaBack"
+            android:id="@+id/btn_back"
             android:contentDescription="@string/txt_volver_atras"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/reportBtn"
+            android:id="@+id/btn_report"
             android:contentDescription="@string/txt_report_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:layout_height="200dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/flechaBack"
+            app:layout_constraintTop_toBottomOf="@+id/btn_back"
             app:srcCompat="@drawable/ic_baseline_image_24" />
 
         <TextView
@@ -74,7 +74,7 @@
             app:layout_constraintTop_toBottomOf="@+id/subTextCategory" />
 
         <LinearLayout
-            android:id="@+id/linearLayoutHorizontal"
+            android:id="@+id/btn_go_to_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -106,7 +106,7 @@
                     android:text="@string/txt_name_surname" />
 
                 <RatingBar
-                    android:id="@+id/ratingBar2"
+                    android:id="@+id/user_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:contentDescription="@string/app_name"
@@ -120,6 +120,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/arrow_btn_go_to_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="end|center_vertical"
@@ -140,7 +141,7 @@
             android:id="@+id/viewBottomUser"
             style="@style/Divider"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutHorizontal" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_go_to_profile" />
 
         <ScrollView
             android:id="@+id/scrollDescription"
@@ -155,6 +156,8 @@
                 style="@style/Widget.LetMeDoIt.text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxHeight="200dp"
+                android:layout_marginBottom="@dimen/divider_16dp_margin_top"
                 android:layout_marginStart="@dimen/margins_start_end"
                 android:layout_marginEnd="@dimen/margins_start_end"
                 android:textStyle=""
@@ -176,6 +179,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
+            android:padding="@dimen/divider_16dp_margin_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewTop">
@@ -203,6 +207,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
+                    android:contentDescription="@string/txt_add_to_favorites"
                     android:src="@drawable/favorites_ion_colored" />
 
                 <TextView

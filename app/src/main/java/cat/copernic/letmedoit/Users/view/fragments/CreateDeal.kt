@@ -44,8 +44,8 @@ class CreateDeal : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentCreateDealBinding.inflate(inflater, container, false)
-        Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinner)
-        Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.hisSpinner)
+        Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerMyService)
+        Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerHisService)
         return binding.root
     }
 

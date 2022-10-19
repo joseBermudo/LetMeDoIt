@@ -9,7 +9,7 @@
     tools:context=".Users.view.activities.RecoveryCode">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/txt_volver_atras"
@@ -22,18 +22,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margins_start_end"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="@dimen/marginTop_extra_big"
         android:text="@string/recovery_code"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txt_title_description"
         style="@style/Widget.LetMeDoIt.subtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margins_start_end"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="@dimen/margin_forgot_password"
         android:layout_marginEnd="@dimen/margins_start_end"
         android:text="@string/recovery_code_message"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,14 +44,12 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:boxStrokeColor="#008db1"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:ignore="MissingConstraints"
+        android:layout_marginTop="@dimen/margin_forgot_password"
+        app:layout_constraintEnd_toEndOf="@+id/txt_title_description"
+        app:layout_constraintStart_toStartOf="@+id/txt_title_description"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title_description"
         app:startIconDrawable="@drawable/recovery_code_icon"
-        app:startIconTint="@color/azul_marino"
-        android:background="@null"
-        tools:layout_editor_absoluteX="24dp">
+        app:startIconTint="@color/azul_marino">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/code_input"
@@ -59,9 +57,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margins_start_end"
             android:layout_marginEnd="@dimen/margins_start_end"
+            android:hint="@string/enter_code"
             android:inputType="text"
-            android:maxLength="6"
-            android:hint="@string/enter_code" />
+            android:maxLength="6" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,12 +68,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margins_start_end"
+        android:layout_marginTop="@dimen/margin_forgot_password"
         android:layout_marginEnd="@dimen/margins_start_end"
-        android:layout_marginTop="14dp"
         android:text="@string/enter_code"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField"/>
+        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField" />
 
 
 

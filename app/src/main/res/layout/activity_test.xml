@@ -5,10 +5,5 @@
     android:layout_height="match_parent"
     tools:context=".Utils.TEST">
 
-    <fragment android:name="cat.copernic.letmedoit.Visitante.view.fragments.FavouriteProfilesSignIn"
-        android:id="@+id/test"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

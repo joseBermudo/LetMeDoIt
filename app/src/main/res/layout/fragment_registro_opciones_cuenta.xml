@@ -8,12 +8,13 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/go_to_login"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
 
         <ImageView
-            android:id="@+id/arrow_back_registerVisit"
+            android:id="@+id/arrow_go_to_login"
             android:contentDescription="@string/txt_sign_in_or_register"
             android:layout_width="@dimen/registroOpcionesCuenta_arrow_wh"
             android:layout_height="@dimen/registroOpcionesCuenta_arrow_wh"
