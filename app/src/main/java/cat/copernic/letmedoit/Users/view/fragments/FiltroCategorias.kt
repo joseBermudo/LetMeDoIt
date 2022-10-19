@@ -41,8 +41,8 @@ class FiltroCategorias : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentFiltroCategoriasBinding.inflate(inflater, container, false)
-        Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerCategoryS)
-        Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerSubcategoryS)
+        Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerCategory)
+        Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerSubcategory)
         return binding.root
     }
 

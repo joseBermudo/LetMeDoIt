@@ -6,162 +6,161 @@
     android:layout_height="match_parent"
     tools:context=".Users.view.fragments.concludeDeal">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingHorizontal="@dimen/padding_vertical_cl"
-        android:paddingVertical="@dimen/padding_vertical_cl">
-
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:contentDescription="@string/txt_volver_atras"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/arrow_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margins_start_end"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="@dimen/margins_start_end"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2">
+            android:paddingHorizontal="@dimen/padding_vertical_cl"
+            android:paddingVertical="@dimen/padding_vertical_cl">
 
-            <TextView
-                android:id="@+id/textView3"
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:contentDescription="@string/txt_volver_atras"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/txt_deal" />
+                android:src="@drawable/arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="@string/txt_deal_progress" />
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/icon_user"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:contentDescription="@string/txt_profile_image"
-            android:layout_marginStart="@dimen/margins_start_end"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="@dimen/margins_start_end"
-            android:src="@drawable/ic_baseline_account_circle_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-        <TextView
-            android:id="@+id/nameSurname"
-            style="@style/Widget.LetMeDoIt.title2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margins_start_end"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="@dimen/margins_start_end"
-            android:text="@string/name_surname"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/icon_user" />
-
-        <TextView
-            android:id="@+id/myService"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margins_start_end"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="@dimen/margins_start_end"
-            android:text="@string/my_service"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameSurname" />
-
-        <TextView
-            android:id="@+id/myServiceSubText"
-            style="@style/Widget.LetMeDoIt.subtext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margins_start_end"
-            android:layout_marginEnd="@dimen/margins_start_end"
-            android:text="@string/cut_hair"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/myService" />
-
-        <TextView
-            android:id="@+id/hisService"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margins_start_end"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="@dimen/margins_start_end"
-            android:text="@string/his_service"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/myServiceSubText" />
-
-        <TextView
-            android:id="@+id/hisServiceSubText"
-            style="@style/Widget.LetMeDoIt.subtext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margins_start_end"
-            android:layout_marginEnd="@dimen/margins_start_end"
-            android:text="@string/math_teacher"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hisService" />
-
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margins_start_end"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="@dimen/margins_start_end"
-            android:text="@string/description"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hisServiceSubText" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/opinion_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margins_start_end"
-            android:layout_marginEnd="@dimen/margins_start_end"
-            app:boxStrokeColor="#008db1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description">
-
-            <com.google.android.material.textfield.TextInputEditText
-                style="@style/Widget.LetMeDoIt.TextArea"
+            <LinearLayout
+                android:id="@+id/deal_layout"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:focusable="false"
-                android:text="@string/descriptionContent" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_back">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/deal_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/txt_deal" />
+
+                <TextView
+                    android:id="@+id/deal_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="@string/txt_deal_progress" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/icon_user"
+                android:layout_width="@dimen/logo_dimen"
+                android:layout_height="@dimen/logo_dimen"
+                android:contentDescription="@string/txt_profile_image"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="@dimen/marginTop"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                android:src="@drawable/ic_baseline_account_circle_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deal_layout" />
+
+            <TextView
+                android:id="@+id/nameSurname"
+                style="@style/Widget.LetMeDoIt.title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="@dimen/margin_forgot_password"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                android:text="@string/name_surname"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/icon_user" />
+
+            <TextView
+                android:id="@+id/myService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                android:text="@string/my_service"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameSurname" />
+
+            <TextView
+                android:id="@+id/myServiceSubText"
+                style="@style/Widget.LetMeDoIt.subtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                android:text="@string/cut_hair"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/myService" />
+
+            <TextView
+                android:id="@+id/hisService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                android:text="@string/his_service"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/myServiceSubText" />
+
+            <TextView
+                android:id="@+id/hisServiceSubText"
+                style="@style/Widget.LetMeDoIt.subtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                android:text="@string/math_teacher"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hisService" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                android:text="@string/description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hisServiceSubText" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opinion_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/description">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/Widget.LetMeDoIt.TextArea"
+                    android:layout_width="match_parent"
+                    android:focusable="false"
+                    android:text="@string/descriptionContent" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-
-        <Button
-            android:id="@+id/conclude_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margins_start_end"
-            android:layout_marginEnd="@dimen/margins_start_end"
-            android:layout_marginBottom="32dp"
-            android:text="@string/conclude"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <Button
+                android:id="@+id/conclude_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="@dimen/marginTop"
+                android:text="@string/conclude"
+                app:layout_constraintEnd_toEndOf="@+id/opinion_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/opinion_input" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </FrameLayout>

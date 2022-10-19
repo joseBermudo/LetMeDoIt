@@ -63,7 +63,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/contenedor_logo" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/txt_create_account"
                 style="@style/Widget.LetMeDoIt.subtext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/marginTop"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@id/txt_create_account"
                 app:startIconDrawable="@drawable/person_icon"
                 app:startIconTint="@color/azul_marino">
 
