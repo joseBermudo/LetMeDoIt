@@ -111,6 +111,14 @@
         </activity>
         <activity
             android:screenOrientation="portrait"
+            android:name=".General.view.fragments.PerfilUsuarioServicios"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
             android:name=".Admin.view.activities.CreateUser"
             android:exported="false">
             <meta-data
