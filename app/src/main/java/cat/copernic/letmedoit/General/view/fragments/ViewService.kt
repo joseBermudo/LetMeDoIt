@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.databinding.FragmentViewServiceBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,12 +30,14 @@ class viewService : Fragment() {
         }
     }
 
+    lateinit var binding : FragmentViewServiceBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_view_service, container, false)
+        binding = FragmentViewServiceBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     companion object {

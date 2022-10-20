@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioServiciosBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,7 +18,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [PerfilUsuario.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PerfilUsuario : Fragment() {
+class PerfilUsuarioServicios : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -30,12 +31,14 @@ class PerfilUsuario : Fragment() {
         }
     }
 
+    lateinit var binding : FragmentPerfilUsuarioServiciosBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_perfil_usuario_servicios, container, false)
+        binding = FragmentPerfilUsuarioServiciosBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     companion object {
@@ -50,7 +53,7 @@ class PerfilUsuario : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            PerfilUsuario().apply {
+            PerfilUsuarioServicios().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
