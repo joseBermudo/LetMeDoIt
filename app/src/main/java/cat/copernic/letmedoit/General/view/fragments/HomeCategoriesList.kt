@@ -44,14 +44,20 @@ class HomeCategoriesList : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeCategoriesListBinding.inflate(inflater,container,false)
 
+        //Inicializamos el RecyclerView
         inicializarRecyclerView()
 
         return binding.root
     }
 
+    /**
+     * Inicializa el RecyclerView
+     * */
     private fun inicializarRecyclerView() {
         val categoryRecyclerView = binding.categoryRecycleView
+        //LinearLayoutManager HORIZONTAL
         categoryRecyclerView.layoutManager = LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL,false)
+        //Asignación del adaptador al recyclerview.
         categoryRecyclerView.adapter = CategoryAdapter(LISTASDEPRUEBA.obtenerCategorias())
     }
 
