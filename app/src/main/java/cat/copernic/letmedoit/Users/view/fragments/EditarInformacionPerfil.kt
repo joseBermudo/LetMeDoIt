@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.databinding.FragmentEditarInformacionPerfilBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,12 +31,14 @@ class EditarInformacionPerfil : Fragment() {
         }
     }
 
+    lateinit var binding : FragmentEditarInformacionPerfilBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_editar_informacion_perfil, container, false)
+        binding = FragmentEditarInformacionPerfilBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     companion object {
