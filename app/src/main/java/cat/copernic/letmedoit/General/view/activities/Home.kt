@@ -8,7 +8,7 @@ import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Utils.Companion.addFragment
 import cat.copernic.letmedoit.databinding.ActivityHomeBinding
 
-lateinit var binding : ActivityHomeBinding
+
 class Home : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {

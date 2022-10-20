@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import cat.copernic.letmedoit.General.model.adapter.CategoryAdapter
+import cat.copernic.letmedoit.LISTASDEPRUEBA
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentHomeCategoriesListBinding
 
@@ -29,6 +33,7 @@ class HomeCategoriesList : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     lateinit var binding : FragmentHomeCategoriesListBinding
@@ -38,7 +43,16 @@ class HomeCategoriesList : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeCategoriesListBinding.inflate(inflater,container,false)
+
+        inicializarRecyclerView()
+
         return binding.root
+    }
+
+    private fun inicializarRecyclerView() {
+        val categoryRecyclerView = binding.categoryRecycleView
+        categoryRecyclerView.layoutManager = LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL,false)
+        categoryRecyclerView.adapter = CategoryAdapter(LISTASDEPRUEBA.obtenerCategorias())
     }
 
     companion object {
