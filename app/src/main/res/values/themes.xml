@@ -37,4 +37,7 @@
         <item name="android:animationDuration">1000</item>
         <item name="postSplashScreenTheme">@style/Theme.LetMeDoIt</item>
     </style>
+
+
+
 </resources>

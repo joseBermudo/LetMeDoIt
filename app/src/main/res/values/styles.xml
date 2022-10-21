@@ -98,4 +98,19 @@
         <item name="android:colorForeground">@color/secundario_gris</item>
     </style>
 
+    <!-- Estilo del TextView QUE UTILIZAMOS PARA VOLVER HACIA ATRAS, IMPLEMENTAR ON CLICK -->
+    <style name="ToolBarBackArrow">
+        <item name="android:background">@drawable/arrow_back</item>
+        <item name="android:layout_width">@dimen/app_icon_size_small</item>
+        <item name="android:layout_height">@drawable/arrow_back</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <!-- hacemos que los iconos sean clicables -->
+    <style name="IconoClickable">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
 </resources>

@@ -54,6 +54,7 @@ class HomeCategoriesList : Fragment() {
      * Inicializa el RecyclerView
      * */
     private fun inicializarRecyclerView() {
+
         val categoryRecyclerView = binding.categoryRecycleView
         //LinearLayoutManager HORIZONTAL
         categoryRecyclerView.layoutManager = LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL,false)

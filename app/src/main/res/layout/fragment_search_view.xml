@@ -19,6 +19,7 @@
             android:background="@drawable/spinner_frame_layout_style"
             android:iconifiedByDefault="false"
             android:searchIcon="@drawable/search_icon"
+            android:closeIcon="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
