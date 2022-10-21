@@ -3,6 +3,10 @@ package cat.copernic.letmedoit.Utils
 import android.content.Context
 import android.widget.Spinner
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import cat.copernic.letmedoit.R
 
 abstract class Utils {
@@ -26,7 +30,30 @@ abstract class Utils {
             spinner.adapter = adapter
         }
 
+        /**
+         * Función que añade un fragmento a un Frame Layout.
+         * @param fragment Fragmento (Clase) la cual queremos añadir.
+         * @param frameId ID del Fragmento (R.id.NOMBRE)
+         * */
+        fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int){
+            supportFragmentManager.inTransaction { add(frameId, fragment) }
+        }
+        /**
+         * Función que reemplaza un fragmento de un Frame Layout.
+         * @param fragment Fragmento (Clase) la cual queremos añadir.
+         * @param frameId ID del Fragmento (R.id.NOMBRE)
+         * */
+        fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int) {
+            supportFragmentManager.inTransaction{replace(frameId, fragment)}
+        }
 
+        /**
+         * Función que se ejecuta al añadir o reemplazar un Frame Layout (Hace un commit de la transacción)
+         * @param func Función
+         * */
+        inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
+            beginTransaction().func().commit()
+        }
 
         fun createList():ArrayList<String>{
             var itemList: ArrayList<String> = ArrayList<String>()

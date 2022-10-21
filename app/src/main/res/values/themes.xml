@@ -10,6 +10,8 @@
         <item name="colorSecondary">@color/secundario_gris</item>
         <item name="colorSecondaryVariant">@color/secundario_gris</item>
         <item name="colorOnSecondary">@color/negro</item>
+
+        <!-- <item name="android:searchViewStyle">@style/Widget.LetMeDoIt.SearchBar</item> -->
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
@@ -32,7 +34,10 @@
     <style name="Theme.LetMeDoIt.Starting" parent ="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/azul_marino</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
-        <item name="android:animationDuration">300</item>
+        <item name="android:animationDuration">1000</item>
         <item name="postSplashScreenTheme">@style/Theme.LetMeDoIt</item>
     </style>
+
+
+
 </resources>
