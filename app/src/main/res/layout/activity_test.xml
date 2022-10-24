@@ -5,5 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".Utils.TEST">
 
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="cat.copernic.letmedoit.General.view.fragments.AdminCategoriesList"
+        android:id="@+id/fragment"
+        android:layout_gravity="center_horizontal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
