@@ -101,4 +101,7 @@
     <dimen name="divider_height">2dp</dimen>
     <dimen name="width_rating_service">150dp</dimen>
 
+    <!-- CheckBox itemView !-->
+    <dimen name="checkbox_size">24sp</dimen>
+
 </resources>
