@@ -1,13 +1,25 @@
 package cat.copernic.letmedoit.Utils
 
 import android.content.Context
+import android.text.TextUtils.replace
+import android.view.View
 import android.widget.Spinner
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Adapter
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import androidx.viewbinding.ViewBinding
+import cat.copernic.letmedoit.General.model.adapter.CategoryAdapter
+import cat.copernic.letmedoit.General.model.adapter.CategoryViewHolder
+import cat.copernic.letmedoit.LISTASDEPRUEBA
 import cat.copernic.letmedoit.R
+import java.util.Objects
 
 abstract class Utils {
     //Companion Object --> permite llamar a la función sin instanciar la clase
@@ -54,6 +66,7 @@ abstract class Utils {
         inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
             beginTransaction().func().commit()
         }
+
 
         fun createList():ArrayList<String>{
             var itemList: ArrayList<String> = ArrayList<String>()

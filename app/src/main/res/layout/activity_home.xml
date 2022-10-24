@@ -7,18 +7,11 @@
     tools:context=".General.view.activities.Home">
 
     <FrameLayout
-        android:id="@+id/frameLayout_searchView"
+        android:id="@+id/frameLayout_manager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="parent" />
-
-    <FrameLayout
-        android:id="@+id/frameLayout_categories"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/frameLayout_searchView"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

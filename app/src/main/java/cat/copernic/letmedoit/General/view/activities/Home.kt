@@ -3,7 +3,9 @@ package cat.copernic.letmedoit.General.view.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import cat.copernic.letmedoit.General.view.fragments.HomeCategoriesList
+import cat.copernic.letmedoit.General.view.fragments.HomeFragment
 import cat.copernic.letmedoit.General.view.fragments.SearchView
+
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Utils.Companion.addFragment
 import cat.copernic.letmedoit.databinding.ActivityHomeBinding
@@ -17,9 +19,7 @@ class Home : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        addFragment(SearchView(),R.id.frameLayout_searchView)
-        addFragment(HomeCategoriesList(),R.id.frameLayout_categories)
-
+        addFragment(HomeFragment(),R.id.frameLayout_manager)
     }
 
     @Override
