@@ -7,9 +7,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/service"
-        android:layout_width="200dp"
+        android:layout_width="@dimen/service_width"
 
-        android:layout_height="300dp"
+        android:layout_height="@dimen/service_height"
         android:layout_margin="@dimen/divider_16dp_margin_top"
         app:cardCornerRadius="@dimen/spinner_radius"
         app:cardElevation="@dimen/divider_img"
@@ -25,7 +25,7 @@
             <ImageView
                 android:id="@+id/service_img"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="@dimen/service_image_height"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -35,7 +35,7 @@
                 android:id="@+id/divider_img"
                 style="@style/DividerDown"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/divider_img"
+                android:layout_height="@dimen/service_divider_height"
                 app:layout_constraintEnd_toEndOf="@id/service_img"
                 app:layout_constraintStart_toStartOf="@id/service_img"
                 app:layout_constraintTop_toBottomOf="@id/service_img" />
@@ -44,8 +44,9 @@
                 android:id="@+id/service_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/divider_16dp_margin_top"
-                android:layout_marginTop="@dimen/divider_16dp_margin_top"
+                android:textSize="@dimen/text_size"
+                android:layout_marginStart="@dimen/padding_vertical_start_end_8"
+                android:layout_marginTop="@dimen/padding_vertical_start_end_8"
                 app:layout_constraintStart_toStartOf="@id/divider_img"
                 app:layout_constraintTop_toBottomOf="@id/divider_img"
                 tools:text="Title" />
@@ -55,7 +56,7 @@
                 style="@style/IconoClickable"
                 android:layout_width="@dimen/app_icon_size_small"
                 android:layout_height="@dimen/app_icon_size_small"
-                android:layout_marginTop="@dimen/divider_16dp_margin_top"
+                android:layout_marginTop="@dimen/padding_vertical_start_end_8"
                 android:layout_marginEnd="@dimen/padding_vertical_start_end_8"
                 android:background="@drawable/favorites_icon_colored"
                 app:layout_constraintEnd_toEndOf="@id/divider_img"
@@ -66,9 +67,21 @@
                 style="@style/Widget.LetMeDoIt.subtext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLength="30"
                 app:layout_constraintStart_toStartOf="@id/service_title"
                 app:layout_constraintTop_toBottomOf="@id/service_title"
                 tools:text="Description" />
+
+            <TextView
+                android:id="@+id/service_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.LetMeDoIt.subtext"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/padding_vertical_start_end_8"
+                android:layout_marginBottom="@dimen/padding_vertical_start_end_8"
+                tools:text="Category"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

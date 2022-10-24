@@ -2,16 +2,19 @@ package cat.copernic.letmedoit.General.model.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.Service
-import cat.copernic.letmedoit.databinding.ItemCategoryTemplateBinding
 import cat.copernic.letmedoit.databinding.ServiceTemplateBinding
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
- * Adaptador de Categorias.
- * @param categoryList ArrayList de categorias.
+ * Adaptador de Categorias, implementa Filterable para así poder filtrar :)
+ * @param categoryList ArrayList de servicios
  * */
-class ServiceAdapter(private val serviceList:ArrayList<Service>) : RecyclerView.Adapter<ServiceViewHolder>() {
+class ServiceAdapter(private var serviceList:ArrayList<Service>) : RecyclerView.Adapter<ServiceViewHolder>() {
 
     /**
      * Función ejecutada al crear el View Holder. infla el XML del item de categorias.
@@ -21,14 +24,14 @@ class ServiceAdapter(private val serviceList:ArrayList<Service>) : RecyclerView.
      * */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceViewHolder {
         val binding = ServiceTemplateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ServiceViewHolder(binding)
+        return ServiceViewHolder(binding,false)
     }
 
     /**
      * Función que renderiza el item en cuestión desde la función del ViewHolder.
      * */
     override fun onBindViewHolder(holder: ServiceViewHolder, position: Int) {
-        val item = serviceList[position]
+        val item = serviceListFiltered[position]
         holder.render(item)
     }
 
@@ -36,8 +39,31 @@ class ServiceAdapter(private val serviceList:ArrayList<Service>) : RecyclerView.
      * @return Devuelve el tamaño del listado.
      * */
     override fun getItemCount(): Int {
-        return serviceList.size
+        return serviceListFiltered.size
     }
 
+    private var serviceListFiltered : ArrayList<Service> = ArrayList()
 
+    //https://www.androhub.com/android-adding-search-functionality-list/
+    init {
+        serviceListFiltered.addAll(serviceList)
+    }
+    fun filter(text: String) {
+        var text = text
+        var filteredList = ArrayList<Service>()
+        if (text.isEmpty()) {
+            filteredList.addAll(serviceList)
+        } else {
+            text = text.lowercase(Locale.getDefault())
+            for (item in serviceList) {
+                if (item.title.lowercase(Locale.getDefault()).contains(text)) {
+                    filteredList.add(item)
+                }
+            }
+        }
+
+        serviceListFiltered.clear()
+        serviceListFiltered.addAll(filteredList)
+        notifyDataSetChanged()
+    }
 }

@@ -5,10 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.adapter.ServiceAdapter
 import cat.copernic.letmedoit.General.model.ServiceProvider
+import cat.copernic.letmedoit.General.viewmodel.SearchViewViewModel
+import cat.copernic.letmedoit.databinding.FragmentHomeBinding
 import cat.copernic.letmedoit.databinding.FragmentHomeServicesListBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -45,19 +50,36 @@ class HomeServicesList : Fragment() {
         return binding.root
     }
 
+    lateinit var serviceRecyclerView : RecyclerView
+    lateinit var adapter : ServiceAdapter
     /**
      * Inicializa el RecyclerView
      * */
     private fun inicializarRecyclerView() {
 
-        val serviceRecyclerView = binding.serviceRecyclerView
+        serviceRecyclerView = binding.serviceRecyclerView
         //LinearLayoutManager HORIZONTAL
         //serviceRecyclerView.layoutManager = LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL,false)
         serviceRecyclerView.layoutManager = GridLayoutManager(binding.root.context, 2)
         //Asignación del adaptador al recyclerview.
-        serviceRecyclerView.adapter = ServiceAdapter(ServiceProvider.getServices())
+
+        adapter = ServiceAdapter(ServiceProvider.getServices())
+        serviceRecyclerView.adapter = adapter
+
     }
 
+    lateinit var filterQuery : String
+
+    /**
+     * Recibimos el mensaje desde el fragmento del searchview utilizando el viewmodel del searchview
+     */
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val model = ViewModelProvider(requireActivity())[SearchViewViewModel::class.java]
+        model.message.observe(viewLifecycleOwner, Observer {
+            adapter.filter(it)
+        })
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

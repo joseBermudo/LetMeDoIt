@@ -10,7 +10,7 @@ class ServiceProvider {
                     "1",
                     "Página Web",
                     "Creación de página web",
-                    CategoryMap("1","10"),
+                    CategoryMap("Informática","Web"),
                     Image("1","https://picsum.photos/200/200"),
                     200,
                     java.util.Calendar.getInstance().time
@@ -19,7 +19,7 @@ class ServiceProvider {
                     "2",
                     "Tacos",
                     "Creación de página web",
-                    CategoryMap("1","10"),
+                    CategoryMap("Cocina","Méxicana"),
                     Image("1","https://picsum.photos/200/200"),
                     200,
                     java.util.Calendar.getInstance().time
@@ -28,7 +28,7 @@ class ServiceProvider {
                     "3",
                     "Página Web",
                     "Creación de página web",
-                    CategoryMap("1","10"),
+                    CategoryMap("Informática","Web"),
                     Image("1","https://picsum.photos/200/200"),
                     200,
                     java.util.Calendar.getInstance().time
@@ -37,7 +37,7 @@ class ServiceProvider {
                     "1",
                     "Peluquería",
                     "Creación de página web",
-                    CategoryMap("1","10"),
+                    CategoryMap("Belleza","Pelo"),
                     Image("1","https://picsum.photos/200/200"),
                     200,
                     java.util.Calendar.getInstance().time
@@ -46,7 +46,7 @@ class ServiceProvider {
                     "1",
                     "Peluquería",
                     "Creación de página web",
-                    CategoryMap("1","10"),
+                    CategoryMap("Informática","Web"),
                     Image("1","https://picsum.photos/200/200"),
                     200,
                     java.util.Calendar.getInstance().time
@@ -55,7 +55,7 @@ class ServiceProvider {
                     "1",
                     "Peluquería",
                     "Creación de página web",
-                    CategoryMap("1","10"),
+                    CategoryMap("Informática","Web"),
                     Image("1","https://picsum.photos/200/200"),
                     200,
                     java.util.Calendar.getInstance().time
@@ -64,7 +64,7 @@ class ServiceProvider {
                     "1",
                     "Peluquería",
                     "Creación de página web",
-                    CategoryMap("1","10"),
+                    CategoryMap("Informática","Web"),
                     Image("1","https://picsum.photos/200/200"),
                     200,
                     java.util.Calendar.getInstance().time
@@ -73,7 +73,7 @@ class ServiceProvider {
                     "1",
                     "Peluquería",
                     "Creación de página web",
-                    CategoryMap("1","10"),
+                    CategoryMap("Informática","Web"),
                     Image("1","https://picsum.photos/200/200"),
                     200,
                     java.util.Calendar.getInstance().time
@@ -82,7 +82,7 @@ class ServiceProvider {
                     "1",
                     "Peluquería",
                     "Creación de página web",
-                    CategoryMap("1","10"),
+                    CategoryMap("Informática","Web"),
                     Image("1","https://picsum.photos/200/200"),
                     200,
                     java.util.Calendar.getInstance().time

@@ -1,11 +1,22 @@
 package cat.copernic.letmedoit.General.view.fragments
 
+import android.R
+import android.R.menu
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import cat.copernic.letmedoit.R
+import androidx.core.view.MenuItemCompat
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import cat.copernic.letmedoit.General.model.adapter.ServiceAdapter
+import cat.copernic.letmedoit.General.viewmodel.SearchViewViewModel
+import cat.copernic.letmedoit.databinding.FragmentHomeCategoriesListBinding
+import cat.copernic.letmedoit.databinding.FragmentSearchViewBinding
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,6 +29,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class SearchView : Fragment() {
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -30,14 +42,36 @@ class SearchView : Fragment() {
         }
     }
 
+    lateinit var searchViewQuery : String
+    lateinit var binding : FragmentSearchViewBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search_view, container, false)
+        binding = FragmentSearchViewBinding.inflate(layoutInflater,container,false)
+        return binding.root
     }
 
+    lateinit var model : SearchViewViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        model = ViewModelProvider(requireActivity())[SearchViewViewModel::class.java]
+
+        binding.searchView.setOnQueryTextListener(
+        object :  android.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                model.sendQuery(query.toString())
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                model.sendQuery(newText.toString())
+                return true
+            }
+        })
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

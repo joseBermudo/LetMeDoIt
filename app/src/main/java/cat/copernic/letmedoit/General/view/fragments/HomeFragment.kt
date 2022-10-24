@@ -1,10 +1,18 @@
 package cat.copernic.letmedoit.General.view.fragments
 
+import android.os.Build
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsets
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.times
+import androidx.core.view.doOnPreDraw
+import androidx.core.view.plusAssign
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentHomeBinding
 
@@ -38,7 +46,22 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
+        //Para que funcione el scroll de los servicios por ahora
+        binding.root.doOnPreDraw { test() }
         return binding.root
+    }
+
+
+    //Magia negra para que el recyclerview de servicios no ocupe el height y se muestre entero
+    private fun test() {
+
+        var params = binding.categoriesServices.layoutParams
+        var metricas = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(metricas)
+
+        params.height = (metricas.heightPixels -150 * binding.root.context.resources.displayMetrics.density).toInt()
+        binding.categoriesServices.layoutParams = params
+
     }
 
     companion object {

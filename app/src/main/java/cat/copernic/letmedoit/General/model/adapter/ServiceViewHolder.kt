@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso
  * Holder de Views.
  * @param binding Vista con binding de los items de categorias.
  * */
-class ServiceViewHolder(val binding: ServiceTemplateBinding) : RecyclerView.ViewHolder(binding.root)  {
+class ServiceViewHolder(val binding: ServiceTemplateBinding, val defaultfav : Boolean) : RecyclerView.ViewHolder(binding.root)  {
 
     //Instanciación de los controles del view.
     val service = binding.service
@@ -22,7 +22,8 @@ class ServiceViewHolder(val binding: ServiceTemplateBinding) : RecyclerView.View
     val serviceTitle = binding.serviceTitle
     val serviceDescription = binding.serviceDescription
     val serviceFav = binding.serviceFav
-    var favorite = false
+    val category = binding.serviceCategory
+    var favorite = defaultfav
 
     /**
      * @param categoryModel El modelo de datos que se utilizara para asignar los datos a la view.
@@ -32,6 +33,7 @@ class ServiceViewHolder(val binding: ServiceTemplateBinding) : RecyclerView.View
         serviceTitle.text = serviceModel.title
         serviceDescription.text = serviceModel.description
         Picasso.get().load(Uri.parse(serviceModel.image.img_link)).into(serviceImg)
+        category.text =  serviceModel.category.id_category
 
         serviceFav.setOnClickListener { anadirFavorito() }
     }
@@ -43,4 +45,5 @@ class ServiceViewHolder(val binding: ServiceTemplateBinding) : RecyclerView.View
         else serviceFav.background = ContextCompat.getDrawable(binding.root.context, R.drawable.favorites_ion_colored)
 
     }
+
 }
