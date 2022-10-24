@@ -1,12 +1,11 @@
-package cat.copernic.letmedoit.Visitante.view.fragments
+package cat.copernic.letmedoit.Users.view.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cat.copernic.letmedoit.R
-import cat.copernic.letmedoit.databinding.FragmentMessagesVisBinding
+import cat.copernic.letmedoit.databinding.FragmentRateUserBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -15,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [MessagesVis.newInstance] factory method to
+ * Use the [RateUser.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MessagesVis : Fragment() {
+class RateUser : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -31,13 +30,13 @@ class MessagesVis : Fragment() {
         }
     }
 
-    lateinit var binding : FragmentMessagesVisBinding
+    lateinit var binding : FragmentRateUserBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentMessagesVisBinding.inflate(inflater,container,false)
+        binding = FragmentRateUserBinding.inflate(inflater,container,false)
         return binding.root
     }
 
@@ -48,12 +47,12 @@ class MessagesVis : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment MessagesVis.
+         * @return A new instance of fragment rate_user.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            MessagesVis().apply {
+            RateUser().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

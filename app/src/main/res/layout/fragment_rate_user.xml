@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".Users.view.fragments.rate_user">
+    tools:context=".Users.view.fragments.RateUser">
 
 
 
@@ -17,7 +17,7 @@
 
 
         <ImageView
-            android:id="@+id/arrow_back"
+            android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:contentDescription="@string/txt_volver_atras"
             android:layout_height="wrap_content"
@@ -27,9 +27,9 @@
 
         <ImageView
             android:id="@+id/icon_user"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/logo_dimen"
             android:contentDescription="@string/txt_profile_image"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/logo_dimen"
             android:layout_marginStart="@dimen/margins_start_end"
             android:layout_marginEnd="@dimen/margins_start_end"
             android:layout_marginTop="64dp"
@@ -81,7 +81,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/opinion_input"
+            android:id="@+id/layout_opinion_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margins_start_end"
@@ -92,6 +92,7 @@
             app:layout_constraintTop_toBottomOf="@+id/comment">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_opinion_input"
                 style="@style/Widget.LetMeDoIt.TextArea"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -110,7 +111,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:text="@string/save"
-            app:layout_constraintTop_toBottomOf="@+id/opinion_input" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_opinion_input" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

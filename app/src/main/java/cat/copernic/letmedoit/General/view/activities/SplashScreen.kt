@@ -1,12 +1,11 @@
 package cat.copernic.letmedoit.General.view.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import cat.copernic.letmedoit.Visitante.view.activities.Login
 import cat.copernic.letmedoit.databinding.ActivitySplashScreenBinding
 
 class SplashScreen : AppCompatActivity() {
@@ -19,7 +18,9 @@ class SplashScreen : AppCompatActivity() {
 
         screenSplash.setKeepOnScreenCondition{ false }
         Handler(Looper.getMainLooper()).postDelayed({
-           startActivity(Intent(this, Login::class.java))
+           startActivity(Intent(this, Home::class.java))
         },2000)
     }
+
+
 }

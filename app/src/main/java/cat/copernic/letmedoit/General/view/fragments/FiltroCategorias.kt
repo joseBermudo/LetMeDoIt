@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.Users.view.fragments
+package cat.copernic.letmedoit.General.view.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -41,8 +41,8 @@ class FiltroCategorias : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentFiltroCategoriasBinding.inflate(inflater, container, false)
-        Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerCategoryS)
-        Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerSubcategoryS)
+        Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerCategory)
+        Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerSubcategory)
         return binding.root
     }
 

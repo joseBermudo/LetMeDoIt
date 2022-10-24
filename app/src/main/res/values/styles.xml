@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!--
+    <style name="Widget.LetMeDoIt.SearchBar" parent="Widget.AppCompat.SearchView">
+    </style>
+-->
     <style name="Widget.LetMeDoIT.principalButton" parent="Widget.MaterialComponents.Button">
         <item name="android:backgroundTint">@color/azul_marino</item>
         <item name="android:textColor">@android:color/white</item>
@@ -63,6 +67,17 @@
         <item name="android:background">?android:attr/listDivider</item>
     </style>
 
+    <style name="DividerUp">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:background">@drawable/up_shadow</item>
+    </style>
+    <style name="DividerDown">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:background">@drawable/down_shadow</item>
+    </style>
+
     <style name="RatingBar.Style" parent="Theme.AppCompat">
         <item name="colorControlNormal">@color/secundario_gris</item>
         <item name="colorControlActivated">@color/azul_marino</item>
@@ -81,6 +96,21 @@
         <item name="colorSwitchThumbNormal">@color/secundario_gris</item>
         <!-- inactive track color (30% transparency) -->
         <item name="android:colorForeground">@color/secundario_gris</item>
+    </style>
+
+    <!-- Estilo del TextView QUE UTILIZAMOS PARA VOLVER HACIA ATRAS, IMPLEMENTAR ON CLICK -->
+    <style name="ToolBarBackArrow">
+        <item name="android:background">@drawable/arrow_back</item>
+        <item name="android:layout_width">@dimen/app_icon_size_small</item>
+        <item name="android:layout_height">@drawable/arrow_back</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <!-- hacemos que los iconos sean clicables -->
+    <style name="IconoClickable">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
     </style>
 
 </resources>

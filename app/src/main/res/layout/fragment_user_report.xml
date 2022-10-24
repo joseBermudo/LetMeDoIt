@@ -32,8 +32,8 @@
             <ImageView
                 android:id="@+id/userIamge"
                 android:contentDescription="@string/txt_profile_image"
-                android:layout_width="@dimen/user_image_w"
-                android:layout_height="@dimen/user_image_h"
+                android:layout_width="@dimen/logo_dimen"
+                android:layout_height="@dimen/logo_dimen"
                 android:layout_marginTop="@dimen/marginTop_extra_big"
                 android:src="@drawable/ic_baseline_account_circle_24"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,31 +58,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/userName" />
 
-            <TextView
-                android:id="@+id/comment_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_comment"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_c" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/comment_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/userReport_comment_marginTop"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/comment_title">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/userReport_comment_h"
-                    android:hint="@string/txt_hint"
-                    style="@style/Widget.LetMeDoIt.TextArea"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
             <CheckBox
-                android:id="@+id/checkBox_a"
+                android:id="@+id/checkBox_Misbehavior"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_misbehaviour"
@@ -90,21 +67,44 @@
                 app:layout_constraintTop_toBottomOf="@+id/by" />
 
             <CheckBox
-                android:id="@+id/checkBox_b"
+                android:id="@+id/checkBox_Fraud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_fraud"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_a" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBox_Misbehavior" />
 
 
             <CheckBox
-                android:id="@+id/checkBox_c"
+                android:id="@+id/checkBox_OfensiveContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_ofensive_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_b" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBox_Fraud" />
+
+            <TextView
+                android:id="@+id/comment_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_comment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox_OfensiveContent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_comment_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/userReport_comment_marginTop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/comment_title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_comment_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/userReport_comment_h"
+                    style="@style/Widget.LetMeDoIt.TextArea"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btn_report"
@@ -116,7 +116,7 @@
                 android:text="@string/report"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/comment_text" />
+                app:layout_constraintTop_toBottomOf="@+id/layout_comment_text" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
