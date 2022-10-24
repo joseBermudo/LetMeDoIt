@@ -106,8 +106,10 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <!-- Adjust pan hace que no se muevan la vista hacia arriba al salir el teclado -->
         <activity
             android:name=".General.view.activities.Home"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
