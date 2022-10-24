@@ -43,6 +43,36 @@ class CategoryProvider {
                     "filter_icon",
                     "3"
                 ),
+                Category(
+                    "Historia",
+                    Subcategory("Edat Antigua", "100"),
+                    "favorites_icon",
+                    "3"
+                ),
+                Category(
+                    "Mantenimiento",
+                    Subcategory("Piscinas", "100"),
+                    "email_icon",
+                    "3"
+                ),
+                Category(
+                    "Deportes",
+                    Subcategory("Atletismo", "100"),
+                    "filter_icon",
+                    "3"
+                ),
+                Category(
+                    "Musica",
+                    Subcategory("Bachata", "100"),
+                    "favorites_icon",
+                    "3"
+                ),
+                Category(
+                    "Reforma",
+                    Subcategory("Pintura", "100"),
+                    "filter_icon",
+                    "3"
+                ),
             )
         }
     }
