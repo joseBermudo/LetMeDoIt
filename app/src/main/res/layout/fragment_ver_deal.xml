@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Users.view.fragments.ver_deal">
+    tools:context=".Users.view.fragments.ViewDeal">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/btn_back"
             android:contentDescription="@string/txt_volver_atras"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,21 +27,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margins_start_end"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/marginTop"
             android:layout_marginEnd="@dimen/margins_start_end"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2">
+            app:layout_constraintTop_toBottomOf="@+id/btn_back">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/deal_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/txt_deal" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/txt_progress_deal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -148,19 +148,19 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/accept_btn"
+            android:id="@+id/btn_accept"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margins_start_end"
             android:layout_marginEnd="@dimen/margins_start_end"
             android:layout_marginBottom="8dp"
             android:text="@string/accept"
-            app:layout_constraintBottom_toTopOf="@+id/deny_btn"
+            app:layout_constraintBottom_toTopOf="@+id/btn_deny"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/deny_btn"
+            android:id="@+id/btn_deny"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margins_start_end"

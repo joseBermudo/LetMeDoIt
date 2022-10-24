@@ -145,4 +145,6 @@
     <string name="txt_edited_x_time_ago">Edited X time ago</string>
     <string name="txt_num_favorites">100</string>
     <string name="txt_chat">Chat</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
