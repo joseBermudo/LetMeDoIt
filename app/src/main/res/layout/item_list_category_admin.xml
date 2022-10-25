@@ -7,8 +7,8 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:animateLayoutChanges="true"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="4dp"
+    app:cardCornerRadius="@dimen/item_cateogry_admin_cardCornesRadius"
+    app:cardElevation="@dimen/item_category_admin_cardElevation"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
@@ -16,81 +16,85 @@
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
         android:orientation="vertical">
-        <RelativeLayout
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="6dp">
+            android:padding="@dimen/item_list_category_admin_padding_relative_layout">
 
             <TextView
                 android:id="@+id/img_category"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="@dimen/icon_category_wh"
+                android:layout_height="@dimen/icon_category_wh"
                 android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
                 android:layout_gravity="center"
-                android:paddingLeft="14dp"
-                android:paddingRight="14dp"
                 android:background="@drawable/search_icon"
                 android:backgroundTint="@color/secundario_gris"
-                android:layout_alignParentLeft="true"/>
+                android:paddingLeft="@dimen/categoryIcon_admin_padding"
+                android:paddingRight="@dimen/categoryIcon_admin_padding"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="4dp"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="48dp"
                 android:layout_toEndOf="@id/img_category"
+                android:layout_toRightOf="@id/img_category"
                 android:orientation="vertical"
-                android:layout_marginLeft="4dp"
-                android:layout_toRightOf="@id/img_category">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/txt_category_name"
+                    style="@style/Widget.LetMeDoIt.subtext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    style="@style/Widget.LetMeDoIt.subtext"
-                    android:text="Informatica"
-                    android:textSize="16sp"/>
+                    android:layout_marginBottom="@dimen/item_category_name_marginBottom"
+                    android:text="@string/informatica"
+                    android:textSize="@dimen/dieciseis_dp" />
+
                 <TextView
                     android:id="@+id/txt_subcategory_number"
+                    style="@style/Widget.LetMeDoIt.subtext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:text="1"
-                    android:textSize="12sp"
-                    style="@style/Widget.LetMeDoIt.subtext"/>
+                    android:layout_marginBottom="@dimen/item_category_subcategoy_number_marginBottom"
+                    android:text="@string/uno_text"
+                    android:textSize="@dimen/doce_sp" />
 
             </LinearLayout>
 
             <TextView
                 android:id="@+id/itemCategory_edit_icon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:backgroundTint="@color/azul_marino"
+                android:layout_width="@dimen/item_category_edit_icon_wh"
+                android:layout_height="@dimen/item_category_edit_icon_wh"
+                android:layout_marginEnd="@dimen/item_category_edit_icon_marginEnd"
                 android:background="@drawable/edit_icon"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="72dp"
-                android:layout_alignParentEnd="true"
-                />
+                android:backgroundTint="@color/azul_marino"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/itemCategory_delete_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/IconoClickable"/>
 
             <TextView
                 android:id="@+id/itemCategory_delete_icon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:backgroundTint="@color/azul_marino"
+                android:layout_width="@dimen/item_category_delete_icon_wh"
+                android:layout_height="@dimen/item_category_delete_icon_wh"
                 android:background="@drawable/car_ui_icon_delete"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="16dp"
-                android:layout_alignParentEnd="true"
-                />
+                android:backgroundTint="@color/azul_marino"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/IconoClickable"/>
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -100,5 +100,19 @@
     <dimen name="uploadServicesVis_desp_marginTop">16dp</dimen>
     <dimen name="divider_height">2dp</dimen>
     <dimen name="width_rating_service">150dp</dimen>
+    <dimen name="item_list_category_admin_padding_relative_layout">6dp</dimen>
+    <dimen name="item_cateogry_admin_cardCornesRadius">20dp</dimen>
+    <dimen name="item_category_admin_cardElevation">4dp</dimen>
+    <dimen name="icon_category_wh">32dp</dimen>
+    <dimen name="item_category_deleteIcon_marginRight">16dp</dimen>
+    <dimen name="categoryIcon_admin_padding">14dp</dimen>
+    <dimen name="cuatro_dp">4dp</dimen>
+    <dimen name="item_category_name_marginBottom">2dp</dimen>
+    <dimen name="dieciseis_dp">16sp</dimen>
+    <dimen name="item_category_subcategoy_number_marginBottom">2dp</dimen>
+    <dimen name="doce_sp">12sp</dimen>
+    <dimen name="item_category_edit_icon_wh">32dp</dimen>
+    <dimen name="item_category_edit_icon_marginEnd">32dp</dimen>
+    <dimen name="item_category_delete_icon_wh">32dp</dimen>
 
 </resources>

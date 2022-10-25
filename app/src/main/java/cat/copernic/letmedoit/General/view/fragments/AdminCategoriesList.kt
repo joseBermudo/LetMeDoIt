@@ -10,6 +10,7 @@ import cat.copernic.letmedoit.General.model.CategoryProvider
 import cat.copernic.letmedoit.General.model.adapter.AdminCategoryAdapter
 import cat.copernic.letmedoit.databinding.FragmentAdminCategoriesListBinding
 
+
 class AdminCategoriesList : Fragment() {
     private var _binding: FragmentAdminCategoriesListBinding? = null
     private val binding get() = _binding!!

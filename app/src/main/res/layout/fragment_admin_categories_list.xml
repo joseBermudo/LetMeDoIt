@@ -9,24 +9,26 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingVertical="@dimen/padding_vertical_cl"
-        android:paddingHorizontal="@dimen/padding_horizontal_cl">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/btn_back"
+            style="@style/ToolBarBackArrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:contentDescription="@string/txt_volver_atras"
             android:src="@drawable/arrow_back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/txt_volver_atras"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txt_categoriesTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginTop_extra"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="56dp"
             android:text="@string/categories"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +37,9 @@
             android:id="@+id/searchView_adminCategories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginEnd="24dp"
             android:background="@drawable/spinner_frame_layout_style"
             android:closeIcon="@null"
             android:iconifiedByDefault="false"
@@ -49,7 +53,9 @@
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchView_adminCategories">
@@ -58,26 +64,28 @@
                 android:id="@+id/rcv_lista_categorias"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="200dp"
                 android:clipToPadding="false"
                 android:padding="8dp"
                 android:scrollbars="vertical"
-                app:layoutManager="LinearLayoutManager" />
+                app:layoutManager="LinearLayoutManager">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
         </FrameLayout>
 
-
-
-        <Button
-            android:id="@+id/btn_add_cetegory"
-            android:layout_width="match_parent"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:text="@string/new_category"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/azul_marino"
+            android:src="@drawable/ic_baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/principal_blanco" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
