@@ -1,11 +1,20 @@
 package cat.copernic.letmedoit.General.view.fragments
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import cat.copernic.letmedoit.General.model.ServiceProvider
+import cat.copernic.letmedoit.General.model.adapter.CONS_ID
+import cat.copernic.letmedoit.General.model.adapter.ServiceViewHolder
+import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.Utils.Utils.Companion.goToDestination
 import cat.copernic.letmedoit.databinding.FragmentViewServiceBinding
+import com.squareup.picasso.Picasso
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,8 +46,28 @@ class viewService : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentViewServiceBinding.inflate(inflater,container,false)
+
+        //Volver hacia atras
+        binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
+
+        initView(arguments?.getString(CONS_ID).toString())
+
+        binding.btnGoToProfile.setOnClickListener { goToDestination(view,R.id.viewServiceToUserProfile) }
         return binding.root
     }
+
+    private fun initView(id: String) {
+        if (id == null)
+            throw Exception("No hay ID")
+
+        val service = ServiceProvider.getServices().filter { it.id == id }[0]
+        Picasso.get().load(Uri.parse(service.image[0].img_link)).fit().centerCrop().into(binding.imageService)
+        binding.tittleService.text = service.title
+        binding.subTextCategory.text = service.category.id_category
+        binding.descriptionService.text = service.description
+        binding.txtCountFav.text = service.n_likes.toString()
+    }
+
 
     companion object {
         /**

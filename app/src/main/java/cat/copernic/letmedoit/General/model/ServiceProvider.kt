@@ -1,5 +1,7 @@
 package cat.copernic.letmedoit.General.model
 
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
 
 class ServiceProvider {
@@ -11,7 +13,9 @@ class ServiceProvider {
                     "Página Web",
                     "Creación de página web",
                     CategoryMap("Informática","Web"),
-                    Image("1","https://picsum.photos/200/200"),
+                    arrayListOf(
+                        Image("1","https://picsum.photos/200/200"),
+                    ),
                     200,
                     java.util.Calendar.getInstance().time
                 ),
@@ -20,70 +24,86 @@ class ServiceProvider {
                     "Tacos",
                     "Creación de página web",
                     CategoryMap("Cocina","Méxicana"),
-                    Image("1","https://picsum.photos/200/200"),
+                    arrayListOf(
+                        Image("1","https://picsum.photos/200/200"),
+                    ),
                     200,
-                    java.util.Calendar.getInstance().time
+                    java.util.Calendar.getInstance().time,
                 ),
                 Service(
                     "3",
                     "Página Web",
                     "Creación de página web",
                     CategoryMap("Informática","Web"),
-                    Image("1","https://picsum.photos/200/200"),
+                    arrayListOf(
+                        Image("1","https://picsum.photos/200/200"),
+                    ),
                     200,
                     java.util.Calendar.getInstance().time
                 ),
                 Service(
-                    "1",
+                    "4",
                     "Peluquería",
                     "Creación de página web",
                     CategoryMap("Belleza","Pelo"),
-                    Image("1","https://picsum.photos/200/200"),
+                    arrayListOf(
+                        Image("1","https://picsum.photos/200/200"),
+                    ),
                     200,
                     java.util.Calendar.getInstance().time
                 ),
                 Service(
-                    "1",
+                    "5",
                     "Peluquería",
                     "Creación de página web",
                     CategoryMap("Informática","Web"),
-                    Image("1","https://picsum.photos/200/200"),
+                    arrayListOf(
+                        Image("1","https://picsum.photos/200/200"),
+                    ),
                     200,
                     java.util.Calendar.getInstance().time
                 ),
                 Service(
-                    "1",
+                    "6",
                     "Peluquería",
                     "Creación de página web",
                     CategoryMap("Informática","Web"),
-                    Image("1","https://picsum.photos/200/200"),
+                    arrayListOf(
+                        Image("1","https://picsum.photos/200/200"),
+                    ),
                     200,
                     java.util.Calendar.getInstance().time
                 ),
                 Service(
-                    "1",
+                    "7",
                     "Peluquería",
                     "Creación de página web",
                     CategoryMap("Informática","Web"),
-                    Image("1","https://picsum.photos/200/200"),
+                    arrayListOf(
+                        Image("1","https://picsum.photos/200/200"),
+                    ),
                     200,
                     java.util.Calendar.getInstance().time
                 ),
                 Service(
-                    "1",
+                    "8",
                     "Peluquería",
                     "Creación de página web",
                     CategoryMap("Informática","Web"),
-                    Image("1","https://picsum.photos/200/200"),
+                    arrayListOf(
+                        Image("1","https://picsum.photos/200/200"),
+                    ),
                     200,
                     java.util.Calendar.getInstance().time
                 ),
                 Service(
-                    "1",
+                    "9",
                     "Peluquería",
                     "Creación de página web",
                     CategoryMap("Informática","Web"),
-                    Image("1","https://picsum.photos/200/200"),
+                    arrayListOf(
+                        Image("1","https://picsum.photos/200/200"),
+                    ),
                     200,
                     java.util.Calendar.getInstance().time
                 )

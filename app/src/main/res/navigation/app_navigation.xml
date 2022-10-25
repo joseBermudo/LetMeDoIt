@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="cat.copernic.letmedoit.General.view.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/homeFragmentToFiltroCategorias"
+            app:destination="@id/filtroCategorias"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/homeFragmentToViewService"
+            app:destination="@id/viewService" />
+    </fragment>
+    <fragment
+        android:id="@+id/filtroCategorias"
+        android:name="cat.copernic.letmedoit.General.view.fragments.FiltroCategorias"
+        android:label="FiltroCategorias" >
+        <action
+            android:id="@+id/filtroCategoriasToHomeFragment"
+            app:destination="@id/homeFragment"
+            app:argType="string"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_filtroCategorias_to_perfilUsuarioMenuSuperior"
+            app:destination="@id/perfilUsuarioMenuSuperior" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewService"
+        android:name="cat.copernic.letmedoit.General.view.fragments.viewService"
+        android:label="fragment_view_service"
+        tools:layout="@layout/fragment_view_service" >
+        <action
+            android:id="@+id/viewServiceToHomeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/viewServiceToUserProfile"
+            app:destination="@id/perfilUsuarioMenuSuperior"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfilUsuarioMenuSuperior"
+        android:name="cat.copernic.letmedoit.General.view.fragments.PerfilUsuarioMenuSuperior"
+        android:label="fragment_perfil_usuario_menu_superior"
+        tools:layout="@layout/fragment_perfil_usuario_menu_superior" >
+        <action
+            android:id="@+id/userProfileToViewService"
+            app:destination="@id/viewService"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_perfilUsuarioMenuSuperior_to_filtroCategorias"
+            app:destination="@id/filtroCategorias" />
+    </fragment>
+</navigation>

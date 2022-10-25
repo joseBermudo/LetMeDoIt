@@ -7,7 +7,7 @@ data class Service(
     val title : String,
     val description : String,
     val category : CategoryMap,
-    val image: Image,
+    val image: ArrayList<Image>,
     val n_likes : Int,
-    val edited_time : Date
+    val edited_time : Date,
 )

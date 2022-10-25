@@ -1,20 +1,16 @@
 package cat.copernic.letmedoit.General.view.fragments
 
-import android.R
-import android.R.menu
+
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import cat.copernic.letmedoit.General.model.adapter.ServiceAdapter
+import androidx.navigation.Navigation
 import cat.copernic.letmedoit.General.viewmodel.SearchViewViewModel
-import cat.copernic.letmedoit.databinding.FragmentHomeCategoriesListBinding
+import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.FragmentSearchViewBinding
 
 
@@ -59,6 +55,8 @@ class SearchView : Fragment() {
 
         model = ViewModelProvider(requireActivity())[SearchViewViewModel::class.java]
 
+        binding.iconFilter.setOnClickListener { Utils.goToDestination(requireView(),R.id.filtroCategorias) }
+
         binding.searchView.setOnQueryTextListener(
         object :  android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -72,6 +70,7 @@ class SearchView : Fragment() {
             }
         })
     }
+
     companion object {
         /**
          * Use this factory method to create a new instance of

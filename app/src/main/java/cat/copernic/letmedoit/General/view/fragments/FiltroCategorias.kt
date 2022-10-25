@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.FragmentFiltroCategoriasBinding
 
@@ -43,6 +45,8 @@ class FiltroCategorias : Fragment() {
         binding = FragmentFiltroCategoriasBinding.inflate(inflater, container, false)
         Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerCategory)
         Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerSubcategory)
+
+        binding.backArrow.setOnClickListener { requireActivity().onBackPressed() }
         return binding.root
     }
 

@@ -30,7 +30,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="0dp">
                     <fragment
                         android:layout_gravity="top"
                         android:id="@+id/fragment_categoryFilter"
@@ -44,20 +44,25 @@
                     <fragment
                         android:layout_gravity="bottom"
                         android:id="@+id/fragment_newServices"
-                        app:layout_constrainedHeight="true"
+                        android:layout_height="0dp"
+                        app:layout_constraintHeight="wrap_content_constrained"
                         android:name="cat.copernic.letmedoit.General.view.fragments.HomeServicesList"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@+id/fragment_categoryFilter"
                         app:layout_constraintStart_toStartOf="@+id/fragment_categoryFilter"
                         app:layout_constraintEnd_toEndOf="@+id/fragment_categoryFilter"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         tools:layout="@layout/fragment_home_categories_list" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>
-
+            <fragment
+                android:id="@+id/menu_inferior_home"
+                android:name="cat.copernic.letmedoit.General.view.fragments.Menu_Inferior"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:layout="@layout/fragment_menu_inferior"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
 </FrameLayout>

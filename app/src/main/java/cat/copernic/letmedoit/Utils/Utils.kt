@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -66,7 +67,14 @@ abstract class Utils {
         inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
             beginTransaction().func().commit()
         }
-
+        /**
+         * Función para Navegagar.
+         */
+        fun goToDestination(view: View?, destination : Int) {
+            if (view != null) {
+                Navigation.findNavController(view).navigate(destination)
+            }
+        }
 
         fun createList():ArrayList<String>{
             var itemList: ArrayList<String> = ArrayList<String>()

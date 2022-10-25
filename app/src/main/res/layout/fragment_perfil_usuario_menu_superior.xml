@@ -94,19 +94,16 @@
             app:tabTextAppearance="@style/Widget.LetMeDoIt.text">
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabitem_btn_services"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_num_services" />
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabitem_btn_opinions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_num_opinions" />
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabitem_btn_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_num_info" />
@@ -121,13 +118,13 @@
             app:layout_constraintStart_toStartOf="@+id/tablayout_user_profile"
             app:layout_constraintTop_toBottomOf="@id/tablayout_user_profile" />
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_profile_option"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bottom_shadow"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bottom_shadow" />
+            app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

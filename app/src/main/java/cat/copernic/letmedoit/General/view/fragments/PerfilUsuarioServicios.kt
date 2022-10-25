@@ -5,6 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import cat.copernic.letmedoit.General.model.ServiceProvider
+import cat.copernic.letmedoit.General.model.adapter.ServiceAdapter
+import cat.copernic.letmedoit.General.viewmodel.SearchViewViewModel
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioServiciosBinding
 
@@ -31,6 +38,9 @@ class PerfilUsuarioServicios : Fragment() {
         }
     }
 
+    //RecyclerView
+    lateinit var serviceRecyclerView : RecyclerView
+    lateinit var adapter : ServiceAdapter
     lateinit var binding : FragmentPerfilUsuarioServiciosBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +48,20 @@ class PerfilUsuarioServicios : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentPerfilUsuarioServiciosBinding.inflate(inflater,container,false)
+        serviceRecyclerView = binding.recylerViewServices
+        serviceRecyclerView.layoutManager = GridLayoutManager(binding.root.context, 2)
+        //Asignación del adaptador al recyclerview.
+
+        serviceRecyclerView.setHasFixedSize(true)
+        adapter = ServiceAdapter(ServiceProvider.getServices())
+        serviceRecyclerView.adapter = adapter
+
+        val model = ViewModelProvider(requireActivity())[SearchViewViewModel::class.java]
+        model.message.observe(viewLifecycleOwner, Observer {
+            adapter.filter(it)
+        })
+
+
         return binding.root
     }
 

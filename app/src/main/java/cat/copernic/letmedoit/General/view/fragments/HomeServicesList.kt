@@ -63,6 +63,7 @@ class HomeServicesList : Fragment() {
         serviceRecyclerView.layoutManager = GridLayoutManager(binding.root.context, 2)
         //Asignación del adaptador al recyclerview.
 
+        serviceRecyclerView.setHasFixedSize(true)
         adapter = ServiceAdapter(ServiceProvider.getServices())
         serviceRecyclerView.adapter = adapter
 

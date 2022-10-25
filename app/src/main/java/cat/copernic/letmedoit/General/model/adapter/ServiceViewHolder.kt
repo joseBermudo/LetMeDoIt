@@ -1,15 +1,17 @@
 package cat.copernic.letmedoit.General.model.adapter
 
-import android.content.res.Resources
 import android.net.Uri
+import android.os.Bundle
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.Service
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.ServiceTemplateBinding
 import com.squareup.picasso.Picasso
 
+
+const val CONS_ID = "id"
 /**
  * Holder de Views.
  * @param binding Vista con binding de los items de categorias.
@@ -32,10 +34,18 @@ class ServiceViewHolder(val binding: ServiceTemplateBinding, val defaultfav : Bo
         //Asigación de datos a los controles del view.
         serviceTitle.text = serviceModel.title
         serviceDescription.text = serviceModel.description
-        Picasso.get().load(Uri.parse(serviceModel.image.img_link)).into(serviceImg)
+        Picasso.get().load(Uri.parse(serviceModel.image[0].img_link)).into(serviceImg)
         category.text =  serviceModel.category.id_category
 
+
         serviceFav.setOnClickListener { anadirFavorito() }
+        service.setOnClickListener { goToService(serviceModel.id) }
+    }
+
+    private fun goToService(id: String) {
+        val data = Bundle()
+        data.putString(CONS_ID,id)
+        Navigation.findNavController(itemView).navigate(R.id.homeFragmentToViewService,data)
     }
 
     private fun anadirFavorito() {

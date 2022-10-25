@@ -105,5 +105,7 @@
     <dimen name="service_width">200dp</dimen>
     <dimen name="service_height">300dp</dimen>
     <dimen name="service_image_height">200dp</dimen>
+    <dimen name="spinner_width">300dp</dimen>
+    <dimen name="image_service_height">200dp</dimen>
 
 </resources>

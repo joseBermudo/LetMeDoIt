@@ -12,26 +12,27 @@
         android:paddingVertical="@dimen/padding_vertical_cl">
 
 
-        <ImageView
+        <TextView
             android:id="@+id/btn_back"
             android:contentDescription="@string/txt_volver_atras"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/app_icon_size_small"
+            android:layout_height="@dimen/app_icon_size_small"
             android:layout_marginStart="@dimen/margins_start_end"
             android:layout_marginEnd="@dimen/margins_start_end"
-            android:src="@drawable/arrow_back"
+            android:background="@drawable/arrow_back"
+            style="@style/IconoClickable"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/btn_fav"
-            android:contentDescription="@string/txt_add_to_favorites"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margins_start_end"
+            android:contentDescription="@string/txt_add_to_favorites"
             android:src="@drawable/favorites_ion_colored"
-            app:layout_constraintBottom_toTopOf="@+id/imageService"
-            app:layout_constraintEnd_toStartOf="@+id/btn_report" />
+            app:layout_constraintEnd_toStartOf="@+id/btn_report"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/btn_report"
@@ -47,7 +48,8 @@
             android:id="@+id/imageService"
             android:contentDescription="@null"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_marginTop="@dimen/divider_16dp_margin_top"
+            android:layout_height="@dimen/image_service_height"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_back"
@@ -58,6 +60,7 @@
             style="@style/Widget.LetMeDoIt.title2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_vertical_start_end_8"
             android:layout_marginStart="@dimen/margins_start_end"
             android:layout_marginEnd="@dimen/margins_start_end"
             android:text="@string/tittle"
