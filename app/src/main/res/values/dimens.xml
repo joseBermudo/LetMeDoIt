@@ -114,5 +114,14 @@
     <dimen name="item_category_edit_icon_wh">32dp</dimen>
     <dimen name="item_category_edit_icon_marginEnd">32dp</dimen>
     <dimen name="item_category_delete_icon_wh">32dp</dimen>
+    <dimen name="adm_category_btnBack_margin">24dp</dimen>
+    <dimen name="adm_category_txtCategoriesTitle_marginStart">24dp</dimen>
+    <dimen name="amd_category_txtCategoriesTitle_marginTop">56dp</dimen>
+    <dimen name="ven_cuatro_dp">24dp</dimen>
+    <dimen name="dos_dp">2dp</dimen>
+    <dimen name="cero_dp">0dp</dimen>
+    <dimen name="recyclerView_default_marginBottom">200dp</dimen>
+    <dimen name="adm_category_recyclerView_padding">8dp</dimen>
+    <dimen name="amd_category_btnAdd_marginBottom">8dp</dimen>
 
 </resources>

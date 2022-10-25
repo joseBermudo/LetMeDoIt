@@ -73,6 +73,24 @@ class CategoryProvider {
                     "filter_icon",
                     "3"
                 ),
+                Category(
+                    "Botanica",
+                    Subcategory("Podar setos", "100"),
+                    "email_icon",
+                    "3"
+                ),
+                Category(
+                    "Animales",
+                    Subcategory("Pasear perros", "100"),
+                    "favorites_icon",
+                    "3"
+                ),
+                Category(
+                    "Animales",
+                    Subcategory("Pasear perros", "100"),
+                    "favorites_icon",
+                    "3"
+                ),
             )
         }
     }
