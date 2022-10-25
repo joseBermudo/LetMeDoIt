@@ -9,8 +9,86 @@ class UsersProvider {
                     "Pau",
                 ),
                 Users(
+                    "IsCEDCAmael",
+                ),
+                Users(
+                    "IsmaCDCEel",
+                ),
+                Users(
+                    "IsWXSWmael",
+                ),
+                Users(
+                    "IsECECmael",
+                ),
+                Users(
                     "Ismael",
-                )
+                ),
+                Users(
+                    "IsCECAXSmael",
+                ),
+                Users(
+                    "IsmCECASael",
+                ),
+                Users(
+                    "IsmCEWCWXael",
+                ),
+                Users(
+                    "IsmECWCWECael",
+                ),
+                Users(
+                    "IsEECECWmael",
+                ),
+                Users(
+                    "IsmEDEECael",
+                ),
+                Users(
+                    "IEDEDsmael",
+                ),
+                Users(
+                    "DEDl",
+                ),
+                Users(
+                    "Pau",
+                ),
+                Users(
+                    "IsCEDCAmael",
+                ),
+                Users(
+                    "IsmaCDCEel",
+                ),
+                Users(
+                    "IsWXSWmael",
+                ),
+                Users(
+                    "IsECECmael",
+                ),
+                Users(
+                    "Ismael",
+                ),
+                Users(
+                    "IsCECAXSmael",
+                ),
+                Users(
+                    "IsmCECASael",
+                ),
+                Users(
+                    "IsmCEWCWXael",
+                ),
+                Users(
+                    "IsmECWCWECael",
+                ),
+                Users(
+                    "IsEECECWmael",
+                ),
+                Users(
+                    "IsmEDEECael",
+                ),
+                Users(
+                    "IEDEDsmael",
+                ),
+                Users(
+                    "DEDl",
+                ),
             )
         }
     }
