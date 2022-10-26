@@ -14,8 +14,9 @@ class AdminCategoryViewHolder(val binding: ItemListCategoryAdminBinding) : Recyc
 
     val categoryIcon = binding.imgCategory
     val categoryName = binding.txtCategoryName
-    fun render(categoryModel: Category){
+    fun render(categoryModel: Category, onClickListener:(Category) -> Unit){
         categoryIcon.background= ContextCompat.getDrawable(binding.root.context,binding.root.resources.getIdentifier(categoryModel.image, "drawable","cat.copernic.letmedoit"))
         categoryName.text = categoryModel.nombre.replace(" ","\n")
+        itemView.setOnClickListener { onClickListener(categoryModel) }
     }
 }

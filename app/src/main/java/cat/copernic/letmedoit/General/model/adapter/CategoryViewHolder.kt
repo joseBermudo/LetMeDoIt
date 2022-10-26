@@ -11,7 +11,7 @@ import cat.copernic.letmedoit.databinding.ItemCategoryBinding
  * Holder de Views.
  * @param binding Vista con binding de los items de categorias.
  * */
-class CategoryViewHolder(val binding: ItemCategoryBinding) : ViewHolder(binding.root)  {
+class CategoryViewHolder(val binding: ItemCategoryBinding,) : ViewHolder(binding.root)  {
 
     //Instanciación de los controles del view.
     val categoryIcon = binding.itemCategoryIcon
