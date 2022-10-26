@@ -45,7 +45,7 @@ class ServiceViewHolder(val binding: ServiceTemplateBinding, val defaultfav : Bo
     private fun goToService(id: String) {
         val data = Bundle()
         data.putString(CONS_ID,id)
-        Navigation.findNavController(itemView).navigate(R.id.homeFragmentToViewService,data)
+        Navigation.findNavController(itemView).navigate(R.id.viewService,data)
     }
 
     private fun anadirFavorito() {
