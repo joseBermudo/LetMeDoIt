@@ -1,16 +1,13 @@
 package cat.copernic.letmedoit.General.view.fragments
 
 import android.os.Bundle
-import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
-import androidx.core.view.isNotEmpty
 import androidx.core.view.setMargins
 import androidx.viewpager2.widget.ViewPager2
 import cat.copernic.letmedoit.General.model.Image
@@ -79,6 +76,7 @@ class viewService : Fragment() {
 
         adapter = SliderImagesAdapter(service.image)
 
+
         binding.imageServiceViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageScrolled(
@@ -105,7 +103,6 @@ class viewService : Fragment() {
         binding.imageServiceViewPager.adapter = adapter
     }
 
-
     private fun createSliderDots(images: ArrayList<Image>) {
         var contador = 0
         images.forEach {
@@ -131,6 +128,7 @@ class viewService : Fragment() {
 
         lastColored?.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.divider_color))
         (outputCardViews[position] as CardView).setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.azul_marino))
+
         lastColored = outputCardViews[position] as CardView
 
     }
