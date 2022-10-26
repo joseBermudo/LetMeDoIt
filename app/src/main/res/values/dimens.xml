@@ -20,6 +20,7 @@
     <dimen name="logo_dimen">128dp</dimen>
     <dimen name="btn_height">56dp</dimen>
     <dimen name="img_size">32dp</dimen>
+    <dimen name="trescientos_treinta">330dp</dimen>
 
     <!-- Spinner Personalizado -->
     <dimen name="spinner_radius">10dp</dimen>
@@ -104,5 +105,17 @@
 
     <!-- CheckBox itemView !-->
     <dimen name="checkbox_size">24sp</dimen>
+
+    <!-- Recycle view !-->
+    <dimen name="recycle_view_size">330dp</dimen>
+
+    <!-- Card view Users/Banned users!-->
+    <dimen name="corner_radius">20dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="ocho">8dp</dimen>
+    <dimen name="margin_bot">10dp</dimen>
+    <dimen name="add_users_width">50dp</dimen>
+    <dimen name="margin_bot_recycle_view">20dp</dimen>
+
 
 </resources>

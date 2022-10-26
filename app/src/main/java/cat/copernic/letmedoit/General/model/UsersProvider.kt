@@ -7,87 +7,115 @@ class UsersProvider {
             return arrayListOf(
                 Users(
                     "Pau",
-                ),
-                Users(
-                    "IsCEDCAmael",
-                ),
-                Users(
-                    "IsmaCDCEel",
-                ),
-                Users(
-                    "IsWXSWmael",
-                ),
-                Users(
-                    "IsECECmael",
+                    true,
                 ),
                 Users(
                     "Ismael",
+                    true,
                 ),
                 Users(
-                    "IsCECAXSmael",
+                    "Lausin",
+                    false,
                 ),
                 Users(
-                    "IsmCECASael",
+                    "Mire",
+                    false,
                 ),
                 Users(
-                    "IsmCEWCWXael",
+                    "Nico",
+                    true,
                 ),
                 Users(
-                    "IsmECWCWECael",
+                    "Maxi",
+                    false,
                 ),
                 Users(
-                    "IsEECECWmael",
+                    "Mauri",
+                    true,
+                ),
+                Users(
+                    "Jose",
+                    false,
+                ),
+                Users(
+                    "Alex",
+                    false,
+                ),
+                Users(
+                    "Paco",
+                    true,
+                ),
+                Users(
+                    "Ares",
+                    false,
                 ),
                 Users(
                     "IsmEDEECael",
+                    true,
                 ),
                 Users(
                     "IEDEDsmael",
+                    true,
                 ),
                 Users(
                     "DEDl",
+                    true,
                 ),
                 Users(
                     "Pau",
+                    true,
                 ),
                 Users(
                     "IsCEDCAmael",
+                    true,
                 ),
                 Users(
                     "IsmaCDCEel",
+                    true,
                 ),
                 Users(
                     "IsWXSWmael",
+                    true,
                 ),
                 Users(
                     "IsECECmael",
+                    true,
                 ),
                 Users(
                     "Ismael",
+                    false,
                 ),
                 Users(
                     "IsCECAXSmael",
+                    false,
                 ),
                 Users(
                     "IsmCECASael",
+                    false,
                 ),
                 Users(
                     "IsmCEWCWXael",
+                    false,
                 ),
                 Users(
                     "IsmECWCWECael",
+                    false,
                 ),
                 Users(
                     "IsEECECWmael",
+                    false,
                 ),
                 Users(
                     "IsmEDEECael",
+                    false,
                 ),
                 Users(
                     "IEDEDsmael",
+                    false,
                 ),
                 Users(
                     "DEDl",
+                    false,
                 ),
             )
         }
