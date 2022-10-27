@@ -87,13 +87,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:tint="@color/principal_blanco" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_recyclerMode"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginTop="56dp"
             android:layout_marginEnd="24dp"
-            android:background="@drawable/ic_baseline_grid_view_24"
+            app:iconSize="32dp"
+            app:iconPadding="0dp"
+
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            app:iconTint="@color/azul_marino"
+            android:backgroundTint="@color/principal_blanco"
+            app:icon="@drawable/ic_baseline_grid_view_24"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            app:rippleColor="@color/azul_marino"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

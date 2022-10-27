@@ -41,24 +41,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-            <TextView
+            <Button
                 android:id="@+id/itemCategory_edit_icon"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="8dp"
-
                 android:background="@drawable/edit_icon"
-                android:backgroundTint="@color/azul_marino"
-                style="@style/IconoClickable"/>
+                android:backgroundTint="@color/azul_marino" />
             
-            <TextView
+            <Button
                 android:id="@+id/itemCategory_delete_icon"
-                style="@style/IconoClickable"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="20dp"
                 android:background="@drawable/car_ui_icon_delete"
-                android:backgroundTint="@color/azul_marino"
+                app:backgroundTint="@color/denegar"
                 android:gravity="end" />
 
         </LinearLayout>
