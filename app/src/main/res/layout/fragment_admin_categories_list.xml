@@ -41,7 +41,7 @@
             android:layout_marginTop="@dimen/marginTop"
             android:layout_marginEnd="@dimen/marginTop"
             android:background="@drawable/spinner_frame_layout_style"
-            android:closeIcon="@null"
+            android:queryHint="Search category name"
             android:iconifiedByDefault="false"
             android:searchIcon="@drawable/search_icon"
             app:layout_constraintEnd_toEndOf="parent"

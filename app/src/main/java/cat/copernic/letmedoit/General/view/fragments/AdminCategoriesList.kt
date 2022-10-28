@@ -22,12 +22,12 @@ import com.google.android.material.textfield.TextInputEditText
 class AdminCategoriesList : Fragment() {
     private var _binding: FragmentAdminCategoriesListBinding? = null
     private val binding get() = _binding!!
-    private var recyclerGrid = false
     private lateinit var recyclerView: RecyclerView
     private var categoryMutableList: MutableList<Category> =
         CategoryProvider.obtenerCategorias().toMutableList()
     private lateinit var adapter: AdminCategoryAdapter
     private lateinit var llmanager: LinearLayoutManager
+    private lateinit var barraBusqueda: android.widget.SearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,13 +39,13 @@ class AdminCategoriesList : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAdminCategoriesListBinding.inflate(inflater, container, false)
-        llmanager = LinearLayoutManager(binding.root.context)
-        initRecyclerView()
-        recyclerView = binding.rcvListaCategorias
-        binding.btnRecyclerMode.setOnClickListener {
-            selectLayoutReyclerMode()
 
-        }
+        llmanager = LinearLayoutManager(binding.root.context)
+        recyclerView = binding.rcvListaCategorias
+        barraBusqueda = binding.searchViewAdminCategories
+
+        initRecyclerView()
+
         binding.btnAdd.setOnClickListener { createCategory() }
         return binding.root
     }
@@ -86,25 +86,13 @@ class AdminCategoriesList : Fragment() {
 
     }
 
-    private fun selectLayoutReyclerMode() {
-        if (recyclerGrid) {
-            recyclerGrid = false
-            binding.btnRecyclerMode.setIconResource(R.drawable.ic_baseline_format_list_bulleted_24)
-        } else {
-            recyclerGrid = true
-            binding.btnRecyclerMode.setIconResource(R.drawable.ic_baseline_grid_view_24)
-
-        }
-    }
-
     private fun initRecyclerView() {
-        //val manager = GridLayoutManager(binding.root.context,2)
         adapter = AdminCategoryAdapter(
             categoryList = categoryMutableList,
             onClickListener = { category -> onItemSelected(category) },
             onClickDelete = { position -> onDeletedItem(position) })
-        binding.rcvListaCategorias.layoutManager = llmanager
-        binding.rcvListaCategorias.adapter = adapter
+        recyclerView.layoutManager = llmanager
+        recyclerView.adapter = adapter
     }
 
     private fun onItemSelected(category: Category) {
@@ -112,7 +100,7 @@ class AdminCategoriesList : Fragment() {
     }
 
     private fun onDeletedItem(position: Int) {
-
+       
         val dialogBinding = layoutInflater.inflate(R.layout.delete_category_alert_dialog, null)
         val myDialog = Dialog(binding.root.context)
         myDialog.setContentView(dialogBinding)
