@@ -100,6 +100,8 @@
     <dimen name="uploadServicesVis_desp_marginTop">16dp</dimen>
     <dimen name="divider_height">2dp</dimen>
     <dimen name="width_rating_service">150dp</dimen>
+
+    <!-- Admin Category List Fragment -->
     <dimen name="item_list_category_admin_padding_relative_layout">6dp</dimen>
     <dimen name="item_cateogry_admin_cardCornesRadius">20dp</dimen>
     <dimen name="item_category_admin_cardElevation">4dp</dimen>
@@ -128,12 +130,16 @@
     <dimen name="adminCategory_gridItem_imt_marginTop">8dp</dimen>
     <dimen name="ocho_dp">8dp</dimen>
     <dimen name="veinte_dp">20dp</dimen>
+
+    <!-- Delete Category Alert Dialog-->
     <dimen name="deleteCategoryDialog_txtTitle_marginTop">32dp</dimen>
     <dimen name="deleteCategoryDialog_message_marginTop">32dp</dimen>
     <dimen name="deleteCateogryDialog_message_marginStartEnd">16dp</dimen>
     <dimen name="deleteCategoryDialgo_messageB_marginTop">4dp</dimen>
     <dimen name="deleteCategoryDialog_btnAcceptDelete_margin">32dp</dimen>
     <dimen name="categoryDeleteDialog_btnCancelDelete_margin">32dp</dimen>
+
+    <!-- Create New Category Dialog-->
     <dimen name="createCategoryDialgo_title_marginTop">32dp</dimen>
     <dimen name="createCategoryDialog_txtInputName_w">200dp</dimen>
     <dimen name="createCategoryDialog_txtInputName_marginStartEnd">8dp</dimen>
