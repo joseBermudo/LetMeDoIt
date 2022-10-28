@@ -112,7 +112,23 @@ class AdminCategoriesList : Fragment() {
     }
 
     private fun onDeletedItem(position: Int) {
-        categoryMutableList.removeAt(position)
-        adapter.notifyItemRemoved(position)
+
+        val dialogBinding = layoutInflater.inflate(R.layout.delete_category_alert_dialog, null)
+        val myDialog = Dialog(binding.root.context)
+        myDialog.setContentView(dialogBinding)
+        myDialog.setCancelable(true)
+        myDialog.show()
+
+        val btn_cancel = dialogBinding.findViewById<Button>(R.id.btn_cancelDeleteCategory)
+        val btn_accept = dialogBinding.findViewById<Button>(R.id.btn_acceptDeleteCategory)
+
+        btn_cancel.setOnClickListener { myDialog.dismiss() }
+
+        btn_accept.setOnClickListener {
+            categoryMutableList.removeAt(position)
+            adapter.notifyItemRemoved(position)
+            myDialog.dismiss()
+        }
+
     }
 }

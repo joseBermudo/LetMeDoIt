@@ -86,7 +86,37 @@ class CategoryProvider {
                     "3"
                 ),
                 Category(
-                    "Animales",
+                    "Geologia",
+                    Subcategory("Pasear perros", "100"),
+                    "favorites_icon",
+                    "3"
+                ),
+                Category(
+                    "Literatura",
+                    Subcategory("Pasear perros", "100"),
+                    "favorites_icon",
+                    "3"
+                ),
+                Category(
+                    "Jardineria",
+                    Subcategory("Pasear perros", "100"),
+                    "favorites_icon",
+                    "3"
+                ),
+                Category(
+                    "Transporte",
+                    Subcategory("Pasear perros", "100"),
+                    "favorites_icon",
+                    "3"
+                ),
+                Category(
+                    "Educación",
+                    Subcategory("Pasear perros", "100"),
+                    "favorites_icon",
+                    "3"
+                ),
+                Category(
+                    "Ocio",
                     Subcategory("Pasear perros", "100"),
                     "favorites_icon",
                     "3"
