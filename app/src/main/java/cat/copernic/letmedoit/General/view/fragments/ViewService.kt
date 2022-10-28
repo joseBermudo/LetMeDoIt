@@ -1,19 +1,20 @@
 package cat.copernic.letmedoit.General.view.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.setMargins
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import cat.copernic.letmedoit.General.model.Image
 import cat.copernic.letmedoit.General.model.Service
 import cat.copernic.letmedoit.General.model.ServiceProvider
-import cat.copernic.letmedoit.General.model.adapter.CONS_ID
+import cat.copernic.letmedoit.General.model.adapter.SERVICE_ID
 import cat.copernic.letmedoit.General.model.adapter.SliderImagesAdapter
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Utils.Companion.goToDestination
@@ -48,16 +49,16 @@ class viewService : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentViewServiceBinding.inflate(inflater,container,false)
 
         //Volver hacia atras
         binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
 
-        initView(arguments?.getString(CONS_ID).toString())
+        initView(arguments?.getString(SERVICE_ID).toString())
 
-        binding.btnGoToProfile.setOnClickListener { goToDestination(view,R.id.viewServiceToUserProfile) }
+        binding.btnGoToProfile.setOnClickListener { goToDestination(requireView(),R.id.viewServiceToUserProfile) }
         return binding.root
     }
 
@@ -77,25 +78,35 @@ class viewService : Fragment() {
         adapter = SliderImagesAdapter(service.image)
 
 
+        //Eventos del ViewPager de imagenes
         binding.imageServiceViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
+            var sumPosAndOffset : Float = 0.0f
+            var swiped = true
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                changeColor(position)
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                var rePos = position
 
+                if (swiped){
+                    //position + offset > sumPositios --> Swipe Izquierda a Derecha y Viceversa
+                    if (position + positionOffset > sumPosAndOffset)
+                        rePos++
+
+                    changeColor(rePos)
+
+                    swiped = false
+
+                }
+                super.onPageScrolled(rePos, positionOffset, positionOffsetPixels)
+                sumPosAndOffset = positionOffset + position
             }
 
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-            }
-
-            override fun onPageScrollStateChanged(state: Int) {
-                super.onPageScrollStateChanged(state)
-
+                swiped = true
             }
 
         })
@@ -103,16 +114,17 @@ class viewService : Fragment() {
         binding.imageServiceViewPager.adapter = adapter
     }
 
+    //Por cada foto creamos un punto gris debajo de la imagen utilizando cardviews
     private fun createSliderDots(images: ArrayList<Image>) {
         var contador = 0
-        images.forEach {
+        images.forEach { _ ->
             contador++
             val cardViewDotContainer = CardView(requireContext())
             val layoutparams = LinearLayout.LayoutParams(20,20)
             layoutparams.setMargins(10)
             cardViewDotContainer.layoutParams = layoutparams
             cardViewDotContainer.radius = 20F
-            cardViewDotContainer.elevation = 0F
+            cardViewDotContainer.elevation = 2F
             cardViewDotContainer.contentDescription = TAG_SLIDER_IMAGES
             cardViewDotContainer.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.divider_color))
             binding.SliderDots.addView(cardViewDotContainer)
@@ -120,14 +132,15 @@ class viewService : Fragment() {
     }
 
 
-    var lastColored : CardView? = null
+    //Cambiamos el color del CardView a azul o a gris
+    private var lastColored : CardView? = null
     fun changeColor(position: Int) {
 
         val outputCardViews = ArrayList<View>()
         binding.root.findViewsWithText(outputCardViews, TAG_SLIDER_IMAGES,View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION)
 
-        lastColored?.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.divider_color))
-        (outputCardViews[position] as CardView).setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.azul_marino))
+        lastColored?.setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.secundario_gris))
+        (outputCardViews[position] as CardView).setCardBackgroundColor(ContextCompat.getColor(requireContext(),R.color.principal_blanco))
 
         lastColored = outputCardViews[position] as CardView
 

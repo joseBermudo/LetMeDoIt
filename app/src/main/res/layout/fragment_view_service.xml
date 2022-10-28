@@ -66,8 +66,10 @@
                 android:id="@+id/SliderDots"
                 android:orientation="horizontal"
                 android:gravity="center"
+                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="-16dp"
                 app:layout_constraintTop_toBottomOf="@id/imageServiceViewPager"
                 app:layout_constraintStart_toStartOf="@id/imageServiceViewPager"
                 app:layout_constraintEnd_toEndOf="@id/imageServiceViewPager">
@@ -83,7 +85,7 @@
             android:layout_marginTop="@dimen/padding_vertical_start_end_8"
             android:layout_marginStart="@dimen/margins_start_end"
             android:layout_marginEnd="@dimen/margins_start_end"
-            android:text="@string/tittle"
+            tools:text="@string/tittle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageServiceViewPagerContainer" />
 

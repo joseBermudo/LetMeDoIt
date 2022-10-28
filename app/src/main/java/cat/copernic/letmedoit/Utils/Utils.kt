@@ -1,6 +1,7 @@
 package cat.copernic.letmedoit.Utils
 
 import android.content.Context
+import android.os.Bundle
 import android.text.TextUtils.replace
 import android.view.View
 import android.widget.Spinner
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.viewbinding.ViewBinding
 import cat.copernic.letmedoit.General.model.adapter.CategoryAdapter
 import cat.copernic.letmedoit.General.model.adapter.CategoryViewHolder
+import cat.copernic.letmedoit.General.model.adapter.SERVICE_ID
 import cat.copernic.letmedoit.LISTASDEPRUEBA
 import cat.copernic.letmedoit.R
 import java.util.Objects
@@ -70,10 +72,8 @@ abstract class Utils {
         /**
          * Función para Navegagar.
          */
-        fun goToDestination(view: View?, destination : Int) {
-            if (view != null) {
-                Navigation.findNavController(view).navigate(destination)
-            }
+        fun goToDestination(view: View, destination : Int) {
+            Navigation.findNavController(view).navigate(destination)
         }
 
         fun createList():ArrayList<String>{
