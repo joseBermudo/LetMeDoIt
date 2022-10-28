@@ -87,7 +87,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:tint="@color/principal_blanco" />
 
-        <com.google.android.material.button.MaterialButton
+       <!-- <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_recyclerMode"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -106,7 +106,7 @@
             android:foreground="?attr/selectableItemBackgroundBorderless"
             app:rippleColor="@color/azul_marino"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />!-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

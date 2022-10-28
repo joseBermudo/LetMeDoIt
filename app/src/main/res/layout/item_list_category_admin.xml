@@ -72,8 +72,8 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/itemCategory_edit_icon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="@dimen/categoryAdmin_icons_wh"
+                android:layout_height="@dimen/categoryAdmin_icons_wh"
                 android:layout_marginEnd="@dimen/item_category_edit_icon_marginEnd"
                 android:background="@drawable/edit_icon"
                 android:backgroundTint="@color/azul_marino"
@@ -85,10 +85,8 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/itemCategory_delete_icon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                app:iconTint="@color/denegar"
-                app:iconSize="32dp"
+                android:layout_width="@dimen/categoryAdmin_icons_wh"
+                android:layout_height="@dimen/categoryAdmin_icons_wh"
                 android:background="@drawable/car_ui_icon_delete"
                 app:backgroundTint="@color/denegar"
                 app:layout_constraintBottom_toBottomOf="parent"

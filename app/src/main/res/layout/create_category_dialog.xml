@@ -9,19 +9,19 @@
         android:id="@+id/txt_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="New category"
+        android:layout_marginTop="@dimen/createCategoryDialgo_title_marginTop"
+        android:text="@string/new_category"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtInputLayout_categoryName"
-        android:layout_width="200dp"
+        android:layout_width="@dimen/createCategoryDialog_txtInputName_w"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/createCategoryDialog_txtInputName_marginStartEnd"
+        android:layout_marginTop="@dimen/createCategoryDialog_txtInputName_marginTop"
+        android:layout_marginEnd="@dimen/createCategoryDialog_txtInputName_marginStartEnd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_title">
@@ -30,7 +30,7 @@
             android:id="@+id/txtInput_categoryName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Category name"
+            android:hint="@string/createCategoryDialog_txtInputName_hint"
             android:inputType="textEmailAddress"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -38,10 +38,10 @@
         android:id="@+id/btn_doneCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:text="Done"
+        android:layout_marginStart="@dimen/createCategoryDialog_btnDoneCreate_marginStart"
+        android:layout_marginTop="@dimen/createCategoryDialog_btnDoneCreate_marginTop"
+        android:layout_marginEnd="@dimen/createCategoryDialog_btnDoneCreate_marginEnd"
+        android:text="@string/done"
         app:layout_constraintEnd_toStartOf="@+id/btn_cancelCreateCategorie"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtInputLayout_categoryName" />
@@ -50,11 +50,11 @@
         android:id="@+id/btn_cancelCreateCategorie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginStart="@dimen/createCategoryDialog_btnCancelCreate_marginStart"
+        android:layout_marginTop="@dimen/createCategoryDialog_btnCancelCreate_marginTop"
+        android:layout_marginEnd="@dimen/createCategoryDialog_btnCancelCreate_marginEnd"
         android:backgroundTint="@color/denegar"
-        android:text="Canel"
+        android:text="@string/cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_doneCreate"
         app:layout_constraintTop_toBottomOf="@+id/txtInputLayout_categoryName" />

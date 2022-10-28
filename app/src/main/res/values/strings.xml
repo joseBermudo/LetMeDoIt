@@ -150,4 +150,9 @@
     <string name="new_category">New category</string>
     <string name="informatica">Informatica</string>
     <string name="uno_text">1</string>
+    <string name="delete_category">Delete category</string>
+    <string name="deleteCategoryDialog_message_text">You are sure to delete this category?</string>
+    <string name="deleteCategoryDialog_messageB_text">Remember that all its subcategories will be deleted.</string>
+    <string name="cancel">Cancel</string>
+    <string name="createCategoryDialog_txtInputName_hint">Category name</string>
 </resources>

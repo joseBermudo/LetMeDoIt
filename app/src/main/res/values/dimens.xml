@@ -123,5 +123,26 @@
     <dimen name="recyclerView_default_marginBottom">200dp</dimen>
     <dimen name="adm_category_recyclerView_padding">8dp</dimen>
     <dimen name="amd_category_btnAdd_marginBottom">8dp</dimen>
+    <dimen name="categoryAdmin_icons_wh">48dp</dimen>
+    <dimen name="adminCateogry_gridItem_img_wh">32dp</dimen>
+    <dimen name="adminCategory_gridItem_imt_marginTop">8dp</dimen>
+    <dimen name="ocho_dp">8dp</dimen>
+    <dimen name="veinte_dp">20dp</dimen>
+    <dimen name="deleteCategoryDialog_txtTitle_marginTop">32dp</dimen>
+    <dimen name="deleteCategoryDialog_message_marginTop">32dp</dimen>
+    <dimen name="deleteCateogryDialog_message_marginStartEnd">16dp</dimen>
+    <dimen name="deleteCategoryDialgo_messageB_marginTop">4dp</dimen>
+    <dimen name="deleteCategoryDialog_btnAcceptDelete_margin">32dp</dimen>
+    <dimen name="categoryDeleteDialog_btnCancelDelete_margin">32dp</dimen>
+    <dimen name="createCategoryDialgo_title_marginTop">32dp</dimen>
+    <dimen name="createCategoryDialog_txtInputName_w">200dp</dimen>
+    <dimen name="createCategoryDialog_txtInputName_marginStartEnd">8dp</dimen>
+    <dimen name="createCategoryDialog_txtInputName_marginTop">16dp</dimen>
+    <dimen name="createCategoryDialog_btnDoneCreate_marginStart">64dp</dimen>
+    <dimen name="createCategoryDialog_btnDoneCreate_marginTop">32dp</dimen>
+    <dimen name="createCategoryDialog_btnDoneCreate_marginEnd">16dp</dimen>
+    <dimen name="createCategoryDialog_btnCancelCreate_marginStart">16dp</dimen>
+    <dimen name="createCategoryDialog_btnCancelCreate_marginTop">32dp</dimen>
+    <dimen name="createCategoryDialog_btnCancelCreate_marginEnd">64dp</dimen>
 
 </resources>

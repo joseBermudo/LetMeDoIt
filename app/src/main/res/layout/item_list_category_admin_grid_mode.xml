@@ -18,10 +18,10 @@
 
         <TextView
             android:id="@+id/img_category"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/adminCateogry_gridItem_img_wh"
+            android:layout_height="@dimen/adminCateogry_gridItem_img_wh"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/adminCategory_gridItem_imt_marginTop"
             android:background="@drawable/search_icon"
             android:backgroundTint="@color/secundario_gris"
              />
@@ -34,29 +34,31 @@
             android:text="@string/informatica"
             android:textSize="@dimen/dieciseis_dp" />
         <View
+            android:id="@+id/view_divider"
             android:layout_width="match_parent"
             style="@style/DividerDown"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="@dimen/ocho_dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/itemCategory_edit_icon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="8dp"
+                android:layout_width="@dimen/categoryAdmin_icons_wh"
+                android:layout_height="@dimen/categoryAdmin_icons_wh"
+                android:layout_marginStart="@dimen/ocho_dp"
                 android:background="@drawable/edit_icon"
                 android:backgroundTint="@color/azul_marino" />
-            
+
             <Button
                 android:id="@+id/itemCategory_delete_icon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="20dp"
+                android:layout_width="@dimen/categoryAdmin_icons_wh"
+                android:layout_height="@dimen/categoryAdmin_icons_wh"
+                android:layout_marginStart="@dimen/veinte_dp"
                 android:background="@drawable/car_ui_icon_delete"
-                app:backgroundTint="@color/denegar"
-                android:gravity="end" />
+                android:gravity="end"
+                app:backgroundTint="@color/denegar" />
 
         </LinearLayout>
     </LinearLayout>
