@@ -3,8 +3,8 @@ package cat.copernic.letmedoit.General.view.fragments
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
@@ -19,6 +19,8 @@ import cat.copernic.letmedoit.General.model.adapter.SliderImagesAdapter
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Utils.Companion.goToDestination
 import cat.copernic.letmedoit.databinding.FragmentViewServiceBinding
+import com.google.android.material.transition.MaterialFadeThrough
+
 
 const val TAG_SLIDER_IMAGES = "sliderCardView"
 // TODO: Rename parameter arguments, choose names that match
@@ -57,7 +59,6 @@ class viewService : Fragment() {
         binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
 
         initView(arguments?.getString(SERVICE_ID).toString())
-
         binding.btnGoToProfile.setOnClickListener { goToDestination(requireView(),R.id.viewServiceToUserProfile) }
         return binding.root
     }

@@ -1,21 +1,14 @@
 package cat.copernic.letmedoit.General.view.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
 import cat.copernic.letmedoit.General.model.adapter.UserTopMenuAdapter
-import cat.copernic.letmedoit.General.view.activities.Home
-import cat.copernic.letmedoit.General.viewmodel.SearchViewViewModel
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioMenuSuperiorBinding
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
 
 
@@ -44,6 +37,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
 
     lateinit var adapter : FragmentStateAdapter
     lateinit var binding :FragmentPerfilUsuarioMenuSuperiorBinding
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,7 +49,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
         val fragments : ArrayList<Fragment> = arrayListOf(
             PerfilUsuarioServicios(),
             HomeFragment(),
-            HomeFragment()
+            ProfileMoreInfo()
         )
         //Adapter del ViewPager
         adapter = UserTopMenuAdapter(this.childFragmentManager,fragments,lifecycle)

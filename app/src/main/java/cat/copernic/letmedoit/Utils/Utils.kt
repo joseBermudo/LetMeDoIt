@@ -50,16 +50,16 @@ abstract class Utils {
          * @param fragment Fragmento (Clase) la cual queremos añadir.
          * @param frameId ID del Fragmento (R.id.NOMBRE)
          * */
-        fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int){
-            supportFragmentManager.inTransaction { add(frameId, fragment) }
+        fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int, tag : String){
+            supportFragmentManager.inTransaction { add(frameId, fragment,tag) }
         }
         /**
          * Función que reemplaza un fragmento de un Frame Layout.
          * @param fragment Fragmento (Clase) la cual queremos añadir.
          * @param frameId ID del Fragmento (R.id.NOMBRE)
          * */
-        fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int) {
-            supportFragmentManager.inTransaction{replace(frameId, fragment)}
+        fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int, tag: String) {
+            supportFragmentManager.inTransaction{replace(frameId, fragment,tag)}
         }
 
         /**

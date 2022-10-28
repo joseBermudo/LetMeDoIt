@@ -55,14 +55,5 @@
                         tools:layout="@layout/fragment_home_categories_list" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>
-            <fragment
-                android:id="@+id/menu_inferior_home"
-                android:name="cat.copernic.letmedoit.General.view.fragments.Menu_Inferior"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:layout="@layout/fragment_menu_inferior"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
