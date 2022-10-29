@@ -13,8 +13,8 @@
         android:contentDescription="@string/txt_close_window"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/close_icon"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
@@ -165,7 +165,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btn_create_user"
+                android:id="@+id/btn_sign_in"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_height"
                 android:layout_marginTop="@dimen/register_button_marginTop"
@@ -183,7 +183,7 @@
                 android:text="@string/txt_login_signIn"
                 android:textSize="@dimen/text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/btn_create_user"
+                app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
                 app:layout_constraintStart_toEndOf="@+id/textView3" />
 
             <TextView
@@ -194,8 +194,8 @@
                 android:text="@string/txt_register_alreadyAccount"
                 android:textColor="@color/secundario_gris"
                 android:textSize="@dimen/text_size"
-                app:layout_constraintStart_toStartOf="@+id/btn_create_user"
-                app:layout_constraintTop_toBottomOf="@+id/btn_create_user" />
+                app:layout_constraintStart_toStartOf="@+id/btn_sign_in"
+                app:layout_constraintTop_toBottomOf="@+id/btn_sign_in" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

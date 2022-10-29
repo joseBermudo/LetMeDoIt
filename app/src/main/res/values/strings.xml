@@ -152,4 +152,6 @@
     <string name="bottom_menu_upload_text">Upload</string>
     <string name="bottom_menu_email_text">Email</string>
     <string name="bottom_menu_profile_text">Profile</string>
+    <string name="recovery_email_text">Recovery Email has been sent. \nChange your password and login again.</string>
+    <string name="recovery_email_sent_title">Recovery Email Sent</string>
 </resources>

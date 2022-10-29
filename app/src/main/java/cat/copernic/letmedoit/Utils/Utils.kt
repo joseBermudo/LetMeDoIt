@@ -3,10 +3,12 @@ package cat.copernic.letmedoit.Utils
 import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils.replace
+import android.util.Patterns
 import android.view.View
 import android.widget.Spinner
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -23,6 +25,7 @@ import cat.copernic.letmedoit.General.model.adapter.SERVICE_ID
 import cat.copernic.letmedoit.LISTASDEPRUEBA
 import cat.copernic.letmedoit.R
 import java.util.Objects
+import java.util.regex.Pattern
 
 abstract class Utils {
     //Companion Object --> permite llamar a la función sin instanciar la clase
@@ -75,7 +78,7 @@ abstract class Utils {
         fun goToDestination(view: View, destination : Int) {
             Navigation.findNavController(view).navigate(destination)
         }
-
+        
         fun createList():ArrayList<String>{
             var itemList: ArrayList<String> = ArrayList<String>()
             itemList.add("Clases de matematicas")
