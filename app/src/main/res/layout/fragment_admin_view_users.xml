@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ocho"
             android:background="@drawable/spinner_frame_layout_style"
+            android:queryHint="@string/search_user_name"
             android:closeIcon="@null"
             android:iconifiedByDefault="false"
             android:searchIcon="@drawable/search_icon"

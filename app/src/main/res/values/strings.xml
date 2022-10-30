@@ -152,4 +152,5 @@
     <string name="unban">Unban</string>
     <string name="delete">Delete</string>
     <string name="ban_unban">Ban/Unban</string>
+    <string name="search_user_name">Search user name</string>
 </resources>
