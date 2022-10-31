@@ -245,6 +245,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/ratingBar3" />
         </LinearLayout>
 
+        <ExpandableListView
+            android:id="@+id/expandable_lenguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></ExpandableListView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

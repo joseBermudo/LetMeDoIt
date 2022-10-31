@@ -155,4 +155,10 @@
     <string name="deleteCategoryDialog_messageB_text">Remember that all its subcategories will be deleted.</string>
     <string name="cancel">Cancel</string>
     <string name="createCategoryDialog_txtInputName_hint">Category name</string>
+    <string name="item_view">Item View</string>
+    <string name="fragment_view">Fragment View</string>
+    <string name="unban">Unban</string>
+    <string name="delete">Delete</string>
+    <string name="ban_unban">Ban/Unban</string>
+    <string name="search_user_name">Search user name</string>
 </resources>

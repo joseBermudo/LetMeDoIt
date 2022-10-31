@@ -6,10 +6,12 @@
     tools:context=".Utils.TEST">
 
     <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="cat.copernic.letmedoit.General.view.fragments.AdminCategoriesList"
-        android:id="@+id/fragment"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/probar_fragments"
+        android:name="cat.copernic.letmedoit.Admin.view.fragments.admin_view_users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

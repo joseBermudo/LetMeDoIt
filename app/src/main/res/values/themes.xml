@@ -29,6 +29,7 @@
 
         <item name="ratingBarStyle">@style/RatingBar.Style</item>
 
+
     </style>
     <!-- Tema de inicialización de la aplicación -->
     <style name="Theme.LetMeDoIt.Starting" parent ="Theme.SplashScreen">

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingVertical="@dimen/padding_vertical_cl"
+        android:paddingHorizontal="@dimen/padding_horizontal_cl">
+
+
+        <TextView
+            android:id="@+id/btn_flecha_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tittle_users"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ocho"
+            android:text="@string/admin_users"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_flecha_back" />
+
+        <Button
+            android:id="@+id/btn_add_users"
+            android:layout_width="@dimen/add_users_width"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_bot"
+            android:background="@drawable/ic_baseline_add_circle_24"
+            app:layout_constraintBottom_toTopOf="@+id/buscar_users"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tittle_users" />
+
+        <SearchView
+            android:id="@+id/buscar_users"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ocho"
+            android:background="@drawable/spinner_frame_layout_style"
+            android:queryHint="@string/search_user_name"
+            android:closeIcon="@null"
+            android:iconifiedByDefault="false"
+            android:searchIcon="@drawable/search_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tittle_users" />
+
+
+        <CheckBox
+            android:id="@+id/select_all_users"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buscar_users" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/margin_bot_recycle_view"
+            app:layout_constraintBottom_toTopOf="@+id/btn_ban_unban"
+            app:layout_constraintHeight="wrap_content_constrained"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select_all_users">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewUsers"
+                android:layout_width="@dimen/recycle_view_size"
+                android:layout_height="wrap_content" />
+
+        </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/btn_ban_unban"
+            android:layout_width="@dimen/trescientos_treinta"
+            android:layout_height="wrap_content"
+            android:text="@string/ban_unban"
+            app:layout_constraintBottom_toTopOf="@id/btn_delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="@dimen/trescientos_treinta"
+            android:layout_height="wrap_content"
+            android:text="@string/delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
