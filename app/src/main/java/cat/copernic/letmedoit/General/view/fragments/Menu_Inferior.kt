@@ -1,18 +1,31 @@
 package cat.copernic.letmedoit.General.view.fragments
 
+import cat.copernic.letmedoit.databinding.FragmentMenuInferiorBinding
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
+import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import androidx.core.view.size
+import androidx.fragment.app.FragmentContainerView
+import androidx.navigation.*
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
+import cat.copernic.letmedoit.General.view.activities.Home
 import cat.copernic.letmedoit.R
-import cat.copernic.letmedoit.databinding.FragmentMenuInferiorBinding
+import cat.copernic.letmedoit.databinding.ActivityHomeBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
+import com.google.android.material.transition.MaterialFadeThrough
+import com.google.errorprone.annotations.Var
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
 /**
  * A simple [Fragment] subclass.
  * Use the [Menu_Inferior.newInstance] factory method to
@@ -31,6 +44,9 @@ class Menu_Inferior : Fragment() {
         }
     }
 
+    lateinit var bottomNavigation : BottomNavigationView
+    lateinit var navController : NavController
+
     lateinit var binding : FragmentMenuInferiorBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,9 +54,37 @@ class Menu_Inferior : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentMenuInferiorBinding.inflate(inflater,container,false)
+
+        bottomNavigation = binding.menuInferior
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        navController = (this.parentFragmentManager.findFragmentById(R.id.navController) as NavHostFragment).navController
+
+        bottomNavigation.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+           when(destination.id){
+               R.id.homeFragment -> showBottomNav()
+               R.id.registroOpcionesCuenta -> showBottomNav()
+               else -> hideBottomNav()
+           }
+        }
+
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun showBottomNav() {
+        bottomNavigation.visibility = View.VISIBLE
+
+    }
+
+    private fun hideBottomNav() {
+        bottomNavigation.visibility = View.GONE
+
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

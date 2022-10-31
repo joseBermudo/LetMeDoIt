@@ -73,7 +73,7 @@
     <string name="name_surname">Name Surname</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="tittle">Tittle</string>
+    <string name="tittle">Title</string>
     <string name="conclude">Conclude</string>
     <string name="dark_theme">Dark Theme</string>
     <string name="lenguage">Lenguage</string>
@@ -161,4 +161,12 @@
     <string name="delete">Delete</string>
     <string name="ban_unban">Ban/Unban</string>
     <string name="search_user_name">Search user name</string>
+    <string name="bottom_menu_home_text">Home</string>
+    <string name="bottom_menu_favorites_text">Favorites</string>
+    <string name="bottom_menu_upload_text">Upload</string>
+    <string name="bottom_menu_email_text">Email</string>
+    <string name="bottom_menu_profile_text">Profile</string>
+    <string name="recovery_email_text">Recovery Email has been sent. \nChange your password and login again.</string>
+    <string name="recovery_email_sent_title">Recovery Email Sent</string>
+    <string name="ok">Ok</string>
 </resources>

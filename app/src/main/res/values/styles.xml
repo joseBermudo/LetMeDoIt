@@ -115,4 +115,30 @@
         <item name="android:foreground">?attr/selectableItemBackground</item>
     </style>
 
+    <!-- Estilo del Material Custom Dialog -->
+    <style name="Widget.LetMeDoIt.AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="materialAlertDialogTitleTextStyle">@style/Widget.LetMeDoIt.AlertDialog.Title</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/Widget.LetMeDoIt.AlertDialog.Text</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.LetMeDoIT.AlertDialog.positiveDialogButtonStyle</item>
+    </style>
+
+    <!-- Estilo Botón positivo del Alert Dialog -->
+    <style name="Widget.LetMeDoIT.AlertDialog.positiveDialogButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="backgroundTint">@color/azul_marino</item>
+        <item name="android:textColor">@color/principal_blanco</item>
+        <item name="android:textSize">@dimen/subtext_size</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <!-- Estilo Titulo del Alert Dialog -->
+    <style name="Widget.LetMeDoIt.AlertDialog.Title" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">@color/secundario_gris</item>
+        <item name="android:textSize">@dimen/subtext_size</item>
+    </style>
+
+    <!-- Estilo del texto del Alert Dialog -->
+    <style name="Widget.LetMeDoIt.AlertDialog.Text" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:textColor">@color/secundario_gris</item>
+        <item name="android:textSize">@dimen/subtext_size</item>
+    </style>
+
 </resources>

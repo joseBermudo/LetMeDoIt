@@ -18,6 +18,11 @@
         <action
             android:id="@+id/homeFragmentToViewService"
             app:destination="@id/viewService" />
+        <action
+            android:id="@+id/action_homeFragment_to_registroOpcionesCuenta"
+            app:destination="@id/registroOpcionesCuenta"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/filtroCategorias"
@@ -62,5 +67,16 @@
         <action
             android:id="@+id/action_perfilUsuarioMenuSuperior_to_filtroCategorias"
             app:destination="@id/filtroCategorias" />
+    </fragment>
+    <fragment
+        android:id="@+id/registroOpcionesCuenta"
+        android:name="cat.copernic.letmedoit.Visitante.view.fragments.RegistroOpcionesCuenta"
+        android:label="fragment_registro_opciones_cuenta"
+        tools:layout="@layout/fragment_registro_opciones_cuenta" >
+        <action
+            android:id="@+id/action_registroOpcionesCuenta_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
 </navigation>

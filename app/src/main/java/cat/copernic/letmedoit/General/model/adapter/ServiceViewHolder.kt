@@ -11,7 +11,7 @@ import cat.copernic.letmedoit.databinding.ServiceTemplateBinding
 import com.squareup.picasso.Picasso
 
 
-const val CONS_ID = "id"
+const val SERVICE_ID = "id"
 /**
  * Holder de Views.
  * @param binding Vista con binding de los items de categorias.
@@ -44,8 +44,8 @@ class ServiceViewHolder(val binding: ServiceTemplateBinding, val defaultfav : Bo
 
     private fun goToService(id: String) {
         val data = Bundle()
-        data.putString(CONS_ID,id)
-        Navigation.findNavController(itemView).navigate(R.id.homeFragmentToViewService,data)
+        data.putString(SERVICE_ID,id)
+        Navigation.findNavController(itemView).navigate(R.id.viewService,data)
     }
 
     private fun anadirFavorito() {

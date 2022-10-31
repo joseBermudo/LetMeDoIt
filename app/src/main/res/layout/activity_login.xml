@@ -74,7 +74,7 @@
                 android:id="@+id/edit_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/txt_username"
+                android:hint="@string/txt_email"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,21 +107,21 @@
             android:background="?attr/selectableItemBackground"
             android:text="@string/txt_login_forgotPassword"
             android:textSize="@dimen/text_size"
-            app:layout_constraintBottom_toTopOf="@+id/btn_create_user"
+            app:layout_constraintBottom_toTopOf="@+id/btn_sign_in"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
-            android:id="@+id/btn_create_user"
+            android:id="@+id/btn_sign_in"
             android:layout_width="match_parent"
             android:layout_height="@dimen/btn_height"
             android:layout_marginBottom="@dimen/marginTop"
             android:text="@string/txt_login_signIn"
-            app:layout_constraintBottom_toTopOf="@+id/btn_signOut"
+            app:layout_constraintBottom_toTopOf="@+id/btn_signUp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/btn_signOut"
+            android:id="@+id/btn_signUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"

@@ -15,6 +15,8 @@ import androidx.core.view.doOnPreDraw
 import androidx.core.view.plusAssign
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentHomeBinding
+import com.google.android.material.transition.MaterialFade
+import com.google.android.material.transition.MaterialFadeThrough
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,7 +48,6 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
-
         return binding.root
     }
 

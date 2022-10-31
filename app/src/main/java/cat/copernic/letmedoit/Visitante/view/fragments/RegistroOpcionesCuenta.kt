@@ -1,11 +1,14 @@
 package cat.copernic.letmedoit.Visitante.view.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cat.copernic.letmedoit.General.model.adapter.SERVICE_ID
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Visitante.view.activities.Login
 import cat.copernic.letmedoit.databinding.FragmentRegistroOpcionesCuentaBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,7 +41,12 @@ class RegistroOpcionesCuenta : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentRegistroOpcionesCuentaBinding.inflate(inflater,container,false)
+        binding.goToLogin.setOnClickListener { goToLogin() }
         return binding.root
+    }
+
+    private fun goToLogin() {
+        startActivity(Intent(activity, Login::class.java))
     }
 
     companion object {

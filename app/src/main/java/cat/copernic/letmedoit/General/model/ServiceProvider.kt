@@ -15,6 +15,9 @@ class ServiceProvider {
                     CategoryMap("Informática","Web"),
                     arrayListOf(
                         Image("1","https://picsum.photos/200/200"),
+                        Image("2","https://picsum.photos/200/200"),
+                        Image("3","https://picsum.photos/200/200"),
+                        Image("4","https://picsum.photos/200/200"),
                     ),
                     200,
                     java.util.Calendar.getInstance().time

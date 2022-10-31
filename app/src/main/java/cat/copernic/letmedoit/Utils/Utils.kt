@@ -1,11 +1,19 @@
 package cat.copernic.letmedoit.Utils
 
 import android.content.Context
+import android.content.DialogInterface
+import android.os.Bundle
 import android.text.TextUtils.replace
+import android.util.Patterns
+import android.view.ContextThemeWrapper
+import android.view.Gravity
 import android.view.View
 import android.widget.Spinner
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -18,9 +26,12 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.viewbinding.ViewBinding
 import cat.copernic.letmedoit.General.model.adapter.CategoryAdapter
 import cat.copernic.letmedoit.General.model.adapter.CategoryViewHolder
+import cat.copernic.letmedoit.General.model.adapter.SERVICE_ID
 import cat.copernic.letmedoit.LISTASDEPRUEBA
 import cat.copernic.letmedoit.R
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.Objects
+import java.util.regex.Pattern
 
 abstract class Utils {
     //Companion Object --> permite llamar a la función sin instanciar la clase
@@ -44,20 +55,40 @@ abstract class Utils {
         }
 
         /**
+         * Función que muestra un AlertDialog con el titulo especificado y un botón de OK
+         * @         * */
+        fun showOkDialog(title : String,context: Context, message : String = "") {
+            val alertDialog: AlertDialog = context.let {
+                val builder = MaterialAlertDialogBuilder(context,R.style.Widget_LetMeDoIt_AlertDialogTheme)
+                builder.apply {
+                    this.setTitle(title)
+                    this.setMessage(message)
+                    setPositiveButton(R.string.ok) { dialog, id ->
+                        // User clicked OK button
+                    }
+                }
+                // Create the AlertDialog
+                builder.create()
+            }
+            alertDialog.show()
+
+
+        }
+        /**
          * Función que añade un fragmento a un Frame Layout.
          * @param fragment Fragmento (Clase) la cual queremos añadir.
          * @param frameId ID del Fragmento (R.id.NOMBRE)
          * */
-        fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int){
-            supportFragmentManager.inTransaction { add(frameId, fragment) }
+        fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int, tag : String){
+            supportFragmentManager.inTransaction { add(frameId, fragment,tag) }
         }
         /**
          * Función que reemplaza un fragmento de un Frame Layout.
          * @param fragment Fragmento (Clase) la cual queremos añadir.
          * @param frameId ID del Fragmento (R.id.NOMBRE)
          * */
-        fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int) {
-            supportFragmentManager.inTransaction{replace(frameId, fragment)}
+        fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int, tag: String) {
+            supportFragmentManager.inTransaction{replace(frameId, fragment,tag)}
         }
 
         /**
@@ -70,12 +101,10 @@ abstract class Utils {
         /**
          * Función para Navegagar.
          */
-        fun goToDestination(view: View?, destination : Int) {
-            if (view != null) {
-                Navigation.findNavController(view).navigate(destination)
-            }
+        fun goToDestination(view: View, destination : Int) {
+            Navigation.findNavController(view).navigate(destination)
         }
-
+        
         fun createList():ArrayList<String>{
             var itemList: ArrayList<String> = ArrayList<String>()
             itemList.add("Clases de matematicas")
