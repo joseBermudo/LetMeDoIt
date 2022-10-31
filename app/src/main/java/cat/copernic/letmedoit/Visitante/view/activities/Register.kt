@@ -4,10 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
+import android.widget.AdapterView.AdapterContextMenuInfo
 import android.widget.Toast
+import androidx.appcompat.view.menu.MenuAdapter
+import cat.copernic.letmedoit.Admin.view.activities.MenuAdmin
 import cat.copernic.letmedoit.General.view.activities.Home
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Users.view.activities.RecoveryPassword_email
+import cat.copernic.letmedoit.databinding.ActivityMenuAdminBinding
 import cat.copernic.letmedoit.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -64,6 +68,13 @@ class Register : AppCompatActivity() {
                         Toast.LENGTH_LONG).show()
                 return@addOnCompleteListener
             }
+
+            //TODO: Implementar roles para ver si el usuario es admin y hacer la comprobación
+            if(email == "alex@gmail.com"){
+                startActivity(Intent(this, MenuAdmin::class.java))
+                finish()
+            }
+
             startActivity(Intent(this, Home::class.java))
             finish()
         }
