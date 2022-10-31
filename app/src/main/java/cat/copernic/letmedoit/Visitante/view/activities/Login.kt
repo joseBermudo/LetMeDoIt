@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import cat.copernic.letmedoit.Admin.view.activities.MenuAdmin
 import cat.copernic.letmedoit.General.view.activities.Home
 import cat.copernic.letmedoit.Users.view.activities.RecoveryPassword_email
+import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -47,15 +49,13 @@ class Login : AppCompatActivity() {
         var password = binding.editPassword.text.toString()
 
         if(email.isEmpty() or password.isEmpty()){
-            Toast.makeText(this,"Please fill out Email and Password !!!",
-                Toast.LENGTH_LONG).show()
+            Utils.showOkDialog("Please fill out Email and Password !!!", this)
             return
         }
 
         val pattern: Pattern = Patterns.EMAIL_ADDRESS
         if (!pattern.matcher(email).matches()){
-            Toast.makeText(this,"Not a valid email !!!",
-                Toast.LENGTH_LONG).show()
+            Utils.showOkDialog("Not a Valid Email !!!",this)
             return
         }
 
@@ -66,8 +66,13 @@ class Login : AppCompatActivity() {
     private fun login(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { response ->
             if (!response.isSuccessful){
-                Toast.makeText(this,"Login Failed: Wrong Credentials",
-                    Toast.LENGTH_LONG).show()
+                Utils.showOkDialog("Login Failed: Wrong Credentials",this)
+                return@addOnCompleteListener
+            }
+            //TODO: Implementar roles para ver si el usuario es admin y hacer la comprobación
+            if(email == "alex@gmail.com"){
+                startActivity(Intent(this, MenuAdmin::class.java))
+                finish()
                 return@addOnCompleteListener
             }
             startActivity(Intent(this,Home::class.java))

@@ -12,4 +12,8 @@ class MenuAdmin : AppCompatActivity() {
         binding = ActivityMenuAdminBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
+
+    override fun onBackPressed() {
+
+    }
 }

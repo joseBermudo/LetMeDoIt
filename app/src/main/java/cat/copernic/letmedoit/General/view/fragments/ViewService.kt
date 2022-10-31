@@ -65,8 +65,6 @@ class viewService : Fragment() {
 
     lateinit var service : Service
     private fun initView(id: String) {
-        if (id == null)
-            throw Exception("No hay ID")
 
         service = ServiceProvider.getServices().filter { it.id == id }[0]
         binding.tittleService.text = service.title
@@ -93,14 +91,17 @@ class viewService : Fragment() {
 
                 if (swiped){
                     //position + offset > sumPositios --> Swipe Izquierda a Derecha y Viceversa
-                    if (position + positionOffset > sumPosAndOffset)
+                    if (position + positionOffset > sumPosAndOffset && positionOffset>0)
                         rePos++
 
-                    changeColor(rePos)
+                    if (rePos == service.image.size)
+                        rePos--
 
+                    changeColor(rePos)
                     swiped = false
 
                 }
+
                 super.onPageScrolled(rePos, positionOffset, positionOffsetPixels)
                 sumPosAndOffset = positionOffset + position
             }

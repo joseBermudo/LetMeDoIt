@@ -154,4 +154,5 @@
     <string name="bottom_menu_profile_text">Profile</string>
     <string name="recovery_email_text">Recovery Email has been sent. \nChange your password and login again.</string>
     <string name="recovery_email_sent_title">Recovery Email Sent</string>
+    <string name="ok">Ok</string>
 </resources>

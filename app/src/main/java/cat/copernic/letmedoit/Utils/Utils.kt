@@ -1,14 +1,19 @@
 package cat.copernic.letmedoit.Utils
 
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.text.TextUtils.replace
 import android.util.Patterns
+import android.view.ContextThemeWrapper
+import android.view.Gravity
 import android.view.View
 import android.widget.Spinner
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -24,6 +29,7 @@ import cat.copernic.letmedoit.General.model.adapter.CategoryViewHolder
 import cat.copernic.letmedoit.General.model.adapter.SERVICE_ID
 import cat.copernic.letmedoit.LISTASDEPRUEBA
 import cat.copernic.letmedoit.R
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.Objects
 import java.util.regex.Pattern
 
@@ -48,6 +54,26 @@ abstract class Utils {
             spinner.adapter = adapter
         }
 
+        /**
+         * Función que muestra un AlertDialog con el titulo especificado y un botón de OK
+         * @         * */
+        fun showOkDialog(title : String,context: Context, message : String = "") {
+            val alertDialog: AlertDialog = context.let {
+                val builder = MaterialAlertDialogBuilder(context,R.style.Widget_LetMeDoIt_AlertDialogTheme)
+                builder.apply {
+                    this.setTitle(title)
+                    this.setMessage(message)
+                    setPositiveButton(R.string.ok) { dialog, id ->
+                        // User clicked OK button
+                    }
+                }
+                // Create the AlertDialog
+                builder.create()
+            }
+            alertDialog.show()
+
+
+        }
         /**
          * Función que añade un fragmento a un Frame Layout.
          * @param fragment Fragmento (Clase) la cual queremos añadir.

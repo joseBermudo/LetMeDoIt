@@ -11,6 +11,7 @@ import cat.copernic.letmedoit.Admin.view.activities.MenuAdmin
 import cat.copernic.letmedoit.General.view.activities.Home
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Users.view.activities.RecoveryPassword_email
+import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.ActivityMenuAdminBinding
 import cat.copernic.letmedoit.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -39,20 +40,17 @@ class Register : AppCompatActivity() {
         var confirmPassword = binding.editConfirmPassword.text.toString()
 
         if(email.isEmpty() or password.isEmpty() or confirmPassword.isEmpty()){
-            Toast.makeText(this,"Please fill out Email and Password !!!",
-                Toast.LENGTH_LONG).show()
+            Utils.showOkDialog("Please fill out Email and Password !!!",this)
             return
         }
         if(password != confirmPassword){
-            Toast.makeText(this,"Passwords don't match !!!",
-                Toast.LENGTH_LONG).show()
+            Utils.showOkDialog("Passwords don't match !!!",this)
             return
         }
 
         val pattern: Pattern = Patterns.EMAIL_ADDRESS
         if (!pattern.matcher(email).matches()){
-            Toast.makeText(this,"Not a valid email !!!",
-                Toast.LENGTH_LONG).show()
+            Utils.showOkDialog("Not a valid email !!!",this)
             return
         }
 
@@ -64,17 +62,9 @@ class Register : AppCompatActivity() {
 
         auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this) { response ->
             if (!response.isSuccessful){
-                Toast.makeText(this,"Register Failed :(",
-                        Toast.LENGTH_LONG).show()
+                Utils.showOkDialog("Register failed :(",this)
                 return@addOnCompleteListener
             }
-
-            //TODO: Implementar roles para ver si el usuario es admin y hacer la comprobación
-            if(email == "alex@gmail.com"){
-                startActivity(Intent(this, MenuAdmin::class.java))
-                finish()
-            }
-
             startActivity(Intent(this, Home::class.java))
             finish()
         }
