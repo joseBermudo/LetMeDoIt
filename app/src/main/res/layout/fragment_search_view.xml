@@ -24,15 +24,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/icon_filter"
+            android:id="@+id/iconFilter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="-48dp"
             android:background="@drawable/filter_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/searchView"
-            app:layout_constraintStart_toEndOf="@+id/searchView"
-            style="@style/IconoClickable"
-            app:layout_constraintTop_toTopOf="@+id/searchView" />
+            app:layout_constraintBottom_toBottomOf="@+id/searchView_adminCategories"
+            app:layout_constraintStart_toEndOf="@+id/searchView_adminCategories"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:layout_constraintTop_toTopOf="@+id/searchView_adminCategories"
+            android:focusable="true" />
 
         <View
             android:id="@+id/divider_menu"
@@ -41,7 +43,7 @@
             android:layout_marginTop="@dimen/divider_16dp_margin_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView" />
+            app:layout_constraintTop_toBottomOf="@+id/searchView_adminCategories" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

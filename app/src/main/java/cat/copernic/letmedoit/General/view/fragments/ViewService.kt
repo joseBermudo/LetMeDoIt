@@ -57,8 +57,6 @@ class viewService : Fragment() {
     }
 
     private fun initView(id: String) {
-        if (id == null)
-            throw Exception("No hay ID")
 
         val service = ServiceProvider.getServices().filter { it.id == id }[0]
         Picasso.get().load(Uri.parse(service.image[0].img_link)).fit().centerCrop().into(binding.imageService)

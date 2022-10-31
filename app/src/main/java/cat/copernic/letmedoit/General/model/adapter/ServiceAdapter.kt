@@ -49,14 +49,12 @@ class ServiceAdapter(private var serviceList:ArrayList<Service>) : RecyclerView.
         serviceListFiltered.addAll(serviceList)
     }
     fun filter(text: String) {
-        var text = text
         var filteredList = ArrayList<Service>()
         if (text.isEmpty()) {
             filteredList.addAll(serviceList)
         } else {
-            text = text.lowercase(Locale.getDefault())
             for (item in serviceList) {
-                if (item.title.lowercase(Locale.getDefault()).contains(text)) {
+                if (item.title.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))) {
                     filteredList.add(item)
                 }
             }

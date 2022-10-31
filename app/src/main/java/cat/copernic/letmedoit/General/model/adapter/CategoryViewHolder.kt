@@ -4,14 +4,13 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import cat.copernic.letmedoit.General.model.Category
-
 import cat.copernic.letmedoit.databinding.ItemCategoryTemplateBinding
 
 /**
  * Holder de Views.
  * @param binding Vista con binding de los items de categorias.
  * */
-class CategoryViewHolder(val binding: ItemCategoryTemplateBinding) : ViewHolder(binding.root)  {
+class CategoryViewHolder(val binding: ItemCategoryTemplateBinding,) : ViewHolder(binding.root)  {
 
     //Instanciación de los controles del view.
     val categoryIcon = binding.itemCategoryIcon

@@ -108,4 +108,54 @@
     <dimen name="spinner_width">300dp</dimen>
     <dimen name="image_service_height">200dp</dimen>
 
+    <!-- Admin Category List Fragment -->
+    <dimen name="item_list_category_admin_padding_relative_layout">6dp</dimen>
+    <dimen name="item_cateogry_admin_cardCornesRadius">20dp</dimen>
+    <dimen name="item_category_admin_cardElevation">4dp</dimen>
+    <dimen name="icon_category_wh">32dp</dimen>
+    <dimen name="item_category_deleteIcon_marginRight">16dp</dimen>
+    <dimen name="categoryIcon_admin_padding">14dp</dimen>
+    <dimen name="cuatro_dp">4dp</dimen>
+    <dimen name="item_category_name_marginBottom">2dp</dimen>
+    <dimen name="dieciseis_dp">16sp</dimen>
+    <dimen name="item_category_subcategoy_number_marginBottom">2dp</dimen>
+    <dimen name="doce_sp">12sp</dimen>
+    <dimen name="item_category_edit_icon_wh">32dp</dimen>
+    <dimen name="item_category_edit_icon_marginEnd">32dp</dimen>
+    <dimen name="item_category_delete_icon_wh">32dp</dimen>
+    <dimen name="adm_category_btnBack_margin">24dp</dimen>
+    <dimen name="adm_category_txtCategoriesTitle_marginStart">24dp</dimen>
+    <dimen name="amd_category_txtCategoriesTitle_marginTop">56dp</dimen>
+    <dimen name="ven_cuatro_dp">24dp</dimen>
+    <dimen name="dos_dp">2dp</dimen>
+    <dimen name="cero_dp">0dp</dimen>
+    <dimen name="recyclerView_default_marginBottom">200dp</dimen>
+    <dimen name="adm_category_recyclerView_padding">8dp</dimen>
+    <dimen name="amd_category_btnAdd_marginBottom">8dp</dimen>
+    <dimen name="categoryAdmin_icons_wh">48dp</dimen>
+    <dimen name="adminCateogry_gridItem_img_wh">32dp</dimen>
+    <dimen name="adminCategory_gridItem_imt_marginTop">8dp</dimen>
+    <dimen name="ocho_dp">8dp</dimen>
+    <dimen name="veinte_dp">20dp</dimen>
+
+    <!-- Delete Category Alert Dialog-->
+    <dimen name="deleteCategoryDialog_txtTitle_marginTop">32dp</dimen>
+    <dimen name="deleteCategoryDialog_message_marginTop">32dp</dimen>
+    <dimen name="deleteCateogryDialog_message_marginStartEnd">16dp</dimen>
+    <dimen name="deleteCategoryDialgo_messageB_marginTop">4dp</dimen>
+    <dimen name="deleteCategoryDialog_btnAcceptDelete_margin">32dp</dimen>
+    <dimen name="categoryDeleteDialog_btnCancelDelete_margin">32dp</dimen>
+
+    <!-- Create New Category Dialog-->
+    <dimen name="createCategoryDialgo_title_marginTop">32dp</dimen>
+    <dimen name="createCategoryDialog_txtInputName_w">200dp</dimen>
+    <dimen name="createCategoryDialog_txtInputName_marginStartEnd">8dp</dimen>
+    <dimen name="createCategoryDialog_txtInputName_marginTop">16dp</dimen>
+    <dimen name="createCategoryDialog_btnDoneCreate_marginStart">64dp</dimen>
+    <dimen name="createCategoryDialog_btnDoneCreate_marginTop">32dp</dimen>
+    <dimen name="createCategoryDialog_btnDoneCreate_marginEnd">16dp</dimen>
+    <dimen name="createCategoryDialog_btnCancelCreate_marginStart">16dp</dimen>
+    <dimen name="createCategoryDialog_btnCancelCreate_marginTop">32dp</dimen>
+    <dimen name="createCategoryDialog_btnCancelCreate_marginEnd">64dp</dimen>
+
 </resources>

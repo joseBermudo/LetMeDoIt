@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".General.view.fragments.AdminCategoriesList">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            style="@style/ToolBarBackArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/adm_category_btnBack_margin"
+            android:layout_marginTop="@dimen/adm_category_btnBack_margin"
+            android:contentDescription="@string/txt_volver_atras"
+            android:src="@drawable/arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_categoriesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/adm_category_txtCategoriesTitle_marginStart"
+            android:layout_marginTop="@dimen/amd_category_txtCategoriesTitle_marginTop"
+            android:text="@string/categories"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <SearchView
+            android:id="@+id/searchView_adminCategories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginTop"
+            android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginEnd="@dimen/marginTop"
+            android:background="@drawable/spinner_frame_layout_style"
+            android:queryHint="Search category name"
+            android:iconifiedByDefault="false"
+            android:searchIcon="@drawable/search_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_categoriesTitle" />
+
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ven_cuatro_dp"
+            android:layout_marginTop="@dimen/dos_dp"
+            android:layout_marginEnd="@dimen/ven_cuatro_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView_adminCategories">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_lista_categorias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cero_dp"
+                android:layout_marginBottom="@dimen/recyclerView_default_marginBottom"
+                android:clipToPadding="false"
+                android:padding="@dimen/adm_category_recyclerView_padding"
+                android:scrollbars="vertical"
+                app:layoutManager="LinearLayoutManager">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </FrameLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/amd_category_btnAdd_marginBottom"
+            android:backgroundTint="@color/azul_marino"
+            android:src="@drawable/ic_baseline_add_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/principal_blanco" />
+
+       <!-- <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_recyclerMode"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="24dp"
+            app:iconSize="32dp"
+            app:iconPadding="0dp"
+
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            app:iconTint="@color/azul_marino"
+            android:backgroundTint="@color/principal_blanco"
+            app:icon="@drawable/ic_baseline_grid_view_24"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            app:rippleColor="@color/azul_marino"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />!-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
