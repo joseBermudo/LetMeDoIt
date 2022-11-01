@@ -100,7 +100,7 @@ class AdminCategoriesList : Fragment() {
     }
 
     private fun onDeletedItem(position: Int) {
-       
+
         val dialogBinding = layoutInflater.inflate(R.layout.delete_category_alert_dialog, null)
         val myDialog = Dialog(binding.root.context)
         myDialog.setContentView(dialogBinding)
