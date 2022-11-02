@@ -46,6 +46,10 @@ class AdminCategoriesList : Fragment() {
 
         initRecyclerView()
 
+        binding.btnBack.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
         binding.btnAdd.setOnClickListener { createCategory() }
         return binding.root
     }
