@@ -14,7 +14,7 @@ import kotlin.collections.ArrayList
  * Adaptador de Categorias, implementa Filterable para así poder filtrar :)
  * @param categoryList ArrayList de servicios
  * */
-class ServiceAdapter(private var serviceList:ArrayList<Service>) : RecyclerView.Adapter<ServiceViewHolder>() {
+class ServiceAdapter(private var serviceList:ArrayList<cat.copernic.letmedoit.General.model.Service>) : RecyclerView.Adapter<ServiceViewHolder>() {
 
     /**
      * Función ejecutada al crear el View Holder. infla el XML del item de categorias.
@@ -42,14 +42,14 @@ class ServiceAdapter(private var serviceList:ArrayList<Service>) : RecyclerView.
         return serviceListFiltered.size
     }
 
-    private var serviceListFiltered : ArrayList<Service> = ArrayList()
+    private var serviceListFiltered : ArrayList<cat.copernic.letmedoit.General.model.Service> = ArrayList()
 
     //https://www.androhub.com/android-adding-search-functionality-list/
     init {
         serviceListFiltered.addAll(serviceList)
     }
     fun filter(text: String) {
-        var filteredList = ArrayList<Service>()
+        var filteredList = ArrayList<cat.copernic.letmedoit.General.model.Service>()
         if (text.isEmpty()) {
             filteredList.addAll(serviceList)
         } else {

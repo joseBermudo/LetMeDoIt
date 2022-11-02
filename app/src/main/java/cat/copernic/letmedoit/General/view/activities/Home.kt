@@ -7,10 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
 import cat.copernic.letmedoit.General.view.fragments.HomeCategoriesList
 import cat.copernic.letmedoit.General.view.fragments.HomeFragment
 import cat.copernic.letmedoit.General.view.fragments.Menu_Inferior

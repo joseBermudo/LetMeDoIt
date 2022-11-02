@@ -11,7 +11,7 @@ import cat.copernic.letmedoit.databinding.ItemCategoryTemplateBinding
  * Adaptador de Categorias.
  * @param categoryList ArrayList de categorias.
  * */
-class CategoryAdapter(private val categoryList:ArrayList<Category>) : RecyclerView.Adapter<CategoryViewHolder>() {
+class CategoryAdapter(private val categoryList:ArrayList<cat.copernic.letmedoit.General.model.Category>) : RecyclerView.Adapter<CategoryViewHolder>() {
 
     /**
      * Función ejecutada al crear el View Holder. infla el XML del item de categorias.

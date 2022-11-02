@@ -53,7 +53,7 @@ class PerfilUsuarioServicios : Fragment() {
         //Asignación del adaptador al recyclerview.
 
         serviceRecyclerView.setHasFixedSize(true)
-        adapter = ServiceAdapter(ServiceProvider.getServices())
+        adapter = ServiceAdapter(cat.copernic.letmedoit.General.model.ServiceProvider.getServices())
         serviceRecyclerView.adapter = adapter
 
         val model = ViewModelProvider(requireActivity())[SearchViewViewModel::class.java]

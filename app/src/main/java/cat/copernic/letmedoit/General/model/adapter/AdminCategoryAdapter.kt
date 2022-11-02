@@ -7,18 +7,20 @@ import cat.copernic.letmedoit.General.model.Category
 import cat.copernic.letmedoit.databinding.ItemListCategoryAdminBinding
 
 class AdminCategoryAdapter(
-    private val categoryList: List<Category>,
-    private val onClickListener: (Category) -> Unit,
+    private val categoryList: List<cat.copernic.letmedoit.General.model.Category>,
+    private val onClickListener: (cat.copernic.letmedoit.General.model.Category) -> Unit,
     private val onClickDelete:(Int) -> Unit
-) : RecyclerView.Adapter<AdminCategoryViewHolder>() {
+) : RecyclerView.Adapter<cat.copernic.letmedoit.General.model.adapter.AdminCategoryViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdminCategoryViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): cat.copernic.letmedoit.General.model.adapter.AdminCategoryViewHolder {
         val binding =
             ItemListCategoryAdminBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return AdminCategoryViewHolder(binding)
+        return cat.copernic.letmedoit.General.model.adapter.AdminCategoryViewHolder(
+            binding
+        )
     }
 
-    override fun onBindViewHolder(holder: AdminCategoryViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: cat.copernic.letmedoit.General.model.adapter.AdminCategoryViewHolder, position: Int) {
         val item = categoryList[position]
         holder.render(item, onClickListener, onClickDelete)
     }

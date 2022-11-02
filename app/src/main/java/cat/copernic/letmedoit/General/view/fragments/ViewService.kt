@@ -63,10 +63,10 @@ class viewService : Fragment() {
         return binding.root
     }
 
-    lateinit var service : Service
+    lateinit var service : cat.copernic.letmedoit.General.model.Service
     private fun initView(id: String) {
 
-        service = ServiceProvider.getServices().filter { it.id == id }[0]
+        service = cat.copernic.letmedoit.General.model.ServiceProvider.getServices().filter { it.id == id }[0]
         binding.tittleService.text = service.title
         binding.subTextCategory.text = service.category.id_category
         binding.descriptionService.text = service.description
@@ -117,7 +117,7 @@ class viewService : Fragment() {
     }
 
     //Por cada foto creamos un punto gris debajo de la imagen utilizando cardviews
-    private fun createSliderDots(images: ArrayList<Image>) {
+    private fun createSliderDots(images: ArrayList<cat.copernic.letmedoit.General.model.Image>) {
         var contador = 0
         images.forEach { _ ->
             contador++

@@ -34,7 +34,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Admin.view.activities.MenuAdmin"
+            android:name=".General.model.view.activities.MenuAdmin"
             android:exported="true"
             android:screenOrientation="portrait">
             <meta-data
@@ -123,7 +123,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Admin.view.activities.CreateUser"
+            android:name=".General.model.view.activities.CreateUser"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data

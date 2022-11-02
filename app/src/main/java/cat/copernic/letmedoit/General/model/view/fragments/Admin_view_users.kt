@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.Admin.view.fragments
+package cat.copernic.letmedoit.General.model.view.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -9,15 +9,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import cat.copernic.letmedoit.General.model.UsersProvider
 import cat.copernic.letmedoit.General.model.adapter.UsersAdapter
+import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentAdminBannedUsersBinding
+import cat.copernic.letmedoit.databinding.FragmentAdminViewUsersBinding
 
 
-class admin_banned_users : Fragment() {
+class admin_view_users : Fragment() {
 
-
-    private var _binding:FragmentAdminBannedUsersBinding? = null
+    private var _binding:FragmentAdminViewUsersBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,14 +28,14 @@ class admin_banned_users : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAdminBannedUsersBinding.inflate(inflater, container, false)
+        _binding = FragmentAdminViewUsersBinding.inflate(inflater, container, false)
         initRecyclerView()
         return binding.root
     }
 
     fun initRecyclerView(){
-        binding.recyclerViewBannedUsers.layoutManager = LinearLayoutManager(binding.root.context)
-        Log.d("admin_banned_users", UsersProvider.obtenerUsers().toString())
-        binding.recyclerViewBannedUsers.adapter = UsersAdapter(UsersProvider.obtenerUsers())
+        binding.recyclerViewUsers.layoutManager = LinearLayoutManager(binding.root.context)
+        binding.recyclerViewUsers.adapter = UsersAdapter(UsersProvider.obtenerUsers())
     }
+
 }

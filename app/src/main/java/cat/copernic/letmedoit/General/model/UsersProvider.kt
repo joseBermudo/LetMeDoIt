@@ -3,117 +3,117 @@ package cat.copernic.letmedoit.General.model
 class UsersProvider {
 
     companion object{
-        fun obtenerUsers() : ArrayList<Users> {
+        fun obtenerUsers() : ArrayList<cat.copernic.letmedoit.General.model.Users> {
             return arrayListOf(
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "Pau",
                     true,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "Ismael",
                     true,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "Lausin",
                     false,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "Mire",
                     false,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "Nico",
                     true,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "Maxi",
                     false,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "Mauri",
                     true,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "Jose",
                     false,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "Alex",
                     false,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "Paco",
                     true,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "Ares",
                     false,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "IsmEDEECael",
                     true,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "IEDEDsmael",
                     true,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "DEDl",
                     true,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "Pau",
                     true,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "IsCEDCAmael",
                     true,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "IsmaCDCEel",
                     true,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "IsWXSWmael",
                     true,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "IsECECmael",
                     true,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "Ismael",
                     false,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "IsCECAXSmael",
                     false,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "IsmCECASael",
                     false,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "IsmCEWCWXael",
                     false,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "IsmECWCWECael",
                     false,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "IsEECECWmael",
                     false,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "IsmEDEECael",
                     false,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "IEDEDsmael",
                     false,
                 ),
-                Users(
+                cat.copernic.letmedoit.General.model.Users(
                     "DEDl",
                     false,
                 ),

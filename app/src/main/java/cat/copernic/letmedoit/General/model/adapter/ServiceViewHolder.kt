@@ -30,7 +30,7 @@ class ServiceViewHolder(val binding: ServiceTemplateBinding, val defaultfav : Bo
     /**
      * @param categoryModel El modelo de datos que se utilizara para asignar los datos a la view.
      * */
-    fun render(serviceModel: Service){
+    fun render(serviceModel: cat.copernic.letmedoit.General.model.Service){
         //Asigación de datos a los controles del view.
         serviceTitle.text = serviceModel.title
         serviceDescription.text = serviceModel.description

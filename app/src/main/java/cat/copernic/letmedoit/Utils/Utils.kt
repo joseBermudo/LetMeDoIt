@@ -24,9 +24,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.viewbinding.ViewBinding
-import cat.copernic.letmedoit.General.model.adapter.CategoryAdapter
-import cat.copernic.letmedoit.General.model.adapter.CategoryViewHolder
-import cat.copernic.letmedoit.General.model.adapter.SERVICE_ID
 import cat.copernic.letmedoit.LISTASDEPRUEBA
 import cat.copernic.letmedoit.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

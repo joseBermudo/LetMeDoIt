@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.view.activities.MenuAdmin"
+    tools:context=".General.model.view.activities.MenuAdmin"
     android:paddingVertical="@dimen/padding_vertical_cl"
     android:paddingHorizontal="@dimen/padding_horizontal_cl">
 

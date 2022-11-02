@@ -12,8 +12,8 @@ class AdminCategoryViewHolder(val binding: ItemListCategoryAdminBinding) :
     val categoryName = binding.txtCategoryName
 
     fun render(
-        categoryModel: Category,
-        onClickListener: (Category) -> Unit,
+        categoryModel: cat.copernic.letmedoit.General.model.Category,
+        onClickListener: (cat.copernic.letmedoit.General.model.Category) -> Unit,
         onClickDelete: (Int) -> Unit
     ) {
         categoryIcon.background = ContextCompat.getDrawable(

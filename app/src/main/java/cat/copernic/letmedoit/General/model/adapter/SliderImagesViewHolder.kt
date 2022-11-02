@@ -19,7 +19,7 @@ class SliderImagesViewHolder(val view : View) : RecyclerView.ViewHolder(view)  {
 
     private var isImageFitToScreen = false
 
-    fun setImage(curImg: Image) {
+    fun setImage(curImg: cat.copernic.letmedoit.General.model.Image) {
         Picasso.get().load(Uri.parse(curImg.img_link)).into(imageView)
     }
 }

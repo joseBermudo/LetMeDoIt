@@ -10,7 +10,7 @@ class UsersViewHolder(val binding: ItemAdminViewUsersBinding): RecyclerView.View
     val user_name = binding.txtUserName
     val ban_users = binding.imgUserBanned
 
-    fun render(usersModel: Users){
+    fun render(usersModel: cat.copernic.letmedoit.General.model.Users){
         user_name.text = usersModel.name.replace(" ", "\n")
 
     }

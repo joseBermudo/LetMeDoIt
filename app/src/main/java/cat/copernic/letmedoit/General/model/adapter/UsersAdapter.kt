@@ -7,7 +7,7 @@ import cat.copernic.letmedoit.General.model.Users
 import cat.copernic.letmedoit.databinding.ItemAdminViewUsersBinding
 import cat.copernic.letmedoit.databinding.ItemViewBannedUsersBinding
 
-class UsersAdapter(private val obtenerUsers:List<Users>) : RecyclerView.Adapter<UsersViewHolder>(){
+class UsersAdapter(private val obtenerUsers:List<cat.copernic.letmedoit.General.model.Users>) : RecyclerView.Adapter<UsersViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         val binding = ItemAdminViewUsersBinding.inflate(LayoutInflater.from(parent.context), parent, false)

@@ -7,7 +7,7 @@ import android.util.Patterns
 import android.widget.AdapterView.AdapterContextMenuInfo
 import android.widget.Toast
 import androidx.appcompat.view.menu.MenuAdapter
-import cat.copernic.letmedoit.Admin.view.activities.MenuAdmin
+import cat.copernic.letmedoit.General.model.view.activities.MenuAdmin
 import cat.copernic.letmedoit.General.view.activities.Home
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Users.view.activities.RecoveryPassword_email

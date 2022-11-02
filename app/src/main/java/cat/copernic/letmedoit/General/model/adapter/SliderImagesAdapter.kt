@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.Image
 import cat.copernic.letmedoit.R
 
-class SliderImagesAdapter(private val images : ArrayList<Image>) : RecyclerView.Adapter<SliderImagesViewHolder>() {
+class SliderImagesAdapter(private val images : ArrayList<cat.copernic.letmedoit.General.model.Image>) : RecyclerView.Adapter<SliderImagesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SliderImagesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.custom_image_slider,parent,false)
