@@ -64,6 +64,7 @@ class Login : AppCompatActivity() {
     }
 
     private fun login(email: String, password: String) {
+
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { response ->
             if (!response.isSuccessful){
                 Utils.showOkDialog("Login Failed: Wrong Credentials",this)

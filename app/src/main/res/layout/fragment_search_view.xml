@@ -29,11 +29,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="-48dp"
             android:background="@drawable/filter_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/searchView_adminCategories"
-            app:layout_constraintStart_toEndOf="@+id/searchView_adminCategories"
+            app:layout_constraintBottom_toBottomOf="@+id/searchView"
+            app:layout_constraintStart_toEndOf="@+id/searchView"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
-            app:layout_constraintTop_toTopOf="@+id/searchView_adminCategories"
+            app:layout_constraintTop_toTopOf="@+id/searchView"
             android:focusable="true" />
 
         <View
