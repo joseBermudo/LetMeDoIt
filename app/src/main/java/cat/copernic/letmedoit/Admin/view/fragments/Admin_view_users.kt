@@ -30,6 +30,11 @@ class admin_view_users : Fragment() {
     ): View? {
         _binding = FragmentAdminViewUsersBinding.inflate(inflater, container, false)
         initRecyclerView()
+
+        binding.btnFlechaBack.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
         return binding.root
     }
 

@@ -30,6 +30,10 @@ class admin_menu : Fragment() {
             findNavController().navigate(R.id.action_admin_menu_to_adminCategoriesList)
         }
 
+        binding.btnUsers.setOnClickListener {
+            findNavController().navigate(R.id.action_admin_menu_to_admin_view_users)
+        }
+
         return binding.root
     }
 
