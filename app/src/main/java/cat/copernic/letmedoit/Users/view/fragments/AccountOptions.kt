@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cat.copernic.letmedoit.Users.view.LenguagesProvider
+import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.FragmentAdminViewUsersBinding
 import cat.copernic.letmedoit.databinding.FragmentOpcionesDeCuentaBinding
 import cat.copernic.letmedoit.databinding.FragmentViewServiceAdminBinding
@@ -33,6 +35,7 @@ class AccountOptions : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentOpcionesDeCuentaBinding.inflate(inflater,container,false)
+        Utils.AsignarPopUpSpinner(context, LenguagesProvider.obtenerLenguages(), binding.spinnerLenguages)
         return binding.root
     }
 }

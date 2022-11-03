@@ -10,10 +10,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.Category
-import cat.copernic.letmedoit.General.model.CategoryProvider
-import cat.copernic.letmedoit.General.model.Subcategory
-import cat.copernic.letmedoit.General.model.adapter.AdminCategoryAdapter
+import cat.copernic.letmedoit.Admin.model.Category
+import cat.copernic.letmedoit.Admin.model.CategoryProvider
+import cat.copernic.letmedoit.Admin.model.Subcategory
+import cat.copernic.letmedoit.Admin.model.adapter.AdminCategoryAdapter
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentAdminCategoriesListBinding
 import com.google.android.material.textfield.TextInputEditText
@@ -23,9 +23,9 @@ class AdminCategoriesList : Fragment() {
     private var _binding: FragmentAdminCategoriesListBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    private var categoryMutableList: MutableList<cat.copernic.letmedoit.General.model.Category> =
-        cat.copernic.letmedoit.General.model.CategoryProvider.obtenerCategorias().toMutableList()
-    private lateinit var adapter: cat.copernic.letmedoit.General.model.adapter.AdminCategoryAdapter
+    private var categoryMutableList: MutableList<cat.copernic.letmedoit.Admin.model.Category> =
+        cat.copernic.letmedoit.Admin.model.CategoryProvider.obtenerCategorias().toMutableList()
+    private lateinit var adapter: cat.copernic.letmedoit.Admin.model.adapter.AdminCategoryAdapter
     private lateinit var llmanager: LinearLayoutManager
     private lateinit var barraBusqueda: android.widget.SearchView
 
@@ -70,9 +70,9 @@ class AdminCategoriesList : Fragment() {
                 dialogBinding.findViewById<TextInputEditText>(R.id.txtInput_categoryName)
             val name = txtInput_name.text.toString().trim()
             if (!name.isEmpty() && !name.isBlank()) {
-                val category = cat.copernic.letmedoit.General.model.Category(
+                val category = cat.copernic.letmedoit.Admin.model.Category(
                     name,
-                    cat.copernic.letmedoit.General.model.Subcategory(
+                    cat.copernic.letmedoit.Admin.model.Subcategory(
                         "Pasear perros",
                         "100"
                     ),
@@ -90,7 +90,7 @@ class AdminCategoriesList : Fragment() {
     }
 
     private fun initRecyclerView() {
-        adapter = cat.copernic.letmedoit.General.model.adapter.AdminCategoryAdapter(
+        adapter = cat.copernic.letmedoit.Admin.model.adapter.AdminCategoryAdapter(
             categoryList = categoryMutableList,
             onClickListener = { category -> onItemSelected(category) },
             onClickDelete = { position -> onDeletedItem(position) })
@@ -98,7 +98,7 @@ class AdminCategoriesList : Fragment() {
         recyclerView.adapter = adapter
     }
 
-    private fun onItemSelected(category: cat.copernic.letmedoit.General.model.Category) {
+    private fun onItemSelected(category: cat.copernic.letmedoit.Admin.model.Category) {
         Toast.makeText(binding.root.context, category.nombre, Toast.LENGTH_SHORT).show()
     }
 

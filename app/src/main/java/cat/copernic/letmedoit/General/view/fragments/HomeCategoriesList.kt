@@ -10,8 +10,8 @@ import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import cat.copernic.letmedoit.General.model.CategoryProvider
-import cat.copernic.letmedoit.General.model.adapter.CategoryAdapter
+import cat.copernic.letmedoit.Admin.model.CategoryProvider
+import cat.copernic.letmedoit.Admin.model.adapter.CategoryAdapter
 import cat.copernic.letmedoit.General.viewmodel.SearchViewViewModel
 import cat.copernic.letmedoit.LISTASDEPRUEBA
 import cat.copernic.letmedoit.R

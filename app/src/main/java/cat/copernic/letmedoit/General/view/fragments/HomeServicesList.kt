@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.ServiceProvider
-import cat.copernic.letmedoit.General.model.adapter.ServiceAdapter
+import cat.copernic.letmedoit.Admin.model.ServiceProvider
+import cat.copernic.letmedoit.Admin.model.adapter.ServiceAdapter
 import cat.copernic.letmedoit.General.viewmodel.SearchViewViewModel
 import cat.copernic.letmedoit.databinding.FragmentHomeBinding
 import cat.copernic.letmedoit.databinding.FragmentHomeServicesListBinding
@@ -64,7 +64,7 @@ class HomeServicesList : Fragment() {
         //Asignación del adaptador al recyclerview.
 
         serviceRecyclerView.setHasFixedSize(true)
-        adapter = ServiceAdapter(cat.copernic.letmedoit.General.model.ServiceProvider.getServices())
+        adapter = ServiceAdapter(cat.copernic.letmedoit.Admin.model.ServiceProvider.getServices())
         serviceRecyclerView.adapter = adapter
 
     }

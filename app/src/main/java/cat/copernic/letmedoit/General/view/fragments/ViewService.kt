@@ -11,11 +11,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import cat.copernic.letmedoit.General.model.Image
-import cat.copernic.letmedoit.General.model.Service
-import cat.copernic.letmedoit.General.model.ServiceProvider
-import cat.copernic.letmedoit.General.model.adapter.SERVICE_ID
-import cat.copernic.letmedoit.General.model.adapter.SliderImagesAdapter
+import cat.copernic.letmedoit.Admin.model.Image
+import cat.copernic.letmedoit.Admin.model.Service
+import cat.copernic.letmedoit.Admin.model.ServiceProvider
+import cat.copernic.letmedoit.Admin.model.adapter.SERVICE_ID
+import cat.copernic.letmedoit.Admin.model.adapter.SliderImagesAdapter
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Utils.Companion.goToDestination
 import cat.copernic.letmedoit.databinding.FragmentViewServiceBinding
@@ -63,10 +63,10 @@ class viewService : Fragment() {
         return binding.root
     }
 
-    lateinit var service : cat.copernic.letmedoit.General.model.Service
+    lateinit var service : cat.copernic.letmedoit.Admin.model.Service
     private fun initView(id: String) {
 
-        service = cat.copernic.letmedoit.General.model.ServiceProvider.getServices().filter { it.id == id }[0]
+        service = cat.copernic.letmedoit.Admin.model.ServiceProvider.getServices().filter { it.id == id }[0]
         binding.tittleService.text = service.title
         binding.subTextCategory.text = service.category.id_category
         binding.descriptionService.text = service.description
@@ -117,7 +117,7 @@ class viewService : Fragment() {
     }
 
     //Por cada foto creamos un punto gris debajo de la imagen utilizando cardviews
-    private fun createSliderDots(images: ArrayList<cat.copernic.letmedoit.General.model.Image>) {
+    private fun createSliderDots(images: ArrayList<cat.copernic.letmedoit.Admin.model.Image>) {
         var contador = 0
         images.forEach { _ ->
             contador++
