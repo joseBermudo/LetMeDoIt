@@ -1,31 +1,19 @@
 package cat.copernic.letmedoit.Utils
 
 import android.content.Context
-import android.content.DialogInterface
-import android.os.Bundle
-import android.text.TextUtils.replace
-import android.util.Patterns
-import android.view.ContextThemeWrapper
-import android.view.Gravity
 import android.view.View
 import android.widget.Spinner
 import android.widget.ArrayAdapter
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Adapter
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.viewbinding.ViewBinding
 import cat.copernic.letmedoit.LISTASDEPRUEBA
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Users.view.Lenguages
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.Objects
 import java.util.regex.Pattern
@@ -43,6 +31,16 @@ abstract class Utils {
      */
     companion object{
         fun AsignarPopUpSpinner(
+            context: Context,
+            list: ArrayList<String>, spinner: Spinner, layout: Int= R.layout.spinner_items
+        ) {
+            val adapter: ArrayAdapter<String> = ArrayAdapter<String>(context,
+                R.layout.spinner_items, list)
+            spinner.adapter = adapter
+        }
+
+
+        fun AsignarPopUpSpinnerLenguages(
             context: Context,
             list: ArrayList<String>, spinner: Spinner, layout: Int= R.layout.spinner_items
         ) {

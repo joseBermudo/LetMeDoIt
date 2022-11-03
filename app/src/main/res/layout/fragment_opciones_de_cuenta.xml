@@ -87,6 +87,7 @@
                     style="@style/Widget.LetMeDoIt.text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ocho"
                     android:layout_marginTop="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:layout_marginBottom="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:text="@string/edit_profile" />
@@ -128,7 +129,7 @@
                 <Spinner
                     android:id="@+id/spinner_lenguages"
                     android:layout_width="match_parent"
-                    android:layout_height="32dp" />
+                    android:layout_height="32dp"/>
             </LinearLayout>
 
             <!-- Divider !-->
@@ -156,6 +157,7 @@
                     style="@style/Widget.LetMeDoIt.text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ocho"
                     android:layout_marginTop="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:layout_marginBottom="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:text="@string/dark_theme" />
@@ -197,6 +199,7 @@
                     style="@style/Widget.LetMeDoIt.text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ocho"
                     android:layout_marginTop="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:layout_marginBottom="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:text="@string/sign_off" />

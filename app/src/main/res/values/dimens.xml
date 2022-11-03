@@ -58,9 +58,9 @@
     <dimen name="dimen_width_newService_spinnerLayout">200dp</dimen>
     <dimen name="dimen_newService_width">24dp</dimen>
     <dimen name="profile_options_dimens">128dp</dimen>
-    <dimen name="arrow_profile_dimens">24sp</dimen>
+    <dimen name="arrow_profile_dimens">24dp</dimen>
     <dimen name="divider_16dp_margin_top">16dp</dimen>
-    <dimen name="opciones_cuenta_margin_top_bot_intolayouts">6sp</dimen>
+    <dimen name="opciones_cuenta_margin_top_bot_intolayouts">6dp</dimen>
     <dimen name="padding_vertical_start_end_8">8dp</dimen>
 
     <!-- Relative Layout -->
@@ -119,9 +119,9 @@
     <dimen name="categoryIcon_admin_padding">14dp</dimen>
     <dimen name="cuatro_dp">4dp</dimen>
     <dimen name="item_category_name_marginBottom">2dp</dimen>
-    <dimen name="dieciseis_dp">16sp</dimen>
+    <dimen name="dieciseis_dp">16dp</dimen>
     <dimen name="item_category_subcategoy_number_marginBottom">2dp</dimen>
-    <dimen name="doce_sp">12sp</dimen>
+    <dimen name="doce_sp">12dp</dimen>
     <dimen name="item_category_edit_icon_wh">32dp</dimen>
     <dimen name="item_category_edit_icon_marginEnd">32dp</dimen>
     <dimen name="item_category_delete_icon_wh">32dp</dimen>
@@ -161,7 +161,7 @@
     <dimen name="createCategoryDialog_btnCancelCreate_marginEnd">64dp</dimen>
 
     <!-- CheckBox itemView !-->
-    <dimen name="checkbox_size">24sp</dimen>
+    <dimen name="checkbox_size">24dp</dimen>
 
     <!-- Recycle view !-->
     <dimen name="recycle_view_size">330dp</dimen>

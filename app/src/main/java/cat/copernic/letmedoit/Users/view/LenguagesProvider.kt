@@ -8,10 +8,10 @@ class LenguagesProvider {
                     "Español",
                     "imagen 1",
                 ),cat.copernic.letmedoit.Users.view.Lenguages(
-                    "Ingles",
+                    "English",
                     "imagen 2",
                 ),cat.copernic.letmedoit.Users.view.Lenguages(
-                    "Catalan",
+                    "Català",
                     "imagen 3",
                 ),
             )
