@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.Category
@@ -100,7 +102,10 @@ class AdminCategoriesList : Fragment() {
     }
 
     private fun onItemSelected(category: Category) {
-        Toast.makeText(binding.root.context, category.nombre, Toast.LENGTH_SHORT).show()
+        val action = AdminCategoriesListDirections.actionAdminCategoriesListToAdminSubcategoryList(
+            subcategories = category.subcategories.toTypedArray()
+        )
+        findNavController().navigate(action)
     }
 
     private fun onDeletedItem(position: Int) {

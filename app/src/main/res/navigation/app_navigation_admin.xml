@@ -20,9 +20,22 @@
         android:id="@+id/adminCategoriesList"
         android:name="cat.copernic.letmedoit.General.view.fragments.AdminCategoriesList"
         android:label="fragment_admin_categories_list"
-        tools:layout="@layout/fragment_admin_categories_list" />
+        tools:layout="@layout/fragment_admin_categories_list" >
+        <action
+            android:id="@+id/action_adminCategoriesList_to_adminSubcategoryList"
+            app:destination="@id/adminSubcategoryList" />
+    </fragment>
     <fragment
         android:id="@+id/admin_view_users"
         android:name="cat.copernic.letmedoit.Admin.view.fragments.admin_view_users"
         android:label="admin_view_users" />
+    <fragment
+        android:id="@+id/adminSubcategoryList"
+        android:name="cat.copernic.letmedoit.General.view.fragments.AdminSubcategoryList"
+        android:label="fragment_admin_subcategory_list"
+        tools:layout="@layout/fragment_admin_subcategory_list" >
+        <argument
+            android:name="subcategories"
+            app:argType="cat.copernic.letmedoit.General.model.Subcategory[]" />
+    </fragment>
 </navigation>
