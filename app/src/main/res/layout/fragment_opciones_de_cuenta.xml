@@ -129,6 +129,7 @@
                 <Spinner
                     android:id="@+id/spinner_lenguages"
                     android:layout_width="match_parent"
+                    android:textColor="@color/negro"
                     android:layout_height="32dp"/>
             </LinearLayout>
 
