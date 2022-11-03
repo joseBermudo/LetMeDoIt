@@ -24,7 +24,7 @@ class AdminCategoryViewHolder(val binding: ItemListCategoryAdminBinding) :
                 "cat.copernic.letmedoit"
             )
         )
-        categoryName.text = categoryModel.nombre.replace(" ", "\n")
+        categoryName.text = categoryModel.nombre.replace("_","\n")
         subcategoryNumber.text = categoryModel.subcategories.size.toString()
         itemView.setOnClickListener { onClickListener(categoryModel) }
         binding.itemCategoryDeleteIcon.setOnClickListener { onClickDelete(absoluteAdapterPosition) }

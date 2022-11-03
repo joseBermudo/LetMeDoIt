@@ -13,6 +13,8 @@ class AdminSubcategoryViewHolder(
     fun render(
         subcategoryModel: Subcategory
     ){
-        subcategoryName.text = subcategoryModel.nombre.replace(" ", "\n")
+
+        subcategoryName.text = subcategoryModel.nombre.replace("_","\n")
+
     }
 }

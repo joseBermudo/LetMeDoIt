@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/adm_category_txtCategoriesTitle_marginStart"
             android:layout_marginTop="@dimen/amd_category_txtCategoriesTitle_marginTop"
-            android:text="@string/categories"
+            android:text="Subcategories"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,7 +40,7 @@
             android:layout_marginTop="@dimen/marginTop"
             android:layout_marginEnd="@dimen/marginTop"
             android:background="@drawable/spinner_frame_layout_style"
-            android:queryHint="Search category name"
+            android:queryHint="Search subcategory name"
             android:iconifiedByDefault="false"
             android:searchIcon="@drawable/search_icon"
             app:layout_constraintEnd_toEndOf="parent"

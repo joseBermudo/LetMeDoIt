@@ -31,7 +31,7 @@ class AdminSubcategoryList : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAdminSubcategoryListBinding.inflate(inflater,container,false)
+        _binding = FragmentAdminSubcategoryListBinding.inflate(inflater, container, false)
         llmanager = LinearLayoutManager(binding.root.context)
         subcateogryMutableList = args.subcategories.toMutableList()
         initRecylerView()
@@ -41,7 +41,7 @@ class AdminSubcategoryList : Fragment() {
         return binding.root
     }
 
-    private fun initRecylerView(){
+    private fun initRecylerView() {
         adapter = AdminSubcategoryAdapter(subcategoryList = subcateogryMutableList)
         binding.rcvListaSubcategories.adapter = adapter
         binding.rcvListaSubcategories.layoutManager = llmanager
