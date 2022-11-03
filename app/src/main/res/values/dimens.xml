@@ -173,6 +173,7 @@
     <dimen name="margin_bot">10dp</dimen>
     <dimen name="add_users_width">50dp</dimen>
     <dimen name="margin_bot_recycle_view">20dp</dimen>
+    <dimen name="searchview">85dp</dimen>
 
 
 </resources>

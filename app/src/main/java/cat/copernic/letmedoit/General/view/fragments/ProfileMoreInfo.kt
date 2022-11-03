@@ -1,11 +1,11 @@
 package cat.copernic.letmedoit.General.view.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cat.copernic.letmedoit.R
+import androidx.fragment.app.Fragment
 import cat.copernic.letmedoit.databinding.FragmentProfileMoreInfoBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -31,16 +31,20 @@ class ProfileMoreInfo : Fragment() {
         }
     }
 
+    //TODO: Implementar parametros basados en la base de datos
     lateinit var binding: FragmentProfileMoreInfoBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentProfileMoreInfoBinding.inflate(inflater,container,false)
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -60,4 +64,5 @@ class ProfileMoreInfo : Fragment() {
                 }
             }
     }
+
 }

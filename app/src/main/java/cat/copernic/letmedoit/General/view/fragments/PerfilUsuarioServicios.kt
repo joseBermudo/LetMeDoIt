@@ -1,10 +1,12 @@
 package cat.copernic.letmedoit.General.view.fragments
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -60,7 +62,6 @@ class PerfilUsuarioServicios : Fragment() {
         model.message.observe(viewLifecycleOwner, Observer {
             adapter.filter(it)
         })
-
 
         return binding.root
     }

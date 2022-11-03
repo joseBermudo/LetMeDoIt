@@ -2,9 +2,11 @@ package cat.copernic.letmedoit.General.view.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import cat.copernic.letmedoit.General.model.adapter.UserTopMenuAdapter
@@ -66,7 +68,31 @@ class PerfilUsuarioMenuSuperior : Fragment() {
                     2 -> { tab.text = "+ \n info"}
                 }
             }).attach()
+
+        //Evento que se llama al empezar el drawing de la vista. Obtenemos el height del movil, luego el del Menu superior los restamos y lo utilizamos como height del viewpager. luego actualizamos el layout de nuevo
+        var viewPagerHeightSize = 0
+        binding.viewPager.viewTreeObserver.addOnGlobalLayoutListener( object : OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                binding.viewPager.viewTreeObserver
+                    .removeOnGlobalLayoutListener(this)
+                val displayMetrics = DisplayMetrics()
+                requireActivity().windowManager.getDefaultDisplay().getMetrics(displayMetrics)
+                val heightPhone = displayMetrics.heightPixels
+
+                //val width = displayMetrics.widthPixels
+                val heightTopMenu = binding.topMenuUser.measuredHeight
+                viewPagerHeightSize = heightPhone-(heightTopMenu)
+                binding.viewPager.layoutParams.height = viewPagerHeightSize
+                binding.viewPager.requestLayout()
+            }
+
+        })
+
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     companion object {

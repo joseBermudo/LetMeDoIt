@@ -21,7 +21,7 @@
         tools:layout_editor_absoluteY="1dp" />
 
     <fragment
-        android:id="@+id/menu_inferior"
+        android:id="@+id/menu_inferior_home"
         android:name="cat.copernic.letmedoit.General.view.fragments.Menu_Inferior"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

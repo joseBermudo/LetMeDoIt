@@ -101,7 +101,18 @@ class ServiceProvider {
                 ),
                 Service(
                     "9",
-                    "Peluquería",
+                    "AAAAA",
+                    "Creación de página web",
+                    CategoryMap("Informática","Web"),
+                    arrayListOf(
+                        Image("1","https://picsum.photos/200/200"),
+                    ),
+                    200,
+                    java.util.Calendar.getInstance().time
+                ),
+                Service(
+                    "9",
+                    "AAAAA",
                     "Creación de página web",
                     CategoryMap("Informática","Web"),
                     arrayListOf(
