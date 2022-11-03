@@ -1,8 +1,8 @@
 package cat.copernic.letmedoit.General.model
 
 data class Category(
-    val nombre: String,
-    val subcategories: Subcategory,
+    var nombre: String,
+    var subcategories: ArrayList<Subcategory>,
     val image: String,
     val id : String
 )
