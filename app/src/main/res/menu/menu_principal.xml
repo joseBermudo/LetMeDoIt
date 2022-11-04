@@ -5,15 +5,15 @@
         android:title="@string/bottom_menu_home_text"
         android:icon="@drawable/bottom_menu_home_selector"/>
     <item
-        android:id="@+id/bottom_menu_favorites"
+        android:id="@+id/favouriteProfilesSignIn"
         android:title="@string/bottom_menu_favorites_text"
         android:icon="@drawable/bottom_menu_favorites_selector"/>
     <item
-        android:id="@+id/bottom_menu_upload"
+        android:id="@+id/uploadServicesVis"
         android:title="@string/bottom_menu_upload_text"
         android:icon="@drawable/bottom_menu_upload_selector"/>
     <item
-        android:id="@+id/bottom_menu_email"
+        android:id="@+id/messagesVis"
         android:title="@string/bottom_menu_email_text"
         android:icon="@drawable/bottom_menu_email_selector"/>
     <item

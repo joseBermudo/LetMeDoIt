@@ -27,7 +27,6 @@ class Login : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = Firebase.auth
-
         binding.btnSignIn.setOnClickListener{ checkLogin() }
         binding.btnSignUp.setOnClickListener { signUp() }
         binding.btnExitLogin.setOnClickListener { onBackPressed() }

@@ -8,8 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import cat.copernic.letmedoit.General.model.adapter.UserTopMenuAdapter
+import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioMenuSuperiorBinding
 import com.google.android.material.tabs.TabLayoutMediator
 

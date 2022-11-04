@@ -9,6 +9,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -22,7 +23,6 @@ import cat.copernic.letmedoit.General.view.fragments.SearchView
 
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Utils
-import cat.copernic.letmedoit.Utils.Utils.Companion.addFragment
 import cat.copernic.letmedoit.databinding.ActivityHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

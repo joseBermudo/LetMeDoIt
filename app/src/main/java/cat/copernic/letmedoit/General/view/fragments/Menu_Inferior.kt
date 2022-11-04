@@ -65,10 +65,14 @@ class Menu_Inferior : Fragment() {
 
         bottomNavigation.setupWithNavController(navController)
 
+        //Muestra o oculta la barra de navegación dependiendo el destino
         navController.addOnDestinationChangedListener { _, destination, _ ->
            when(destination.id){
-               R.id.homeFragment -> showBottomNav()
-               R.id.registroOpcionesCuenta -> showBottomNav()
+               R.id.homeFragment,
+               R.id.registroOpcionesCuenta ,
+               R.id.messagesVis ,
+               R.id.uploadServicesVis ,
+               R.id.favouriteProfilesSignIn  -> showBottomNav()
                else -> hideBottomNav()
            }
         }
