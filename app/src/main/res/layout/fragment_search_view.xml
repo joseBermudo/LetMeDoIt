@@ -29,11 +29,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="-48dp"
             android:background="@drawable/filter_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/searchView_adminCategories"
-            app:layout_constraintStart_toEndOf="@+id/searchView_adminCategories"
+            app:layout_constraintBottom_toBottomOf="@+id/searchView_adminReports"
+            app:layout_constraintStart_toEndOf="@+id/searchView_adminReports"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
-            app:layout_constraintTop_toTopOf="@+id/searchView_adminCategories"
+            app:layout_constraintTop_toTopOf="@+id/searchView_adminReports"
             android:focusable="true" />
 
         <View
@@ -43,7 +43,7 @@
             android:layout_marginTop="@dimen/divider_16dp_margin_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView_adminCategories" />
+            app:layout_constraintTop_toBottomOf="@+id/searchView_adminReports" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,7 +6,8 @@ import kotlinx.parcelize.RawValue
 
 
 data class Category(
-    var nombre: String,
+    val nombre: String,
+    val description: String,
     var subcategories: ArrayList<Subcategory>,
     val image: String,
     val id : String

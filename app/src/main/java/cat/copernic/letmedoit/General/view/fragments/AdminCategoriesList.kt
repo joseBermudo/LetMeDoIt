@@ -78,7 +78,8 @@ class AdminCategoriesList : Fragment() {
             if (!name.isEmpty() && !name.isBlank()) {
                 val category = Category(
                     name,
-                    arrayListOf<Subcategory>(Subcategory("Pasear perros", "100")),
+                    "pepe",
+                    arrayListOf<Subcategory>(Subcategory("Pasear perros","pepe" ,"100")),
                     "favorites_icon",
                     "3"
                 )
