@@ -43,7 +43,7 @@ class Home : AppCompatActivity() {
         }
         //Usuario logeado
         else{
-            //Cambiar Nav Graph a Usuario logeado
+            binding.navController.getFragment<Fragment>().findNavController().setGraph(R.navigation.app_navigation_leogeado)
         }
     }
 
