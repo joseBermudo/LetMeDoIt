@@ -34,6 +34,14 @@ class admin_menu : Fragment() {
             findNavController().navigate(R.id.action_admin_menu_to_admin_view_users)
         }
 
+        binding.btnReports.setOnClickListener {
+            findNavController().navigate(R.id.action_admin_menu_to_admin_reports)
+        }
+
+        binding.btnArchivedReports.setOnClickListener {
+            findNavController().navigate(R.id.action_admin_menu_to_admin_archived_reports)
+        }
+
         return binding.root
     }
 

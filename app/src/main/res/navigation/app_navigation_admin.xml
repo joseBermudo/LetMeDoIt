@@ -15,6 +15,12 @@
         <action
             android:id="@+id/action_admin_menu_to_admin_view_users"
             app:destination="@id/admin_view_users" />
+        <action
+            android:id="@+id/action_admin_menu_to_admin_reports"
+            app:destination="@id/admin_reports" />
+        <action
+            android:id="@+id/action_admin_menu_to_admin_archived_reports"
+            app:destination="@id/admin_archived_reports" />
     </fragment>
     <fragment
         android:id="@+id/adminCategoriesList"
@@ -38,4 +44,14 @@
             android:name="subcategories"
             app:argType="cat.copernic.letmedoit.General.model.Subcategory[]" />
     </fragment>
+    <fragment
+        android:id="@+id/admin_reports"
+        android:name="cat.copernic.letmedoit.Admin.view.fragments.admin_reports"
+        android:label="fragment_admin_reports"
+        tools:layout="@layout/fragment_admin_reports" />
+    <fragment
+        android:id="@+id/admin_archived_reports"
+        android:name="cat.copernic.letmedoit.Admin.view.fragments.admin_archived_reports"
+        android:label="fragment_admin_archived_reports"
+        tools:layout="@layout/fragment_admin_archived_reports" />
 </navigation>
