@@ -21,6 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.transition.MaterialFadeThrough
 import com.google.errorprone.annotations.Var
+import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,6 +53,9 @@ class Menu_Inferior : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+
         // Inflate the layout for this fragment
         binding = FragmentMenuInferiorBinding.inflate(inflater,container,false)
 
@@ -67,12 +71,21 @@ class Menu_Inferior : Fragment() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
            when(destination.id){
-               R.id.homeFragment -> showBottomNav()
-               R.id.registroOpcionesCuenta -> showBottomNav()
+               R.id.homeFragment,
+               R.id.registroOpcionesCuenta,
+               R.id.viewFavUsers,
+               R.id.verListadoFavServices,
+               R.id.createDeal,
+               R.id.verConversaciones,
+               R.id.verListadoDeals,
+               R.id.accountOptions-> showBottomNav()
                else -> hideBottomNav()
            }
         }
-
+        if(FirebaseAuth.getInstance().currentUser != null){
+            binding.menuInferior.menu.clear() //clear old inflated items.
+            binding.menuInferior.inflateMenu(R.menu.menu_principal_logeado);
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 

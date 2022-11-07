@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_navigation_leogeado"
-    app:startDestination="@id/menuHome">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/menuHome"
+        android:id="@+id/homeFragment"
         android:name="cat.copernic.letmedoit.General.view.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
 
 
         <action
-            android:id="@+id/homeToFilter"
-            app:destination="@id/filtroCategoriasLogeado"
+            android:id="@+id/filtroCategoria"
+            app:destination="@id/filtroCategoria"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@animator/nav_default_exit_anim" />
         <action
             android:id="@+id/homeToService"
-            app:destination="@id/viewServiceLogeado"
+            app:destination="@id/viewService"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
@@ -45,19 +45,19 @@
     </fragment>
 
     <fragment
-        android:id="@+id/filtroCategoriasLogeado"
+        android:id="@+id/filtroCategoria"
         android:name="cat.copernic.letmedoit.General.view.fragments.FiltroCategorias"
         android:label="fragment_filtro_categorias"
         tools:layout="@layout/fragment_filtro_categorias" >
         <action
             android:id="@+id/filterBackToHome"
-            app:destination="@id/menuHome"
+            app:destination="@id/homeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
 
     <fragment
-        android:id="@+id/viewServiceLogeado"
+        android:id="@+id/viewService"
         android:name="cat.copernic.letmedoit.General.view.fragments.viewService"
         android:label="fragment_view_service"
         tools:layout="@layout/fragment_view_service">
@@ -65,7 +65,7 @@
 
         <action
             android:id="@+id/viewServiceBackToHome"
-            app:destination="@id/menuHome"
+            app:destination="@id/homeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
@@ -81,7 +81,7 @@
     </fragment>
     <fragment
         android:id="@+id/chat"
-        android:name="cat.copernic.letmedoit.chat"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.chat"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" >
         <action
@@ -97,7 +97,7 @@
     </fragment>
     <fragment
         android:id="@+id/verConversaciones"
-        android:name="cat.copernic.letmedoit.verConversaciones"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.verConversaciones"
         android:label="fragment_ver_conversaciones"
         tools:layout="@layout/fragment_ver_conversaciones" >
         <action
@@ -107,7 +107,7 @@
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/conversacionesToHome"
-            app:destination="@id/menuHome"
+            app:destination="@id/homeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
@@ -133,7 +133,7 @@
     </fragment>
     <fragment
         android:id="@+id/verListadoDeals"
-        android:name="cat.copernic.letmedoit.verListadoDeals"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.verListadoDeals"
         android:label="fragment_ver_listado_deals"
         tools:layout="@layout/fragment_ver_listado_deals" >
         <action
@@ -169,12 +169,12 @@
     </fragment>
     <fragment
         android:id="@+id/viewFavUsers"
-        android:name="cat.copernic.letmedoit.viewFavUsers"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.viewFavUsers"
         android:label="fragment_view_fav_users"
         tools:layout="@layout/fragment_view_fav_users" >
         <action
             android:id="@+id/favUsersToHome"
-            app:destination="@id/menuHome"
+            app:destination="@id/homeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
@@ -198,7 +198,7 @@
     </fragment>
     <fragment
         android:id="@+id/verListadoFavServices"
-        android:name="cat.copernic.letmedoit.VerListadoFavServices"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.VerListadoFavServices"
         android:label="fragment_ver_listado_fav_services"
         tools:layout="@layout/fragment_ver_listado_fav_services" >
         <action
@@ -208,7 +208,7 @@
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/favServiceToHome"
-            app:destination="@id/menuHome"
+            app:destination="@id/homeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
@@ -218,7 +218,7 @@
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/listadoFavServicesToViewService"
-            app:destination="@id/viewServiceLogeado"
+            app:destination="@id/viewService"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
@@ -282,7 +282,7 @@
         tools:layout="@layout/fragment_rate_user" >
         <action
             android:id="@+id/rateUserToHome"
-            app:destination="@id/menuHome"
+            app:destination="@id/homeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
@@ -293,18 +293,18 @@
         tools:layout="@layout/fragment_user_report" >
         <action
             android:id="@+id/reportUserToHome"
-            app:destination="@id/menuHome"
+            app:destination="@id/homeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/createService"
-        android:name="cat.copernic.letmedoit.CreateService"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.CreateService"
         android:label="fragment_create_service"
         tools:layout="@layout/fragment_create_service" >
         <action
             android:id="@+id/createServiceToHome"
-            app:destination="@id/menuHome" />
+            app:destination="@id/homeFragment" />
         <action
             android:id="@+id/createServiceToFavUsers"
             app:destination="@id/viewFavUsers"
@@ -328,7 +328,7 @@
         tools:layout="@layout/fragment_opciones_de_cuenta" >
         <action
             android:id="@+id/opcionesCuentaToHome"
-            app:destination="@id/menuHome"
+            app:destination="@id/homeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action

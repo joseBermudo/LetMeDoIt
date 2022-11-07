@@ -60,6 +60,7 @@ class viewService : Fragment() {
 
         initView(arguments?.getString(SERVICE_ID).toString())
         binding.btnGoToProfile.setOnClickListener { goToDestination(requireView(),R.id.viewServiceToUserProfile) }
+        binding.btnChat.setOnClickListener{ goToDestination(requireView(),R.id.chat) }
         return binding.root
     }
 
