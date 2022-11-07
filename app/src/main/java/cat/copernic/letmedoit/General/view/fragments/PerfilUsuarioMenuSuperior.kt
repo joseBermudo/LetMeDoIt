@@ -93,7 +93,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
                 //val width = displayMetrics.widthPixels
                 val heightTopMenu = binding.topMenuUser.measuredHeight
                 viewPagerHeightSize = heightPhone-(heightTopMenu)
-                binding.viewPager.layoutParams.height = viewPagerHeightSize
+                binding.viewPager.layoutParams.height = viewPagerHeightSize - 50
                 binding.viewPager.requestLayout()
             }
 

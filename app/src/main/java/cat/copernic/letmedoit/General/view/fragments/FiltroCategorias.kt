@@ -49,7 +49,9 @@ class FiltroCategorias : Fragment() {
         Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerSubcategory)
 
         binding.backArrow.setOnClickListener { requireActivity().onBackPressed() }
-        binding.btnDone.setOnClickListener{ findNavController().navigate(R.id.homeFragment) }
+        binding.btnDone.setOnClickListener{
+            requireActivity().onBackPressed()
+        }
         return binding.root
     }
 
