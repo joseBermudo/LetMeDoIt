@@ -1,5 +1,6 @@
 package cat.copernic.letmedoit.General.model.adapter
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.core.content.ContextCompat
@@ -7,7 +8,9 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.Service
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Visitante.view.activities.Login
 import cat.copernic.letmedoit.databinding.ServiceTemplateBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 
 
@@ -50,6 +53,10 @@ class ServiceViewHolder(val binding: ServiceTemplateBinding, val defaultfav : Bo
 
     private fun anadirFavorito() {
 
+        if (FirebaseAuth.getInstance().currentUser == null){
+            binding.root.context.startActivity(Intent(binding.root.context, Login::class.java))
+            return
+        }
         favorite = !favorite
         if (favorite) serviceFav.background = ContextCompat.getDrawable(binding.root.context, R.drawable.ic_round_favorite_24)
         else serviceFav.background = ContextCompat.getDrawable(binding.root.context, R.drawable.favorites_ion_colored)

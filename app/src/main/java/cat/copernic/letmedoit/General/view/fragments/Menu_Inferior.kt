@@ -72,7 +72,7 @@ class Menu_Inferior : Fragment() {
                R.id.registroOpcionesCuenta ,
                R.id.messagesVis ,
                R.id.uploadServicesVis ,
-               R.id.favouriteProfilesSignIn  -> showBottomNav()
+               R.id.profiles_services_manager_vis  -> showBottomNav()
                else -> hideBottomNav()
            }
         }

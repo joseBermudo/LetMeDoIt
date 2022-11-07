@@ -5,7 +5,7 @@
         android:title="@string/bottom_menu_home_text"
         android:icon="@drawable/bottom_menu_home_selector"/>
     <item
-        android:id="@+id/favouriteProfilesSignIn"
+        android:id="@+id/profiles_services_manager_vis"
         android:title="@string/bottom_menu_favorites_text"
         android:icon="@drawable/bottom_menu_favorites_selector"/>
     <item

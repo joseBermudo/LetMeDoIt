@@ -20,6 +20,7 @@ import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Utils.Companion.goToDestination
 import cat.copernic.letmedoit.databinding.FragmentViewServiceBinding
 import com.google.android.material.transition.MaterialFadeThrough
+import com.google.firebase.auth.FirebaseAuth
 
 
 const val TAG_SLIDER_IMAGES = "sliderCardView"
@@ -55,6 +56,10 @@ class viewService : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentViewServiceBinding.inflate(inflater,container,false)
 
+        if(FirebaseAuth.getInstance().currentUser == null){
+            binding.btnFav.visibility = View.INVISIBLE
+            binding.btnReport.visibility = View.INVISIBLE
+        }
         //Volver hacia atras
         binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
 

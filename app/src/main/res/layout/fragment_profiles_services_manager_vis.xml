@@ -3,12 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".profiles_services_manager_vis">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".General.view.fragments.profiles_services_manager_vis">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+        <fragment
+            android:id="@+id/FragmentTopBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="cat.copernic.letmedoit.General.view.fragments.BarProfilesOrServices"
+            tools:layout="@layout/fragment_bar_profiles_or_services"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        </fragment>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPagerProfileOrServices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/FragmentTopBar"
+            app:layout_constraintEnd_toEndOf="@id/FragmentTopBar"
+            app:layout_constraintStart_toStartOf="@id/FragmentTopBar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

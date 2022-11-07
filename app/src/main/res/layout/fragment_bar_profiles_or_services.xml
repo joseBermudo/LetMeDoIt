@@ -38,13 +38,11 @@
             >
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/profiles_select"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_profiles" />
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/services_select"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_services" />

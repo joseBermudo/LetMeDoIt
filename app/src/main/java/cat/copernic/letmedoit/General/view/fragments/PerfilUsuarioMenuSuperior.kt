@@ -1,6 +1,7 @@
 package cat.copernic.letmedoit.General.view.fragments
 
 import android.annotation.SuppressLint
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -13,8 +14,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import cat.copernic.letmedoit.General.model.adapter.UserTopMenuAdapter
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Visitante.view.activities.Login
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioMenuSuperiorBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -50,10 +53,15 @@ class PerfilUsuarioMenuSuperior : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentPerfilUsuarioMenuSuperiorBinding.inflate(inflater,container,false)
 
+        if(FirebaseAuth.getInstance().currentUser == null){
+            binding.btnFavorites.visibility = View.INVISIBLE
+            binding.btnReport.visibility = View.INVISIBLE
+        }
+        binding.btnFavorites.setOnClickListener {  }
         //Fragmentos del TabLayout
         val fragments : ArrayList<Fragment> = arrayListOf(
             PerfilUsuarioServicios(),
-            HomeFragment(),
+            OpinionsUser(),
             ProfileMoreInfo()
         )
         //Adapter del ViewPager

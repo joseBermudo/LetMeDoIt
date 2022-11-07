@@ -2,8 +2,10 @@ package cat.copernic.letmedoit.General.model.adapter
 
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import cat.copernic.letmedoit.General.model.Category
+import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.ItemCategoryTemplateBinding
 
 /**
@@ -23,5 +25,7 @@ class CategoryViewHolder(val binding: ItemCategoryTemplateBinding,) : ViewHolder
         //Asigación de datos a los controles del view.
         categoryIcon.background = ContextCompat.getDrawable(binding.root.context,binding.root.resources.getIdentifier(categoryModel.image, "drawable","cat.copernic.letmedoit"))
         categoryText.text = categoryModel.nombre.replace(" ","\n")
+
+        binding.itemCategory.setOnClickListener{ binding.root.findNavController().navigate(R.id.homeFragment) }
     }
 }

@@ -27,12 +27,6 @@
             app:popExitAnim="@anim/from_left"
             />
         <action
-            android:id="@+id/action_homeFragment_to_favouriteProfilesSignIn"
-            app:destination="@id/favouriteProfilesSignIn"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popExitAnim="@anim/from_left"/>
-        <action
             android:id="@+id/action_homeFragment_to_uploadServicesVis"
             app:destination="@id/uploadServicesVis"
             app:enterAnim="@anim/from_left"
@@ -44,6 +38,9 @@
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_right"
             app:popExitAnim="@anim/from_left"/>
+        <action
+            android:id="@+id/action_homeFragment_to_profiles_services_manager_vis"
+            app:destination="@id/profiles_services_manager_vis" />
     </fragment>
     <fragment
         android:id="@+id/filtroCategorias"
@@ -102,18 +99,6 @@
             app:popExitAnim="@anim/from_left" />
     </fragment>
     <fragment
-        android:id="@+id/favouriteProfilesSignIn"
-        android:name="cat.copernic.letmedoit.Visitante.view.fragments.FavouriteProfilesSignIn"
-        android:label="fragment_favourite_profiles_sign_in"
-        tools:layout="@layout/fragment_favourite_profiles_sign_in" >
-        <action
-            android:id="@+id/action_favouriteProfilesSignIn_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popExitAnim="@anim/from_left" />
-    </fragment>
-    <fragment
         android:id="@+id/uploadServicesVis"
         android:name="cat.copernic.letmedoit.Visitante.view.fragments.UploadServicesVis"
         android:label="fragment_upload_services_vis"
@@ -137,4 +122,9 @@
             app:exitAnim="@anim/to_right"
             app:popExitAnim="@anim/from_left"/>
     </fragment>
+    <fragment
+        android:id="@+id/profiles_services_manager_vis"
+        android:name="cat.copernic.letmedoit.General.view.fragments.profiles_services_manager_vis"
+        android:label="fragment_profiles_services_manager_vis"
+        tools:layout="@layout/fragment_profiles_services_manager_vis" />
 </navigation>

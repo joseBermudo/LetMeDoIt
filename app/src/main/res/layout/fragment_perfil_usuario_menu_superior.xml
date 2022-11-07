@@ -29,6 +29,7 @@
 
             <TextView
                 android:id="@+id/btn_favorites"
+                style="@style/IconoClickable"
                 android:layout_width="@dimen/app_icon_size_small"
                 android:layout_height="@dimen/app_icon_size_small"
                 android:layout_margin="@dimen/padding_horizontal_cl"
@@ -75,6 +76,7 @@
 
             <TextView
                 android:id="@+id/btn_report"
+                style="@style/IconoClickable"
                 android:layout_width="@dimen/app_icon_size_small"
                 android:layout_height="@dimen/app_icon_size_small"
                 android:layout_marginEnd="@dimen/padding_horizontal_cl"
