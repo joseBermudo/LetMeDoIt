@@ -1,17 +1,16 @@
-package cat.copernic.letmedoit.Admin.model.adapter
+package cat.copernic.letmedoit.General.model.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.Admin.model.Category
-import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.General.model.Category
 import cat.copernic.letmedoit.databinding.ItemCategoryTemplateBinding
 
 /**
  * Adaptador de Categorias.
  * @param categoryList ArrayList de categorias.
  * */
-class CategoryAdapter(private val categoryList:ArrayList<cat.copernic.letmedoit.Admin.model.Category>) : RecyclerView.Adapter<CategoryViewHolder>() {
+class CategoryAdapter(private val categoryList:ArrayList<Category>) : RecyclerView.Adapter<CategoryViewHolder>() {
 
     /**
      * Función ejecutada al crear el View Holder. infla el XML del item de categorias.

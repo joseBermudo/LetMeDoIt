@@ -1,12 +1,9 @@
-package cat.copernic.letmedoit.Admin.model.adapter
+package cat.copernic.letmedoit.General.model.adapter
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import cat.copernic.letmedoit.Admin.model.Service
-import java.util.*
 import kotlin.collections.ArrayList
 
 

@@ -1,119 +1,119 @@
-package cat.copernic.letmedoit.Admin.model
+package cat.copernic.letmedoit.General.model
 
 class UsersProvider {
 
     companion object{
-        fun obtenerUsers() : ArrayList<cat.copernic.letmedoit.Admin.model.Users> {
+        fun obtenerUsers() : ArrayList<Users> {
             return arrayListOf(
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "Pau",
                     true,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "Ismael",
                     true,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "Lausin",
                     false,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "Mire",
                     false,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "Nico",
                     true,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "Maxi",
                     false,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "Mauri",
                     true,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "Jose",
                     false,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "Alex",
                     false,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "Paco",
                     true,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "Ares",
                     false,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "IsmEDEECael",
                     true,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "IEDEDsmael",
                     true,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "DEDl",
                     true,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "Pau",
                     true,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "IsCEDCAmael",
                     true,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "IsmaCDCEel",
                     true,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "IsWXSWmael",
                     true,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "IsECECmael",
                     true,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "Ismael",
                     false,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "IsCECAXSmael",
                     false,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "IsmCECASael",
                     false,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "IsmCEWCWXael",
                     false,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "IsmECWCWECael",
                     false,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "IsEECECWmael",
                     false,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "IsmEDEECael",
                     false,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "IEDEDsmael",
                     false,
                 ),
-                cat.copernic.letmedoit.Admin.model.Users(
+                Users(
                     "DEDl",
                     false,
                 ),

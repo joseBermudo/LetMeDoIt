@@ -9,10 +9,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.Admin.model.ServiceProvider
-import cat.copernic.letmedoit.Admin.model.adapter.ServiceAdapter
+import cat.copernic.letmedoit.General.model.ServiceProvider
+import cat.copernic.letmedoit.General.model.adapter.ServiceAdapter
 import cat.copernic.letmedoit.General.viewmodel.SearchViewViewModel
-import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioServiciosBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -53,7 +52,7 @@ class PerfilUsuarioServicios : Fragment() {
         //Asignación del adaptador al recyclerview.
 
         serviceRecyclerView.setHasFixedSize(true)
-        adapter = ServiceAdapter(cat.copernic.letmedoit.Admin.model.ServiceProvider.getServices())
+        adapter = ServiceAdapter(ServiceProvider.getServices())
         serviceRecyclerView.adapter = adapter
 
         val model = ViewModelProvider(requireActivity())[SearchViewViewModel::class.java]

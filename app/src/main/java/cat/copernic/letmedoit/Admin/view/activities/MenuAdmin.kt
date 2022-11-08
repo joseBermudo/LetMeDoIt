@@ -1,8 +1,7 @@
-package cat.copernic.letmedoit.Admin.model.view.activities
+package cat.copernic.letmedoit.Admin.view.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.ActivityMenuAdminBinding
 
 class MenuAdmin : AppCompatActivity() {

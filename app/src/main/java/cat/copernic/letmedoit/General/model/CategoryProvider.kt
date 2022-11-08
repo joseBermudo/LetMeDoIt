@@ -1,159 +1,156 @@
-package cat.copernic.letmedoit.Admin.model
-
-import cat.copernic.letmedoit.Admin.model.Category
-import cat.copernic.letmedoit.Admin.model.Subcategory
+package cat.copernic.letmedoit.General.model
 
 class CategoryProvider {
     companion object{
-        fun obtenerCategorias() : ArrayList<cat.copernic.letmedoit.Admin.model.Category>{
+        fun obtenerCategorias() : ArrayList<Category>{
             return arrayListOf(
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Informática",
-                    cat.copernic.letmedoit.Admin.model.Subcategory("Web", "100"),
+                    Subcategory("Web", "100"),
                     "email_icon",
                     "1"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Cocina",
-                    cat.copernic.letmedoit.Admin.model.Subcategory("Griega", "100"),
+                    Subcategory("Griega", "100"),
                     "favorites_icon",
                     "2"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Vehiculos",
-                    cat.copernic.letmedoit.Admin.model.Subcategory("Coches", "100"),
+                    Subcategory("Coches", "100"),
                     "filter_icon",
                     "3"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Informática",
-                    cat.copernic.letmedoit.Admin.model.Subcategory("Web", "100"),
+                    Subcategory("Web", "100"),
                     "email_icon",
                     "1"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Cocina",
-                    cat.copernic.letmedoit.Admin.model.Subcategory("Griega", "100"),
+                    Subcategory("Griega", "100"),
                     "favorites_icon",
                     "2"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Vehiculos",
-                    cat.copernic.letmedoit.Admin.model.Subcategory("Coches", "100"),
+                    Subcategory("Coches", "100"),
                     "filter_icon",
                     "3"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Historia",
-                    cat.copernic.letmedoit.Admin.model.Subcategory(
+                    Subcategory(
                         "Edat Antigua",
                         "100"
                     ),
                     "favorites_icon",
                     "3"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Mantenimiento",
-                    cat.copernic.letmedoit.Admin.model.Subcategory(
+                    Subcategory(
                         "Piscinas",
                         "100"
                     ),
                     "email_icon",
                     "3"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Deportes",
-                    cat.copernic.letmedoit.Admin.model.Subcategory(
+                    Subcategory(
                         "Atletismo",
                         "100"
                     ),
                     "filter_icon",
                     "3"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Musica",
-                    cat.copernic.letmedoit.Admin.model.Subcategory(
+                    Subcategory(
                         "Bachata",
                         "100"
                     ),
                     "favorites_icon",
                     "3"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Reforma",
-                    cat.copernic.letmedoit.Admin.model.Subcategory(
+                    Subcategory(
                         "Pintura",
                         "100"
                     ),
                     "filter_icon",
                     "3"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Botanica",
-                    cat.copernic.letmedoit.Admin.model.Subcategory(
+                    Subcategory(
                         "Podar setos",
                         "100"
                     ),
                     "email_icon",
                     "3"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Animales",
-                    cat.copernic.letmedoit.Admin.model.Subcategory(
+                    Subcategory(
                         "Pasear perros",
                         "100"
                     ),
                     "favorites_icon",
                     "3"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Geologia",
-                    cat.copernic.letmedoit.Admin.model.Subcategory(
+                    Subcategory(
                         "Pasear perros",
                         "100"
                     ),
                     "favorites_icon",
                     "3"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Literatura",
-                    cat.copernic.letmedoit.Admin.model.Subcategory(
+                    Subcategory(
                         "Pasear perros",
                         "100"
                     ),
                     "favorites_icon",
                     "3"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Jardineria",
-                    cat.copernic.letmedoit.Admin.model.Subcategory(
+                    Subcategory(
                         "Pasear perros",
                         "100"
                     ),
                     "favorites_icon",
                     "3"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Transporte",
-                    cat.copernic.letmedoit.Admin.model.Subcategory(
+                    Subcategory(
                         "Pasear perros",
                         "100"
                     ),
                     "favorites_icon",
                     "3"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Educación",
-                    cat.copernic.letmedoit.Admin.model.Subcategory(
+                    Subcategory(
                         "Pasear perros",
                         "100"
                     ),
                     "favorites_icon",
                     "3"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Ocio",
-                    cat.copernic.letmedoit.Admin.model.Subcategory(
+                    Subcategory(
                         "Pasear perros",
                         "100"
                     ),

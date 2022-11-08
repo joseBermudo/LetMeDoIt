@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.Admin.model
+package cat.copernic.letmedoit.General.model
 
 data class Subcategory(
     val nombre : String,

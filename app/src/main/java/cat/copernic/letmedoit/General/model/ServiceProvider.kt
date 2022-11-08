@@ -1,177 +1,176 @@
-package cat.copernic.letmedoit.Admin.model
+package cat.copernic.letmedoit.General.model
 
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import java.util.*
 import kotlin.collections.ArrayList
 
 class ServiceProvider {
     companion object{
-        fun getServices() : ArrayList<cat.copernic.letmedoit.Admin.model.Service>{
+        fun getServices() : ArrayList<Service>{
             return arrayListOf(
-                cat.copernic.letmedoit.Admin.model.Service(
+                Service(
                     "1",
                     "Página Web",
                     "Creación de página web",
-                    cat.copernic.letmedoit.Admin.model.CategoryMap(
+                    CategoryMap(
                         "Informática",
                         "Web"
                     ),
                     arrayListOf(
-                        cat.copernic.letmedoit.Admin.model.Image(
+                        Image(
                             "1",
                             "https://picsum.photos/200/200"
                         ),
-                        cat.copernic.letmedoit.Admin.model.Image(
+                        Image(
                             "2",
                             "https://picsum.photos/200/200"
                         ),
-                        cat.copernic.letmedoit.Admin.model.Image(
+                        Image(
                             "3",
                             "https://picsum.photos/200/200"
                         ),
-                        cat.copernic.letmedoit.Admin.model.Image(
+                        Image(
                             "4",
                             "https://picsum.photos/200/200"
                         ),
                     ),
                     200,
-                    java.util.Calendar.getInstance().time
+                    Calendar.getInstance().time
                 ),
-                cat.copernic.letmedoit.Admin.model.Service(
+                Service(
                     "2",
                     "Tacos",
                     "Creación de página web",
-                    cat.copernic.letmedoit.Admin.model.CategoryMap(
+                    CategoryMap(
                         "Cocina",
                         "Méxicana"
                     ),
                     arrayListOf(
-                        cat.copernic.letmedoit.Admin.model.Image(
+                        Image(
                             "1",
                             "https://picsum.photos/200/200"
                         ),
                     ),
                     200,
-                    java.util.Calendar.getInstance().time,
+                    Calendar.getInstance().time,
                 ),
-                cat.copernic.letmedoit.Admin.model.Service(
+                Service(
                     "3",
                     "Página Web",
                     "Creación de página web",
-                    cat.copernic.letmedoit.Admin.model.CategoryMap(
+                    CategoryMap(
                         "Informática",
                         "Web"
                     ),
                     arrayListOf(
-                        cat.copernic.letmedoit.Admin.model.Image(
+                        Image(
                             "1",
                             "https://picsum.photos/200/200"
                         ),
                     ),
                     200,
-                    java.util.Calendar.getInstance().time
+                    Calendar.getInstance().time
                 ),
-                cat.copernic.letmedoit.Admin.model.Service(
+                Service(
                     "4",
                     "Peluquería",
                     "Creación de página web",
-                    cat.copernic.letmedoit.Admin.model.CategoryMap(
+                    CategoryMap(
                         "Belleza",
                         "Pelo"
                     ),
                     arrayListOf(
-                        cat.copernic.letmedoit.Admin.model.Image(
+                        Image(
                             "1",
                             "https://picsum.photos/200/200"
                         ),
                     ),
                     200,
-                    java.util.Calendar.getInstance().time
+                    Calendar.getInstance().time
                 ),
-                cat.copernic.letmedoit.Admin.model.Service(
+                Service(
                     "5",
                     "Peluquería",
                     "Creación de página web",
-                    cat.copernic.letmedoit.Admin.model.CategoryMap(
+                    CategoryMap(
                         "Informática",
                         "Web"
                     ),
                     arrayListOf(
-                        cat.copernic.letmedoit.Admin.model.Image(
+                        Image(
                             "1",
                             "https://picsum.photos/200/200"
                         ),
                     ),
                     200,
-                    java.util.Calendar.getInstance().time
+                    Calendar.getInstance().time
                 ),
-                cat.copernic.letmedoit.Admin.model.Service(
+                Service(
                     "6",
                     "Peluquería",
                     "Creación de página web",
-                    cat.copernic.letmedoit.Admin.model.CategoryMap(
+                    CategoryMap(
                         "Informática",
                         "Web"
                     ),
                     arrayListOf(
-                        cat.copernic.letmedoit.Admin.model.Image(
+                        Image(
                             "1",
                             "https://picsum.photos/200/200"
                         ),
                     ),
                     200,
-                    java.util.Calendar.getInstance().time
+                    Calendar.getInstance().time
                 ),
-                cat.copernic.letmedoit.Admin.model.Service(
+                Service(
                     "7",
                     "Peluquería",
                     "Creación de página web",
-                    cat.copernic.letmedoit.Admin.model.CategoryMap(
+                    CategoryMap(
                         "Informática",
                         "Web"
                     ),
                     arrayListOf(
-                        cat.copernic.letmedoit.Admin.model.Image(
+                        Image(
                             "1",
                             "https://picsum.photos/200/200"
                         ),
                     ),
                     200,
-                    java.util.Calendar.getInstance().time
+                    Calendar.getInstance().time
                 ),
-                cat.copernic.letmedoit.Admin.model.Service(
+                Service(
                     "8",
                     "Peluquería",
                     "Creación de página web",
-                    cat.copernic.letmedoit.Admin.model.CategoryMap(
+                    CategoryMap(
                         "Informática",
                         "Web"
                     ),
                     arrayListOf(
-                        cat.copernic.letmedoit.Admin.model.Image(
+                        Image(
                             "1",
                             "https://picsum.photos/200/200"
                         ),
                     ),
                     200,
-                    java.util.Calendar.getInstance().time
+                    Calendar.getInstance().time
                 ),
-                cat.copernic.letmedoit.Admin.model.Service(
+                Service(
                     "9",
                     "Peluquería",
                     "Creación de página web",
-                    cat.copernic.letmedoit.Admin.model.CategoryMap(
+                    CategoryMap(
                         "Informática",
                         "Web"
                     ),
                     arrayListOf(
-                        cat.copernic.letmedoit.Admin.model.Image(
+                        Image(
                             "1",
                             "https://picsum.photos/200/200"
                         ),
                     ),
                     200,
-                    java.util.Calendar.getInstance().time
+                    Calendar.getInstance().time
                 )
             )
         }

@@ -8,12 +8,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.Admin.model.ServiceProvider
-import cat.copernic.letmedoit.Admin.model.adapter.ServiceAdapter
+import cat.copernic.letmedoit.General.model.ServiceProvider
+import cat.copernic.letmedoit.General.model.adapter.ServiceAdapter
 import cat.copernic.letmedoit.General.viewmodel.SearchViewViewModel
-import cat.copernic.letmedoit.databinding.FragmentHomeBinding
 import cat.copernic.letmedoit.databinding.FragmentHomeServicesListBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -64,7 +62,7 @@ class HomeServicesList : Fragment() {
         //Asignación del adaptador al recyclerview.
 
         serviceRecyclerView.setHasFixedSize(true)
-        adapter = ServiceAdapter(cat.copernic.letmedoit.Admin.model.ServiceProvider.getServices())
+        adapter = ServiceAdapter(ServiceProvider.getServices())
         serviceRecyclerView.adapter = adapter
 
     }

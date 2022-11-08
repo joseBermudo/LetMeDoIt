@@ -1,11 +1,9 @@
-package cat.copernic.letmedoit.Admin.model.adapter
+package cat.copernic.letmedoit.General.model.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.Admin.model.Service
+import cat.copernic.letmedoit.General.model.Service
 import cat.copernic.letmedoit.databinding.ServiceTemplateBinding
 import java.util.*
 import kotlin.collections.ArrayList
@@ -14,7 +12,7 @@ import kotlin.collections.ArrayList
  * Adaptador de Categorias, implementa Filterable para así poder filtrar :)
  * @param categoryList ArrayList de servicios
  * */
-class ServiceAdapter(private var serviceList:ArrayList<cat.copernic.letmedoit.Admin.model.Service>) : RecyclerView.Adapter<ServiceViewHolder>() {
+class ServiceAdapter(private var serviceList:ArrayList<Service>) : RecyclerView.Adapter<ServiceViewHolder>() {
 
     /**
      * Función ejecutada al crear el View Holder. infla el XML del item de categorias.
@@ -42,14 +40,14 @@ class ServiceAdapter(private var serviceList:ArrayList<cat.copernic.letmedoit.Ad
         return serviceListFiltered.size
     }
 
-    private var serviceListFiltered : ArrayList<cat.copernic.letmedoit.Admin.model.Service> = ArrayList()
+    private var serviceListFiltered : ArrayList<Service> = ArrayList()
 
     //https://www.androhub.com/android-adding-search-functionality-list/
     init {
         serviceListFiltered.addAll(serviceList)
     }
     fun filter(text: String) {
-        var filteredList = ArrayList<cat.copernic.letmedoit.Admin.model.Service>()
+        var filteredList = ArrayList<Service>()
         if (text.isEmpty()) {
             filteredList.addAll(serviceList)
         } else {

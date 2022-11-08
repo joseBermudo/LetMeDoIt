@@ -1,45 +1,45 @@
 package cat.copernic.letmedoit
 
-import cat.copernic.letmedoit.Admin.model.Category
-import cat.copernic.letmedoit.Admin.model.Subcategory
+import cat.copernic.letmedoit.General.model.Category
+import cat.copernic.letmedoit.General.model.Subcategory
 
 class LISTASDEPRUEBA {
     companion object{
-        fun obtenerCategorias() : ArrayList<cat.copernic.letmedoit.Admin.model.Category>{
+        fun obtenerCategorias() : ArrayList<Category>{
             return arrayListOf(
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Informática",
-                    cat.copernic.letmedoit.Admin.model.Subcategory("Web", "100"),
+                    Subcategory("Web", "100"),
                     "email_icon",
                     "1"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Cocina",
-                    cat.copernic.letmedoit.Admin.model.Subcategory("Griega", "100"),
+                    Subcategory("Griega", "100"),
                     "favorites_icon",
                     "2"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Vehiculos",
-                    cat.copernic.letmedoit.Admin.model.Subcategory("Coches", "100"),
+                    Subcategory("Coches", "100"),
                     "filter_icon",
                     "3"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Informática",
-                    cat.copernic.letmedoit.Admin.model.Subcategory("Web", "100"),
+                    Subcategory("Web", "100"),
                     "email_icon",
                     "1"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Cocina",
-                    cat.copernic.letmedoit.Admin.model.Subcategory("Griega", "100"),
+                    Subcategory("Griega", "100"),
                     "favorites_icon",
                     "2"
                 ),
-                cat.copernic.letmedoit.Admin.model.Category(
+                Category(
                     "Vehiculos",
-                    cat.copernic.letmedoit.Admin.model.Subcategory("Coches", "100"),
+                    Subcategory("Coches", "100"),
                     "filter_icon",
                     "3"
                 ),

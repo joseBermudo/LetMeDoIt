@@ -1,11 +1,11 @@
-package cat.copernic.letmedoit.Admin.model.adapter
+package cat.copernic.letmedoit.General.model.adapter
 
 import android.net.Uri
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.Admin.model.Service
+import cat.copernic.letmedoit.General.model.Service
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.ServiceTemplateBinding
 import com.squareup.picasso.Picasso
@@ -30,7 +30,7 @@ class ServiceViewHolder(val binding: ServiceTemplateBinding, val defaultfav : Bo
     /**
      * @param categoryModel El modelo de datos que se utilizara para asignar los datos a la view.
      * */
-    fun render(serviceModel: cat.copernic.letmedoit.Admin.model.Service){
+    fun render(serviceModel: Service){
         //Asigación de datos a los controles del view.
         serviceTitle.text = serviceModel.title
         serviceDescription.text = serviceModel.description

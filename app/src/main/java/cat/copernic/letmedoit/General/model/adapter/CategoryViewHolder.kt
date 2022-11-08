@@ -1,9 +1,8 @@
-package cat.copernic.letmedoit.Admin.model.adapter
+package cat.copernic.letmedoit.General.model.adapter
 
-import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import cat.copernic.letmedoit.Admin.model.Category
+import cat.copernic.letmedoit.General.model.Category
 import cat.copernic.letmedoit.databinding.ItemCategoryTemplateBinding
 
 /**
@@ -19,7 +18,7 @@ class CategoryViewHolder(val binding: ItemCategoryTemplateBinding,) : ViewHolder
     /**
      * @param categoryModel El modelo de datos que se utilizara para asignar los datos a la view.
      * */
-    fun render(categoryModel: cat.copernic.letmedoit.Admin.model.Category){
+    fun render(categoryModel: Category){
         //Asigación de datos a los controles del view.
         categoryIcon.background = ContextCompat.getDrawable(binding.root.context,binding.root.resources.getIdentifier(categoryModel.image, "drawable","cat.copernic.letmedoit"))
         categoryText.text = categoryModel.nombre.replace(" ","\n")

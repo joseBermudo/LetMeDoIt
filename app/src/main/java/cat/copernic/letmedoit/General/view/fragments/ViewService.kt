@@ -3,7 +3,6 @@ package cat.copernic.letmedoit.General.view.fragments
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
@@ -11,15 +10,15 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import cat.copernic.letmedoit.Admin.model.Image
-import cat.copernic.letmedoit.Admin.model.Service
-import cat.copernic.letmedoit.Admin.model.ServiceProvider
-import cat.copernic.letmedoit.Admin.model.adapter.SERVICE_ID
-import cat.copernic.letmedoit.Admin.model.adapter.SliderImagesAdapter
+import cat.copernic.letmedoit.General.adapter.*
+import cat.copernic.letmedoit.General.model.Image
+import cat.copernic.letmedoit.General.model.Service
+import cat.copernic.letmedoit.General.model.ServiceProvider
+import cat.copernic.letmedoit.General.model.adapter.SERVICE_ID
+import cat.copernic.letmedoit.General.model.adapter.SliderImagesAdapter
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Utils.Companion.goToDestination
 import cat.copernic.letmedoit.databinding.FragmentViewServiceBinding
-import com.google.android.material.transition.MaterialFadeThrough
 
 
 const val TAG_SLIDER_IMAGES = "sliderCardView"
@@ -64,10 +63,10 @@ class viewService : Fragment() {
         return binding.root
     }
 
-    lateinit var service : cat.copernic.letmedoit.Admin.model.Service
+    lateinit var service : Service
     private fun initView(id: String) {
 
-        service = cat.copernic.letmedoit.Admin.model.ServiceProvider.getServices().filter { it.id == id }[0]
+        service = ServiceProvider.getServices().filter { it.id == id }[0]
         binding.tittleService.text = service.title
         binding.subTextCategory.text = service.category.id_category
         binding.descriptionService.text = service.description
@@ -118,7 +117,7 @@ class viewService : Fragment() {
     }
 
     //Por cada foto creamos un punto gris debajo de la imagen utilizando cardviews
-    private fun createSliderDots(images: ArrayList<cat.copernic.letmedoit.Admin.model.Image>) {
+    private fun createSliderDots(images: ArrayList<Image>) {
         var contador = 0
         images.forEach { _ ->
             contador++
