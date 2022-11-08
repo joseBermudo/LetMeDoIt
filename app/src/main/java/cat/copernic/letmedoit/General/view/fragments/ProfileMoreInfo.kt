@@ -41,16 +41,16 @@ class ProfileMoreInfo : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentProfileMoreInfoBinding.inflate(inflater,container,false)
-        binding.btnPdf.setOnClickListener{ openPDF() }
+        binding.btnPdf.setOnClickListener{ openPDF("https://www.soundczech.cz/temp/lorem-ipsum.pdf") }
         binding.btnEmail.setOnClickListener { sendEmail("alexcruceat@gmail.com") }
         binding.btnMobile.setOnClickListener { callUser("648551479") }
         binding.locationIcon.setOnClickListener { openMaps("Carretera de Matadepera") }
         return binding.root
     }
 
-    private fun openPDF(){
+    private fun openPDF( url : String){
 
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.soundczech.cz/temp/lorem-ipsum.pdf"))
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(browserIntent)
 
 
