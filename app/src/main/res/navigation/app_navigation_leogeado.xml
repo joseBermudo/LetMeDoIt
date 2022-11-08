@@ -38,8 +38,8 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/homeToCreateService"
-            app:destination="@id/createService"
+            android:id="@+id/homeTonewService"
+            app:destination="@id/newService"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
@@ -76,6 +76,11 @@
         <action
             android:id="@+id/viewServiceToReportUser"
             app:destination="@id/userReport"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/viewServiceToProfileUser"
+            app:destination="@id/perfilUsuarioMenuSuperior2"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
@@ -116,8 +121,8 @@
             app:enterAnim="@animator/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/conversacionesToCreateService"
-            app:destination="@id/createService"
+            android:id="@+id/conversacionesTonewService"
+            app:destination="@id/newService"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
@@ -152,8 +157,8 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/listadoDealsToCreateService"
-            app:destination="@id/createService"
+            android:id="@+id/listadoDealsTonewService"
+            app:destination="@id/newService"
             app:enterAnim="@animator/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
@@ -183,8 +188,8 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/favUsersToCreateService"
-            app:destination="@id/createService"
+            android:id="@+id/favUsersTonewService"
+            app:destination="@id/newService"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
@@ -222,8 +227,8 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/listadoFavServicesToCreateService"
-            app:destination="@id/createService"
+            android:id="@+id/listadoFavServicesTonewService"
+            app:destination="@id/newService"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
@@ -298,25 +303,25 @@
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
-        android:id="@+id/createService"
-        android:name="cat.copernic.letmedoit.Users.view.fragments.CreateService"
-        android:label="fragment_create_service"
-        tools:layout="@layout/fragment_create_service" >
+        android:id="@+id/newService"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.NewService"
+        android:label="fragment_new_service"
+        tools:layout="@layout/fragment_new_service" >
         <action
-            android:id="@+id/createServiceToHome"
+            android:id="@+id/newServiceToHome"
             app:destination="@id/homeFragment" />
         <action
-            android:id="@+id/createServiceToFavUsers"
+            android:id="@+id/newServiceToFavUsers"
             app:destination="@id/viewFavUsers"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/createServiceToConversaciones"
+            android:id="@+id/newServiceToConversaciones"
             app:destination="@id/verConversaciones"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/createServiceToOpcionesCuenta"
+            android:id="@+id/newServiceToOpcionesCuenta"
             app:destination="@id/accountOptions"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
@@ -332,8 +337,8 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/opcionesCuentaToCreateService"
-            app:destination="@id/createService"
+            android:id="@+id/opcionesCuentaTonewService"
+            app:destination="@id/newService"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
@@ -360,6 +365,17 @@
         <action
             android:id="@+id/editarPerfilToOpcionesCuenta"
             app:destination="@id/accountOptions"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfilUsuarioMenuSuperior2"
+        android:name="cat.copernic.letmedoit.General.view.fragments.PerfilUsuarioMenuSuperior"
+        android:label="fragment_perfil_usuario_menu_superior"
+        tools:layout="@layout/fragment_perfil_usuario_menu_superior" >
+        <action
+            android:id="@+id/profileUserBackToViewService"
+            app:destination="@id/viewService"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>

@@ -75,7 +75,7 @@ class Menu_Inferior : Fragment() {
                R.id.registroOpcionesCuenta,
                R.id.viewFavUsers,
                R.id.verListadoFavServices,
-               R.id.createDeal,
+               R.id.newService,
                R.id.verConversaciones,
                R.id.verListadoDeals,
                R.id.accountOptions-> showBottomNav()

@@ -59,7 +59,7 @@ class viewService : Fragment() {
         binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
 
         initView(arguments?.getString(SERVICE_ID).toString())
-        binding.btnGoToProfile.setOnClickListener { goToDestination(requireView(),R.id.viewServiceToUserProfile) }
+        binding.btnGoToProfile.setOnClickListener { goToDestination(requireView(),R.id.perfilUsuarioMenuSuperior) }
         binding.btnChat.setOnClickListener{ goToDestination(requireView(),R.id.chat) }
         return binding.root
     }

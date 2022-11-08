@@ -9,7 +9,7 @@
         android:title="@string/bottom_menu_favorites_text"
         android:icon="@drawable/bottom_menu_favorites_selector"/>
     <item
-        android:id="@+id/createDeal"
+        android:id="@+id/newService"
         android:title="@string/bottom_menu_upload_text"
         android:icon="@drawable/bottom_menu_upload_selector"/>
     <item
