@@ -1,14 +1,17 @@
 package cat.copernic.letmedoit.General.view.activities
 
 import android.content.Context
+import android.content.Intent
 import android.opengl.Visibility
 import android.os.Bundle
 import android.util.AttributeSet
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -22,12 +25,12 @@ import cat.copernic.letmedoit.General.view.fragments.SearchView
 
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Utils
-import cat.copernic.letmedoit.Utils.Utils.Companion.addFragment
 import cat.copernic.letmedoit.databinding.ActivityHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-
+import androidx.appcompat.widget.SwitchCompat;
+import cat.copernic.letmedoit.Admin.view.activities.MenuAdmin
 
 class Home : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -41,9 +44,13 @@ class Home : AppCompatActivity() {
         if(currentUser==null){
             binding.navController.getFragment<Fragment>().findNavController().setGraph(R.navigation.app_navigation_visitante)
         }
+        else if(currentUser.email == "alex@gmail.com"){
+            startActivity(Intent(this, MenuAdmin::class.java))
+            finish()
+        }
         //Usuario logeado
         else{
-            //Cambiar Nav Graph a Usuario logeado
+            binding.navController.getFragment<Fragment>().findNavController().setGraph(R.navigation.app_navigation_leogeado)
         }
     }
 

@@ -1,12 +1,19 @@
 package cat.copernic.letmedoit.General.view.fragments
 
 import android.os.Bundle
+import android.provider.ContactsContract.Profile
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import cat.copernic.letmedoit.General.viewmodel.BarProfileOrServicesViewModel
+import cat.copernic.letmedoit.General.viewmodel.ProfilesServicesManagerViewModel
+import cat.copernic.letmedoit.General.viewmodel.SearchViewViewModel
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentBarProfilesOrServicesBinding
+import com.google.android.material.tabs.TabLayout
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,6 +38,7 @@ class BarProfilesOrServices : Fragment() {
         }
     }
 
+    lateinit var model : BarProfileOrServicesViewModel
     lateinit var binding : FragmentBarProfilesOrServicesBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +46,31 @@ class BarProfilesOrServices : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentBarProfilesOrServicesBinding.inflate(inflater,container,false)
+        model  = ViewModelProvider(requireActivity())[BarProfileOrServicesViewModel::class.java]
+
+
+        binding.profilesOrServices.addOnTabSelectedListener(object :
+            TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                if (tab != null) {
+                    model.sendOption(tab.position)
+                }
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+        })
+
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val modelViewPagerSelector = ViewModelProvider(requireActivity())[ProfilesServicesManagerViewModel::class.java]
+        modelViewPagerSelector.pagePosition.observe(viewLifecycleOwner, Observer {
+            binding.profilesOrServices.getTabAt(it)?.select()
+        })
     }
 
     companion object {

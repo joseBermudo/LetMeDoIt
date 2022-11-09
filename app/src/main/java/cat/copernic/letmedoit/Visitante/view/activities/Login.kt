@@ -6,6 +6,7 @@ import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import cat.copernic.letmedoit.Admin.view.activities.MenuAdmin
+
 import cat.copernic.letmedoit.General.view.activities.Home
 import cat.copernic.letmedoit.Users.view.activities.RecoveryPassword_email
 import cat.copernic.letmedoit.Utils.Utils
@@ -27,7 +28,6 @@ class Login : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = Firebase.auth
-
         binding.btnSignIn.setOnClickListener{ checkLogin() }
         binding.btnSignUp.setOnClickListener { signUp() }
         binding.btnExitLogin.setOnClickListener { onBackPressed() }

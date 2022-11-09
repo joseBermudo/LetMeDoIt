@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation_leogeado"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="cat.copernic.letmedoit.General.view.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+
+
+        <action
+            android:id="@+id/filtroCategoria"
+            app:destination="@id/filtroCategoria"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@animator/nav_default_exit_anim" />
+        <action
+            android:id="@+id/homeToService"
+            app:destination="@id/viewService"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/homeToConversaciones"
+            app:destination="@id/verConversaciones"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/homeToFavUsers"
+            app:destination="@id/viewFavUsers"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/homeToOpcionesCuenta"
+            app:destination="@id/accountOptions"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/homeTonewService"
+            app:destination="@id/newService"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/filtroCategoria"
+        android:name="cat.copernic.letmedoit.General.view.fragments.FiltroCategorias"
+        android:label="fragment_filtro_categorias"
+        tools:layout="@layout/fragment_filtro_categorias" >
+        <action
+            android:id="@+id/filterBackToHome"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/viewService"
+        android:name="cat.copernic.letmedoit.General.view.fragments.viewService"
+        android:label="fragment_view_service"
+        tools:layout="@layout/fragment_view_service">
+
+
+        <action
+            android:id="@+id/viewServiceBackToHome"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/viewServiceToChat"
+            app:destination="@id/chat"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/viewServiceToReportUser"
+            app:destination="@id/userReport"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/viewServiceToProfileUser"
+            app:destination="@id/perfilUsuarioMenuSuperior"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/chat"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.chat"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" >
+        <action
+            android:id="@+id/chatToConversaciones"
+            app:destination="@id/verConversaciones"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/chatToCreateDeal"
+            app:destination="@id/createDeal"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/verConversaciones"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.verConversaciones"
+        android:label="fragment_ver_conversaciones"
+        tools:layout="@layout/fragment_ver_conversaciones" >
+        <action
+            android:id="@+id/conversacionesToListadoDeals"
+            app:destination="@id/verListadoDeals"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/conversacionesToHome"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/conversacionesToFavUsers"
+            app:destination="@id/viewFavUsers"
+            app:enterAnim="@animator/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/conversacionesTonewService"
+            app:destination="@id/newService"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/conversacionesToOpcionesCuenta"
+            app:destination="@id/accountOptions"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/conversacionesToChat"
+            app:destination="@id/chat"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/verListadoDeals"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.verListadoDeals"
+        android:label="fragment_ver_listado_deals"
+        tools:layout="@layout/fragment_ver_listado_deals" >
+        <action
+            android:id="@+id/listadoDealsToConversaciones"
+            app:destination="@id/verConversaciones"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/listadoDealsToViewDeal"
+            app:destination="@id/viewDeal"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/listadoDealsToConcludeDeal"
+            app:destination="@id/concludeDeal"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/listadoDealsTonewService"
+            app:destination="@id/newService"
+            app:enterAnim="@animator/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/listadoDealsToOpcionesCuenta"
+            app:destination="@id/accountOptions"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/listadoDealsToFavUsers"
+            app:destination="@id/viewFavUsers"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewFavUsers"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.viewFavUsers"
+        android:label="fragment_view_fav_users"
+        tools:layout="@layout/fragment_view_fav_users" >
+        <action
+            android:id="@+id/favUsersToHome"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/favUsersToConversaciones"
+            app:destination="@id/verConversaciones"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/favUsersTonewService"
+            app:destination="@id/newService"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/favUsersToOpcionesCuenta"
+            app:destination="@id/accountOptions" />
+        <action
+            android:id="@+id/favUsersToListadoFavServices"
+            app:destination="@id/verListadoFavServices"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/verListadoFavServices"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.VerListadoFavServices"
+        android:label="fragment_ver_listado_fav_services"
+        tools:layout="@layout/fragment_ver_listado_fav_services" >
+        <action
+            android:id="@+id/favServiceToFavUsers"
+            app:destination="@id/viewFavUsers"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/favServiceToHome"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/favServicesToConversaciones"
+            app:destination="@id/verConversaciones"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/listadoFavServicesToViewService"
+            app:destination="@id/viewService"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/listadoFavServicesTonewService"
+            app:destination="@id/newService"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/listadoFavServicesToOpcionesCuenta"
+            app:destination="@id/accountOptions"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/createDeal"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.CreateDeal"
+        android:label="fragment_create_deal"
+        tools:layout="@layout/fragment_create_deal" >
+        <action
+            android:id="@+id/createDealToChat"
+            app:destination="@id/chat"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewDeal"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.ViewDeal"
+        android:label="fragment_ver_deal"
+        tools:layout="@layout/fragment_ver_deal" >
+        <action
+            android:id="@+id/viewDealToListadoDeals"
+            app:destination="@id/verListadoDeals"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/verDealToConcludeDeal"
+            app:destination="@id/concludeDeal"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/concludeDeal"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.concludeDeal"
+        android:label="fragment_conclude_deal"
+        tools:layout="@layout/fragment_conclude_deal" >
+        <action
+            android:id="@+id/concludeDealToListadoDeals"
+            app:destination="@id/verListadoDeals"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/concludeDealToRateUser"
+            app:destination="@id/rateUser"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/rateUser"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.RateUser"
+        android:label="fragment_rate_user"
+        tools:layout="@layout/fragment_rate_user" >
+        <action
+            android:id="@+id/rateUserToHome"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/userReport"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.UserReport"
+        android:label="fragment_user_report"
+        tools:layout="@layout/fragment_user_report" >
+        <action
+            android:id="@+id/reportUserToHome"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/newService"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.NewService"
+        android:label="fragment_new_service"
+        tools:layout="@layout/fragment_new_service" >
+        <action
+            android:id="@+id/newServiceToHome"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/newServiceToFavUsers"
+            app:destination="@id/viewFavUsers"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/newServiceToConversaciones"
+            app:destination="@id/verConversaciones"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/newServiceToOpcionesCuenta"
+            app:destination="@id/accountOptions"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountOptions"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.AccountOptions"
+        android:label="fragment_opciones_de_cuenta"
+        tools:layout="@layout/fragment_opciones_de_cuenta" >
+        <action
+            android:id="@+id/opcionesCuentaToHome"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/opcionesCuentaTonewService"
+            app:destination="@id/newService"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/opcionesCuentaToFavUsers"
+            app:destination="@id/viewFavUsers"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/opcionesCuentaToConversaciones"
+            app:destination="@id/verConversaciones"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/opcionesCuentaToEditarPerfil"
+            app:destination="@id/editarInformacionPerfil"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/editarInformacionPerfil"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.EditarInformacionPerfil"
+        android:label="fragment_editar_informacion_perfil"
+        tools:layout="@layout/fragment_editar_informacion_perfil" >
+        <action
+            android:id="@+id/editarPerfilToOpcionesCuenta"
+            app:destination="@id/accountOptions"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfilUsuarioMenuSuperior"
+        android:name="cat.copernic.letmedoit.General.view.fragments.PerfilUsuarioMenuSuperior"
+        android:label="fragment_perfil_usuario_menu_superior"
+        tools:layout="@layout/fragment_perfil_usuario_menu_superior" >
+        <action
+            android:id="@+id/profileUserBackToViewService"
+            app:destination="@id/viewService"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+
+</navigation>

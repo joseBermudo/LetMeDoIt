@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/More_Info_Layout"
@@ -8,154 +8,173 @@
     android:layout_height="match_parent"
     tools:context=".General.view.fragments.ProfileMoreInfo">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_horizontal_cl">
-
-        <TextView
-            android:id="@+id/about_me_title"
-            style="@style/Widget.LetMeDoIt.text"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/txt_about_me"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:padding="@dimen/padding_vertical_cl">
 
-        <TextView
-            android:id="@+id/about_me_text"
-            style="@style/Widget.LetMeDoIt.subtext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLines="50"
-            android:text="@string/txt_aboutMe_description"
-            android:textStyle="normal"
-            app:layout_constraintStart_toStartOf="@id/about_me_title"
-            app:layout_constraintTop_toBottomOf="@id/about_me_title" />
+            <TextView
+                android:id="@+id/about_me_title"
+                style="@style/Widget.LetMeDoIt.text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_about_me"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/divider_about_me"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginVertical="@dimen/margin_forgot_password"
-            android:background="@color/divider_color"
-            app:layout_constraintStart_toStartOf="@id/about_me_text"
-            app:layout_constraintTop_toBottomOf="@id/about_me_text" />
+            <TextView
+                android:id="@+id/about_me_text"
+                style="@style/Widget.LetMeDoIt.subtext"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/about_me_title"
+                app:layout_constraintTop_toBottomOf="@id/about_me_title"
+                android:text="@string/txt_aboutMe_description"
+                android:textStyle="normal" />
 
-        <TextView
-            android:id="@+id/curriculum_title"
-            style="@style/Widget.LetMeDoIt.text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_curriculum"
-            app:layout_constraintStart_toStartOf="@id/divider_about_me"
-            app:layout_constraintTop_toBottomOf="@id/divider_about_me" />
 
-        <TextView
-            android:id="@+id/btn_pdf"
-            android:layout_width="@dimen/padding_horizontal_cl"
-            android:layout_height="@dimen/padding_vertical_cl"
-            android:background="@drawable/icon_pdf"
-            app:layout_constraintStart_toStartOf="@id/curriculum_title"
-            app:layout_constraintTop_toBottomOf="@id/curriculum_title" />
+            <View
+                android:id="@+id/divider_about_me"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="@dimen/margin_forgot_password"
+                android:background="@color/divider_color"
+                app:layout_constraintStart_toStartOf="@id/about_me_text"
+                app:layout_constraintTop_toBottomOf="@id/about_me_text" />
 
-        <View
-            android:id="@+id/divider_curriculum"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginVertical="@dimen/margin_forgot_password"
-            android:background="@color/divider_color"
-            app:layout_constraintStart_toStartOf="@id/btn_pdf"
-            app:layout_constraintTop_toBottomOf="@id/btn_pdf" />
+            <TextView
+                android:id="@+id/curriculum_title"
+                style="@style/Widget.LetMeDoIt.text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_curriculum"
+                app:layout_constraintStart_toStartOf="@id/divider_about_me"
+                app:layout_constraintTop_toBottomOf="@id/divider_about_me" />
 
-        <TextView
-            android:id="@+id/schedule_title"
-            style="@style/Widget.LetMeDoIt.text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_schedule"
-            app:layout_constraintStart_toStartOf="@id/divider_curriculum"
-            app:layout_constraintTop_toBottomOf="@id/divider_curriculum" />
+            <TextView
+                android:id="@+id/btn_pdf"
+                style="@style/IconoClickable"
+                android:layout_width="@dimen/padding_horizontal_cl"
+                android:layout_height="@dimen/padding_vertical_cl"
+                android:background="@drawable/icon_pdf"
+                app:layout_constraintStart_toStartOf="@id/curriculum_title"
+                app:layout_constraintTop_toBottomOf="@id/curriculum_title" />
 
-        <TextView
-            android:id="@+id/schedule_text"
-            style="@style/Widget.LetMeDoIt.subtext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_time"
-            app:layout_constraintStart_toStartOf="@id/schedule_title"
-            app:layout_constraintTop_toBottomOf="@id/schedule_title" />
+            <View
+                android:id="@+id/divider_curriculum"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="@dimen/margin_forgot_password"
+                android:background="@color/divider_color"
+                app:layout_constraintStart_toStartOf="@id/btn_pdf"
+                app:layout_constraintTop_toBottomOf="@id/btn_pdf" />
 
-        <View
-            android:id="@+id/divider_schedule"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginVertical="@dimen/margin_forgot_password"
-            android:background="@color/divider_color"
-            app:layout_constraintStart_toStartOf="@id/schedule_text"
-            app:layout_constraintTop_toBottomOf="@id/schedule_text" />
+            <TextView
+                android:id="@+id/schedule_title"
+                style="@style/Widget.LetMeDoIt.text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_schedule"
+                app:layout_constraintStart_toStartOf="@id/divider_curriculum"
+                app:layout_constraintTop_toBottomOf="@id/divider_curriculum" />
 
-        <TextView
-            android:id="@+id/contact_title"
-            style="@style/Widget.LetMeDoIt.text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_contact_info"
-            app:layout_constraintStart_toStartOf="@id/divider_schedule"
-            app:layout_constraintTop_toBottomOf="@id/divider_schedule" />
+            <TextView
+                android:id="@+id/schedule_text"
+                style="@style/Widget.LetMeDoIt.subtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_time"
+                app:layout_constraintStart_toStartOf="@id/schedule_title"
+                app:layout_constraintTop_toBottomOf="@id/schedule_title" />
 
-        <TextView
-            android:id="@+id/btn_email"
-            android:layout_width="@dimen/padding_horizontal_cl"
-            android:layout_height="@dimen/padding_vertical_cl"
-            android:background="@drawable/email_menu_icon_colored"
-            app:layout_constraintStart_toStartOf="@id/contact_title"
-            app:layout_constraintTop_toBottomOf="@id/contact_title" />
+            <View
+                android:id="@+id/divider_schedule"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="@dimen/margin_forgot_password"
+                android:background="@color/divider_color"
+                app:layout_constraintStart_toStartOf="@id/schedule_text"
+                app:layout_constraintTop_toBottomOf="@id/schedule_text" />
 
-        <TextView
-            android:id="@+id/btn_mobile"
-            android:layout_width="@dimen/padding_horizontal_cl"
-            android:layout_height="@dimen/padding_vertical_cl"
-            android:layout_marginStart="@dimen/margin_forgot_password"
-            android:background="@drawable/phone_icon"
-            app:layout_constraintStart_toEndOf="@id/btn_email"
-            app:layout_constraintTop_toBottomOf="@id/contact_title" />
+            <TextView
+                android:id="@+id/contact_title"
+                style="@style/Widget.LetMeDoIt.text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_contact_info"
+                app:layout_constraintStart_toStartOf="@id/divider_schedule"
+                app:layout_constraintTop_toBottomOf="@id/divider_schedule" />
 
-        <View
-            android:id="@+id/divider_mobile"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginVertical="@dimen/margin_forgot_password"
-            android:background="@color/divider_color"
-            app:layout_constraintStart_toStartOf="@id/btn_email"
-            app:layout_constraintTop_toBottomOf="@id/btn_email" />
+            <TextView
+                android:id="@+id/btn_email"
+                style="@style/IconoClickable"
+                android:layout_width="@dimen/padding_horizontal_cl"
+                android:layout_height="@dimen/padding_vertical_cl"
+                android:background="@drawable/email_menu_icon_colored"
+                app:layout_constraintStart_toStartOf="@id/contact_title"
+                app:layout_constraintTop_toBottomOf="@id/contact_title" />
 
-        <TextView
-            android:id="@+id/location_title"
-            style="@style/Widget.LetMeDoIt.text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_location"
-            app:layout_constraintStart_toStartOf="@id/divider_mobile"
-            app:layout_constraintTop_toBottomOf="@id/divider_mobile" />
+            <TextView
+                android:id="@+id/btn_mobile"
+                style="@style/IconoClickable"
+                android:layout_width="@dimen/padding_horizontal_cl"
+                android:layout_height="@dimen/padding_vertical_cl"
+                android:layout_marginStart="@dimen/margin_forgot_password"
+                android:background="@drawable/phone_icon"
+                app:layout_constraintStart_toEndOf="@id/btn_email"
+                app:layout_constraintTop_toBottomOf="@id/contact_title" />
 
-        <TextView
-            android:id="@+id/location_text"
-            style="@style/Widget.LetMeDoIt.subtext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_location_text"
-            app:layout_constraintStart_toStartOf="@id/location_title"
-            app:layout_constraintTop_toBottomOf="@id/location_title" />
+            <View
+                android:id="@+id/divider_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="@dimen/margin_forgot_password"
+                android:background="@color/divider_color"
+                app:layout_constraintStart_toStartOf="@id/btn_email"
+                app:layout_constraintTop_toBottomOf="@id/btn_email" />
 
-        <TextView
-            android:id="@+id/location_icon"
-            android:layout_width="@dimen/padding_horizontal_cl"
-            android:layout_height="@dimen/padding_vertical_cl"
-            android:layout_marginStart="@dimen/spinner_layout_margin"
-            android:background="@drawable/map_location_icon"
-            app:layout_constraintStart_toEndOf="@id/location_text"
-            app:layout_constraintTop_toBottomOf="@id/location_title" />
+            <TextView
+                android:id="@+id/location_title"
+                style="@style/Widget.LetMeDoIt.text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_location"
+                app:layout_constraintStart_toStartOf="@id/divider_mobile"
+                app:layout_constraintTop_toBottomOf="@id/divider_mobile" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+            <TextView
+                android:id="@+id/location_text"
+                style="@style/Widget.LetMeDoIt.subtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_location_text"
+                app:layout_constraintStart_toStartOf="@id/location_title"
+                app:layout_constraintTop_toBottomOf="@id/location_title" />
+
+            <TextView
+                android:id="@+id/location_icon"
+                style="@style/IconoClickable"
+                android:layout_width="@dimen/padding_horizontal_cl"
+                android:layout_height="@dimen/padding_vertical_cl"
+                android:layout_marginStart="@dimen/spinner_layout_margin"
+                android:background="@drawable/map_location_icon"
+                app:layout_constraintStart_toEndOf="@id/location_text"
+                app:layout_constraintTop_toBottomOf="@id/location_title" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="@dimen/margin_forgot_password"
+                android:layout_marginBottom="200dp"
+                android:background="@color/divider_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/location_icon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</FrameLayout>

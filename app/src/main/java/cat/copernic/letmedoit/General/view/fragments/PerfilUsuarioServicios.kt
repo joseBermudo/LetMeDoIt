@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.ServiceProvider
 import cat.copernic.letmedoit.General.model.adapter.ServiceAdapter
 import cat.copernic.letmedoit.General.viewmodel.SearchViewViewModel
-import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioServiciosBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -60,7 +59,6 @@ class PerfilUsuarioServicios : Fragment() {
         model.message.observe(viewLifecycleOwner, Observer {
             adapter.filter(it)
         })
-
 
         return binding.root
     }

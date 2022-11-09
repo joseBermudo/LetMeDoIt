@@ -21,6 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.transition.MaterialFadeThrough
 import com.google.errorprone.annotations.Var
+import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,14 +66,28 @@ class Menu_Inferior : Fragment() {
 
         bottomNavigation.setupWithNavController(navController)
 
+        //Muestra o oculta la barra de navegación dependiendo el destino
         navController.addOnDestinationChangedListener { _, destination, _ ->
            when(destination.id){
-               R.id.homeFragment -> showBottomNav()
-               R.id.registroOpcionesCuenta -> showBottomNav()
+               R.id.homeFragment,
+               R.id.registroOpcionesCuenta ,
+               R.id.messagesVis ,
+               R.id.uploadServicesVis ,
+               R.id.profiles_services_manager_vis  -> showBottomNav()
+               R.id.homeFragment,
+               R.id.viewFavUsers,
+               R.id.verListadoFavServices,
+               R.id.newService,
+               R.id.verConversaciones,
+               R.id.verListadoDeals,
+               R.id.accountOptions-> showBottomNav()
                else -> hideBottomNav()
            }
         }
-
+        if(FirebaseAuth.getInstance().currentUser != null){
+            binding.menuInferior.menu.clear() //clear old inflated items.
+            binding.menuInferior.inflateMenu(R.menu.menu_principal_logeado);
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 

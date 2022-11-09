@@ -2,8 +2,6 @@ package cat.copernic.letmedoit.General.model.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.Service
 import cat.copernic.letmedoit.databinding.ServiceTemplateBinding
