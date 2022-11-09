@@ -2,14 +2,17 @@ package cat.copernic.letmedoit.General.view.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import cat.copernic.letmedoit.General.model.adapter.UserTopMenuAdapter
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioMenuSuperiorBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -74,7 +77,8 @@ class PerfilUsuarioMenuSuperior : Fragment() {
 
         //Evento que se llama al empezar el drawing de la vista. Obtenemos el height del movil, luego el del Menu superior los restamos y lo utilizamos como height del viewpager. luego actualizamos el layout de nuevo
         var viewPagerHeightSize = 0
-        binding.viewPager.viewTreeObserver.addOnGlobalLayoutListener( object : OnGlobalLayoutListener {
+        binding.viewPager.viewTreeObserver.addOnGlobalLayoutListener( object :
+            ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
                 binding.viewPager.viewTreeObserver
                     .removeOnGlobalLayoutListener(this)

@@ -170,11 +170,8 @@
                     android:orientation="horizontal">
 
                     <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switchDarkTheme"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:theme="@style/Switch.Style"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
 
