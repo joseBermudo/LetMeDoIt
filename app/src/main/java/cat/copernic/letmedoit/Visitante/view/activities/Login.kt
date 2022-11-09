@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import cat.copernic.letmedoit.Admin.view.activities.MenuAdmin
+import cat.copernic.letmedoit.Admin.model.view.activities.MenuAdmin
 import cat.copernic.letmedoit.General.view.activities.Home
 import cat.copernic.letmedoit.Users.view.activities.RecoveryPassword_email
 import cat.copernic.letmedoit.Utils.Utils

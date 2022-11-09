@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.Admin.view.activities
+package cat.copernic.letmedoit.Admin.model.view.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

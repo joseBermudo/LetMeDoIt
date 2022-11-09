@@ -1,13 +1,19 @@
 package cat.copernic.letmedoit.Users.view.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cat.copernic.letmedoit.databinding.FragmentAdminViewUsersBinding
+import cat.copernic.letmedoit.General.view.activities.Home
+import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Users.view.LenguagesProvider
+import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.FragmentOpcionesDeCuentaBinding
-import cat.copernic.letmedoit.databinding.FragmentViewServiceAdminBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,7 +27,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class AccountOptions : Fragment() {
 
-
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +39,20 @@ class AccountOptions : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentOpcionesDeCuentaBinding.inflate(inflater,container,false)
+
+        val languagesString = ArrayList<String>()
+        LenguagesProvider.obtenerLenguages().map { x -> x.lenguage }.toCollection(languagesString)
+        Utils.AsignarPopUpSpinnerLenguages(requireContext(), languagesString, binding.spinnerLenguages)
+
+        auth = Firebase.auth
+        binding.btnSignOut.setOnClickListener{singOut()}
+
         return binding.root
+    }
+
+    private fun singOut() {
+        auth.signOut()
+        startActivity(Intent(requireActivity(), Home::class.java))
+        requireActivity().finish()
     }
 }

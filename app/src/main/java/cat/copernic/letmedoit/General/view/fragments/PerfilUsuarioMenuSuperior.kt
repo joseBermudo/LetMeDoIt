@@ -1,23 +1,15 @@
 package cat.copernic.letmedoit.General.view.fragments
 
 import android.annotation.SuppressLint
-import android.opengl.Visibility
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavBackStackEntry
-import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import cat.copernic.letmedoit.General.model.adapter.UserTopMenuAdapter
-import cat.copernic.letmedoit.R
-import cat.copernic.letmedoit.Visitante.view.activities.Login
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioMenuSuperiorBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.firebase.auth.FirebaseAuth
 
 
 // TODO: Rename parameter arguments, choose names that match

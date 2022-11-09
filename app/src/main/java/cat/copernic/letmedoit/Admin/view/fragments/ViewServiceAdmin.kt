@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.Admin.view.fragments
+package cat.copernic.letmedoit.Admin.model.view.view.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

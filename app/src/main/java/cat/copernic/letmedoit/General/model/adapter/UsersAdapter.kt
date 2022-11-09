@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.Users
 import cat.copernic.letmedoit.databinding.ItemAdminViewUsersBinding
-import cat.copernic.letmedoit.databinding.ItemViewBannedUsersBinding
 
 class UsersAdapter(private val obtenerUsers:List<Users>) : RecyclerView.Adapter<UsersViewHolder>(){
 

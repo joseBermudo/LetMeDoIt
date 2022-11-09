@@ -15,7 +15,9 @@ class AdminCategoryAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdminCategoryViewHolder {
         val binding =
             ItemListCategoryAdminBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return AdminCategoryViewHolder(binding)
+        return AdminCategoryViewHolder(
+            binding
+        )
     }
 
     override fun onBindViewHolder(holder: AdminCategoryViewHolder, position: Int) {

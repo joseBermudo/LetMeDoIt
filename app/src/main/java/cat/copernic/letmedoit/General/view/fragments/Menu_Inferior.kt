@@ -73,10 +73,20 @@ class Menu_Inferior : Fragment() {
                R.id.messagesVis ,
                R.id.uploadServicesVis ,
                R.id.profiles_services_manager_vis  -> showBottomNav()
+               R.id.homeFragment,
+               R.id.viewFavUsers,
+               R.id.verListadoFavServices,
+               R.id.newService,
+               R.id.verConversaciones,
+               R.id.verListadoDeals,
+               R.id.accountOptions-> showBottomNav()
                else -> hideBottomNav()
            }
         }
-
+        if(FirebaseAuth.getInstance().currentUser != null){
+            binding.menuInferior.menu.clear() //clear old inflated items.
+            binding.menuInferior.inflateMenu(R.menu.menu_principal_logeado);
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 

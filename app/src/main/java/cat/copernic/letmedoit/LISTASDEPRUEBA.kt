@@ -10,7 +10,7 @@ class LISTASDEPRUEBA {
                 Category(
                     "Informática",
                     Subcategory("Web", "100"),
-                "email_icon",
+                    "email_icon",
                     "1"
                 ),
                 Category(

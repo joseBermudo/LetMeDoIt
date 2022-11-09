@@ -65,7 +65,7 @@
             app:layout_constraintTop_toBottomOf="@+id/my_rating_bar" />
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
+            android:id="@+id/layout_all_options"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -87,6 +87,7 @@
                     style="@style/Widget.LetMeDoIt.text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ocho"
                     android:layout_marginTop="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:layout_marginBottom="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:text="@string/edit_profile" />
@@ -125,30 +126,11 @@
                 android:orientation="horizontal"
                 style="@style/LinearLayoutPaddingVerticalStartEnd">
 
-
-                <TextView
-                    android:id="@+id/lenguage"
-                    style="@style/Widget.LetMeDoIt.text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
-                    android:layout_marginBottom="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
-                    android:text="@string/lenguage" />
-
-                <LinearLayout
+                <Spinner
+                    android:id="@+id/spinner_lenguages"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/arrowLenguage"
-                        android:contentDescription="@string/txt_show_languages"
-                        android:layout_width="@dimen/arrow_profile_dimens"
-                        android:layout_height="@dimen/arrow_profile_dimens"
-                        android:src="@drawable/ic_baseline_arrow_forward_ios_24"
-                        android:rotation="90"/>
-                </LinearLayout>
+                    android:textColor="@color/negro"
+                    android:layout_height="32dp"/>
             </LinearLayout>
 
             <!-- Divider !-->
@@ -176,6 +158,7 @@
                     style="@style/Widget.LetMeDoIt.text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ocho"
                     android:layout_marginTop="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:layout_marginBottom="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:text="@string/dark_theme" />
@@ -204,7 +187,7 @@
 
             <!-- Apartado Sign Off !-->
             <LinearLayout
-                android:id="@+id/btn_sign_off"
+                android:id="@+id/btn_sign_out"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -217,6 +200,7 @@
                     style="@style/Widget.LetMeDoIt.text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ocho"
                     android:layout_marginTop="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:layout_marginBottom="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:text="@string/sign_off" />
@@ -244,11 +228,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ratingBar3" />
         </LinearLayout>
-
-        <ExpandableListView
-            android:id="@+id/expandable_lenguage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></ExpandableListView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

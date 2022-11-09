@@ -3,7 +3,6 @@ package cat.copernic.letmedoit.General.view.fragments
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
@@ -19,7 +18,6 @@ import cat.copernic.letmedoit.General.model.adapter.SliderImagesAdapter
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Utils.Companion.goToDestination
 import cat.copernic.letmedoit.databinding.FragmentViewServiceBinding
-import com.google.android.material.transition.MaterialFadeThrough
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -64,7 +62,8 @@ class viewService : Fragment() {
         binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
 
         initView(arguments?.getString(SERVICE_ID).toString())
-        binding.btnGoToProfile.setOnClickListener { goToDestination(requireView(),R.id.viewServiceToUserProfile) }
+        binding.btnGoToProfile.setOnClickListener { goToDestination(requireView(),R.id.perfilUsuarioMenuSuperior) }
+        binding.btnChat.setOnClickListener{ goToDestination(requireView(),R.id.chat) }
         return binding.root
     }
 

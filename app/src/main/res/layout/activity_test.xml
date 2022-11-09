@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/probar_fragments"
-        android:name="cat.copernic.letmedoit.Admin.view.fragments.admin_view_users"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.AccountOptions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
