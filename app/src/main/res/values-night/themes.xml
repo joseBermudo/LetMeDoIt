@@ -13,7 +13,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:button">@style/Widget.LetMeDoIT.principalButton</item>
 
         <item name="android:textViewStyle">@style/Widget.LetMeDoIt.title1</item>
 
