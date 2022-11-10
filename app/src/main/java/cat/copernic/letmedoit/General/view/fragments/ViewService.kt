@@ -10,7 +10,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import cat.copernic.letmedoit.General.adapter.*
 import cat.copernic.letmedoit.General.model.Image
 import cat.copernic.letmedoit.General.model.Service
 import cat.copernic.letmedoit.General.model.ServiceProvider
