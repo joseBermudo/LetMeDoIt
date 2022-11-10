@@ -53,9 +53,6 @@ class Menu_Inferior : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
-
         // Inflate the layout for this fragment
         binding = FragmentMenuInferiorBinding.inflate(inflater,container,false)
 
@@ -69,10 +66,15 @@ class Menu_Inferior : Fragment() {
 
         bottomNavigation.setupWithNavController(navController)
 
+        //Muestra o oculta la barra de navegación dependiendo el destino
         navController.addOnDestinationChangedListener { _, destination, _ ->
            when(destination.id){
                R.id.homeFragment,
-               R.id.registroOpcionesCuenta,
+               R.id.registroOpcionesCuenta ,
+               R.id.messagesVis ,
+               R.id.uploadServicesVis ,
+               R.id.profiles_services_manager_vis  -> showBottomNav()
+               R.id.homeFragment,
                R.id.viewFavUsers,
                R.id.verListadoFavServices,
                R.id.newService,

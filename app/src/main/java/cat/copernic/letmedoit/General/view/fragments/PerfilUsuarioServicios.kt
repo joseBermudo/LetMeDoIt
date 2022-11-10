@@ -60,7 +60,6 @@ class PerfilUsuarioServicios : Fragment() {
             adapter.filter(it)
         })
 
-
         return binding.root
     }
 

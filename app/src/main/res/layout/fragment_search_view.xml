@@ -9,7 +9,7 @@
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/searchview">
 
         <SearchView
             android:id="@+id/searchView"
@@ -19,7 +19,7 @@
             android:background="@drawable/spinner_frame_layout_style"
             android:iconifiedByDefault="false"
             android:searchIcon="@drawable/search_icon"
-            android:closeIcon="@null"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,10 +40,10 @@
             android:id="@+id/divider_menu"
             style="@style/DividerDown"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/divider_16dp_margin_top"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView_adminCategories" />
+            app:layout_constraintTop_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

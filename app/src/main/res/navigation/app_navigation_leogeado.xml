@@ -80,7 +80,7 @@
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/viewServiceToProfileUser"
-            app:destination="@id/perfilUsuarioMenuSuperior2"
+            app:destination="@id/perfilUsuarioMenuSuperior"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
@@ -369,7 +369,7 @@
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
-        android:id="@+id/perfilUsuarioMenuSuperior2"
+        android:id="@+id/perfilUsuarioMenuSuperior"
         android:name="cat.copernic.letmedoit.General.view.fragments.PerfilUsuarioMenuSuperior"
         android:label="fragment_perfil_usuario_menu_superior"
         tools:layout="@layout/fragment_perfil_usuario_menu_superior" >

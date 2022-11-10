@@ -8,7 +8,6 @@ import cat.copernic.letmedoit.General.view.activities.Home
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Users.view.activities.RecoveryPassword_email
 import cat.copernic.letmedoit.Utils.Utils
-import cat.copernic.letmedoit.databinding.ActivityMenuAdminBinding
 import cat.copernic.letmedoit.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

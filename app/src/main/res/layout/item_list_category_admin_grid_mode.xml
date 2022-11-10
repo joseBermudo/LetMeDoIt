@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="152dp"
     android:layout_height="152dp"
-    android:id="@+id/cardv_categoria"
+    android:id="@+id/cardv_report"
     android:animateLayoutChanges="true"
     app:cardCornerRadius="@dimen/item_cateogry_admin_cardCornesRadius"
     app:cardElevation="@dimen/item_category_admin_cardElevation"

@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardv_categoria"
+    android:id="@+id/cardv_report"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:animateLayoutChanges="true"
@@ -77,24 +77,25 @@
                 android:layout_marginEnd="@dimen/item_category_edit_icon_marginEnd"
                 android:background="@drawable/edit_icon"
                 android:backgroundTint="@color/azul_marino"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/itemCategory_delete_icon"
                 app:layout_constraintTop_toTopOf="parent"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                app:rippleColor="@color/principal_blanco"/>
+                app:rippleColor="@color/principal_blanco" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/itemCategory_delete_icon"
                 android:layout_width="@dimen/categoryAdmin_icons_wh"
                 android:layout_height="@dimen/categoryAdmin_icons_wh"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/car_ui_icon_delete"
+                android:backgroundTint="@color/principal_blanco"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 app:backgroundTint="@color/denegar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:backgroundTint="@color/principal_blanco"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                app:rippleColor="@color/principal_blanco"/>
+                app:rippleColor="@color/principal_blanco" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

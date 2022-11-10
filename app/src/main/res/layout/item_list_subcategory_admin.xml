@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardv_subcategory"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="@dimen/item_cateogry_admin_cardCornesRadius"
+    app:cardElevation="@dimen/item_category_admin_cardElevation"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/item_list_category_admin_padding_relative_layout">
+
+
+            <TextView
+                android:id="@+id/txt_subcategory_name"
+                style="@style/Widget.LetMeDoIt.subtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="@string/informatica"
+                android:textSize="@dimen/dieciseis_dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/itemSubcategory_edit_icon"
+                android:layout_width="@dimen/categoryAdmin_icons_wh"
+                android:layout_height="@dimen/categoryAdmin_icons_wh"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/edit_icon"
+                android:backgroundTint="@color/azul_marino"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/itemSubcategory_delete_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="@color/principal_blanco" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/itemSubcategory_delete_icon"
+                android:layout_width="@dimen/categoryAdmin_icons_wh"
+                android:layout_height="@dimen/categoryAdmin_icons_wh"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/car_ui_icon_delete"
+                android:backgroundTint="@color/principal_blanco"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                app:backgroundTint="@color/denegar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="@color/principal_blanco" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

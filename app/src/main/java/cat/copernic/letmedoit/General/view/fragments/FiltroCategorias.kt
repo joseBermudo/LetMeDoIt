@@ -1,11 +1,13 @@
 package cat.copernic.letmedoit.General.view.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.FragmentFiltroCategoriasBinding
@@ -47,6 +49,9 @@ class FiltroCategorias : Fragment() {
         Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerSubcategory)
 
         binding.backArrow.setOnClickListener { requireActivity().onBackPressed() }
+        binding.btnDone.setOnClickListener{
+            requireActivity().onBackPressed()
+        }
         return binding.root
     }
 

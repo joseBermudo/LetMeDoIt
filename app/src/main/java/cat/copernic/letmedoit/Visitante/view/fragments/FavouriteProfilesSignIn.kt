@@ -1,11 +1,14 @@
 package cat.copernic.letmedoit.Visitante.view.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cat.copernic.letmedoit.General.view.activities.Home
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Visitante.view.activities.Login
 import cat.copernic.letmedoit.databinding.FragmentFavouriteProfilesSignInBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,6 +41,7 @@ class FavouriteProfilesSignIn : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentFavouriteProfilesSignInBinding.inflate(inflater,container,false)
+        binding.btnSignIn.setOnClickListener { startActivity(Intent(requireContext(), Login::class.java)) }
         return binding.root
     }
 
