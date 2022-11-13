@@ -9,6 +9,9 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import cat.copernic.letmedoit.General.model.Image
 import cat.copernic.letmedoit.General.model.Service
@@ -53,7 +56,13 @@ class viewService : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentViewServiceBinding.inflate(inflater,container,false)
+        return binding.root
+    }
 
+
+    val args: viewServiceArgs by navArgs()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         if(FirebaseAuth.getInstance().currentUser == null){
             binding.btnFav.visibility = View.INVISIBLE
             binding.btnReport.visibility = View.INVISIBLE
@@ -61,10 +70,14 @@ class viewService : Fragment() {
         //Volver hacia atras
         binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
 
-        initView(arguments?.getString(SERVICE_ID).toString())
-        binding.btnGoToProfile.setOnClickListener { goToDestination(requireView(),R.id.perfilUsuarioMenuSuperior) }
+        initView(args.serviceID)
+        binding.btnGoToProfile.setOnClickListener { goToUserProfile(requireView(),R.id.perfilUsuarioMenuSuperior) }
         binding.btnChat.setOnClickListener{ goToDestination(requireView(),R.id.chat) }
-        return binding.root
+    }
+
+    private fun goToUserProfile(view: View, fragmentID: Int) {
+        val action  = viewServiceDirections.viewServiceToUserProfile(userID = "1")
+        view.findNavController().navigate(action)
     }
 
     lateinit var service : Service

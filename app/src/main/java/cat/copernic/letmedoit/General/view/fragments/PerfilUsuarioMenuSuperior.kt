@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import cat.copernic.letmedoit.General.model.adapter.UserTopMenuAdapter
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioMenuSuperiorBinding
@@ -75,6 +76,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
                 }
             }).attach()
 
+        val args: PerfilUsuarioMenuSuperiorArgs by navArgs()
         //Evento que se llama al empezar el drawing de la vista. Obtenemos el height del movil, luego el del Menu superior los restamos y lo utilizamos como height del viewpager. luego actualizamos el layout de nuevo
         var viewPagerHeightSize = 0
         binding.viewPager.viewTreeObserver.addOnGlobalLayoutListener( object :

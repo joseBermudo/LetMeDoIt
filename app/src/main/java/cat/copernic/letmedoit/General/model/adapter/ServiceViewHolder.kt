@@ -4,9 +4,13 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.findFragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.Service
+import cat.copernic.letmedoit.General.view.fragments.HomeFragment
+import cat.copernic.letmedoit.General.view.fragments.HomeFragmentDirections
+import cat.copernic.letmedoit.General.view.fragments.PerfilUsuarioMenuSuperiorDirections
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Visitante.view.activities.Login
 import cat.copernic.letmedoit.databinding.ServiceTemplateBinding
@@ -46,9 +50,13 @@ class ServiceViewHolder(val binding: ServiceTemplateBinding, val defaultfav : Bo
     }
 
     private fun goToService(id: String) {
-        val data = Bundle()
-        data.putString(SERVICE_ID,id)
-        Navigation.findNavController(itemView).navigate(R.id.viewService,data)
+
+        val destinationLabel = Navigation.findNavController(itemView).currentDestination?.label
+        var action  = HomeFragmentDirections.homeFragmentToViewService(serviceID = id)
+        if(destinationLabel == "fragment_perfil_usuario_menu_superior")
+            action = PerfilUsuarioMenuSuperiorDirections.userProfileToViewService(serviceID = id)
+
+        Navigation.findNavController(itemView).navigate(action)
     }
 
     private fun anadirFavorito() {
