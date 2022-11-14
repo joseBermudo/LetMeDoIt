@@ -1,7 +1,7 @@
 package cat.copernic.letmedoit.General.model.adapter
 
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.Users
+import cat.copernic.letmedoit.General.model.data.Users
 import cat.copernic.letmedoit.databinding.ItemAdminViewUsersBinding
 
 class UsersViewHolder(val binding: ItemAdminViewUsersBinding): RecyclerView.ViewHolder(binding.root) {
@@ -10,7 +10,7 @@ class UsersViewHolder(val binding: ItemAdminViewUsersBinding): RecyclerView.View
     val ban_users = binding.imgUserBanned
 
     fun render(usersModel: Users){
-        user_name.text = usersModel.name.replace(" ", "\n")
+        user_name.text = usersModel.name?.replace(" ", "\n") ?: ""
 
     }
 }

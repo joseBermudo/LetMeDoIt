@@ -4,7 +4,7 @@ import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.Image
+import cat.copernic.letmedoit.General.model.data.Image
 import cat.copernic.letmedoit.R
 import com.squareup.picasso.Picasso
 

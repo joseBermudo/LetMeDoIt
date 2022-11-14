@@ -3,10 +3,8 @@ package cat.copernic.letmedoit.General.model.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.Opinions
-import cat.copernic.letmedoit.General.model.Service
+import cat.copernic.letmedoit.General.model.data.Opinions
 import cat.copernic.letmedoit.databinding.OpinionsUserTemplateBinding
-import cat.copernic.letmedoit.databinding.ServiceTemplateBinding
 
 class OpinionsAdapter(private var opinionsList:ArrayList<Opinions>) : RecyclerView.Adapter<OpinionsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OpinionsViewHolder {

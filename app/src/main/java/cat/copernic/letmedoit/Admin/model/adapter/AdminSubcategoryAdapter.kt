@@ -1,9 +1,9 @@
-package cat.copernic.letmedoit.General.model.adapter
+package cat.copernic.letmedoit.Admin.model.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.Subcategory
+import cat.copernic.letmedoit.General.model.data.Subcategory
 import cat.copernic.letmedoit.databinding.ItemListSubcategoryAdminBinding
 
 class AdminSubcategoryAdapter(

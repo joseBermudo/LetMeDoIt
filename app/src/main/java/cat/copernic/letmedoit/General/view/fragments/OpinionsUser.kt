@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ScrollView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.OpinionsProvider
+import cat.copernic.letmedoit.General.model.provider.OpinionsProvider
 import cat.copernic.letmedoit.General.model.adapter.OpinionsAdapter
-import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentOpinionsUserBinding
 
 

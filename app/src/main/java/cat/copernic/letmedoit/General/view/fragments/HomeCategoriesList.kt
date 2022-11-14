@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import cat.copernic.letmedoit.General.model.CategoryProvider
+import cat.copernic.letmedoit.General.model.provider.CategoryProvider
 import cat.copernic.letmedoit.General.model.adapter.CategoryAdapter
 import cat.copernic.letmedoit.databinding.FragmentHomeCategoriesListBinding
 

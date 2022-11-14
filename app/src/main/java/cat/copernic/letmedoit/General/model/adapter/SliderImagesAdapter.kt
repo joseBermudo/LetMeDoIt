@@ -3,7 +3,7 @@ package cat.copernic.letmedoit.General.model.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.Image
+import cat.copernic.letmedoit.General.model.data.Image
 import cat.copernic.letmedoit.R
 
 class SliderImagesAdapter(private val images : ArrayList<Image>) : RecyclerView.Adapter<SliderImagesViewHolder>() {

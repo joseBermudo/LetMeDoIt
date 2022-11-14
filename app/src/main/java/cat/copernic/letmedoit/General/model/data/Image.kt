@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.General.model
+package cat.copernic.letmedoit.General.model.data
 
 data class Image (
         val id : String,

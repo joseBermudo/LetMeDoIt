@@ -3,7 +3,7 @@ package cat.copernic.letmedoit.General.model.adapter
 import androidx.core.view.isVisible
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.Opinions
+import cat.copernic.letmedoit.General.model.data.Opinions
 import cat.copernic.letmedoit.General.view.fragments.PerfilUsuarioMenuSuperiorDirections
 import cat.copernic.letmedoit.databinding.OpinionsUserTemplateBinding
 import com.google.firebase.auth.FirebaseAuth

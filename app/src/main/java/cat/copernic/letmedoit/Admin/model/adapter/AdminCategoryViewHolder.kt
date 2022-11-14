@@ -1,8 +1,8 @@
-package cat.copernic.letmedoit.General.model.adapter
+package cat.copernic.letmedoit.Admin.model.adapter
 
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.Category
+import cat.copernic.letmedoit.General.model.data.Category
 import cat.copernic.letmedoit.databinding.ItemListCategoryAdminBinding
 
 class AdminCategoryViewHolder(val binding: ItemListCategoryAdminBinding) :

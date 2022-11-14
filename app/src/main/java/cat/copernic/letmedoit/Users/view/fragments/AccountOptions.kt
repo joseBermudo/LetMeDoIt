@@ -7,13 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cat.copernic.letmedoit.General.view.activities.Home
-import cat.copernic.letmedoit.Users.view.LenguagesProvider
+import cat.copernic.letmedoit.Users.model.provider.LenguagesProvider
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.FragmentOpcionesDeCuentaBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import android.widget.Switch;
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

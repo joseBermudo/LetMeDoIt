@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.ServiceProvider
+import cat.copernic.letmedoit.General.model.provider.ServiceProvider
 import cat.copernic.letmedoit.General.model.adapter.ServiceAdapter
 import cat.copernic.letmedoit.General.viewmodel.SearchViewViewModel
 import cat.copernic.letmedoit.databinding.FragmentHomeServicesListBinding

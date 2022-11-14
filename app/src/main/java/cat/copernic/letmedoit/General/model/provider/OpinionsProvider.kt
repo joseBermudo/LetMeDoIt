@@ -1,8 +1,6 @@
-package cat.copernic.letmedoit.General.model
+package cat.copernic.letmedoit.General.model.provider
 
-import android.content.res.Resources
-import androidx.core.content.ContextCompat
-import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.General.model.data.Opinions
 
 class OpinionsProvider {
     companion object{

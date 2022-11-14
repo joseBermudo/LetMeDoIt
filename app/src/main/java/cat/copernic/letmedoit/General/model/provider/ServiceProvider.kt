@@ -1,5 +1,8 @@
-package cat.copernic.letmedoit.General.model
+package cat.copernic.letmedoit.General.model.provider
 
+import cat.copernic.letmedoit.General.model.data.CategoryMap
+import cat.copernic.letmedoit.General.model.data.Image
+import cat.copernic.letmedoit.General.model.data.Service
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -34,7 +37,7 @@ class ServiceProvider {
                         ),
                     ),
                     200,
-                    Calendar.getInstance().time
+                    "11/07/2021 20:00:00"
                 ),
                 Service(
                     "2",
@@ -51,7 +54,7 @@ class ServiceProvider {
                         ),
                     ),
                     200,
-                    Calendar.getInstance().time,
+                    "11/07/2021 21:00:00"
                 ),
                 Service(
                     "3",
@@ -68,7 +71,7 @@ class ServiceProvider {
                         ),
                     ),
                     200,
-                    Calendar.getInstance().time
+                    "11/07/2021 22:00:00"
                 ),
                 Service(
                     "4",
@@ -85,7 +88,7 @@ class ServiceProvider {
                         ),
                     ),
                     200,
-                    Calendar.getInstance().time
+                    "12/07/2021 20:00:00"
                 ),
                 Service(
                     "5",
@@ -102,7 +105,7 @@ class ServiceProvider {
                         ),
                     ),
                     200,
-                    Calendar.getInstance().time
+                    "13/07/2021 20:00:00"
                 ),
                 Service(
                     "6",
@@ -119,7 +122,7 @@ class ServiceProvider {
                         ),
                     ),
                     200,
-                    Calendar.getInstance().time
+                    "11/07/2021 22:00:00"
                 ),
                 Service(
                     "7",
@@ -136,7 +139,7 @@ class ServiceProvider {
                         ),
                     ),
                     200,
-                    Calendar.getInstance().time
+                    "11/07/2021 21:00:00"
                 ),
                 Service(
                     "8",
@@ -153,7 +156,7 @@ class ServiceProvider {
                         ),
                     ),
                     200,
-                    Calendar.getInstance().time
+                    "11/07/2021 10:00:00"
                 ),
                 Service(
                     "9",
@@ -170,7 +173,7 @@ class ServiceProvider {
                         ),
                     ),
                     200,
-                    Calendar.getInstance().time
+                    "11/07/2021 21:00:00"
                 )
             )
         }

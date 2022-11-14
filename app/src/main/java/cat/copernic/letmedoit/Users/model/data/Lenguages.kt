@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.Users.view
+package cat.copernic.letmedoit.Users.model.data
 
 class Lenguages(
     val lenguage: String,

@@ -2,13 +2,10 @@ package cat.copernic.letmedoit.General.model.adapter
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.findFragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.Service
-import cat.copernic.letmedoit.General.view.fragments.HomeFragment
+import cat.copernic.letmedoit.General.model.data.Service
 import cat.copernic.letmedoit.General.view.fragments.HomeFragmentDirections
 import cat.copernic.letmedoit.General.view.fragments.PerfilUsuarioMenuSuperiorDirections
 import cat.copernic.letmedoit.R

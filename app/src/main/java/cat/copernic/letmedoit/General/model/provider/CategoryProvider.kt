@@ -1,7 +1,7 @@
-package cat.copernic.letmedoit.General.model
+package cat.copernic.letmedoit.General.model.provider
 
-import cat.copernic.letmedoit.General.model.Category
-import cat.copernic.letmedoit.General.model.Subcategory
+import cat.copernic.letmedoit.General.model.data.Category
+import cat.copernic.letmedoit.General.model.data.Subcategory
 
 class CategoryProvider {
     companion object {

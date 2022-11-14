@@ -9,14 +9,12 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
-import cat.copernic.letmedoit.General.model.Image
-import cat.copernic.letmedoit.General.model.Service
-import cat.copernic.letmedoit.General.model.ServiceProvider
-import cat.copernic.letmedoit.General.model.adapter.SERVICE_ID
+import cat.copernic.letmedoit.General.model.data.Image
+import cat.copernic.letmedoit.General.model.data.Service
+import cat.copernic.letmedoit.General.model.provider.ServiceProvider
 import cat.copernic.letmedoit.General.model.adapter.SliderImagesAdapter
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Utils.Companion.goToDestination
