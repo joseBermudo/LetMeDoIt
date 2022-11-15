@@ -7,6 +7,7 @@
     tools:context=".Users.view.fragments.NewService">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollable_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="UselessParent">
@@ -171,6 +172,7 @@
                 app:layout_constraintTop_toTopOf="@id/btn_remove_image" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:nestedScrollingEnabled="false"
                 android:id="@+id/list_images"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

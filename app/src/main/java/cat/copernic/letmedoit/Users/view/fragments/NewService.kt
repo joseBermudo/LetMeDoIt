@@ -3,6 +3,7 @@ package cat.copernic.letmedoit.Users.view.fragments
 import android.Manifest
 import android.Manifest.permission.CAMERA
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -10,7 +11,9 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Selection.selectAll
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
@@ -50,6 +53,7 @@ class NewService : Fragment() {
         }
         getContent = registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { uriList -> managePhotosUri(uriList) }
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){ permissions -> checkPermissions(permissions) }
+
     }
     var colum = arrayOf(
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -71,6 +75,13 @@ class NewService : Fragment() {
         val categoryNames = CategoryProvider.obtenerCategorias().map { it.nombre } as ArrayList<String>
         Utils.AsignarPopUpSpinner(requireContext(),categoryNames,binding.spinnerCategory)
 
+        binding.editDescription.setOnTouchListener(object : OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                binding.scrollableLayout.requestDisallowInterceptTouchEvent(true)
+                return false
+            }
+
+        })
         binding.spinnerCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -86,8 +97,13 @@ class NewService : Fragment() {
         return binding.root
     }
 
+    private var isAllSelected = false
+
     private fun selectAll() {
-        adapter.selectAll()
+        if (!isAllSelected) adapter.selectAll()
+        else adapter.unselectAll()
+
+        isAllSelected = !isAllSelected
     }
 
     private fun removeImage() {

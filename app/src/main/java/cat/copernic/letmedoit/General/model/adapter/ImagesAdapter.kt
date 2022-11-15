@@ -44,4 +44,8 @@ class ImagesAdapter (private var imagesList : ArrayList<Image>) : RecyclerView.A
         imagesList.forEach { it.checked = true }
         notifyDataSetChanged()
     }
+    fun unselectAll(){
+        imagesList.forEach { it.checked = false }
+        notifyDataSetChanged()
+    }
 }
