@@ -12,74 +12,78 @@
         android:paddingVertical="@dimen/padding_vertical_cl">
 
 
-        <ImageView
-            android:id="@+id/imageUser"
-            android:contentDescription="@string/txt_profile_image"
-            android:layout_width="@dimen/profile_options_dimens"
-            android:layout_height="@dimen/profile_options_dimens"
-            android:src="@drawable/ic_baseline_account_circle_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/arrowProfile"
-            android:contentDescription="@string/txt_go_to_profile"
-            android:layout_width="@dimen/arrow_profile_dimens"
-            android:layout_height="@dimen/arrow_profile_dimens"
-            android:layout_marginEnd="@dimen/margins_start_end"
-            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
-            app:layout_constraintBottom_toBottomOf="@+id/imageUser"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/nameSurname"
-            style="@style/Widget.LetMeDoIt.title2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margins_start_end"
-            android:text="@string/name_surname"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageUser" />
-
-        <RatingBar
-            android:id="@+id/my_rating_bar"
-            style="@style/Widget.AppCompat.RatingBar.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:rating="3"
-            android:scaleX="1.5"
-            android:scaleY="1.5"
-            android:theme="@style/RatingBar.Style"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameSurname" />
-
-        <View
-            android:id="@+id/viewTopUser"
-            style="@style/Divider"
-            android:layout_marginTop="@dimen/divider_16dp_margin_top"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/my_rating_bar" />
-
         <LinearLayout
             android:id="@+id/layout_all_options"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/viewTopUser">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Edit Profile !-->
 
             <LinearLayout
+                android:id="@+id/btn_user_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/margins_start_end"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageUser"
+                        android:layout_width="@dimen/profile_options_dimens"
+                        android:layout_height="@dimen/profile_options_dimens"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/txt_profile_image"
+                        android:src="@drawable/ic_baseline_account_circle_24" />
+
+                    <ImageView
+                        android:id="@+id/arrowProfile"
+                        android:layout_width="@dimen/arrow_profile_dimens"
+                        android:layout_height="@dimen/arrow_profile_dimens"
+                        android:layout_gravity="center|right"
+                        android:layout_marginEnd="@dimen/margins_start_end"
+                        android:contentDescription="@string/txt_go_to_profile"
+                        android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/nameSurname"
+                    style="@style/Widget.LetMeDoIt.title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name_surname" />
+
+                <RatingBar
+                    android:id="@+id/my_rating_bar"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:rating="3"
+                    android:scaleX="1.5"
+                    android:scaleY="1.5"
+                    android:theme="@style/RatingBar.Style" />
+
+                <View
+                    android:id="@+id/viewTopUser"
+                    style="@style/Divider"
+                    android:layout_marginTop="@dimen/divider_16dp_margin_top" />
+
+            </LinearLayout>
+
+            <!-- Edit Profile !-->
+            <LinearLayout
                 android:id="@+id/btn_edit_profile"
+                style="@style/LinearLayoutPaddingVerticalStartEnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                style="@style/LinearLayoutPaddingVerticalStartEnd">
+                android:orientation="horizontal">
 
 
                 <TextView
@@ -99,10 +103,10 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:contentDescription="@string/txt_edit_profile"
                         android:id="@+id/arrowEditProfile"
                         android:layout_width="@dimen/arrow_profile_dimens"
                         android:layout_height="@dimen/arrow_profile_dimens"
+                        android:contentDescription="@string/txt_edit_profile"
 
                         android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
                 </LinearLayout>
@@ -120,17 +124,17 @@
             <!-- Apartado lenguage !-->
             <LinearLayout
                 android:id="@+id/btn_language"
+                style="@style/LinearLayoutPaddingVerticalStartEnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                style="@style/LinearLayoutPaddingVerticalStartEnd">
+                android:orientation="horizontal">
 
                 <Spinner
                     android:id="@+id/spinner_lenguages"
                     android:layout_width="match_parent"
-                    android:textColor="@color/negro"
-                    android:layout_height="32dp"/>
+                    android:layout_height="32dp"
+                    android:textColor="@color/negro" />
             </LinearLayout>
 
             <!-- Divider !-->
@@ -146,11 +150,11 @@
             <!-- Divider !-->
             <LinearLayout
                 android:id="@+id/btn_dark_theme"
+                style="@style/LinearLayoutPaddingVerticalStartEnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                style="@style/LinearLayoutPaddingVerticalStartEnd">
+                android:orientation="horizontal">
 
 
                 <TextView
@@ -163,17 +167,17 @@
                     android:layout_marginBottom="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:text="@string/dark_theme" />
 
-               <LinearLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     android:orientation="horizontal">
 
-                   <androidx.appcompat.widget.SwitchCompat
-                       android:id="@+id/swOnOff"
-                       android:theme="@style/Switch.Style"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"/>
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/swOnOff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/Switch.Style" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -187,11 +191,11 @@
             <!-- Apartado Sign Off !-->
             <LinearLayout
                 android:id="@+id/btn_sign_out"
+                style="@style/LinearLayoutPaddingVerticalStartEnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                style="@style/LinearLayoutPaddingVerticalStartEnd">
+                android:orientation="horizontal">
 
 
                 <TextView
@@ -211,10 +215,10 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:contentDescription="@string/txt_sign_off"
                         android:id="@+id/arrowSignOff"
                         android:layout_width="@dimen/arrow_profile_dimens"
                         android:layout_height="@dimen/arrow_profile_dimens"
+                        android:contentDescription="@string/txt_sign_off"
                         android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
                 </LinearLayout>
             </LinearLayout>

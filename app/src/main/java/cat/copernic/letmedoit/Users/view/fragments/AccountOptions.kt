@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import android.widget.Switch;
+import cat.copernic.letmedoit.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,6 +47,8 @@ class AccountOptions : Fragment() {
 
         auth = Firebase.auth
         binding.btnSignOut.setOnClickListener{singOut()}
+        binding.btnUserProfile.setOnClickListener{ Utils.goToDestination(requireView(), R.id.perfilUsuarioMenuSuperior)}
+        binding.btnEditProfile.setOnClickListener{ Utils.goToDestination(requireView(), R.id.editarInformacionPerfil)}
 
         return binding.root
     }

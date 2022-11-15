@@ -45,7 +45,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/filtroCategoria"
+        android:id="@+id/filtroCategorias"
         android:name="cat.copernic.letmedoit.General.view.fragments.FiltroCategorias"
         android:label="fragment_filtro_categorias"
         tools:layout="@layout/fragment_filtro_categorias" >
@@ -356,6 +356,11 @@
             app:destination="@id/editarInformacionPerfil"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/accountOptionsToPerfilUser"
+            app:destination="@id/perfilUsuarioMenuSuperior"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/editarInformacionPerfil"
@@ -379,5 +384,6 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
+
 
 </navigation>

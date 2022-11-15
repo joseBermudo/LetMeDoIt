@@ -46,6 +46,8 @@ class SearchView : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSearchViewBinding.inflate(layoutInflater,container,false)
+
+        binding.iconFilter.setOnClickListener{ Utils.goToDestination(requireView(), R.id.filtroCategorias) }
         return binding.root
     }
 
