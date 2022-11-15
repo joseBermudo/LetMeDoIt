@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import cat.copernic.letmedoit.General.model.Subcategory
-import cat.copernic.letmedoit.General.model.adapter.AdminSubcategoryAdapter
-import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Admin.view.model.adapter.AdminSubcategoryAdapter
 import cat.copernic.letmedoit.databinding.FragmentAdminSubcategoryListBinding
 
 

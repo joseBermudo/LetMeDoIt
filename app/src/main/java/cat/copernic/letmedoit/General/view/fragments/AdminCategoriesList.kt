@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.Category
 import cat.copernic.letmedoit.General.model.CategoryProvider
 import cat.copernic.letmedoit.General.model.Subcategory
-import cat.copernic.letmedoit.General.model.adapter.AdminCategoryAdapter
+import cat.copernic.letmedoit.Admin.view.model.adapter.AdminCategoryAdapter
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentAdminCategoriesListBinding
 import com.google.android.material.textfield.TextInputEditText
