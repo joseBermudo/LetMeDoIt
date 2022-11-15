@@ -12,6 +12,8 @@ import android.text.Selection.selectAll
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -20,6 +22,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.adapter.ImagesAdapter
 import cat.copernic.letmedoit.General.model.data.Image
+import cat.copernic.letmedoit.General.model.provider.CategoryProvider
+import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.FragmentNewServiceBinding
 
 
@@ -64,6 +68,20 @@ class NewService : Fragment() {
         binding.btnAddImage.setOnClickListener { addImage() }
         binding.btnRemoveImage.setOnClickListener { removeImage() }
         binding.selectAll.setOnClickListener { selectAll() }
+        val categoryNames = CategoryProvider.obtenerCategorias().map { it.nombre } as ArrayList<String>
+        Utils.AsignarPopUpSpinner(requireContext(),categoryNames,binding.spinnerCategory)
+
+        binding.spinnerCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val category = CategoryProvider.obtenerCategorias()[position]
+                val subCategoryNames = category.subcategories.map { it.nombre } as ArrayList<String>
+                Utils.AsignarPopUpSpinner(requireContext(), subCategoryNames,binding.spinnerSubcategory)
+            }
+
+        }
         initRecyclerView()
         return binding.root
     }

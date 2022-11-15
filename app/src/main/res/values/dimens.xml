@@ -177,6 +177,7 @@
     <dimen name="profile_image_size">128dp</dimen>
     <dimen name="opinions_description">10sp</dimen>
     <dimen name="opinions_height">125dp</dimen>
+    <dimen name="new_service_margin_top">10dp</dimen>
 
 
 </resources>
