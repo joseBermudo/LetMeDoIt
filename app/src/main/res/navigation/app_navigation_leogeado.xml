@@ -102,9 +102,9 @@
     </fragment>
     <fragment
         android:id="@+id/verConversaciones"
-        android:name="cat.copernic.letmedoit.Users.view.fragments.verConversaciones"
+        android:name="cat.copernic.letmedoit.General.view.fragments.chats_deals_manager_vis"
         android:label="fragment_ver_conversaciones"
-        tools:layout="@layout/fragment_ver_conversaciones" >
+        tools:layout="@layout/fragment_chats_deals_manager_vis" >
         <action
             android:id="@+id/conversacionesToListadoDeals"
             app:destination="@id/verListadoDeals"
