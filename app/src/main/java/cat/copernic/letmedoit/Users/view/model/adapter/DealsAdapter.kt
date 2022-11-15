@@ -10,8 +10,7 @@ class DealsAdapter(private val obtenerUsers: List<Users>): RecyclerView.Adapter<
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealsViewHolder {
 
-        val binding =
-            ItemVerDealsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemVerDealsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return DealsViewHolder(binding)
     }
 

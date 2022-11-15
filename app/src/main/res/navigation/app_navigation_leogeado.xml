@@ -174,9 +174,9 @@
     </fragment>
     <fragment
         android:id="@+id/viewFavUsers"
-        android:name="cat.copernic.letmedoit.Users.view.fragments.viewFavUsers"
+        android:name="cat.copernic.letmedoit.General.view.fragments.profiles_services_manager_vis"
         android:label="fragment_view_fav_users"
-        tools:layout="@layout/fragment_view_fav_users" >
+        tools:layout="@layout/fragment_profiles_services_manager_vis" >
         <action
             android:id="@+id/favUsersToHome"
             app:destination="@id/homeFragment"

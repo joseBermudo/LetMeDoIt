@@ -1,5 +1,6 @@
 package cat.copernic.letmedoit.General.view.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,16 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import cat.copernic.letmedoit.Admin.view.activities.MenuAdmin
 import cat.copernic.letmedoit.General.model.adapter.BarServicesOrProfilesAdapter
 import cat.copernic.letmedoit.General.viewmodel.BarProfileOrServicesViewModel
 import cat.copernic.letmedoit.General.viewmodel.ProfilesServicesManagerViewModel
+import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Users.view.fragments.VerListadoFavServices
 import cat.copernic.letmedoit.Users.view.fragments.viewFavUsers
 import cat.copernic.letmedoit.Visitante.view.fragments.FavouriteProfilesSignIn
 import cat.copernic.letmedoit.Visitante.view.fragments.FavouriteServicesSignIn
 import cat.copernic.letmedoit.databinding.FragmentProfilesServicesManagerVisBinding
+import com.google.firebase.auth.FirebaseAuth
 
 
 class profiles_services_manager_vis : Fragment() {
@@ -25,6 +30,7 @@ class profiles_services_manager_vis : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    val currentUser = FirebaseAuth.getInstance().currentUser
     lateinit var model: ProfilesServicesManagerViewModel
     lateinit var adapter: FragmentStateAdapter
     lateinit var binding: FragmentProfilesServicesManagerVisBinding
@@ -34,12 +40,21 @@ class profiles_services_manager_vis : Fragment() {
     ): View? {
         binding = FragmentProfilesServicesManagerVisBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
-        val fragments: ArrayList<Fragment> = arrayListOf(
-            FavouriteProfilesSignIn(),
-            FavouriteServicesSignIn(),
-            viewFavUsers(),
-            VerListadoFavServices(),
-        )
+        var fragments: ArrayList<Fragment> = arrayListOf()
+
+        if(currentUser==null){
+            fragments = arrayListOf(
+                FavouriteProfilesSignIn(),
+                FavouriteServicesSignIn(),
+            )
+        }
+        else{
+            fragments = arrayListOf(
+                viewFavUsers(),
+                VerListadoFavServices(),
+            )
+        }
+
         adapter = BarServicesOrProfilesAdapter(this.childFragmentManager, fragments, lifecycle)
 
         model = ViewModelProvider(requireActivity())[ProfilesServicesManagerViewModel::class.java]

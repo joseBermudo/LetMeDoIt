@@ -8,5 +8,5 @@
         android:id="@+id/recyclerViewListadoDeals"
         android:layout_width="@dimen/width_recycler_view_390"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"/>
+        android:layout_marginBottom="@dimen/recyclerView_marginBot_menuInferior"/>
 </FrameLayout>
