@@ -3,7 +3,7 @@ package cat.copernic.letmedoit.General.model.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.Users
+import cat.copernic.letmedoit.General.model.data.Users
 import cat.copernic.letmedoit.databinding.ItemAdminViewUsersBinding
 
 class UsersAdapter(private val obtenerUsers:List<Users>) : RecyclerView.Adapter<UsersViewHolder>(){

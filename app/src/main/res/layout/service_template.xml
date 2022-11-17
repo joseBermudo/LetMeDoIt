@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/service"
-        android:layout_width="200dp"
+        android:layout_width="190dp"
 
         android:layout_height="@dimen/service_height"
         android:layout_margin="@dimen/divider_16dp_margin_top"
@@ -27,6 +27,7 @@
                 android:id="@+id/service_img"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/service_image_height"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

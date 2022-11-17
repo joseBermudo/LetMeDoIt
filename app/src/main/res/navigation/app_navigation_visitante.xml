@@ -61,11 +61,15 @@
         android:name="cat.copernic.letmedoit.General.view.fragments.viewService"
         android:label="fragment_view_service"
         tools:layout="@layout/fragment_view_service" >
+        <argument
+            android:name="serviceID"
+            app:argType="string" />
         <action
             android:id="@+id/viewServiceToHomeFragment"
             app:destination="@id/homeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            app:exitAnim="@anim/nav_default_exit_anim" >
+        </action>
         <action
             android:id="@+id/viewServiceToUserProfile"
             app:destination="@id/perfilUsuarioMenuSuperior"
@@ -77,6 +81,9 @@
         android:name="cat.copernic.letmedoit.General.view.fragments.PerfilUsuarioMenuSuperior"
         android:label="fragment_perfil_usuario_menu_superior"
         tools:layout="@layout/fragment_perfil_usuario_menu_superior" >
+        <argument
+            android:name="userID"
+            app:argType="string" />
         <action
             android:id="@+id/userProfileToViewService"
             app:destination="@id/viewService"
@@ -85,6 +92,12 @@
         <action
             android:id="@+id/action_perfilUsuarioMenuSuperior_to_filtroCategorias"
             app:destination="@id/filtroCategorias" />
+        <action
+            android:id="@+id/action_perfilUsuarioMenuSuperior_self"
+            app:destination="@id/perfilUsuarioMenuSuperior" />
+        <action
+            android:id="@+id/action_perfilUsuarioMenuSuperior_to_userReport"
+            app:destination="@id/userReport" />
     </fragment>
     <fragment
         android:id="@+id/registroOpcionesCuenta"
@@ -127,4 +140,9 @@
         android:name="cat.copernic.letmedoit.General.view.fragments.profiles_services_manager_vis"
         android:label="fragment_profiles_services_manager_vis"
         tools:layout="@layout/fragment_profiles_services_manager_vis" />
+    <fragment
+        android:id="@+id/userReport"
+        android:name="cat.copernic.letmedoit.Users.view.fragments.UserReport"
+        android:label="fragment_user_report"
+        tools:layout="@layout/fragment_user_report" />
 </navigation>

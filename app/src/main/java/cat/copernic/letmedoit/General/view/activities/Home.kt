@@ -31,7 +31,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import androidx.appcompat.widget.SwitchCompat;
 import cat.copernic.letmedoit.Admin.view.activities.MenuAdmin
+import cat.copernic.letmedoit.Utils.di.FirebaseModule
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class Home : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +42,8 @@ class Home : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val currentUser = FirebaseAuth.getInstance().currentUser
+        val currentUser = FirebaseModule.firebaseAuthProvider().currentUser
+        
         //No hay Usuario logeado
         if(currentUser==null){
             binding.navController.getFragment<Fragment>().findNavController().setGraph(R.navigation.app_navigation_visitante)

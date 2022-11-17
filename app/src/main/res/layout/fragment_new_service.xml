@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Users.view.fragments.NewService">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollable_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="UselessParent">
@@ -38,6 +39,7 @@
                 android:id="@+id/layout_edit_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/new_service_margin_top"
                 app:layout_constraintStart_toStartOf="@+id/txt_title_title"
                 app:layout_constraintTop_toBottomOf="@+id/txt_title_title">
 
@@ -62,16 +64,16 @@
             <FrameLayout
                 android:id="@+id/container_spinner_category"
                 style="@style/CustomSpinnerLayout"
-                android:layout_width="@dimen/dimen_width_newService_spinnerLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_margin_newService_spinnerLayout"
+                android:layout_marginTop="@dimen/new_service_margin_top"
                 app:layout_constraintStart_toStartOf="@+id/txt_title_title2"
                 app:layout_constraintTop_toBottomOf="@+id/txt_title_title2"
                 tools:ignore="MissingConstraints">
 
                 <Spinner
                     android:id="@+id/spinner_category"
-                    android:layout_width="@dimen/dimen_width_newService_spinnerLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </FrameLayout>
 
@@ -88,16 +90,16 @@
             <FrameLayout
                 android:id="@+id/container_spinner_subcategory"
                 style="@style/CustomSpinnerLayout"
-                android:layout_width="@dimen/dimen_width_newService_spinnerLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_margin_newService_spinnerLayout"
+                android:layout_marginTop="@dimen/new_service_margin_top"
                 app:layout_constraintStart_toStartOf="@+id/txt_title_category"
                 app:layout_constraintTop_toBottomOf="@+id/txt_title_category"
                 tools:ignore="MissingConstraints">
 
                 <Spinner
                     android:id="@+id/spinner_subcategory"
-                    android:layout_width="@dimen/dimen_width_newService_spinnerLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </FrameLayout>
 
@@ -139,27 +141,43 @@
 
             <TextView
                 android:id="@+id/btn_add_image"
+                style="@style/IconoClickable"
                 android:layout_width="@dimen/dimen_newService_width"
                 android:layout_height="@dimen/dimen_newService_width"
                 android:layout_marginTop="@dimen/marginTop_extra"
+                android:layout_marginEnd="48dp"
                 android:background="@drawable/upload_icon_colored"
                 app:layout_constraintEnd_toStartOf="@+id/btn_remove_image"
                 app:layout_constraintTop_toBottomOf="@+id/layout_edit_description" />
 
             <TextView
                 android:id="@+id/btn_remove_image"
+                style="@style/IconoClickable"
                 android:layout_width="@dimen/dimen_newService_width"
                 android:layout_height="@dimen/dimen_newService_width"
                 android:layout_marginTop="@dimen/marginTop_extra"
+                android:layout_marginEnd="48dp"
                 android:background="@drawable/remove_icon"
                 app:layout_constraintEnd_toEndOf="@+id/layout_edit_description"
                 app:layout_constraintTop_toBottomOf="@+id/layout_edit_description" />
 
+            <CheckBox
+                android:id="@+id/select_all"
+                style="@style/Widget.LetMeDoIt.CheckBox"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="@dimen/new_service_margin_top"
+                app:layout_constraintBottom_toBottomOf="@id/btn_remove_image"
+                app:layout_constraintStart_toEndOf="@id/btn_remove_image"
+                app:layout_constraintTop_toTopOf="@id/btn_remove_image" />
+
             <androidx.recyclerview.widget.RecyclerView
+                android:nestedScrollingEnabled="false"
                 android:id="@+id/list_images"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/txt_title_images"
                 app:layout_constraintTop_toBottomOf="@+id/txt_title_images" />
 
@@ -177,6 +195,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/list_images" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>

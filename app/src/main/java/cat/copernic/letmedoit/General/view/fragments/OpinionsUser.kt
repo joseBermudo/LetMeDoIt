@@ -1,11 +1,16 @@
 package cat.copernic.letmedoit.General.view.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cat.copernic.letmedoit.R
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import cat.copernic.letmedoit.General.model.provider.OpinionsProvider
+import cat.copernic.letmedoit.General.model.adapter.OpinionsAdapter
+import cat.copernic.letmedoit.databinding.FragmentOpinionsUserBinding
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,14 +35,32 @@ class OpinionsUser : Fragment() {
         }
     }
 
+    lateinit var opinionsRecyclerView : RecyclerView
+    lateinit var adapter : OpinionsAdapter
+    lateinit var binding : FragmentOpinionsUserBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_opinions_user, container, false)
+        binding = FragmentOpinionsUserBinding.inflate(layoutInflater,container,false)
+        inicializarRecyclerView()
+        return binding.root
     }
 
+    private fun inicializarRecyclerView() {
+
+        opinionsRecyclerView = binding.RecyclerOpinions
+        //LinearLayoutManager HORIZONTAL
+        //serviceRecyclerView.layoutManager = LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL,false)
+        opinionsRecyclerView.layoutManager = LinearLayoutManager(binding.root.context, LinearLayoutManager.VERTICAL,false)
+        //Asignación del adaptador al recyclerview.
+
+        opinionsRecyclerView.setHasFixedSize(true)
+        adapter = OpinionsAdapter(OpinionsProvider.getOpinions())
+        opinionsRecyclerView.adapter = adapter
+
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of
