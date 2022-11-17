@@ -104,9 +104,9 @@
     </fragment>
     <fragment
         android:id="@+id/verConversaciones"
-        android:name="cat.copernic.letmedoit.Users.view.fragments.verConversaciones"
+        android:name="cat.copernic.letmedoit.General.view.fragments.chats_deals_manager_vis"
         android:label="fragment_ver_conversaciones"
-        tools:layout="@layout/fragment_ver_conversaciones" >
+        tools:layout="@layout/fragment_chats_deals_manager_vis" >
         <action
             android:id="@+id/conversacionesToListadoDeals"
             app:destination="@id/verListadoDeals"
@@ -176,9 +176,9 @@
     </fragment>
     <fragment
         android:id="@+id/viewFavUsers"
-        android:name="cat.copernic.letmedoit.Users.view.fragments.viewFavUsers"
+        android:name="cat.copernic.letmedoit.General.view.fragments.profiles_services_manager_vis"
         android:label="fragment_view_fav_users"
-        tools:layout="@layout/fragment_view_fav_users" >
+        tools:layout="@layout/fragment_profiles_services_manager_vis" >
         <action
             android:id="@+id/favUsersToHome"
             app:destination="@id/homeFragment"
@@ -358,6 +358,11 @@
             app:destination="@id/editarInformacionPerfil"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/accountOptionsToPerfilUser"
+            app:destination="@id/perfilUsuarioMenuSuperior"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/editarInformacionPerfil"
@@ -394,5 +399,6 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:destination="@id/userReport" />
     </fragment>
+
 
 </navigation>
