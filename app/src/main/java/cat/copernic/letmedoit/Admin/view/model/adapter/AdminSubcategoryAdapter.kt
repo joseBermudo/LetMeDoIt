@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.General.model.adapter
+package cat.copernic.letmedoit.Admin.view.model.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
