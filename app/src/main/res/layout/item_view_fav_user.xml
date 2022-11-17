@@ -24,6 +24,8 @@
             android:background="@drawable/profile_icon"
             android:backgroundTint="@color/secundario_gris"
             />
+
+
         <TextView
             android:id="@+id/txt_user_name"
             style="@style/Widget.LetMeDoIt.title2"
@@ -34,13 +36,15 @@
             android:textSize="@dimen/dieciseis_dp" />
 
         <TextView
-            android:id="@+id/txt_description"
-            style="@style/Widget.LetMeDoIt.subtext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/description"
-            android:textSize="@dimen/dieciseis_dp" />
+            android:id="@+id/userFav"
+            style="@style/IconoClickable"
+            android:layout_width="@dimen/app_icon_size_small"
+            android:layout_height="@dimen/app_icon_size_small"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="@dimen/padding_vertical_start_end_8"
+            android:background="@drawable/favorites_icon_colored"
+            android:layout_gravity="end"
+            />
 
     </LinearLayout>
 

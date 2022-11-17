@@ -25,7 +25,10 @@
                 android:layout_height="0dp"
                 android:layout_gravity="bottom"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight="wrap_content_constrained"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:layout="@layout/fragment_home_categories_list" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

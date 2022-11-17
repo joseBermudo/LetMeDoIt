@@ -1,7 +1,7 @@
-package cat.copernic.letmedoit.Users.view.model.adapter
+package cat.copernic.letmedoit.Users.model.adapter
 
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.Users
+import cat.copernic.letmedoit.General.model.data.Users
 import cat.copernic.letmedoit.databinding.ItemVerConversacionesBinding
 
 class ConversacionesViewHolder(val binding: ItemVerConversacionesBinding): RecyclerView.ViewHolder(binding.root) {

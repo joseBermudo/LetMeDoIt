@@ -3,31 +3,43 @@ package cat.copernic.letmedoit.Users.view.fragments
 import android.Manifest
 import android.Manifest.permission.CAMERA
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
 import android.text.Selection.selectAll
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.core.net.toUri
+import androidx.core.view.isVisible
+import androidx.core.view.size
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.adapter.ImagesAdapter
+import cat.copernic.letmedoit.General.model.data.CategoryMap
 import cat.copernic.letmedoit.General.model.data.Image
+import cat.copernic.letmedoit.General.model.data.Service
 import cat.copernic.letmedoit.General.model.provider.CategoryProvider
+import cat.copernic.letmedoit.General.viewmodel.ServiceViewModel
+import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.FragmentNewServiceBinding
+import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -40,6 +52,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [NewService.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class NewService : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -60,6 +73,7 @@ class NewService : Fragment() {
         READ_EXTERNAL_STORAGE
     )
 
+    private val serviceViewModel : ServiceViewModel by viewModels()
 
     lateinit var getContent : ActivityResultLauncher<String>
     lateinit var binding : FragmentNewServiceBinding
@@ -72,6 +86,8 @@ class NewService : Fragment() {
         binding.btnAddImage.setOnClickListener { addImage() }
         binding.btnRemoveImage.setOnClickListener { removeImage() }
         binding.selectAll.setOnClickListener { selectAll() }
+        binding.btnSave.setOnClickListener{ saveService() }
+        
         val categoryNames = CategoryProvider.obtenerCategorias().map { it.nombre } as ArrayList<String>
         Utils.AsignarPopUpSpinner(requireContext(),categoryNames,binding.spinnerCategory)
 
@@ -93,10 +109,110 @@ class NewService : Fragment() {
             }
 
         }
+
         initRecyclerView()
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initObservers()
+    }
+    private fun initObservers() {
+        serviceViewModel.saveServiceState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Service> -> {
+                    hideProgress()
+                    Utils.showOkDialog("Service Uploaded",requireContext())
+                    resetComponents()
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> { }
+                else -> Unit
+            }
+        } )
+    }
+
+    private fun resetComponents() {
+        binding.editDescription.setText("")
+        binding.editServiceTitle.setText("")
+        adapter.removeAll()
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun hideProgress() {
+        binding.btnSave.isEnabled = true
+        binding.btnSave.text = resources.getString(R.string.save)
+        binding.uploadServiceLoading.isVisible = false
+    }
+
+    private fun showProgress() {
+        binding.btnSave.isEnabled = false
+        binding.btnSave.text = ""
+        binding.uploadServiceLoading.isVisible = true
+    }
+
+    private fun saveImages() {
+        var index = 0
+        adapter.getItems().forEach {
+            serviceViewModel.saveImage(requireActivity(),it.img_link.toUri(),idService,this,index)
+            index++
+        }
+    }
+
+    lateinit var idService : String
+
+    private fun isDataSet() : Boolean{
+        if(binding.editDescription.text.isNullOrEmpty()){
+            Utils.showOkDialog("Description Must Be Indicated",requireContext())
+            return false
+        }
+        if(binding.editServiceTitle.text.isNullOrEmpty()){
+            Utils.showOkDialog("Title Must Be Indicated",requireContext())
+            return false
+        }
+        if(binding.listImages.size <= 0){
+            Utils.showOkDialog("You Must Add Images",requireContext())
+            return false
+        }
+
+        return true
+
+    }
+
+    private fun saveService() {
+        if (!isDataSet())
+            return
+
+        idService = UUID.randomUUID().toString()
+        saveImages()
+        showProgress()
+
+    }
+
+    var numImgUploaded = 0
+    var imagesUploaded = ArrayList<Image>()
+    fun uploadImageSuccess(uri : String){
+        Log.d("NewService", "uploadImageSuccess: Image Uploaded")
+
+        imagesUploaded.add(Image(numImgUploaded.toString(),uri))
+        numImgUploaded++
+        if(numImgUploaded >= adapter.itemCount)
+            uploadService()
+
+    }
+    private fun uploadService(){
+        serviceViewModel.saveService(
+            Service(
+                id = idService,
+                title = binding.editServiceTitle.text.toString(),
+                description = binding.editDescription.text.toString(),
+                category = CategoryMap(binding.spinnerCategory.selectedItem.toString(),binding.spinnerSubcategory.selectedItem.toString()),
+                image = imagesUploaded,
+            ))
+    }
     private var isAllSelected = false
 
     private fun selectAll() {
