@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import cat.copernic.letmedoit.General.view.activities.Home
@@ -18,6 +17,7 @@ import cat.copernic.letmedoit.databinding.FragmentOpcionesDeCuentaBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import cat.copernic.letmedoit.R
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
@@ -53,6 +53,8 @@ class AccountOptions : Fragment() {
         Utils.AsignarPopUpSpinnerLenguages(requireContext(), languagesString, binding.spinnerLenguages)
 
         auth = Firebase.auth
+        binding.btnUserProfile.setOnClickListener{ Utils.goToDestination(requireView(), R.id.perfilUsuarioMenuSuperior)}
+        binding.btnEditProfile.setOnClickListener{ Utils.goToDestination(requireView(), R.id.editarInformacionPerfil)}
         binding.btnSignOut.setOnClickListener{ loginViewModel.logOut() }
 
         return binding.root

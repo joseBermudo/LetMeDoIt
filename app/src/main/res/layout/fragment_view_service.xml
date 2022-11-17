@@ -150,9 +150,9 @@
                     android:rating="3"
                     android:scaleX="0.5"
                     android:scaleY="0.5"
+                    android:theme="@style/RatingBar.Style"
                     android:transformPivotX="0dp"
-                    android:transformPivotY="0dp"
-                    android:theme="@style/RatingBar.Style"/>
+                    android:isIndicator="true"/>
             </LinearLayout>
 
             <LinearLayout
@@ -167,7 +167,6 @@
                     android:contentDescription="@string/txt_go_to_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margins_start_end"
                     android:layout_marginEnd="@dimen/margins_start_end"
                     android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
             </LinearLayout>

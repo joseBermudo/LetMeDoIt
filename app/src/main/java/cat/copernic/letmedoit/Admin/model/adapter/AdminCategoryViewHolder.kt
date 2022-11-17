@@ -14,7 +14,8 @@ class AdminCategoryViewHolder(val binding: ItemListCategoryAdminBinding) :
     fun render(
         categoryModel: Category,
         onClickListener: (Category) -> Unit,
-        onClickDelete: (Int) -> Unit
+        onClickDelete: (Int) -> Unit,
+        onClickEdit: (Category) -> Unit
     ) {
         categoryIcon.background = ContextCompat.getDrawable(
             binding.root.context,
@@ -27,6 +28,7 @@ class AdminCategoryViewHolder(val binding: ItemListCategoryAdminBinding) :
         categoryName.text = categoryModel.nombre.replace("_","\n")
         subcategoryNumber.text = categoryModel.subcategories.size.toString()
         itemView.setOnClickListener { onClickListener(categoryModel) }
-        binding.itemCategoryDeleteIcon.setOnClickListener { onClickDelete(absoluteAdapterPosition) }
+        binding.itemCategoryDeleteIcon.setOnClickListener { onClickDelete(absoluteAdapterPosition)}
+        binding.itemCategoryEditIcon.setOnClickListener {onClickEdit(categoryModel) }
     }
 }
