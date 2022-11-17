@@ -23,6 +23,7 @@ import com.google.android.material.textfield.TextInputEditText
 class AdminCategoriesList : Fragment() {
     private var _binding: FragmentAdminCategoriesListBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var recyclerView: RecyclerView
     private var categoryMutableList: MutableList<Category> =
         CategoryProvider.obtenerCategorias().toMutableList()
