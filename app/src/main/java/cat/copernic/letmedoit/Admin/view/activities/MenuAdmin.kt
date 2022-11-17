@@ -5,7 +5,9 @@ import android.os.Bundle
 import androidx.navigation.findNavController
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.ActivityMenuAdminBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MenuAdmin : AppCompatActivity() {
     lateinit var binding : ActivityMenuAdminBinding
     override fun onCreate(savedInstanceState: Bundle?) {

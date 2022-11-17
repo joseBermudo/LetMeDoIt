@@ -18,7 +18,7 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@animator/nav_default_exit_anim" />
         <action
-            android:id="@+id/homeToService"
+            android:id="@+id/homeFragmentToViewService"
             app:destination="@id/viewService"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
@@ -61,7 +61,9 @@
         android:name="cat.copernic.letmedoit.General.view.fragments.viewService"
         android:label="fragment_view_service"
         tools:layout="@layout/fragment_view_service">
-
+        <argument
+            android:name="serviceID"
+            app:argType="string" />
 
         <action
             android:id="@+id/viewServiceBackToHome"
@@ -79,7 +81,7 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/viewServiceToProfileUser"
+            android:id="@+id/viewServiceToUserProfile"
             app:destination="@id/perfilUsuarioMenuSuperior"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
@@ -373,11 +375,24 @@
         android:name="cat.copernic.letmedoit.General.view.fragments.PerfilUsuarioMenuSuperior"
         android:label="fragment_perfil_usuario_menu_superior"
         tools:layout="@layout/fragment_perfil_usuario_menu_superior" >
+        <argument
+            android:name="userID"
+            app:argType="string" />
         <action
-            android:id="@+id/profileUserBackToViewService"
+            android:id="@+id/userProfileToViewService"
             app:destination="@id/viewService"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_perfilUsuarioMenuSuperior_self"
+            app:destination="@id/perfilUsuarioMenuSuperior"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_perfilUsuarioMenuSuperior_to_userReport"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:destination="@id/userReport" />
     </fragment>
 
 </navigation>

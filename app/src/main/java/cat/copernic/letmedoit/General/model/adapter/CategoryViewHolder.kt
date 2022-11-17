@@ -1,10 +1,9 @@
 package cat.copernic.letmedoit.General.model.adapter
 
-import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import cat.copernic.letmedoit.General.model.Category
+import cat.copernic.letmedoit.General.model.data.Category
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.ItemCategoryTemplateBinding
 

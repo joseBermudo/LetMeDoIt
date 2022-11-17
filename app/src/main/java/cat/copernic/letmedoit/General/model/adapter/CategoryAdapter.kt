@@ -3,7 +3,7 @@ package cat.copernic.letmedoit.General.model.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.Category
+import cat.copernic.letmedoit.General.model.data.Category
 import cat.copernic.letmedoit.databinding.ItemCategoryTemplateBinding
 
 /**

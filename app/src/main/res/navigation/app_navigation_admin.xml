@@ -42,7 +42,7 @@
         tools:layout="@layout/fragment_admin_subcategory_list" >
         <argument
             android:name="subcategories"
-            app:argType="cat.copernic.letmedoit.General.model.Subcategory[]" />
+            app:argType="cat.copernic.letmedoit.General.model.data.Subcategory[]" />
     </fragment>
     <fragment
         android:id="@+id/admin_reports"
