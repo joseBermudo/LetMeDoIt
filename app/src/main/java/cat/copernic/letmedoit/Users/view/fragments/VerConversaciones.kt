@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import cat.copernic.letmedoit.General.model.UsersProvider
+
 import cat.copernic.letmedoit.General.model.adapter.UsersAdapter
+import cat.copernic.letmedoit.General.model.provider.UsersProvider
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Users.view.model.adapter.ConversacionesAdapter
 import cat.copernic.letmedoit.Utils.Utils
