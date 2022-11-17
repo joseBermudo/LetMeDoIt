@@ -6,14 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.General.model.data.Category
-import cat.copernic.letmedoit.General.model.provider.CategoryProvider
-import cat.copernic.letmedoit.General.model.data.Subcategory
 import cat.copernic.letmedoit.Admin.model.adapter.AdminCategoryAdapter
+import cat.copernic.letmedoit.General.model.data.Category
+import cat.copernic.letmedoit.General.model.data.Subcategory
+import cat.copernic.letmedoit.General.model.provider.CategoryProvider
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentAdminCategoriesListBinding
 import com.google.android.material.textfield.TextInputEditText
@@ -77,7 +78,7 @@ class AdminCategoriesList : Fragment() {
                 val category = Category(
                     name,
                     "pepe",
-                    arrayListOf<Subcategory>(Subcategory("Pasear perros","pepe" ,"100")),
+                    arrayListOf<Subcategory>(Subcategory("Pasear perros", "pepe", "100")),
                     "favorites_icon",
                     "3"
                 )
@@ -95,12 +96,27 @@ class AdminCategoriesList : Fragment() {
         adapter = AdminCategoryAdapter(
             categoryList = categoryMutableList,
             onClickListener = { category -> onItemSelected(category) },
-            onClickDelete = { position -> onDeletedItem(position) })
+            onClickDelete = { position -> onDeletedItem(position) },
+            onClickEdit = { category -> onEditItem(category) })
         recyclerView.layoutManager = llmanager
         recyclerView.adapter = adapter
     }
 
     private fun onItemSelected(category: Category) {
+        val dialogBinding = layoutInflater.inflate(R.layout.show_category_description_dialog, null)
+        val myDialog = Dialog(binding.root.context)
+        myDialog.setContentView(dialogBinding)
+        myDialog.setCancelable(true)
+        dialogBinding.findViewById<TextView>(R.id.category_name).text = category.nombre
+        dialogBinding.findViewById<TextView>(R.id.category_description).text = category.description
+        myDialog.show()
+
+        dialogBinding.findViewById<Button>(R.id.btn_closse_dialog).setOnClickListener {
+            myDialog.dismiss()
+        }
+    }
+
+    private fun onEditItem(category: Category) {
         val action = AdminCategoriesListDirections.actionAdminCategoriesListToAdminSubcategoryList(
             subcategories = category.subcategories.toTypedArray()
         )
