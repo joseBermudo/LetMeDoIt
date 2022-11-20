@@ -9,7 +9,7 @@ import cat.copernic.letmedoit.databinding.ItemVerConversacionesBinding
 class ConversacionesAdapter(
     private val obtenerUsers: List<Users>,
     private val onClickRecyclerV: (Users) -> Unit
-    ) : RecyclerView.Adapter<ConversacionesViewHolder>() {
+) : RecyclerView.Adapter<ConversacionesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConversacionesViewHolder {
 
@@ -20,7 +20,7 @@ class ConversacionesAdapter(
 
     override fun onBindViewHolder(holder: ConversacionesViewHolder, position: Int) {
         val item = obtenerUsers[position]
-        holder.render(item,onClickRecyclerV)
+        holder.render(item, onClickRecyclerV)
 
     }
 
