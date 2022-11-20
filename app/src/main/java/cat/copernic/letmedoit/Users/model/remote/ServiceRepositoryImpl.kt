@@ -80,11 +80,8 @@ class ServiceRepositoryImpl @Inject constructor(
     ) {
         val sRef: StorageReference = FirebaseStorage.getInstance().reference.child("serviceImages/${serviceId}/${index}")
 
-        // Adding the file to reference
         sRef.putFile(fileURI)
             .addOnSuccessListener { taskSnapshot ->
-                // The image upload is success
-                // Get the downloadable url from the task snapshot
                 taskSnapshot.metadata!!.reference!!.downloadUrl
                     .addOnSuccessListener { uri ->
                         when(fragment) {

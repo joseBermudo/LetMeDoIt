@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.Flow
 
 
 interface ServiceRepository {
-
     suspend fun saveService(service : Service) : Flow<DataState<Service>>
     suspend fun getService(uid : String) : Flow<DataState<Service>>
     suspend fun getAllServices() : Flow<DataState<List<Service>>>

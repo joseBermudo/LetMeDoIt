@@ -123,7 +123,7 @@ class NewService : Fragment() {
             when(dataState){
                 is DataState.Success<Service> -> {
                     hideProgress()
-                    Utils.showOkDialog("Service Uploaded",requireContext())
+                    //Utils.showOkDialog("Service Uploaded",requireContext())
                     resetComponents()
                 }
                 is DataState.Error -> {

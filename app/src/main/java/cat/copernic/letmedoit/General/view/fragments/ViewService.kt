@@ -17,6 +17,7 @@ import cat.copernic.letmedoit.General.model.data.Service
 import cat.copernic.letmedoit.General.model.provider.ServiceProvider
 import cat.copernic.letmedoit.General.model.adapter.SliderImagesAdapter
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.Utils.Utils.Companion.goToDestination
 import cat.copernic.letmedoit.databinding.FragmentViewServiceBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -68,6 +69,7 @@ class viewService : Fragment() {
         //Volver hacia atras
         binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
 
+        binding.btnReport.setOnClickListener{ Utils.goToUserReport(view, "1") }
         initView(args.serviceID)
         binding.btnGoToProfile.setOnClickListener { goToUserProfile(requireView(),R.id.perfilUsuarioMenuSuperior) }
         binding.btnChat.setOnClickListener{ goToDestination(requireView(),R.id.chat) }

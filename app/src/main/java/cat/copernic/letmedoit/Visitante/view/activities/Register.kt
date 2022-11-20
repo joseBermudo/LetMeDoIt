@@ -103,7 +103,6 @@ class Register : AppCompatActivity() {
             return
         }
 
-        //register(email,password)
         registerUser(email,password,username)
 
     }
