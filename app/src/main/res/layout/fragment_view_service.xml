@@ -151,8 +151,7 @@
                     android:scaleX="0.5"
                     android:scaleY="0.5"
                     android:theme="@style/RatingBar.Style"
-                    android:transformPivotX="0dp"
-                    android:isIndicator="true"/>
+                    android:transformPivotX="0dp"/>
             </LinearLayout>
 
             <LinearLayout

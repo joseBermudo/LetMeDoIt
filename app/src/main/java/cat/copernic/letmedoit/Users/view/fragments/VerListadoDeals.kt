@@ -5,20 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import cat.copernic.letmedoit.General.model.UsersProvider
-import cat.copernic.letmedoit.R
-import cat.copernic.letmedoit.Users.view.model.adapter.ConversacionesAdapter
+import androidx.recyclerview.widget.RecyclerView
+import cat.copernic.letmedoit.General.model.data.Users
+import cat.copernic.letmedoit.General.model.provider.UsersProvider
+import cat.copernic.letmedoit.General.view.fragments.chats_deals_manager_visDirections
+import cat.copernic.letmedoit.Users.view.fragments.verListadoDealsDirections.Companion.listadoDealsToConcludeDeal
 import cat.copernic.letmedoit.Users.view.model.adapter.DealsAdapter
 import cat.copernic.letmedoit.databinding.FragmentVerListadoDealsBinding
-
-
 
 
 class verListadoDeals : Fragment() {
 
     private var _binding: FragmentVerListadoDealsBinding? = null
     private val binding get() = _binding!!
+    lateinit var dealsRecyclerView: RecyclerView
+    private lateinit var adapter: DealsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +37,17 @@ class verListadoDeals : Fragment() {
         return binding.root
     }
 
-    fun initRecyclerView(){
+    fun initRecyclerView() {
+        dealsRecyclerView = binding.recyclerViewListadoDeals
         binding.recyclerViewListadoDeals.layoutManager = LinearLayoutManager(binding.root.context)
-        binding.recyclerViewListadoDeals.adapter = DealsAdapter(UsersProvider.obtenerUsers())
+
+        adapter = DealsAdapter(
+            UsersProvider.obtenerUsers(),
+            onClickRecyclerDeals = {users -> onClickItem(users)})
+    }
+
+    private fun onClickItem(users: Users) {
+        val action = verListadoDealsDirections.listadoDealsToConcludeDeal()
+        findNavController().navigate(action)
     }
 }
