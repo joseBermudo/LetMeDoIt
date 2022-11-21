@@ -24,7 +24,7 @@ import java.util.regex.Pattern
 @AndroidEntryPoint
 class Register : AppCompatActivity() {
     lateinit var binding: ActivityRegisterBinding
-    lateinit var auth : FirebaseAuth
+    lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -35,41 +35,46 @@ class Register : AppCompatActivity() {
         auth = Firebase.auth
         binding.btnExitRegister.setOnClickListener { onBackPressed() }
         binding.txtSignIn.setOnClickListener { onBackPressed() }
-        binding.btnSignIn.setOnClickListener() { checkLogin()  }
+        binding.btnSignIn.setOnClickListener() { checkLogin() }
 
     }
 
-    private val registerViewModel : RegisterViewModel by viewModels()
+    private val registerViewModel: RegisterViewModel by viewModels()
 
     private fun initObservers() {
         registerViewModel.registerState.observe(this, Observer { dataState ->
-            when(dataState){
+            when (dataState) {
                 is DataState.Success<Users> -> {
                     registerViewModel.saveUser(dataState.data)
                 }
                 is DataState.Error -> {
                     hideProgress()
-                    Utils.showOkDialog("Error: ",this,dataState.exception.message.toString())
+                    Utils.showOkDialog("Error: ", this, dataState.exception.message.toString())
                 }
-                is DataState.Loading -> { showProgress() }
+                is DataState.Loading -> {
+                    showProgress()
+                }
                 else -> Unit
             }
-        } )
+        })
 
-        registerViewModel.saveUserState.observe(this,Observer { dataState ->
-            when(dataState){
+        registerViewModel.saveUserState.observe(this, Observer { dataState ->
+            when (dataState) {
                 is DataState.Success<Boolean> -> {
                     startActivity(Intent(this, Home::class.java))
                     finish()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",this,dataState.exception.message.toString())
+                    Utils.showOkDialog("Error: ", this, dataState.exception.message.toString())
                 }
-                is DataState.Loading -> { showProgress() }
+                is DataState.Loading -> {
+                    showProgress()
+                }
                 else -> Unit
             }
-        } )
+        })
     }
+
     private fun hideProgress() {
         binding.btnSignIn.isEnabled = true
         binding.btnSignIn.text = resources.getString(R.string.txt_login_signIn)
@@ -88,53 +93,53 @@ class Register : AppCompatActivity() {
         var confirmPassword = binding.editConfirmPassword.text.toString()
         val username = binding.editUsername.text.toString().trim()
 
-        if(email.isEmpty() or password.isEmpty() or confirmPassword.isEmpty()){
-            Utils.showOkDialog("Please fill out Email and Password !!!",this)
+        if (email.isEmpty() or password.isEmpty() or confirmPassword.isEmpty()) {
+            Utils.showOkDialog("Please fill out Email and Password !!!", this)
             return
         }
-        if(password != confirmPassword){
-            Utils.showOkDialog("Passwords don't match !!!",this)
+        if (password != confirmPassword) {
+            Utils.showOkDialog("Passwords don't match !!!", this)
             return
         }
 
         val pattern: Pattern = Patterns.EMAIL_ADDRESS
-        if (!pattern.matcher(email).matches()){
-            Utils.showOkDialog("Not a valid email !!!",this)
+        if (!pattern.matcher(email).matches()) {
+            Utils.showOkDialog("Not a valid email !!!", this)
             return
         }
 
         //register(email,password)
-        registerUser(email,password,username)
+        registerUser(email, password, username)
 
     }
 
-    private fun registerUser(email: String, password: String, username : String) {
-        registerViewModel.register(createUser(email,username),password)
+    private fun registerUser(email: String, password: String, username: String) {
+        registerViewModel.register(createUser(email, username), password)
     }
 
-    private fun createUser(email : String, username : String): Users {
+    private fun createUser(email: String, username: String): Users {
         return Users(
-                null,
-                null,
-                null,
-                email,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                false,
-                null,
-                username
+            null,
+            null,
+            null,
+            email,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            false,
+            null,
+            username
         )
     }
 
