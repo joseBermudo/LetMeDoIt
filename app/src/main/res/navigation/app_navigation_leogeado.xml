@@ -134,9 +134,7 @@
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/conversacionesToChat"
-            app:destination="@id/chat"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            app:destination="@id/chat" />
     </fragment>
     <fragment
         android:id="@+id/verListadoDeals"
