@@ -5,14 +5,54 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import cat.copernic.letmedoit.Admin.model.adapter.AdminReportAdapter
+import cat.copernic.letmedoit.Admin.model.provider.ReportProvider
+import cat.copernic.letmedoit.General.model.data.Report
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentAdminReportsBinding
 
 
 class admin_reports : Fragment() {
 
+    private val rotateOpen: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            binding.root.context,
+            R.anim.rotate_open_animation
+        )
+    }
+    private val rotateClose: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            binding.root.context,
+            R.anim.rotate_close_animation
+        )
+    }
+    private val fromBottom: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            binding.root.context,
+            R.anim.from_bottom_animation
+        )
+    }
+    private val toBottom: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            binding.root.context,
+            R.anim.to_bottom_animation
+        )
+    }
+
     private var _binding: FragmentAdminReportsBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var recyclerView: RecyclerView
+    private var reportMutableList: MutableList<Report> =
+        ReportProvider.obtenerReportes().toMutableList()
+    private lateinit var adapter: AdminReportAdapter
+    private lateinit var llmanager: LinearLayoutManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,11 +63,32 @@ class admin_reports : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAdminReportsBinding.inflate(inflater,container,false)
+        _binding = FragmentAdminReportsBinding.inflate(inflater, container, false)
+
+        llmanager = LinearLayoutManager(binding.root.context)
+        recyclerView = binding.rcvAdminReportList
+
+        initRecyclerView()
+
         binding.btnBackArrow.setOnClickListener {
             requireActivity().onBackPressed()
         }
+
+        binding.flbuttonOpenMenu.setOnClickListener { }
+        binding.flbuttonArchived.setOnClickListener { }
+        binding.flbuttonBan.setOnClickListener { }
+        binding.flbuttonDelete.setOnClickListener { }
+
+
         return binding.root
+    }
+
+    private fun initRecyclerView() {
+        adapter = AdminReportAdapter(
+            reportList = reportMutableList
+        )
+        recyclerView.layoutManager = llmanager
+        recyclerView.adapter = adapter
     }
 
 }

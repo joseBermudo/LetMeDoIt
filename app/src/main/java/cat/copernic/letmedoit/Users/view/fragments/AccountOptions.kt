@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import cat.copernic.letmedoit.General.view.activities.Home
+
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.Visitante.viewmodel.LoginViewModel
@@ -19,7 +20,6 @@ import com.google.firebase.ktx.Firebase
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Users.view.LenguagesProvider
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.text.Typography.dagger
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -77,10 +77,4 @@ class AccountOptions : Fragment() {
             }
         } )
     }
-
-    /*private fun singOut() {
-        auth.signOut()
-        startActivity(Intent(requireActivity(), Home::class.java))
-        requireActivity().finish()
-    }*/
 }

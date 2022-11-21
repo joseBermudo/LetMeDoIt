@@ -5,24 +5,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.Admin.model.adapter.AdminCategoryAdapter
-import cat.copernic.letmedoit.General.model.adapter.UsersAdapter
-import cat.copernic.letmedoit.General.model.data.Category
-import cat.copernic.letmedoit.General.model.data.Users
-import cat.copernic.letmedoit.General.model.provider.CategoryProvider
 import cat.copernic.letmedoit.General.model.provider.UsersProvider
-import cat.copernic.letmedoit.General.view.fragments.chats_deals_manager_visDirections
-import cat.copernic.letmedoit.R
-import cat.copernic.letmedoit.Users.model.data.Chat
 import cat.copernic.letmedoit.Users.view.model.adapter.ConversacionesAdapter
-import cat.copernic.letmedoit.Utils.Utils
+import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.databinding.FragmentVerConversacionesBinding
-import com.google.firebase.firestore.auth.User
+import cat.copernic.letmedoit.General.model.data.Users
+import cat.copernic.letmedoit.General.view.fragments.chats_deals_manager_visDirections
+import androidx.navigation.fragment.findNavController
 
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
 
+/**
+ * A simple [Fragment] subclass.
+ * Use the [verConversaciones.newInstance] factory method to
+ * create an instance of this fragment.
+ */
 class verConversaciones : Fragment() {
 
     private var _binding: FragmentVerConversacionesBinding? = null

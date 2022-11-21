@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.data.Users
 import cat.copernic.letmedoit.databinding.ItemViewFavUserBinding
 
+
 class FavUsersAdapter(private val obtenerUsers: List<Users>): RecyclerView.Adapter<FavUsersViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavUsersViewHolder{

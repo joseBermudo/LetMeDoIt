@@ -16,6 +16,8 @@ import cat.copernic.letmedoit.Users.view.model.adapter.DealsAdapter
 import cat.copernic.letmedoit.databinding.FragmentVerListadoDealsBinding
 
 
+
+
 class verListadoDeals : Fragment() {
 
     private var _binding: FragmentVerListadoDealsBinding? = null

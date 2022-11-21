@@ -1,16 +1,18 @@
 package cat.copernic.letmedoit.Users.view
 
+import cat.copernic.letmedoit.Users.model.data.Lenguages
+
 class LenguagesProvider {
     companion object {
-        fun obtenerLenguages(): ArrayList<cat.copernic.letmedoit.Users.model.data.Lenguages> {
+        fun obtenerLenguages(): ArrayList<Lenguages> {
             return arrayListOf(
-                    cat.copernic.letmedoit.Users.model.data.Lenguages(
+                Lenguages(
                     "English",
                     "imagen 1",
-                ),cat.copernic.letmedoit.Users.model.data.Lenguages(
+                ),Lenguages(
                     "Español",
                     "imagen 2",
-                ),cat.copernic.letmedoit.Users.model.data.Lenguages(
+                ),Lenguages(
                     "Català",
                     "imagen 3",
                 ),

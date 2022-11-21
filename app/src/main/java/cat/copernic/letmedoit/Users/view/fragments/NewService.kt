@@ -88,7 +88,7 @@ class NewService : Fragment() {
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val category = CategoryProvider.obtenerCategorias()[position]
-                val subCategoryNames = category.subcategories.map { it.nombre } as ArrayList<String>
+                val subCategoryNames = category.subcategories?.map { it.nombre } as ArrayList<String>
                 Utils.AsignarPopUpSpinner(requireContext(), subCategoryNames,binding.spinnerSubcategory)
             }
 
