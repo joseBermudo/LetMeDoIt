@@ -7,10 +7,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class NewCategoryUseCase @Inject constructor(
-    private val categoryRepository: CategoryRepository
+class InsertCategoryUseCase @Inject constructor(
+     val categoryRepository: CategoryRepository
 ) {
-    suspend operator fun invoke(category: Category): Flow<DataState<Boolean>> = flow {
-        categoryRepository.insertCategory(category)
-    }
+    suspend operator fun invoke(category: Category): Flow<DataState<Boolean>> = categoryRepository.insertCategory(category)
 }

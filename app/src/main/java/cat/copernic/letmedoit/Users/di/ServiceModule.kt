@@ -21,7 +21,6 @@ object ServiceModule {
     @Provides
     @Singleton
     fun serviceRepositoryProvider(
-        auth : FirebaseAuth,
         @FirebaseModule.ServiceCollection serviceCollection: CollectionReference
     ): ServiceRepository {
         return ServiceRepositoryImpl(serviceCollection)

@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import cat.copernic.letmedoit.General.model.provider.UsersProvider
-import cat.copernic.letmedoit.Users.view.model.adapter.ConversacionesAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.databinding.FragmentVerConversacionesBinding
 import cat.copernic.letmedoit.General.model.data.Users
 import cat.copernic.letmedoit.General.view.fragments.chats_deals_manager_visDirections
 import androidx.navigation.fragment.findNavController
+import cat.copernic.letmedoit.Users.model.adapter.ConversacionesAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

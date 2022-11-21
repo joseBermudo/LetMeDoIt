@@ -18,7 +18,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import cat.copernic.letmedoit.R
-import cat.copernic.letmedoit.Users.view.LenguagesProvider
+import cat.copernic.letmedoit.Users.model.provider.LenguagesProvider
+
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match

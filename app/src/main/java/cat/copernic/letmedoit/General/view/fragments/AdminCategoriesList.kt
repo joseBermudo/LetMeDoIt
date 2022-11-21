@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -68,17 +69,47 @@ class AdminCategoriesList : Fragment() {
             requireActivity().onBackPressed()
         }
 
+        viewModel.newCategoryState.observe(viewLifecycleOwner, androidx.lifecycle.Observer { dataState ->
+            when (dataState) {
+                is DataState.Success<Boolean> -> {
+                    finishedProgress()
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ", requireContext(), dataState.exception.message.toString())
+                    finishedProgress()
+                }
+                is DataState.Loading -> {
+                    showProgress()
+                }
+                else -> Unit
+            }
+        })
         binding.btnAdd.setOnClickListener { createCategory() }
         return binding.root
     }
 
 
+    private fun finishedProgress(){
+        myDialog.dismiss()
+    }
+    private fun showProgress() {
+        val btnAccept = dialogBinding.findViewById<Button>(R.id.btn_doneCreate)
+        val btnCancel = dialogBinding.findViewById<Button>(R.id.btn_cancelCreateCategorie)
+        val dialogTextBox = dialogBinding.findViewById<TextInputEditText>(R.id.txtInput_categoryName)
+        val loading = dialogBinding.findViewById<ProgressBar>(R.id.newCategoryLoading)
+        btnAccept.isEnabled = false
+        btnCancel.isEnabled = false
+        dialogTextBox.isEnabled = false
+        loading.isVisible = true
 
+    }
 
+    lateinit var dialogBinding : View
+    lateinit var myDialog : Dialog
     private fun createCategory() {
 
-        val dialogBinding = layoutInflater.inflate(R.layout.create_category_dialog, null)
-        val myDialog = Dialog(binding.root.context)
+        dialogBinding = layoutInflater.inflate(R.layout.create_category_dialog, null)
+        myDialog = Dialog(binding.root.context)
         myDialog.setContentView(dialogBinding)
         myDialog.setCancelable(true)
         myDialog.show()
@@ -96,11 +127,10 @@ class AdminCategoriesList : Fragment() {
             val name = txtInput_name.text.toString().trim()
             if (!name.isEmpty() && !name.isBlank()) {
                 val category = creteCategoryF(name)
-                viewModel.newCategory(category)
+                viewModel.insertCategory(category)
                 categoryMutableList.add(index = 0, category)
                 adapter.notifyItemInserted(0)
                 llmanager.scrollToPositionWithOffset(0, 10)
-                myDialog.dismiss()
             }
         }
 

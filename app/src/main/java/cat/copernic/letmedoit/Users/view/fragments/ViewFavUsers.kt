@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import cat.copernic.letmedoit.General.model.provider.UsersProvider
-import cat.copernic.letmedoit.Users.view.model.adapter.FavUsersAdapter
+import cat.copernic.letmedoit.Users.model.adapter.FavUsersAdapter
 import cat.copernic.letmedoit.databinding.FragmentViewFavUsersBinding
 
 

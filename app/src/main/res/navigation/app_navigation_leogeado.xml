@@ -169,6 +169,12 @@
         <action
             android:id="@+id/conversacionesToChat"
             app:destination="@id/chat" />
+        <action
+            android:id="@+id/action_verConversaciones_to_viewDeal"
+            app:destination="@id/viewDeal" />
+        <action
+            android:id="@+id/action_verConversaciones_to_concludeDeal"
+            app:destination="@id/concludeDeal" />
     </fragment>
     <fragment
         android:id="@+id/verListadoDeals"
@@ -257,6 +263,9 @@
         android:name="cat.copernic.letmedoit.Users.view.fragments.ViewDeal"
         android:label="fragment_ver_deal"
         tools:layout="@layout/fragment_ver_deal" >
+        <argument
+            android:name="dealID"
+            app:argType="string" />
         <action
             android:id="@+id/viewDealToListadoDeals"
             app:destination="@id/verListadoDeals"
@@ -273,6 +282,9 @@
         android:name="cat.copernic.letmedoit.Users.view.fragments.concludeDeal"
         android:label="fragment_conclude_deal"
         tools:layout="@layout/fragment_conclude_deal" >
+        <argument
+            android:name="dealID"
+            app:argType="string" />
         <action
             android:id="@+id/concludeDealToListadoDeals"
             app:destination="@id/verListadoDeals"

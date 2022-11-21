@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import cat.copernic.letmedoit.Admin.useCases.NewCategoryUseCase
+import cat.copernic.letmedoit.Admin.useCases.InsertCategoryUseCase
 import cat.copernic.letmedoit.General.model.data.Category
 import cat.copernic.letmedoit.Utils.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,14 +15,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CreateCategoryViewModel @Inject constructor(
-    private val newCategoryUseCase: NewCategoryUseCase
+     val newCategoryUseCase: InsertCategoryUseCase
 ) : ViewModel() {
 
     private val mNewCategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val newCategoryState: LiveData<DataState<Boolean>> get() = mNewCategoryState
 
 
-    fun newCategory(category: Category) {
+    fun insertCategory(category: Category) {
         viewModelScope.launch {
             newCategoryUseCase(category).onEach { dataState ->
                 mNewCategoryState.value = dataState

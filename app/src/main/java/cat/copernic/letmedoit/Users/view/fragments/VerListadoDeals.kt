@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.data.Users
 import cat.copernic.letmedoit.General.model.provider.UsersProvider
-import cat.copernic.letmedoit.General.view.fragments.chats_deals_manager_visDirections
-import cat.copernic.letmedoit.Users.view.fragments.verListadoDealsDirections.Companion.listadoDealsToConcludeDeal
-import cat.copernic.letmedoit.Users.view.model.adapter.DealsAdapter
+import cat.copernic.letmedoit.Users.model.adapter.DealsAdapter
+import cat.copernic.letmedoit.Users.model.provider.DealProvider
+
 import cat.copernic.letmedoit.databinding.FragmentVerListadoDealsBinding
 
 
@@ -44,12 +44,9 @@ class verListadoDeals : Fragment() {
         binding.recyclerViewListadoDeals.layoutManager = LinearLayoutManager(binding.root.context)
 
         adapter = DealsAdapter(
-            UsersProvider.obtenerUsers(),
-            onClickRecyclerDeals = {users -> onClickItem(users)})
+            DealProvider.obtenerDeals())
+
+        dealsRecyclerView.adapter = adapter
     }
 
-    private fun onClickItem(users: Users) {
-        val action = verListadoDealsDirections.listadoDealsToConcludeDeal()
-        findNavController().navigate(action)
-    }
 }
