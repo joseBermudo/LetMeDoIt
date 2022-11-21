@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.data.Service
 import cat.copernic.letmedoit.General.view.fragments.HomeFragmentDirections
 import cat.copernic.letmedoit.General.view.fragments.PerfilUsuarioMenuSuperiorDirections
+import cat.copernic.letmedoit.General.view.fragments.profiles_services_manager_visDirections
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.di.FirebaseModule
 import cat.copernic.letmedoit.Visitante.view.activities.Login
 import cat.copernic.letmedoit.databinding.ServiceTemplateBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 
 
@@ -41,31 +42,43 @@ class ServiceViewHolder(val binding: ServiceTemplateBinding, val defaultfav : Bo
         Picasso.get().load(Uri.parse(serviceModel.image[0].img_link)).into(serviceImg)
         category.text =  serviceModel.category.id_category
 
+        if (defaultfav) serviceFav.background = ContextCompat.getDrawable(binding.root.context, R.drawable.ic_round_favorite_24)
+        else serviceFav.background = ContextCompat.getDrawable(binding.root.context, R.drawable.favorites_ion_colored)
 
-        serviceFav.setOnClickListener { anadirFavorito() }
+        serviceFav.setOnClickListener { anadirFavorito(serviceModel) }
         service.setOnClickListener { goToService(serviceModel.id) }
     }
 
     private fun goToService(id: String) {
-
         val destinationLabel = Navigation.findNavController(itemView).currentDestination?.label
-        var action  = HomeFragmentDirections.homeFragmentToViewService(serviceID = id)
-        if(destinationLabel == "fragment_perfil_usuario_menu_superior")
-            action = PerfilUsuarioMenuSuperiorDirections.userProfileToViewService(serviceID = id)
+
+        val action = when(destinationLabel){
+            "fragment_perfil_usuario_menu_superior" -> PerfilUsuarioMenuSuperiorDirections.userProfileToViewService(id)
+            "fragment_profiles_services_manager_vis" -> profiles_services_manager_visDirections.actionProfilesServicesManagerVisToViewService(id)
+            else -> HomeFragmentDirections.homeFragmentToViewService(id)
+        }
 
         Navigation.findNavController(itemView).navigate(action)
     }
 
-    private fun anadirFavorito() {
+    private fun anadirFavorito(serviceModel: Service) {
 
-        if (FirebaseAuth.getInstance().currentUser == null){
+
+
+        if (FirebaseModule.firebaseAuthProvider().currentUser == null){
             binding.root.context.startActivity(Intent(binding.root.context, Login::class.java))
             return
         }
+
         favorite = !favorite
+
         if (favorite) serviceFav.background = ContextCompat.getDrawable(binding.root.context, R.drawable.ic_round_favorite_24)
         else serviceFav.background = ContextCompat.getDrawable(binding.root.context, R.drawable.favorites_ion_colored)
 
+        if(Navigation.findNavController(itemView).currentDestination?.label == "fragment_profiles_services_manager_vis")
+            (this.bindingAdapter as ServiceAdapter).eliminarServicioFav(serviceModel)
+
     }
+
 
 }

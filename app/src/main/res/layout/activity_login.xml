@@ -118,7 +118,7 @@
             android:text="@string/txt_login_signIn"
             app:layout_constraintBottom_toTopOf="@+id/btn_signUp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" ></Button>
+            app:layout_constraintStart_toStartOf="parent" />
         <ProgressBar
             android:id="@+id/login_loading"
             style="?android:attr/progressBarStyle"

@@ -74,8 +74,6 @@ class Menu_Inferior : Fragment() {
                R.id.messagesVis ,
                R.id.uploadServicesVis ,
                R.id.profiles_services_manager_vis  -> showBottomNav()
-               R.id.homeFragment,
-               R.id.viewFavUsers,
                R.id.verListadoFavServices,
                R.id.newService,
                R.id.verConversaciones,

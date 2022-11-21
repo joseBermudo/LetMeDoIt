@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.Users.view.model.adapter
+package cat.copernic.letmedoit.Users.model.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.data.Users

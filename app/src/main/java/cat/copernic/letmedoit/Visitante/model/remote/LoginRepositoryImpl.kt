@@ -118,7 +118,6 @@ class LoginRepositoryImpl @Inject constructor (
                 usersCollection.document(it)
                     .get()
                     .addOnSuccessListener { document ->
-                        val test = document.data
                         val user = document.toObject(Users::class.java)!!
                         isSuccesful = true
                         USER_LOGGED_IN_ID = user.id.toString()
