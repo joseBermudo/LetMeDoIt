@@ -1,7 +1,9 @@
 package cat.copernic.letmedoit.General.model.data
 
+import com.google.firebase.firestore.Exclude
+
 data class Image (
-        val id : String,
+        @get:Exclude val  id : String,
         val img_link : String,
-        var checked : Boolean? = false
+        @get:Exclude var checked : Boolean? = false
 )

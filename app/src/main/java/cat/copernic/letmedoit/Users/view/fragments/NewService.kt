@@ -150,6 +150,7 @@ class NewService : Fragment() {
     private fun resetComponents() {
         binding.editDescription.setText("")
         binding.editServiceTitle.setText("")
+        imagesUploaded.removeAll(imagesUploaded)
         adapter.removeAll()
         adapter.notifyDataSetChanged()
     }

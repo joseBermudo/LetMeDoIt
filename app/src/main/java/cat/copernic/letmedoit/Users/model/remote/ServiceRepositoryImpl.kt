@@ -2,20 +2,19 @@ package cat.copernic.letmedoit.Users.model.remote
 
 import android.app.Activity
 import android.net.Uri
-import android.provider.ContactsContract.Data
-import android.util.Log
 import androidx.fragment.app.Fragment
+import cat.copernic.letmedoit.Constants
 import cat.copernic.letmedoit.General.model.data.Service
 import cat.copernic.letmedoit.Users.model.repository.ServiceRepository
-import cat.copernic.letmedoit.Users.view.fragments.NewService
 import cat.copernic.letmedoit.Utils.DataState
-import cat.copernic.letmedoit.Utils.Utils
 import javax.inject.Inject
 import cat.copernic.letmedoit.Utils.di.FirebaseModule
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -37,6 +36,10 @@ class ServiceRepositoryImpl @Inject constructor(
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()
+
+                for ((index, value) in service.image.withIndex()) {
+                    serviceCollection.document(service.id).collection(Constants.SERVICES_COLLECTION_IMAGES).document(index.toString()).set(value, SetOptions.merge())
+                }
             }
             if (!uploadSuccesful)
                 throw Exception("Error Uploading Service")
@@ -92,22 +95,21 @@ class ServiceRepositoryImpl @Inject constructor(
             FirebaseStorage.getInstance().reference.child("serviceImages/${serviceId}/${index}")
 
         try {
-            sRef.putFile(fileURI)
-                .addOnSuccessListener { taskSnapshot ->
-                    taskSnapshot.metadata!!.reference!!.downloadUrl
-                        .addOnSuccessListener { downloadedUri ->
-                            uri = downloadedUri.toString()
-                        }
-                }
-                .addOnFailureListener { taskException ->
-                    throw Exception(taskException)
-                }.await()
+            val downloadUrl = sRef.putFile(fileURI)
+                .addOnFailureListener { throw Exception(it) }.await()
+                .storage.downloadUrl.await()
+
+            uri = downloadUrl.toString()
 
             emit(DataState.Success(uri))
             emit(DataState.Finished)
         } catch (e: Exception) {
             emit(DataState.Error(e))
+            emit(DataState.Finished)
         }
     }.flowOn(Dispatchers.IO)
 
+    suspend fun test(taskSnapshot: UploadTask.TaskSnapshot): Task<Uri> {
+        return taskSnapshot.metadata!!.reference!!.downloadUrl
+    }
 }

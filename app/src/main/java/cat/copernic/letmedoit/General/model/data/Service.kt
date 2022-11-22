@@ -11,7 +11,7 @@ data class Service(
     val title : String,
     val description : String,
     val category : CategoryMap,
-    val image: ArrayList<Image>,
+    @get:Exclude val image: ArrayList<Image>,
     val n_likes : Int = 0,
     val edited_time : String = SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH).format(Calendar.getInstance().time),
 )

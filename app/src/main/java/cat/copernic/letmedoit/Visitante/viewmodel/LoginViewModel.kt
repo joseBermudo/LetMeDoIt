@@ -36,7 +36,7 @@ class LoginViewModel @Inject constructor(
         get() = mLogOutState
 
     fun login(email: String, password: String){
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch() {
             loginUseCase(email, password)
                 .onEach { dataState ->
                     mLoginState.value = dataState
