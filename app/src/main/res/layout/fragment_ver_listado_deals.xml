@@ -6,7 +6,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewListadoDeals"
-        android:layout_width="@dimen/width_recycler_view_390"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/recyclerView_marginBot_menuInferior"/>
+        android:layout_marginBottom="@dimen/recyclerView_marginBot_menuInferior" />
 </FrameLayout>

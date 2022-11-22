@@ -6,6 +6,7 @@ import android.widget.Spinner
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.Navigation
+import cat.copernic.letmedoit.General.view.fragments.*
 import cat.copernic.letmedoit.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -98,6 +99,17 @@ abstract class Utils {
             itemList.add("Panaderia")
             return itemList
 
+        }
+
+        fun goToUserReport(view: View, id: String) {
+            val destinationLabel = Navigation.findNavController(view).currentDestination?.label
+
+            val action = when(destinationLabel){
+                "fragment_view_service" -> viewServiceDirections.actionViewServiceToUserReport(id)
+                else -> PerfilUsuarioMenuSuperiorDirections.actionPerfilUsuarioMenuSuperiorToUserReport(id)
+            }
+
+            Navigation.findNavController(view).navigate(action)
         }
 
 

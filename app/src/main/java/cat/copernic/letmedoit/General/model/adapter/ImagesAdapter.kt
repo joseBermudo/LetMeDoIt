@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.core.util.forEach
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.data.Image
+import cat.copernic.letmedoit.General.model.data.Service
 import cat.copernic.letmedoit.databinding.ImagesListTemplateBinding
 
 class ImagesAdapter (private var imagesList : ArrayList<Image>) : RecyclerView.Adapter<ImagesViewHolder>(){
@@ -47,5 +48,9 @@ class ImagesAdapter (private var imagesList : ArrayList<Image>) : RecyclerView.A
     fun unselectAll(){
         imagesList.forEach { it.checked = false }
         notifyDataSetChanged()
+    }
+
+    fun getItems() : ArrayList<Image>{
+        return imagesList
     }
 }

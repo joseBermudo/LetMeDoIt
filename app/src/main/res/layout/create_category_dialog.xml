@@ -59,4 +59,17 @@
         app:layout_constraintStart_toEndOf="@+id/btn_doneCreate"
         app:layout_constraintTop_toBottomOf="@+id/txtInputLayout_categoryName" />
 
+    <ProgressBar
+        android:id="@+id/newCategoryLoading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:visibility="invisible"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/principal_blanco"
+        android:translationZ="90dp"
+        app:layout_constraintTop_toTopOf="@id/btn_doneCreate"
+        app:layout_constraintBottom_toBottomOf="@id/btn_doneCreate"
+        app:layout_constraintStart_toStartOf="@id/btn_doneCreate"
+        app:layout_constraintEnd_toEndOf="@id/btn_doneCreate"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

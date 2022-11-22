@@ -75,6 +75,9 @@
             app:destination="@id/perfilUsuarioMenuSuperior"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_viewService_to_userReport"
+            app:destination="@id/userReport" />
     </fragment>
     <fragment
         android:id="@+id/perfilUsuarioMenuSuperior"
@@ -144,5 +147,9 @@
         android:id="@+id/userReport"
         android:name="cat.copernic.letmedoit.Users.view.fragments.UserReport"
         android:label="fragment_user_report"
-        tools:layout="@layout/fragment_user_report" />
+        tools:layout="@layout/fragment_user_report" >
+        <argument
+            android:name="userID"
+            app:argType="string" />
+    </fragment>
 </navigation>

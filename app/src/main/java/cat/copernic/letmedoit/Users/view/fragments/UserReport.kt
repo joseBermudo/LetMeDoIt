@@ -38,6 +38,7 @@ class UserReport : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentUserReportBinding.inflate(inflater,container,false)
+        binding.reportUserBackArrow.setOnClickListener{ requireActivity().onBackPressed() }
         return binding.root
     }
 

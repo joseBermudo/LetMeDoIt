@@ -1,28 +1,45 @@
 package cat.copernic.letmedoit.General.view.fragments
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import cat.copernic.letmedoit.Admin.CreateCategoryViewModel
 import cat.copernic.letmedoit.Admin.model.adapter.AdminCategoryAdapter
 import cat.copernic.letmedoit.General.model.data.Category
 import cat.copernic.letmedoit.General.model.data.Subcategory
+import cat.copernic.letmedoit.General.model.data.Users
 import cat.copernic.letmedoit.General.model.provider.CategoryProvider
+import cat.copernic.letmedoit.General.view.activities.Home
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.DataState
+import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.FragmentAdminCategoriesListBinding
+import com.android.car.ui.core.CarUiInstaller.register
 import com.google.android.material.textfield.TextInputEditText
+import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+import java.util.regex.Pattern
 
-
+@AndroidEntryPoint
 class AdminCategoriesList : Fragment() {
     private var _binding: FragmentAdminCategoriesListBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: CreateCategoryViewModel by viewModels()
+
     private lateinit var recyclerView: RecyclerView
     private var categoryMutableList: MutableList<Category> =
         CategoryProvider.obtenerCategorias().toMutableList()
@@ -36,10 +53,11 @@ class AdminCategoriesList : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAdminCategoriesListBinding.inflate(inflater, container, false)
+
+
 
         llmanager = LinearLayoutManager(binding.root.context)
         recyclerView = binding.rcvListaCategorias
@@ -51,14 +69,47 @@ class AdminCategoriesList : Fragment() {
             requireActivity().onBackPressed()
         }
 
+        viewModel.newCategoryState.observe(viewLifecycleOwner, androidx.lifecycle.Observer { dataState ->
+            when (dataState) {
+                is DataState.Success<Boolean> -> {
+                    finishedProgress()
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ", requireContext(), dataState.exception.message.toString())
+                    finishedProgress()
+                }
+                is DataState.Loading -> {
+                    showProgress()
+                }
+                else -> Unit
+            }
+        })
         binding.btnAdd.setOnClickListener { createCategory() }
         return binding.root
     }
 
+
+    private fun finishedProgress(){
+        myDialog.dismiss()
+    }
+    private fun showProgress() {
+        val btnAccept = dialogBinding.findViewById<Button>(R.id.btn_doneCreate)
+        val btnCancel = dialogBinding.findViewById<Button>(R.id.btn_cancelCreateCategorie)
+        val dialogTextBox = dialogBinding.findViewById<TextInputEditText>(R.id.txtInput_categoryName)
+        val loading = dialogBinding.findViewById<ProgressBar>(R.id.newCategoryLoading)
+        btnAccept.isEnabled = false
+        btnCancel.isEnabled = false
+        dialogTextBox.isEnabled = false
+        loading.isVisible = true
+
+    }
+
+    lateinit var dialogBinding : View
+    lateinit var myDialog : Dialog
     private fun createCategory() {
 
-        val dialogBinding = layoutInflater.inflate(R.layout.create_category_dialog, null)
-        val myDialog = Dialog(binding.root.context)
+        dialogBinding = layoutInflater.inflate(R.layout.create_category_dialog, null)
+        myDialog = Dialog(binding.root.context)
         myDialog.setContentView(dialogBinding)
         myDialog.setCancelable(true)
         myDialog.show()
@@ -75,17 +126,11 @@ class AdminCategoriesList : Fragment() {
                 dialogBinding.findViewById<TextInputEditText>(R.id.txtInput_categoryName)
             val name = txtInput_name.text.toString().trim()
             if (!name.isEmpty() && !name.isBlank()) {
-                val category = Category(
-                    name,
-                    "pepe",
-                    arrayListOf<Subcategory>(Subcategory("Pasear perros", "pepe", "100")),
-                    "favorites_icon",
-                    "3"
-                )
+                val category = creteCategoryF(name)
+                viewModel.insertCategory(category)
                 categoryMutableList.add(index = 0, category)
                 adapter.notifyItemInserted(0)
                 llmanager.scrollToPositionWithOffset(0, 10)
-                myDialog.dismiss()
             }
         }
 
@@ -93,8 +138,7 @@ class AdminCategoriesList : Fragment() {
     }
 
     private fun initRecyclerView() {
-        adapter = AdminCategoryAdapter(
-            categoryList = categoryMutableList,
+        adapter = AdminCategoryAdapter(categoryList = categoryMutableList,
             onClickListener = { category -> onItemSelected(category) },
             onClickDelete = { position -> onDeletedItem(position) },
             onClickEdit = { category -> onEditItem(category) })
@@ -142,5 +186,17 @@ class AdminCategoriesList : Fragment() {
             myDialog.dismiss()
         }
 
+    }
+
+
+
+    private fun creteCategoryF(name: String): Category {
+        return Category(
+            name,
+            "pepe",
+            arrayListOf<Subcategory>(Subcategory("Pasear perros", "pepe", "100")),
+            "favorites_icon",
+            UUID.randomUUID().toString()
+        )
     }
 }
