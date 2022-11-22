@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".General.view.fragments.HomeFragment">
+    tools:context=".presentation.view.general.fragments.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/searchbar"
@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
             <fragment
                 android:id="@+id/fragment_searchview"
-                android:name="cat.copernic.letmedoit.General.view.fragments.SearchView"
+                android:name="cat.copernic.letmedoit.presentation.view.general.fragments.SearchView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
 
                 <fragment
                     android:id="@+id/fragment_categoryFilter"
-                    android:name="cat.copernic.letmedoit.General.view.fragments.HomeCategoriesList"
+                    android:name="cat.copernic.letmedoit.presentation.view.general.fragments.HomeCategoriesList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
@@ -46,7 +46,7 @@
 
                 <fragment
                     android:id="@+id/fragment_newServices"
-                    android:name="cat.copernic.letmedoit.General.view.fragments.HomeServicesList"
+                    android:name="cat.copernic.letmedoit.presentation.view.general.fragments.HomeServicesList"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_gravity="bottom"

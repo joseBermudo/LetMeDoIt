@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".General.view.fragments.PerfilUsuarioServicios">
+    tools:context=".presentation.view.general.fragments.PerfilUsuarioServicios">
 
 
 
@@ -14,7 +14,7 @@
 
         <fragment
             android:id="@+id/user_services_search_view"
-            android:name="cat.copernic.letmedoit.General.view.fragments.SearchView"
+            android:name="cat.copernic.letmedoit.presentation.view.general.fragments.SearchView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/searchview"
             app:layout_constraintEnd_toEndOf="parent"

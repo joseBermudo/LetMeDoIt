@@ -20,7 +20,7 @@
 
             <fragment
                 android:id="@+id/fragment_newServices"
-                android:name="cat.copernic.letmedoit.General.view.fragments.HomeServicesList"
+                android:name="cat.copernic.letmedoit.presentation.view.general.fragments.HomeServicesList"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_gravity="bottom"

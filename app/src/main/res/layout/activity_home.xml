@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".General.view.activities.Home">
+    tools:context=".presentation.view.general.activities.Home">
 
 
     <androidx.fragment.app.FragmentContainerView
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/menu_inferior_home"
-        android:name="cat.copernic.letmedoit.General.view.fragments.Menu_Inferior"
+        android:name="cat.copernic.letmedoit.presentation.view.general.fragments.Menu_Inferior"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".General.model.view.fragments.recicle_view_banned_users">
+    tools:context=".presentation.view.admin.fragments.recicle_view_banned_users">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

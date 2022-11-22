@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="@dimen/padding_horizontal_cl"
     android:paddingVertical="@dimen/padding_vertical_cl"
-    tools:context=".Visitante.view.activities.Login">
+    tools:context=".presentation.view.visitante.activities.Login">
 
     <ImageView
         android:id="@+id/btn_exit_login"

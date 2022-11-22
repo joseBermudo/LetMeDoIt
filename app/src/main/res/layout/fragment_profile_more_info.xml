@@ -6,7 +6,7 @@
     android:id="@+id/More_Info_Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".General.view.fragments.ProfileMoreInfo">
+    tools:context=".presentation.view.general.fragments.ProfileMoreInfo">
 
     <ScrollView
         android:layout_width="match_parent"
