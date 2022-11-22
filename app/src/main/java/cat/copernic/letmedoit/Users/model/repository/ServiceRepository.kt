@@ -12,5 +12,5 @@ interface ServiceRepository {
     suspend fun saveService(service : Service) : Flow<DataState<Service>>
     suspend fun getService(uid : String) : Flow<DataState<Service>>
     suspend fun getAllServices() : Flow<DataState<List<Service>>>
-    fun saveServiceImage(activity : Activity, fileURI : Uri, serviceId : String,fragment: Fragment,index : Int)
+    suspend fun saveServiceImage(activity : Activity, fileURI : Uri, serviceId : String,fragment: Fragment,index : Int): Flow<DataState<String>>
 }

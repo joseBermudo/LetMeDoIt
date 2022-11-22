@@ -2,8 +2,10 @@ package cat.copernic.letmedoit.Visitante.usecases
 
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Visitante.model.repository.LoginRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(

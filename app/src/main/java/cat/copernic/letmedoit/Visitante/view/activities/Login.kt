@@ -23,6 +23,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.util.regex.Pattern
 
 //Marca que la clase a fin de inyectarla.
@@ -48,7 +50,6 @@ class Login : AppCompatActivity() {
 
 
     }
-
     private var activityChanged : Boolean = false
     private fun initObservers() {
         loginViewModel.loginState.observe(this,Observer { dataState ->

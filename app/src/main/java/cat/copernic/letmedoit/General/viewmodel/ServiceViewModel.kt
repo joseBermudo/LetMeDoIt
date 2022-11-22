@@ -46,6 +46,11 @@ class ServiceViewModel @Inject constructor(
     val saveServiceState: LiveData<DataState<Service>>
         get() = mSaveServiceState
 
+    private val mSaveImageState: MutableLiveData<DataState<String>> = MutableLiveData()
+
+    val saveImageState: LiveData<DataState<String>>
+        get() = mSaveImageState
+
     fun getAllServices(){
         viewModelScope.launch {
             getAllServicesUseCase()
@@ -72,7 +77,12 @@ class ServiceViewModel @Inject constructor(
     }
 
     fun saveImage(activity: Activity, fileUri : Uri, serviceId : String, fragment: Fragment,index : Int){
-        saveImageUseCase(activity,fileUri, serviceId,fragment,index)
+        viewModelScope.launch {
+            saveImageUseCase(activity,fileUri, serviceId,fragment,index)
+                .onEach { dataState ->
+                    mSaveImageState.value = dataState
+                }.launchIn(viewModelScope)
+        }
     }
 
 }
