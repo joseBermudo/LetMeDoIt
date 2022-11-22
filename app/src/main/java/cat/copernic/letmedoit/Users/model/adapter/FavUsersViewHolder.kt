@@ -3,7 +3,6 @@ package cat.copernic.letmedoit.Users.model.adapter
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.General.model.data.Users
-import cat.copernic.letmedoit.General.view.fragments.PerfilUsuarioMenuSuperiorDirections
 import cat.copernic.letmedoit.General.view.fragments.profiles_services_manager_visDirections
 import cat.copernic.letmedoit.databinding.ItemViewFavUserBinding
 

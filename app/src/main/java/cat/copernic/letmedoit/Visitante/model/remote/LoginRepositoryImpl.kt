@@ -10,33 +10,36 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.toObject
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 //Implementación de la interfaz de Login. Utiliza la inyección de dependencias utilizando @Inject a fin de pedir las dependencias.
-class LoginRepositoryImpl @Inject constructor (
-    private val auth : FirebaseAuth,
-    @FirebaseModule.UsersCollection private val usersCollection : CollectionReference
-        ) : LoginRepository{
+class LoginRepositoryImpl @Inject constructor(
+    private val auth: FirebaseAuth,
+    @FirebaseModule.UsersCollection private val usersCollection: CollectionReference
+) : LoginRepository {
 
     //Corrutinas --> flow que devuelven estados
     override suspend fun login(email: String, password: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
-            var isSuccesful : Boolean = false
-            auth.signInWithEmailAndPassword(email,password)
+            var isSuccesful: Boolean = false
+            auth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener { isSuccesful = true }
                 .addOnFailureListener { isSuccesful = false }
                 .await()
             emit(DataState.Success(isSuccesful))
             emit(DataState.Finished)
-        } catch (e: Exception){
+        } catch (e: Exception) {
             emit(DataState.Error(e))
             emit(DataState.Finished)
         }
-    }
+    }.flowOn(Dispatchers.IO)
 
     override suspend fun signUp(user: Users, password: String): Flow<DataState<Users>> = flow {
         //Cargando
@@ -55,65 +58,64 @@ class LoginRepositoryImpl @Inject constructor (
                         val firebaseUser: FirebaseUser = task.result!!.user!!
 
                         registeredUser = Users(
-                            id =            firebaseUser.uid,
-                            name =          user.name,
-                            surname =        user.surname,
-                            email =         user.email,
-                            language =      user.language,
-                            darkTheme =     user.darkTheme,
-                            avatar =        user.avatar,
-                            curriculum =    user.curriculum,
-                            schedule =      user.schedule,
-                            aboutMe =       user.aboutMe,
-                            contactInfo =   user.contactInfo,
-                            location =      user.location,
-                            servicesId =    user.servicesId,
-                            favorites =     user.favorites,
-                            chatsId =       user.chatsId,
-                            historyDeals =  user.historyDeals,
-                            opinions =      user.opinions,
-                            rating =        user.rating,
-                            banned =        user.banned,
-                            admin =         user.admin,
-                            username =      user.username
+                            id = firebaseUser.uid,
+                            name = user.name,
+                            surname = user.surname,
+                            email = user.email,
+                            language = user.language,
+                            darkTheme = user.darkTheme,
+                            avatar = user.avatar,
+                            curriculum = user.curriculum,
+                            schedule = user.schedule,
+                            aboutMe = user.aboutMe,
+                            contactInfo = user.contactInfo,
+                            location = user.location,
+                            servicesId = user.servicesId,
+                            favorites = user.favorites,
+                            chatsId = user.chatsId,
+                            historyDeals = user.historyDeals,
+                            opinions = user.opinions,
+                            rating = user.rating,
+                            banned = user.banned,
+                            admin = user.admin,
+                            username = user.username
 
                         )
 
-                    } else{
+                    } else {
                         exception = task.exception!!
                     }
                 }.await()
-            if (registeredUser.id != ""){
+            if (registeredUser.id != "") {
                 emit(DataState.Success(registeredUser))
                 emit(DataState.Finished)
-            } else{
+            } else {
                 emit(DataState.Error(exception))
                 emit(DataState.Finished)
             }
-        }catch (e: Exception){
+        } catch (e: Exception) {
             emit(DataState.Error(e))
             emit(DataState.Finished)
         }
-    }
+    }.flowOn(Dispatchers.IO)
 
-    override suspend fun logOut(): Flow<DataState<Boolean>> = flow{
+    override suspend fun logOut(): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
-        try{
+        try {
             auth.signOut()
             emit(DataState.Success(true))
             emit(DataState.Finished)
-        }catch (e : Exception){
+        } catch (e: Exception) {
             emit(DataState.Error(e))
             emit(DataState.Finished)
         }
+    }.flowOn(Dispatchers.IO)
 
-    }
-
-    override suspend fun getUserData(): Flow<DataState<Boolean>> = flow{
+    override suspend fun getUserData(): Flow<DataState<Boolean>> = flow {
         var isSuccesful = false
         val currentUser = auth.currentUser
         emit(DataState.Loading)
-        try{
+        try {
             currentUser?.uid?.let {
                 usersCollection.document(it)
                     .get()
@@ -122,23 +124,23 @@ class LoginRepositoryImpl @Inject constructor (
                         isSuccesful = true
                         USER_LOGGED_IN_ID = user.id.toString()
                     }
-                    .addOnFailureListener{
+                    .addOnFailureListener {
                         isSuccesful = false
                     }
                     .await()
             }
             emit(DataState.Success(isSuccesful))
             emit(DataState.Finished)
-        }catch (e : Exception){
+        } catch (e: Exception) {
             emit(DataState.Error(e))
             emit(DataState.Finished)
         }
-    }
+    }.flowOn(Dispatchers.IO)
 
-    override suspend fun saveUser(user: Users): Flow<DataState<Boolean>> = flow{
+    override suspend fun saveUser(user: Users): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
-            var uploadSuccesful : Boolean = false
+            var uploadSuccesful: Boolean = false
             //Guardamos el usuario, pero si ya existe un documento con estos datos hace un merge sobreescrbiendo los datos.
             user.id?.let {
                 usersCollection.document(it).set(user, SetOptions.merge())
@@ -148,9 +150,9 @@ class LoginRepositoryImpl @Inject constructor (
             }
             emit(DataState.Success(uploadSuccesful))
             emit(DataState.Finished)
-        }catch (e : Exception){
+        } catch (e: Exception) {
             emit(DataState.Error(e))
             emit(DataState.Finished)
         }
-    }
+    }.flowOn(Dispatchers.IO)
 }

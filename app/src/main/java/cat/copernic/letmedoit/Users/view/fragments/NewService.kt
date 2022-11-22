@@ -119,6 +119,18 @@ class NewService : Fragment() {
         initObservers()
     }
     private fun initObservers() {
+        serviceViewModel.saveImageState.observe(viewLifecycleOwner,Observer { dataState ->
+            when(dataState){
+                is DataState.Success<String> -> {
+                    uploadImageSuccess(dataState.data)
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> {}
+                else -> Unit
+            }
+        })
         serviceViewModel.saveServiceState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Service> -> {
