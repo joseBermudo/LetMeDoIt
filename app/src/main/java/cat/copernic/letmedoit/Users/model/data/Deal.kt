@@ -8,5 +8,5 @@ data class Deal(
     val Services :          ServicesMap,
     val description:        String,
     val accepted :          Boolean,
-    val conclude:           Byte
+    val conclude:           Boolean
 )
