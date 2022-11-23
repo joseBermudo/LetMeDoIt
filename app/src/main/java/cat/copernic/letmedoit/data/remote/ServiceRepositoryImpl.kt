@@ -7,6 +7,7 @@ import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.domain.repositories.ServiceRepository
 import cat.copernic.letmedoit.Utils.DataState
+import cat.copernic.letmedoit.data.model.CategoryMap
 import javax.inject.Inject
 import cat.copernic.letmedoit.di.FirebaseModule
 import com.google.android.gms.tasks.Task
@@ -22,7 +23,8 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.tasks.await
 
 class ServiceRepositoryImpl @Inject constructor(
-    @FirebaseModule.ServiceCollection val serviceCollection: CollectionReference
+    private val storage : FirebaseStorage,
+    @FirebaseModule.ServiceCollection private val serviceCollection: CollectionReference
 ) : ServiceRepository {
 
     override suspend fun saveService(service: Service): Flow<DataState<Service>> = flow {
@@ -78,6 +80,46 @@ class ServiceRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
+    override suspend fun updateTitle(
+        idService: String,
+        newTitle: String
+    ): Flow<DataState<Boolean>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateDescription(
+        idService: String,
+        newDescription: String
+    ): Flow<DataState<Boolean>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateCategory(
+        idService: String,
+        newCategoryMap: CategoryMap
+    ): Flow<DataState<Boolean>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateNLikes(idService: String, newNum: Int): Flow<DataState<Boolean>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateEditedTime(
+        idService: String,
+        newEditedTime: String
+    ): Flow<DataState<Boolean>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun editServiceImage(
+        idService: String,
+        idImg: String,
+        newFileURI: Uri
+    ): Flow<DataState<Boolean>> {
+        TODO("Not yet implemented")
+    }
+
 
     lateinit var uri: String
     override suspend fun saveServiceImage(
@@ -91,7 +133,7 @@ class ServiceRepositoryImpl @Inject constructor(
         uri = ""
         emit(DataState.Loading)
         val sRef: StorageReference =
-            FirebaseStorage.getInstance().reference.child("serviceImages/${serviceId}/${index}")
+            storage.reference.child("serviceImages/${serviceId}/${index}")
 
         try {
             val downloadUrl = sRef.putFile(fileURI)
@@ -107,8 +149,4 @@ class ServiceRepositoryImpl @Inject constructor(
             emit(DataState.Finished)
         }
     }.flowOn(Dispatchers.IO)
-
-    suspend fun test(taskSnapshot: UploadTask.TaskSnapshot): Task<Uri> {
-        return taskSnapshot.metadata!!.reference!!.downloadUrl
-    }
 }
