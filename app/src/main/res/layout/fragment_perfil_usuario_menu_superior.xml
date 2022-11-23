@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
 
     android:layout_height="match_parent"
-    tools:context=".General.view.fragments.PerfilUsuarioMenuSuperior">
+    tools:context=".presentation.view.general.fragments.PerfilUsuarioMenuSuperior">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

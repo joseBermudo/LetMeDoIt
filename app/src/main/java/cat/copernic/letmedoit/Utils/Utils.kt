@@ -6,7 +6,7 @@ import android.widget.Spinner
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.Navigation
-import cat.copernic.letmedoit.General.view.fragments.*
+import cat.copernic.letmedoit.presentation.view.general.fragments.*
 import cat.copernic.letmedoit.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 

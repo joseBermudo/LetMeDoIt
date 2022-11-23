@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="cat.copernic.letmedoit.General.view.fragments.HomeFragment"
+        android:name="cat.copernic.letmedoit.presentation.view.general.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/filtroCategorias"
-        android:name="cat.copernic.letmedoit.General.view.fragments.FiltroCategorias"
+        android:name="cat.copernic.letmedoit.presentation.view.general.fragments.FiltroCategorias"
         android:label="FiltroCategorias" >
         <action
             android:id="@+id/filtroCategoriasToHomeFragment"
@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewService"
-        android:name="cat.copernic.letmedoit.General.view.fragments.viewService"
+        android:name="cat.copernic.letmedoit.presentation.view.general.fragments.viewService"
         android:label="fragment_view_service"
         tools:layout="@layout/fragment_view_service" >
         <argument
@@ -81,7 +81,7 @@
     </fragment>
     <fragment
         android:id="@+id/perfilUsuarioMenuSuperior"
-        android:name="cat.copernic.letmedoit.General.view.fragments.PerfilUsuarioMenuSuperior"
+        android:name="cat.copernic.letmedoit.presentation.view.general.fragments.PerfilUsuarioMenuSuperior"
         android:label="fragment_perfil_usuario_menu_superior"
         tools:layout="@layout/fragment_perfil_usuario_menu_superior" >
         <argument
@@ -104,7 +104,7 @@
     </fragment>
     <fragment
         android:id="@+id/registroOpcionesCuenta"
-        android:name="cat.copernic.letmedoit.Visitante.view.fragments.RegistroOpcionesCuenta"
+        android:name="cat.copernic.letmedoit.presentation.view.visitante.fragments.RegistroOpcionesCuenta"
         android:label="fragment_registro_opciones_cuenta"
         tools:layout="@layout/fragment_registro_opciones_cuenta" >
         <action
@@ -116,7 +116,7 @@
     </fragment>
     <fragment
         android:id="@+id/uploadServicesVis"
-        android:name="cat.copernic.letmedoit.Visitante.view.fragments.UploadServicesVis"
+        android:name="cat.copernic.letmedoit.presentation.view.visitante.fragments.UploadServicesVis"
         android:label="fragment_upload_services_vis"
         tools:layout="@layout/fragment_upload_services_vis" >
         <action
@@ -128,7 +128,7 @@
     </fragment>
     <fragment
         android:id="@+id/messagesVis"
-        android:name="cat.copernic.letmedoit.Visitante.view.fragments.MessagesVis"
+        android:name="cat.copernic.letmedoit.presentation.view.visitante.fragments.MessagesVis"
         android:label="fragment_messages_vis"
         tools:layout="@layout/fragment_messages_vis" >
         <action
@@ -140,12 +140,12 @@
     </fragment>
     <fragment
         android:id="@+id/profiles_services_manager_vis"
-        android:name="cat.copernic.letmedoit.General.view.fragments.profiles_services_manager_vis"
+        android:name="cat.copernic.letmedoit.presentation.view.general.fragments.profiles_services_manager_vis"
         android:label="fragment_profiles_services_manager_vis"
         tools:layout="@layout/fragment_profiles_services_manager_vis" />
     <fragment
         android:id="@+id/userReport"
-        android:name="cat.copernic.letmedoit.Users.view.fragments.UserReport"
+        android:name="cat.copernic.letmedoit.presentation.view.users.fragments.UserReport"
         android:label="fragment_user_report"
         tools:layout="@layout/fragment_user_report" >
         <argument
