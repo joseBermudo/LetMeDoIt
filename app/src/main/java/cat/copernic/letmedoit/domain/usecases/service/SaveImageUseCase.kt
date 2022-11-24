@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.domain.usecases
+package cat.copernic.letmedoit.domain.usecases.service
 
 import android.app.Activity
 import android.net.Uri

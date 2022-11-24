@@ -8,10 +8,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cat.copernic.letmedoit.data.model.Service
-import cat.copernic.letmedoit.domain.usecases.GetAllServicesUseCase
-import cat.copernic.letmedoit.domain.usecases.GetServiceUseCase
-import cat.copernic.letmedoit.domain.usecases.SaveImageUseCase
-import cat.copernic.letmedoit.domain.usecases.SaveServiceUseCase
+import cat.copernic.letmedoit.domain.usecases.service.GetAllServicesUseCase
+import cat.copernic.letmedoit.domain.usecases.service.GetServiceUseCase
+import cat.copernic.letmedoit.domain.usecases.service.SaveImageUseCase
+import cat.copernic.letmedoit.domain.usecases.service.SaveServiceUseCase
 import cat.copernic.letmedoit.Utils.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
