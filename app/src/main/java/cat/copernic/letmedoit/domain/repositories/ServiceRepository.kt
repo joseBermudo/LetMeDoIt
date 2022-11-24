@@ -13,7 +13,7 @@ interface ServiceRepository {
 
     //add
     suspend fun saveService(service : Service) : Flow<DataState<Service>>
-    suspend fun saveServiceImage(activity : Activity, fileURI : Uri, serviceId : String,fragment: Fragment,index : Int): Flow<DataState<String>>
+    suspend fun saveServiceImage(fileURI : Uri, serviceId : String,index : Int): Flow<DataState<String>>
 
     //get
     suspend fun getService(uid : String) : Flow<DataState<Service>>
@@ -25,6 +25,6 @@ interface ServiceRepository {
     suspend fun updateCategory(idService : String, newCategoryMap: CategoryMap): Flow<DataState<Boolean>>
     suspend fun updateNLikes(idService : String, newNum : Int): Flow<DataState<Boolean>>
     suspend fun updateEditedTime(idService : String, newEditedTime : String): Flow<DataState<Boolean>>
-    suspend fun editServiceImage(idService : String, idImg : String, newFileURI : Uri, ): Flow<DataState<Boolean>>
+    suspend fun editServiceImage(idService : String, idImg : String, oldFileUri : String,newFileURI : Uri, index: Int): Flow<DataState<Boolean>>
 
 }

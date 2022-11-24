@@ -7,6 +7,8 @@ import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.domain.repositories.ServiceRepository
 import cat.copernic.letmedoit.Utils.DataState
+import cat.copernic.letmedoit.Utils.ServiceConstants
+import cat.copernic.letmedoit.Utils.UserConstants
 import cat.copernic.letmedoit.data.model.CategoryMap
 import javax.inject.Inject
 import cat.copernic.letmedoit.di.FirebaseModule
@@ -18,6 +20,7 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.tasks.await
@@ -83,50 +86,155 @@ class ServiceRepositoryImpl @Inject constructor(
     override suspend fun updateTitle(
         idService: String,
         newTitle: String
-    ): Flow<DataState<Boolean>> {
-        TODO("Not yet implemented")
-    }
+    ): Flow<DataState<Boolean>>  = flow{
+        emit(DataState.Loading)
+        try {
+            var uploadSuccesful: Boolean = false
+            idService.let {
+                serviceCollection.document(it).update(ServiceConstants.TITLE,newTitle)
+                    .addOnSuccessListener { uploadSuccesful = true }
+                    .addOnFailureListener { uploadSuccesful = false }
+                    .await()
+            }
+            emit(DataState.Success(uploadSuccesful))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
 
     override suspend fun updateDescription(
         idService: String,
         newDescription: String
-    ): Flow<DataState<Boolean>> {
-        TODO("Not yet implemented")
-    }
+    ): Flow<DataState<Boolean>> = flow{
+        emit(DataState.Loading)
+        try {
+            var uploadSuccesful: Boolean = false
+            idService.let {
+                serviceCollection.document(it).update(ServiceConstants.DESCRIPTION,newDescription)
+                    .addOnSuccessListener { uploadSuccesful = true }
+                    .addOnFailureListener { uploadSuccesful = false }
+                    .await()
+            }
+            emit(DataState.Success(uploadSuccesful))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
 
     override suspend fun updateCategory(
         idService: String,
         newCategoryMap: CategoryMap
-    ): Flow<DataState<Boolean>> {
-        TODO("Not yet implemented")
-    }
+    ): Flow<DataState<Boolean>> = flow{
+        emit(DataState.Loading)
+        try {
+            var uploadSuccesful: Boolean = false
+            idService.let {
+                serviceCollection.document(it).update(ServiceConstants.CATEGORY,newCategoryMap)
+                    .addOnSuccessListener { uploadSuccesful = true }
+                    .addOnFailureListener { uploadSuccesful = false }
+                    .await()
+            }
+            emit(DataState.Success(uploadSuccesful))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
 
-    override suspend fun updateNLikes(idService: String, newNum: Int): Flow<DataState<Boolean>> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun updateNLikes(idService: String, newNum: Int): Flow<DataState<Boolean>> = flow {
+        emit(DataState.Loading)
+        try {
+            var uploadSuccesful: Boolean = false
+            idService.let {
+                serviceCollection.document(it).update(ServiceConstants.N_LIKES,newNum)
+                    .addOnSuccessListener { uploadSuccesful = true }
+                    .addOnFailureListener { uploadSuccesful = false }
+                    .await()
+            }
+            emit(DataState.Success(uploadSuccesful))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
 
     override suspend fun updateEditedTime(
         idService: String,
         newEditedTime: String
-    ): Flow<DataState<Boolean>> {
-        TODO("Not yet implemented")
-    }
+    ): Flow<DataState<Boolean>> = flow {
+        emit(DataState.Loading)
+        try {
+            var uploadSuccesful: Boolean = false
+            idService.let {
+                serviceCollection.document(it).update(ServiceConstants.EDITED_TIME,newEditedTime)
+                    .addOnSuccessListener { uploadSuccesful = true }
+                    .addOnFailureListener { uploadSuccesful = false }
+                    .await()
+            }
+            emit(DataState.Success(uploadSuccesful))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
 
     override suspend fun editServiceImage(
         idService: String,
         idImg: String,
-        newFileURI: Uri
-    ): Flow<DataState<Boolean>> {
-        TODO("Not yet implemented")
+        oldFileUri : String,
+        newFileURI: Uri,
+        index : Int,
+    ): Flow<DataState<Boolean>>  = flow{
+
+        var isSuccessful = false
+        emit(DataState.Loading)
+
+        try {
+            if(deleteServiceImage(oldFileUri))
+                saveServiceImage(newFileURI,idService,index)
+
+            isSuccessful = true
+            emit(DataState.Success(isSuccessful))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
+
+    private suspend fun deleteServiceImage(oldFileUri: String)  : Boolean{
+        var isSuccessful = false
+        val sRef: StorageReference =
+            FirebaseModule.storageProvider().getReferenceFromUrl(oldFileUri)
+
+        try {
+            sRef.delete()
+                .addOnSuccessListener {
+                    isSuccessful = true
+                }
+                .addOnFailureListener{
+                    throw Exception(it)
+                }
+                .await()
+        } catch (e: Exception) {
+            isSuccessful = false
+        }
+        return isSuccessful
     }
 
-
     lateinit var uri: String
+
     override suspend fun saveServiceImage(
-        activity: Activity,
         fileURI: Uri,
         serviceId: String,
-        fragment: Fragment,
         index: Int
     ): Flow<DataState<String>> = flow {
 
