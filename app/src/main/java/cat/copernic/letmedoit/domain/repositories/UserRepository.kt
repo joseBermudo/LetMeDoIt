@@ -9,18 +9,19 @@ import kotlinx.coroutines.flow.Flow
 interface UserRepository {
 
     //get
-    suspend fun getUser (idUser : String) : Flow<DataState<Users>>
-    suspend fun getServices () : Flow<DataState<ArrayList<String>>>
+    suspend fun getUser (idUser : String) : Flow<DataState<Users?>>
+    suspend fun getServices (idUser : String) : Flow<DataState<ArrayList<String>>>
     suspend fun getFavoriteProfiles() : Flow<DataState<ArrayList<String>>>
     suspend fun getFavoriteServices() : Flow<DataState<ArrayList<String>>>
     suspend fun getChats () : Flow<DataState<ArrayList<String>>>
     suspend fun getHistoryDeals  () : Flow<DataState<ArrayList<HistoryDeal>>>
-    suspend fun getOpinions () : Flow<DataState<ArrayList<Opinions>>>
+    suspend fun getOpinions (idUser: String) : Flow<DataState<ArrayList<Opinions>>>
 
     //delete
     suspend fun deleteService (idService : String) : Flow<DataState<Boolean>>
     suspend fun deleteFavoriteProfile(idProfile: String) : Flow<DataState<Boolean>>
     suspend fun deleteFavoriteService(idService: String) : Flow<DataState<Boolean>>
+    suspend fun deleteAvatarFromStorage(imgLink: String) : Flow<DataState<Boolean>>
 
     //add
     suspend fun addService(idService : String) : Flow<DataState<Boolean>>
@@ -33,9 +34,8 @@ interface UserRepository {
     //update
     suspend fun updateName(newName : String) : Flow<DataState<Boolean>>
     suspend fun updateSurname(newSurname : String) : Flow<DataState<Boolean>>
-    suspend fun updateEmail(newEmail : String) : Flow<DataState<Boolean>>
-    suspend fun updatePassword(oldPassword : String, newPassword : String) : Flow<DataState<Boolean>>
-    suspend fun updateLanguage(language : LanguageConstants) : Flow<DataState<Boolean>>
+    suspend fun updatePassword(oldPassword : String, newPassword : String, email : String) : Flow<DataState<Boolean>>
+    suspend fun updateLanguage(language : Int) : Flow<DataState<Boolean>>
     suspend fun updateDarkTheme(darkTheme : Boolean) : Flow<DataState<Boolean>>
     suspend fun updateAvatar(imgLink : String) : Flow<DataState<Boolean>>
     suspend fun updateCurriculum(pdfLink : String) : Flow<DataState<Boolean>>
