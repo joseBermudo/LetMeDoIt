@@ -9,5 +9,5 @@ import javax.inject.Inject
 class SaveImageUseCase @Inject constructor(
     private val serviceRepository: ServiceRepository
 ) {
-    suspend operator fun invoke(activity : Activity, fileURI : Uri, serviceId : String, fragment: Fragment, index : Int) = serviceRepository.saveServiceImage(activity,fileURI,serviceId,fragment,index)
+    suspend operator fun invoke(fileURI : Uri, serviceId : String, index : Int) = serviceRepository.saveServiceImage(fileURI,serviceId,index)
 }

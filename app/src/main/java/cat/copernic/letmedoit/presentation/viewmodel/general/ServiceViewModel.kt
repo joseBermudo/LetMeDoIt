@@ -74,7 +74,7 @@ class ServiceViewModel @Inject constructor(
 
     fun saveImage(activity: Activity, fileUri : Uri, serviceId : String, fragment: Fragment,index : Int){
         viewModelScope.launch {
-            saveImageUseCase(activity,fileUri, serviceId,fragment,index)
+            saveImageUseCase(fileUri, serviceId,index)
                 .onEach { dataState ->
                     mSaveImageState.value = dataState
                 }.launchIn(viewModelScope)
