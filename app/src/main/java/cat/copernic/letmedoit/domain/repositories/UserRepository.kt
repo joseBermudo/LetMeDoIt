@@ -16,6 +16,7 @@ interface UserRepository {
     suspend fun getChats () : Flow<DataState<ArrayList<String>>>
     suspend fun getHistoryDeals  () : Flow<DataState<ArrayList<HistoryDeal>>>
     suspend fun getOpinions (idUser: String) : Flow<DataState<ArrayList<Opinions>>>
+    suspend fun getAvatarLink (idUser: String) : Flow<DataState<String>>
 
     //delete
     suspend fun deleteService (idService : String) : Flow<DataState<Boolean>>

@@ -1,5 +1,6 @@
 package cat.copernic.letmedoit.data.model
 
+import cat.copernic.letmedoit.Utils.Constants
 import com.google.firebase.firestore.Exclude
 import java.text.SimpleDateFormat
 import java.util.*
@@ -13,4 +14,5 @@ data class Service(
     @get:Exclude val image: ArrayList<Image>,
     val n_likes : Int = 0,
     val edited_time : String = SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH).format(Calendar.getInstance().time),
+    val userid : String = Constants.USER_LOGGED_IN_ID
 )

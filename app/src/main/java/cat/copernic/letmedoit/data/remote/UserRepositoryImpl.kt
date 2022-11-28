@@ -137,6 +137,29 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
+    override suspend fun getAvatarLink(idUser: String): Flow<DataState<String>> = flow{
+        var avatarLink = "error"
+        emit(DataState.Loading)
+        try {
+            idUser.let {
+                usersCollection.document(it).collection(UserConstants.AVATAR)
+                    .get()
+                    .addOnSuccessListener { data ->
+                        avatarLink = data.toObjects(String::class.java)[0]
+                    }
+                    .addOnFailureListener{ error ->
+                        throw Exception(error)
+                    }
+                    .await()
+            }
+            emit(DataState.Success(avatarLink))
+            emit(DataState.Finished)
+        }catch (e : Exception){
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
     //DELETE
     override suspend fun deleteService(idService: String): Flow<DataState<Boolean>> = flow{
         var isSuccesful = false

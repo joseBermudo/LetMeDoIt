@@ -30,6 +30,7 @@ import cat.copernic.letmedoit.data.model.Image
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.data.provider.CategoryProvider
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.FragmentNewServiceBinding
@@ -222,6 +223,7 @@ class NewService : Fragment() {
                 description = binding.editDescription.text.toString(),
                 category = CategoryMap(binding.spinnerCategory.selectedItem.toString(),binding.spinnerSubcategory.selectedItem.toString()),
                 image = imagesUploaded,
+                userid = Constants.USER_LOGGED_IN_ID
             )
         )
     }
