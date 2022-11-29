@@ -11,7 +11,6 @@ import cat.copernic.letmedoit.domain.usecases.deals.ConcludeDealUseCase
 import cat.copernic.letmedoit.domain.usecases.deals.DenyDealUseCase
 import cat.copernic.letmedoit.domain.usecases.deals.InsertDealUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
