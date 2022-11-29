@@ -1,19 +1,17 @@
 package cat.copernic.letmedoit.data.remote
 
+import android.net.Uri
 import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
-import cat.copernic.letmedoit.Utils.LanguageConstants
 import cat.copernic.letmedoit.Utils.UserConstants
-import cat.copernic.letmedoit.data.model.ContactInfoMap
-import cat.copernic.letmedoit.data.model.HistoryDeal
-import cat.copernic.letmedoit.data.model.Opinions
-import cat.copernic.letmedoit.data.model.Users
+import cat.copernic.letmedoit.data.model.*
 import cat.copernic.letmedoit.di.FirebaseModule
 import cat.copernic.letmedoit.domain.repositories.UserRepository
 import com.google.android.gms.tasks.Tasks.await
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.auth.User
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -28,44 +26,16 @@ class UserRepositoryImpl @Inject constructor(
 ) : UserRepository {
 
     //GET
-    private suspend fun generalArrayListObtainer(idUser: String, userCollection : String) : Flow<DataState<ArrayList<String>>> = flow {
-        var generalArrayList = ArrayList<String>()
-        emit(DataState.Loading)
-        try {
-            idUser.let {
-                usersCollection.document(it).collection(UserConstants.SERVICES)
-                    .get()
-                    .addOnSuccessListener { data ->
-                        generalArrayList = ArrayList(data.toObjects(String::class.java))
-                    }
-                    .addOnFailureListener{ error ->
-                        throw Exception(error)
-                    }
-                    .await()
-            }
-            emit(DataState.Success(generalArrayList))
-            emit(DataState.Finished)
-        }catch (e : Exception){
-            emit(DataState.Error(e))
-            emit(DataState.Finished)
-        }
-    }.flowOn(Dispatchers.IO)
-
     override suspend fun getUser(idUser: String): Flow<DataState<Users?>> = flow {
-        var user : Users? = null
         emit(DataState.Loading)
         try {
-            idUser.let {
-                usersCollection.document(it)
-                    .get()
-                    .addOnSuccessListener { document ->
-                        user = document.toObject(Users::class.java)!!
-                    }
-                    .addOnFailureListener {
-                        user = null
-                    }
-                    .await()
+            val user : Users
+
+            usersCollection.document(idUser).get().await().let { document ->
+                user = document.toObject(Users::class.java)!!
+                user.id = document.id
             }
+
             emit(DataState.Success(user))
             emit(DataState.Finished)
         } catch (e: Exception) {
@@ -74,20 +44,72 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun getServices(idUser: String): Flow<DataState<ArrayList<String>>>{
-        return generalArrayListObtainer(idUser,UserConstants.SERVICES)
+    override suspend fun getServices(idUser: String): Flow<DataState<ArrayList<UserServices>>> = flow {
+        emit(DataState.Loading)
+        try {
+            val generalArrayList =
+                usersCollection.document(idUser).collection(UserConstants.SERVICES)
+                    .get()
+                    .await()
+                    .toObjects(UserServices::class.java)
+
+            emit(DataState.Success(ArrayList(generalArrayList)))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
+    override suspend fun getFavoriteProfiles(): Flow<DataState<ArrayList<UserFavoriteProfiles>>> = flow{
+        emit(DataState.Loading)
+        try {
+            val generalArrayList =
+                usersCollection.document(Constants.USER_LOGGED_IN_ID).collection(UserConstants.FAVORITE_PROFILES)
+                    .get()
+                    .await()
+                    .toObjects(UserFavoriteProfiles::class.java)
+
+            emit(DataState.Success(ArrayList(generalArrayList)))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
+    override suspend fun getFavoriteServices(): Flow<DataState<ArrayList<UserFavoriteServices>>> = flow{
+        emit(DataState.Loading)
+        try {
+            val generalArrayList =
+                usersCollection.document(Constants.USER_LOGGED_IN_ID).collection(UserConstants.FAVORITE_SERVICES)
+                    .get()
+                    .await()
+                    .toObjects(UserFavoriteServices::class.java)
+
+            emit(DataState.Success(ArrayList(generalArrayList)))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
     }
 
-    override suspend fun getFavoriteProfiles(): Flow<DataState<ArrayList<String>>>{
-        return generalArrayListObtainer(Constants.USER_LOGGED_IN_ID,UserConstants.FAVORITE_PROFILES)
-    }
+    override suspend fun getChats(): Flow<DataState<ArrayList<UserChats>>> = flow{
+        emit(DataState.Loading)
+        try {
+            val generalArrayList =
+                usersCollection.document(Constants.USER_LOGGED_IN_ID).collection(UserConstants.CHATS)
+                    .get()
+                    .await()
+                    .toObjects(UserChats::class.java)
 
-    override suspend fun getFavoriteServices(): Flow<DataState<ArrayList<String>>> {
-        return generalArrayListObtainer(Constants.USER_LOGGED_IN_ID,UserConstants.FAVORITE_SERVICES)
-    }
-
-    override suspend fun getChats(): Flow<DataState<ArrayList<String>>> {
-        return generalArrayListObtainer(Constants.USER_LOGGED_IN_ID,UserConstants.CHATS)
+            emit(DataState.Success(ArrayList(generalArrayList)))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
     }
 
 
@@ -95,73 +117,37 @@ class UserRepositoryImpl @Inject constructor(
         var historyDeals = ArrayList<HistoryDeal>()
         emit(DataState.Loading)
         try {
-            Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).collection(UserConstants.HISTORY_DEALS)
-                    .get()
-                    .addOnSuccessListener { data ->
-                        historyDeals = ArrayList(data.toObjects(HistoryDeal::class.java))
-                    }
-                    .addOnFailureListener{ error ->
-                        throw Exception(error)
-                    }
-                    .await()
-            }
-            emit(DataState.Success(historyDeals))
+            val historyDeals = usersCollection.document(Constants.USER_LOGGED_IN_ID).collection(UserConstants.HISTORY_DEALS)
+                .get()
+                .await()
+                .toObjects(HistoryDeal::class.java)
+
+            emit(DataState.Success(ArrayList(historyDeals)))
             emit(DataState.Finished)
-        }catch (e : Exception){
+        } catch (e: Exception) {
             emit(DataState.Error(e))
             emit(DataState.Finished)
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun getOpinions(idUser: String): Flow<DataState<ArrayList<Opinions>>> = flow{
-        var opinions = ArrayList<Opinions>()
+    override suspend fun getOpinions(idUser: String): Flow<DataState<ArrayList<Opinions>>> = flow {
         emit(DataState.Loading)
         try {
-            Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).collection(UserConstants.OPINIONS)
-                    .get()
-                    .addOnSuccessListener { data ->
-                        opinions = ArrayList(data.toObjects(Opinions::class.java))
-                    }
-                    .addOnFailureListener{ error ->
-                        throw Exception(error)
-                    }
-                    .await()
-            }
-            emit(DataState.Success(opinions))
-            emit(DataState.Finished)
-        }catch (e : Exception){
-            emit(DataState.Error(e))
-            emit(DataState.Finished)
-        }
-    }.flowOn(Dispatchers.IO)
+            val opinions = usersCollection.document(idUser).collection(UserConstants.OPINIONS)
+                .get()
+                .await()
+                .toObjects(Opinions::class.java)
 
-    override suspend fun getAvatarLink(idUser: String): Flow<DataState<String>> = flow{
-        var avatarLink = "error"
-        emit(DataState.Loading)
-        try {
-            idUser.let {
-                usersCollection.document(it).collection(UserConstants.AVATAR)
-                    .get()
-                    .addOnSuccessListener { data ->
-                        avatarLink = data.toObjects(String::class.java)[0]
-                    }
-                    .addOnFailureListener{ error ->
-                        throw Exception(error)
-                    }
-                    .await()
-            }
-            emit(DataState.Success(avatarLink))
+            emit(DataState.Success(ArrayList(opinions)))
             emit(DataState.Finished)
-        }catch (e : Exception){
+        } catch (e: Exception) {
             emit(DataState.Error(e))
             emit(DataState.Finished)
         }
     }.flowOn(Dispatchers.IO)
 
     //DELETE
-    override suspend fun deleteService(idService: String): Flow<DataState<Boolean>> = flow{
+    override suspend fun deleteService(idService: String): Flow<DataState<Boolean>> = flow {
         var isSuccesful = false
         emit(DataState.Loading)
         try {
@@ -171,7 +157,7 @@ class UserRepositoryImpl @Inject constructor(
                     .addOnSuccessListener { data ->
                         isSuccesful = true
                     }
-                    .addOnFailureListener{ error ->
+                    .addOnFailureListener { error ->
                         isSuccesful = false
                         throw Exception(error)
                     }
@@ -179,7 +165,7 @@ class UserRepositoryImpl @Inject constructor(
             }
             emit(DataState.Success(isSuccesful))
             emit(DataState.Finished)
-        }catch (e : Exception){
+        } catch (e: Exception) {
             emit(DataState.Error(e))
             emit(DataState.Finished)
         }
@@ -190,12 +176,13 @@ class UserRepositoryImpl @Inject constructor(
         emit(DataState.Loading)
         try {
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).collection(UserConstants.FAVORITE_PROFILES).document(idProfile)
+                usersCollection.document(it).collection(UserConstants.FAVORITE_PROFILES)
+                    .document(idProfile)
                     .delete()
                     .addOnSuccessListener { data ->
                         isSuccesful = true
                     }
-                    .addOnFailureListener{ error ->
+                    .addOnFailureListener { error ->
                         isSuccesful = false
                         throw Exception(error)
                     }
@@ -203,7 +190,7 @@ class UserRepositoryImpl @Inject constructor(
             }
             emit(DataState.Success(isSuccesful))
             emit(DataState.Finished)
-        }catch (e : Exception){
+        } catch (e: Exception) {
             emit(DataState.Error(e))
             emit(DataState.Finished)
         }
@@ -214,12 +201,13 @@ class UserRepositoryImpl @Inject constructor(
         emit(DataState.Loading)
         try {
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).collection(UserConstants.FAVORITE_SERVICES).document(idService)
+                usersCollection.document(it).collection(UserConstants.FAVORITE_SERVICES)
+                    .document(idService)
                     .delete()
                     .addOnSuccessListener { data ->
                         isSuccesful = true
                     }
-                    .addOnFailureListener{ error ->
+                    .addOnFailureListener { error ->
                         isSuccesful = false
                         throw Exception(error)
                     }
@@ -227,13 +215,13 @@ class UserRepositoryImpl @Inject constructor(
             }
             emit(DataState.Success(isSuccesful))
             emit(DataState.Finished)
-        }catch (e : Exception){
+        } catch (e: Exception) {
             emit(DataState.Error(e))
             emit(DataState.Finished)
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun deleteAvatarFromStorage(imgLink: String): Flow<DataState<Boolean>> = flow{
+    override suspend fun deleteAvatarFromStorage(imgLink: String): Flow<DataState<Boolean>> = flow {
         var isSuccessful = false
         emit(DataState.Loading)
         val sRef: StorageReference =
@@ -244,7 +232,7 @@ class UserRepositoryImpl @Inject constructor(
                 .addOnSuccessListener {
                     isSuccessful = true
                 }
-                .addOnFailureListener{
+                .addOnFailureListener {
                     throw Exception(it)
                 }
                 .await()
@@ -257,14 +245,43 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
+    override suspend fun deleteCurriculumFromStorage(pdfLink: String): Flow<DataState<Boolean>> =
+        flow {
+            var isSuccessful = false
+            emit(DataState.Loading)
+            val sRef: StorageReference =
+                FirebaseModule.storageProvider().getReferenceFromUrl(pdfLink)
+
+            try {
+                sRef.delete()
+                    .addOnSuccessListener {
+                        isSuccessful = true
+                    }
+                    .addOnFailureListener {
+                        throw Exception(it)
+                    }
+                    .await()
+
+                emit(DataState.Success(isSuccessful))
+                emit(DataState.Finished)
+            } catch (e: Exception) {
+                emit(DataState.Error(e))
+                emit(DataState.Finished)
+            }
+        }.flowOn(Dispatchers.IO)
+
 
     //ADD
     override suspend fun addService(idService: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
+
+            val newIndex = getIndex(UserConstants.SERVICES)+1
+
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).collection(UserConstants.SERVICES).document(idService).set(idService, SetOptions.merge())
+                usersCollection.document(it).collection(UserConstants.SERVICES).document(newIndex.toString())
+                    .set(UserServices(idService), SetOptions.merge())
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()
@@ -277,12 +294,21 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun addFavoriteProfiles(idProfile: String): Flow<DataState<Boolean>> = flow{
+    private suspend fun getIndex(collection: String): Int {
+        return try {
+            usersCollection.document(Constants.USER_LOGGED_IN_ID).collection(collection).get().await().documents.last().id.toInt()
+        }catch (e : Exception){
+            return 0
+        }
+    }
+
+    override suspend fun addFavoriteProfiles(idProfile: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).collection(UserConstants.FAVORITE_PROFILES).document(idProfile).set(idProfile, SetOptions.merge())
+                usersCollection.document(it).collection(UserConstants.FAVORITE_PROFILES)
+                    .document(idProfile).set(idProfile, SetOptions.merge())
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()
@@ -295,12 +321,13 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun addFavoriteServices(idService: String): Flow<DataState<Boolean>> = flow{
+    override suspend fun addFavoriteServices(idService: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).collection(UserConstants.FAVORITE_SERVICES).document(idService).set(idService, SetOptions.merge())
+                usersCollection.document(it).collection(UserConstants.FAVORITE_SERVICES)
+                    .document(idService).set(idService, SetOptions.merge())
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()
@@ -316,9 +343,12 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun addChat(idChat: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
+            val newIndex = getIndex(UserConstants.CHATS)+1
+
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).collection(UserConstants.CHATS).document(idChat).set(idChat, SetOptions.merge())
+                usersCollection.document(it).collection(UserConstants.CHATS).document(newIndex.toString())
+                    .set(UserChats(idChat), SetOptions.merge())
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()
@@ -331,30 +361,35 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun addHistoryDeal(idUser: String, idDeal: String): Flow<DataState<Boolean>> = flow {
-        emit(DataState.Loading)
-        try {
-            var uploadSuccesful: Boolean = false
-            Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).collection(UserConstants.HISTORY_DEALS).document(idUser).collection(UserConstants.DEALS).document(idDeal).set(idDeal, SetOptions.merge())
-                    .addOnSuccessListener { uploadSuccesful = true }
-                    .addOnFailureListener { uploadSuccesful = false }
-                    .await()
+    override suspend fun addHistoryDeal(idUser: String, idDeal: String): Flow<DataState<Boolean>> =
+        flow {
+            emit(DataState.Loading)
+            try {
+                var uploadSuccesful: Boolean = false
+                val newIndex = usersCollection.document(Constants.USER_LOGGED_IN_ID).collection(UserConstants.HISTORY_DEALS).document(idUser).collection(UserConstants.DEALS).get().await().documents.last().id.toInt() +1
+                Constants.USER_LOGGED_IN_ID.let {
+                    usersCollection.document(it).collection(UserConstants.HISTORY_DEALS)
+                        .document(idUser).collection(UserConstants.DEALS).document(newIndex.toString())
+                        .set(UserDeals(idDeal), SetOptions.merge())
+                        .addOnSuccessListener { uploadSuccesful = true }
+                        .addOnFailureListener { uploadSuccesful = false }
+                        .await()
+                }
+                emit(DataState.Success(uploadSuccesful))
+                emit(DataState.Finished)
+            } catch (e: Exception) {
+                emit(DataState.Error(e))
+                emit(DataState.Finished)
             }
-            emit(DataState.Success(uploadSuccesful))
-            emit(DataState.Finished)
-        } catch (e: Exception) {
-            emit(DataState.Error(e))
-            emit(DataState.Finished)
-        }
-    }.flowOn(Dispatchers.IO)
+        }.flowOn(Dispatchers.IO)
 
     override suspend fun addOpinion(opinion: Opinions): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).collection(UserConstants.OPINIONS).document(opinion.id).set(opinion, SetOptions.merge())
+                usersCollection.document(it).collection(UserConstants.OPINIONS).document(opinion.id)
+                    .set(opinion, SetOptions.merge())
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()
@@ -367,12 +402,54 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun updateName(newName: String): Flow<DataState<Boolean>>  = flow {
+    override suspend fun addAvatarToStorage(fileUri: Uri): Flow<DataState<String>> = flow {
+        var uri = ""
+        emit(DataState.Loading)
+        val sRef: StorageReference =
+            FirebaseModule.storageProvider().reference.child("usersImages/${Constants.USER_LOGGED_IN_ID}")
+
+        try {
+            val downloadUrl = sRef.putFile(fileUri)
+                .addOnFailureListener { throw Exception(it) }.await()
+                .storage.downloadUrl.await()
+
+            uri = downloadUrl.toString()
+
+            emit(DataState.Success(uri))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
+    override suspend fun addCurriculumToStorage(fileUri: Uri): Flow<DataState<String>> = flow {
+        var uri = ""
+        emit(DataState.Loading)
+        val sRef: StorageReference =
+            FirebaseModule.storageProvider().reference.child("usersCurriculums/${Constants.USER_LOGGED_IN_ID}")
+
+        try {
+            val downloadUrl = sRef.putFile(fileUri)
+                .addOnFailureListener { throw Exception(it) }.await()
+                .storage.downloadUrl.await()
+
+            uri = downloadUrl.toString()
+
+            emit(DataState.Success(uri))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
+    override suspend fun updateName(newName: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).update(UserConstants.NAME,newName)
+                usersCollection.document(it).update(UserConstants.NAME, newName)
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()
@@ -385,12 +462,12 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun updateSurname(newSurname: String): Flow<DataState<Boolean>> = flow{
+    override suspend fun updateSurname(newSurname: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).update(UserConstants.SURNAME,newSurname)
+                usersCollection.document(it).update(UserConstants.SURNAME, newSurname)
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()
@@ -406,16 +483,16 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun updatePassword(
         oldPassword: String,
         newPassword: String,
-        email : String
+        email: String
     ): Flow<DataState<Boolean>> = flow<DataState<Boolean>> {
         emit(DataState.Loading)
         try {
             var changeSuccesful: Boolean = false
 
             val credential = EmailAuthProvider
-                .getCredential(email,oldPassword)
+                .getCredential(email, oldPassword)
 
-            val user =  FirebaseModule.firebaseAuthProvider().currentUser!!
+            val user = FirebaseModule.firebaseAuthProvider().currentUser!!
 
             user.reauthenticate(credential)
                 .addOnSuccessListener {
@@ -423,11 +500,11 @@ class UserRepositoryImpl @Inject constructor(
                         .addOnSuccessListener {
                             changeSuccesful = true
                         }
-                        .addOnFailureListener{
+                        .addOnFailureListener {
                             throw Exception(it)
                         }
                 }
-                .addOnFailureListener{
+                .addOnFailureListener {
                     throw Exception(it)
                 }
                 .await()
@@ -439,24 +516,25 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun updateLanguage(language: Int): Flow<DataState<Boolean>> = flow<DataState<Boolean>> {
-        emit(DataState.Loading)
+    override suspend fun updateLanguage(language: Int): Flow<DataState<Boolean>> =
+        flow<DataState<Boolean>> {
+            emit(DataState.Loading)
 
-        try {
-            var uploadSuccesful: Boolean = false
-            Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).update(UserConstants.LANGUAGE,language)
-                    .addOnSuccessListener { uploadSuccesful = true }
-                    .addOnFailureListener { uploadSuccesful = false }
-                    .await()
+            try {
+                var uploadSuccesful: Boolean = false
+                Constants.USER_LOGGED_IN_ID.let {
+                    usersCollection.document(it).update(UserConstants.LANGUAGE, language)
+                        .addOnSuccessListener { uploadSuccesful = true }
+                        .addOnFailureListener { uploadSuccesful = false }
+                        .await()
+                }
+                emit(DataState.Success(uploadSuccesful))
+                emit(DataState.Finished)
+            } catch (e: Exception) {
+                emit(DataState.Error(e))
+                emit(DataState.Finished)
             }
-            emit(DataState.Success(uploadSuccesful))
-            emit(DataState.Finished)
-        } catch (e: Exception) {
-            emit(DataState.Error(e))
-            emit(DataState.Finished)
-        }
-    }.flowOn(Dispatchers.IO)
+        }.flowOn(Dispatchers.IO)
 
     override suspend fun updateDarkTheme(darkTheme: Boolean): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
@@ -464,7 +542,7 @@ class UserRepositoryImpl @Inject constructor(
         try {
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).update(UserConstants.DARK_THEME,darkTheme)
+                usersCollection.document(it).update(UserConstants.DARK_THEME, darkTheme)
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()
@@ -477,13 +555,13 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun updateAvatar(imgLink: String): Flow<DataState<Boolean>> = flow{
+    override suspend fun updateAvatar(imgLink: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
 
         try {
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).update(UserConstants.AVATAR,imgLink)
+                usersCollection.document(it).update(UserConstants.AVATAR, imgLink)
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()
@@ -502,7 +580,7 @@ class UserRepositoryImpl @Inject constructor(
         try {
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).update(UserConstants.CURRICULUM,pdfLink)
+                usersCollection.document(it).update(UserConstants.CURRICULUM, pdfLink)
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()
@@ -515,13 +593,13 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun updateAboutMe(aboutMe: String): Flow<DataState<Boolean>> = flow{
+    override suspend fun updateAboutMe(aboutMe: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
 
         try {
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).update(UserConstants.ABOUT_ME,aboutMe)
+                usersCollection.document(it).update(UserConstants.ABOUT_ME, aboutMe)
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()
@@ -534,13 +612,33 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun updateContactInfo(contactInfo: ContactInfoMap): Flow<DataState<Boolean>> = flow {
+    override suspend fun updateContactInfo(contactInfo: ContactInfoMap): Flow<DataState<Boolean>> =
+        flow {
+            emit(DataState.Loading)
+
+            try {
+                var uploadSuccesful: Boolean = false
+                Constants.USER_LOGGED_IN_ID.let {
+                    usersCollection.document(it).update(UserConstants.CONTACT_INFO, contactInfo)
+                        .addOnSuccessListener { uploadSuccesful = true }
+                        .addOnFailureListener { uploadSuccesful = false }
+                        .await()
+                }
+                emit(DataState.Success(uploadSuccesful))
+                emit(DataState.Finished)
+            } catch (e: Exception) {
+                emit(DataState.Error(e))
+                emit(DataState.Finished)
+            }
+        }.flowOn(Dispatchers.IO)
+
+    override suspend fun updateLocation(newLocation: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
 
         try {
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).update(UserConstants.CONTACT_INFO,contactInfo)
+                usersCollection.document(it).update(UserConstants.LOCATION, newLocation)
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()
@@ -553,32 +651,13 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun updateLocation(newLocation: String): Flow<DataState<Boolean>> = flow{
+    override suspend fun updateRating(updatedRating: Float): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
 
         try {
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).update(UserConstants.LOCATION,newLocation)
-                    .addOnSuccessListener { uploadSuccesful = true }
-                    .addOnFailureListener { uploadSuccesful = false }
-                    .await()
-            }
-            emit(DataState.Success(uploadSuccesful))
-            emit(DataState.Finished)
-        } catch (e: Exception) {
-            emit(DataState.Error(e))
-            emit(DataState.Finished)
-        }
-    }.flowOn(Dispatchers.IO)
-
-    override suspend fun updateRating(updatedRating: Float): Flow<DataState<Boolean>> = flow{
-        emit(DataState.Loading)
-
-        try {
-            var uploadSuccesful: Boolean = false
-            Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).update(UserConstants.RATING,updatedRating)
+                usersCollection.document(it).update(UserConstants.RATING, updatedRating)
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()

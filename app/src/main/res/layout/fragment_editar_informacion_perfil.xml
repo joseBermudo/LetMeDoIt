@@ -19,7 +19,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
-        <TextView
+        <ImageView
             android:id="@+id/profile_image"
             android:layout_width="@dimen/logo_dimen"
             android:layout_height="@dimen/logo_dimen"
@@ -216,6 +216,7 @@
             app:layout_constraintTop_toTopOf="@+id/name_surname" />
 
         <TextView
+            style="@style/IconoClickable"
             android:id="@+id/btn_edit_profile_image"
             android:layout_width="@dimen/app_icon_size_small"
             android:layout_height="@dimen/app_icon_size_small"
@@ -225,7 +226,8 @@
             app:layout_constraintTop_toTopOf="@+id/profile_image" />
 
         <TextView
-            android:id="@+id/textView6"
+            style="@style/IconoClickable"
+            android:id="@+id/btn_edit_password"
             android:layout_width="@dimen/app_icon_size_small"
             android:layout_height="@dimen/app_icon_size_small"
             android:background="@drawable/edit_icon"
@@ -234,6 +236,7 @@
             app:layout_constraintTop_toTopOf="@+id/password_text" />
 
         <TextView
+            style="@style/IconoClickable"
             android:id="@+id/btn_edit_about_me"
             android:layout_width="@dimen/app_icon_size_small"
             android:layout_height="@dimen/app_icon_size_small"
@@ -242,6 +245,7 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
+            style="@style/IconoClickable"
             android:id="@+id/btn_edit_curriculum"
             android:layout_width="@dimen/app_icon_size_small"
             android:layout_height="@dimen/app_icon_size_small"
@@ -250,6 +254,7 @@
             app:layout_constraintTop_toTopOf="@+id/curriculum_title" />
 
         <TextView
+            style="@style/IconoClickable"
             android:id="@+id/btn_edit_schedule"
             android:layout_width="@dimen/app_icon_size_small"
             android:layout_height="@dimen/app_icon_size_small"
@@ -258,6 +263,7 @@
             app:layout_constraintTop_toTopOf="@+id/schedule_title" />
 
         <TextView
+            style="@style/IconoClickable"
             android:id="@+id/btn_edit_contact_info"
             android:layout_width="@dimen/app_icon_size_small"
             android:layout_height="@dimen/app_icon_size_small"
@@ -266,6 +272,7 @@
             app:layout_constraintTop_toTopOf="@+id/contact_title" />
 
         <TextView
+            style="@style/IconoClickable"
             android:id="@+id/btn_edit_location"
             android:layout_width="@dimen/app_icon_size_small"
             android:layout_height="@dimen/app_icon_size_small"

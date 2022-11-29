@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import cat.copernic.letmedoit.data.model.Opinions
 import cat.copernic.letmedoit.data.provider.OpinionsProvider
 import cat.copernic.letmedoit.databinding.FragmentOpinionsUserBinding
 import cat.copernic.letmedoit.presentation.adapter.general.OpinionsAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,7 +24,8 @@ private const val ARG_PARAM2 = "param2"
  * Use the [OpinionsUser.newInstance] factory method to
  * create an instance of this fragment.
  */
-class OpinionsUser : Fragment() {
+@AndroidEntryPoint
+class OpinionsUser(private val opinions: ArrayList<Opinions>?) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -44,7 +47,7 @@ class OpinionsUser : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentOpinionsUserBinding.inflate(layoutInflater,container,false)
-        inicializarRecyclerView()
+        if(opinions != null) inicializarRecyclerView()
         return binding.root
     }
 
@@ -57,7 +60,7 @@ class OpinionsUser : Fragment() {
         //Asignación del adaptador al recyclerview.
 
         opinionsRecyclerView.setHasFixedSize(true)
-        adapter = OpinionsAdapter(OpinionsProvider.getOpinions())
+        adapter = OpinionsAdapter(opinions!!)
         opinionsRecyclerView.adapter = adapter
 
     }
@@ -72,12 +75,14 @@ class OpinionsUser : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            OpinionsUser().apply {
+        fun newInstance(param1: String, param2: String): OpinionsUser {
+            val opinions = ArrayList<Opinions>()
+            return OpinionsUser(opinions).apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
                 }
             }
+        }
     }
 }

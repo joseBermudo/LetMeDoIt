@@ -174,7 +174,7 @@
                     android:orientation="horizontal">
 
                     <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/swOnOff"
+                        android:id="@+id/darkThemeSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:theme="@style/Switch.Style" />

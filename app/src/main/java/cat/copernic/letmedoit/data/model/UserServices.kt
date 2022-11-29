@@ -4,7 +4,6 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class HistoryDeal (
-    val userId : String,
-    val dealId : String
+data class UserServices (
+    val service_id : String = ""
 ) : Parcelable

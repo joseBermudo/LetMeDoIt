@@ -31,7 +31,6 @@ class UserViewModel @Inject constructor(
     private val getOpinionsUseCase: GetOpinionsUseCase,
     private val getServicesUseCase: GetServicesUseCase,
     private val getUserUseCase: GetUserUseCase,
-    private val getAvatarLinkUseCase: GetAvatarLinkUseCase,
     private val updateAboutMeUseCase: UpdateAboutMeUseCase,
     private val updateAvatarUseCase: UpdateAvatarUseCase,
     private val updateContactInfoUseCase: UpdateContactInfoUseCase,
@@ -141,8 +140,8 @@ class UserViewModel @Inject constructor(
         }
     }
 
-    private val mGetChatsState: MutableLiveData<DataState<ArrayList<String>>> = MutableLiveData()
-    val getChatsState: LiveData<DataState<ArrayList<String>>> get() = mGetChatsState
+    private val mGetChatsState: MutableLiveData<DataState<ArrayList<UserChats>>> = MutableLiveData()
+    val getChatsState: LiveData<DataState<ArrayList<UserChats>>> get() = mGetChatsState
     fun getChats() {
         viewModelScope.launch {
             getChatsUseCase().onEach { dataState ->
@@ -151,18 +150,8 @@ class UserViewModel @Inject constructor(
         }
     }
 
-    private val mGetAvatarLinkState: MutableLiveData<DataState<String>> = MutableLiveData()
-    val getAvatarLinkState: LiveData<DataState<String>> get() = mGetAvatarLinkState
-    fun getAvatarLink(idUser : String) {
-        viewModelScope.launch {
-            getAvatarLinkUseCase(idUser).onEach { dataState ->
-                mGetAvatarLinkState.value = dataState
-            }.launchIn(viewModelScope)
-        }
-    }
-
-    private val mGetFavoriteProfilesState: MutableLiveData<DataState<ArrayList<String>>> = MutableLiveData()
-    val getFavoriteProfilesState: LiveData<DataState<ArrayList<String>>> get() = mGetFavoriteProfilesState
+    private val mGetFavoriteProfilesState: MutableLiveData<DataState<ArrayList<UserFavoriteProfiles>>> = MutableLiveData()
+    val getFavoriteProfilesState: LiveData<DataState<ArrayList<UserFavoriteProfiles>>> get() = mGetFavoriteProfilesState
     fun getFavoriteProfiles() {
         viewModelScope.launch {
             getFavoriteProfilesUseCase().onEach { dataState ->
@@ -171,8 +160,8 @@ class UserViewModel @Inject constructor(
         }
     }
 
-    private val mGetFavoriteServicesState: MutableLiveData<DataState<ArrayList<String>>> = MutableLiveData()
-    val getFavoriteServicesState: LiveData<DataState<ArrayList<String>>> get() = mGetFavoriteServicesState
+    private val mGetFavoriteServicesState: MutableLiveData<DataState<ArrayList<UserFavoriteServices>>> = MutableLiveData()
+    val getFavoriteServicesState: LiveData<DataState<ArrayList<UserFavoriteServices>>> get() = mGetFavoriteServicesState
     fun getFavoriteServices() {
         viewModelScope.launch {
             getFavoriteServicesUseCase().onEach { dataState ->
@@ -201,8 +190,8 @@ class UserViewModel @Inject constructor(
         }
     }
 
-    private val mGetServicesState: MutableLiveData<DataState<ArrayList<String>>> = MutableLiveData()
-    val getServicesState: LiveData<DataState<ArrayList<String>>> get() = mGetServicesState
+    private val mGetServicesState: MutableLiveData<DataState<ArrayList<UserServices>>> = MutableLiveData()
+    val getServicesState: LiveData<DataState<ArrayList<UserServices>>> get() = mGetServicesState
     fun getServices(idUser: String) {
         viewModelScope.launch {
             getServicesUseCase(idUser).onEach { dataState ->

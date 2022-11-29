@@ -8,8 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.*
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.Constants
+import cat.copernic.letmedoit.presentation.view.users.fragments.AccountOptionsDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
@@ -56,6 +59,7 @@ class Menu_Inferior : Fragment() {
 
         bottomNavigation.setupWithNavController(navController)
 
+
         //Muestra o oculta la barra de navegación dependiendo el destino
         navController.addOnDestinationChangedListener { _, destination, _ ->
            when(destination.id){
@@ -63,12 +67,12 @@ class Menu_Inferior : Fragment() {
                R.id.registroOpcionesCuenta ,
                R.id.messagesVis ,
                R.id.uploadServicesVis ,
-               R.id.profiles_services_manager_vis  -> showBottomNav()
+               R.id.profiles_services_manager_vis,
                R.id.verListadoFavServices,
                R.id.newService,
                R.id.verConversaciones,
                R.id.verListadoDeals,
-               R.id.accountOptions-> showBottomNav()
+               R.id.accountOptions->showBottomNav()
                else -> hideBottomNav()
            }
         }

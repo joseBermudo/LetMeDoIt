@@ -36,6 +36,7 @@ import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.FragmentNewServiceBinding
 import cat.copernic.letmedoit.presentation.adapter.general.ImagesAdapter
 import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
+import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import kotlin.collections.ArrayList
@@ -73,6 +74,7 @@ class NewService : Fragment() {
     )
 
     private val serviceViewModel : ServiceViewModel by viewModels()
+    private val userViewModel : UserViewModel by viewModels()
 
     lateinit var getContent : ActivityResultLauncher<String>
     lateinit var binding : FragmentNewServiceBinding
@@ -133,6 +135,19 @@ class NewService : Fragment() {
         serviceViewModel.saveServiceState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Service> -> {
+                    userViewModel.addService(dataState.data.id)
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> { }
+                else -> Unit
+            }
+        } )
+
+        userViewModel.addServiceState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
                     hideProgress()
                     //Utils.showOkDialog("Service Uploaded",requireContext())
                     resetComponents()
@@ -149,6 +164,7 @@ class NewService : Fragment() {
     private fun resetComponents() {
         binding.editDescription.setText("")
         binding.editServiceTitle.setText("")
+        numImgUploaded = 0
         imagesUploaded.removeAll(imagesUploaded)
         adapter.removeAll()
         adapter.notifyDataSetChanged()
