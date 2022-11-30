@@ -44,6 +44,7 @@ class CategoryRepositoryImpl @Inject constructor(
             emit(DataState.Finished)
         } catch (e: Exception) {
             emit(DataState.Error(e))
+            emit(DataState.Finished)
         }
     }.flowOn(Dispatchers.IO)
 

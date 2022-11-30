@@ -62,8 +62,8 @@ class AdminCategoriesList : Fragment() {
         recyclerView = binding.rcvListaCategorias
         barraBusqueda = binding.searchViewAdminCategories
 
-        init()
 
+        init()
 
 
         binding.btnBack.setOnClickListener {
@@ -99,8 +99,9 @@ class AdminCategoriesList : Fragment() {
                 when (dataState) {
                     is DataState.Success -> {
                         categoryMutableList = dataState.data.toMutableList()
+                        finishLoadingProcess()
                         initRecyclerView()
-                        Log.d("AdminCategoryList", "datos leidos")
+
 
 
                     }
@@ -110,14 +111,20 @@ class AdminCategoriesList : Fragment() {
                             requireContext(),
                             dataState.exception.message.toString()
                         )
+                        finishLoadingProcess()
 
-
+                    }
+                    is DataState.Loading -> {
+                        showProgressLoadCategories()
                     }
                     else -> Unit
                 }
             })
 
         binding.btnAdd.setOnClickListener { createCategory() }
+
+
+
         return binding.root
     }
 
@@ -137,6 +144,22 @@ class AdminCategoriesList : Fragment() {
         dialogTextBox.isEnabled = false
         loading.isVisible = true
 
+    }
+
+
+    private fun showProgressLoadCategories() {
+        binding.categoryLoading.isVisible = true
+        binding.btnAdd.isEnabled = false
+        binding.searchViewAdminCategories.isEnabled = false
+
+
+    }
+
+    private fun finishLoadingProcess(){
+        binding.categoryLoading.isVisible = false
+        binding.categoryLoading.isEnabled = false
+        binding.btnAdd.isEnabled = true
+        binding.searchViewAdminCategories.isEnabled = true
     }
 
     lateinit var dialogBinding: View
