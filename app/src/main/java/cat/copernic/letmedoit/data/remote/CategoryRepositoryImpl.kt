@@ -7,6 +7,7 @@ import cat.copernic.letmedoit.di.FirebaseModule
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -32,6 +33,17 @@ class CategoryRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             emit(DataState.Error(e))
             emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
+    override suspend fun getCategories(): Flow<DataState<List<Category>>> = flow {
+        emit(DataState.Loading)
+        try {
+            val categories = categoryCollection.get().await().toObjects(Category::class.java)
+            emit(DataState.Success(categories))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
         }
     }.flowOn(Dispatchers.IO)
 

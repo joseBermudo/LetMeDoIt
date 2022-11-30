@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import cat.copernic.letmedoit.domain.usecases.InsertCategoryUseCase
 import cat.copernic.letmedoit.data.model.Category
 import cat.copernic.letmedoit.Utils.DataState
+import cat.copernic.letmedoit.domain.usecases.GetCategoriesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -15,17 +16,28 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CreateCategoryViewModel @Inject constructor(
-     val newCategoryUseCase: InsertCategoryUseCase
+    val newCategoryUseCase: InsertCategoryUseCase,
+    val getCategoriesUseCase: GetCategoriesUseCase
 ) : ViewModel() {
 
     private val mNewCategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val newCategoryState: LiveData<DataState<Boolean>> get() = mNewCategoryState
 
+    private val mGetCategoriesState: MutableLiveData<DataState<List<Category>>> = MutableLiveData()
+    val getCategoriesState: LiveData<DataState<List<Category>>> get() = mGetCategoriesState
 
     fun insertCategory(category: Category) {
         viewModelScope.launch {
             newCategoryUseCase(category).onEach { dataState ->
                 mNewCategoryState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
+    fun getCategories() {
+        viewModelScope.launch {
+            getCategoriesUseCase().onEach { dataState ->
+                mGetCategoriesState.value = dataState
             }.launchIn(viewModelScope)
         }
     }

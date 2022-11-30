@@ -2,12 +2,14 @@ package cat.copernic.letmedoit.presentation.view.admin.fragments
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,6 +25,7 @@ import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.FragmentAdminCategoriesListBinding
+import com.bumptech.glide.Glide.init
 import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -35,8 +38,10 @@ class AdminCategoriesList : Fragment() {
     private val viewModel: CreateCategoryViewModel by viewModels()
 
     private lateinit var recyclerView: RecyclerView
-    private var categoryMutableList: MutableList<Category> =
-        CategoryProvider.obtenerCategorias().toMutableList()
+
+    private lateinit var categoryMutableList: MutableList<Category>
+
+
     private lateinit var adapter: AdminCategoryAdapter
     private lateinit var llmanager: LinearLayoutManager
     private lateinit var barraBusqueda: android.widget.SearchView
@@ -44,52 +49,88 @@ class AdminCategoriesList : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+
         _binding = FragmentAdminCategoriesListBinding.inflate(inflater, container, false)
-
-
 
         llmanager = LinearLayoutManager(binding.root.context)
         recyclerView = binding.rcvListaCategorias
         barraBusqueda = binding.searchViewAdminCategories
 
-        initRecyclerView()
+        init()
+
+
 
         binding.btnBack.setOnClickListener {
             requireActivity().onBackPressed()
         }
 
-        viewModel.newCategoryState.observe(viewLifecycleOwner, androidx.lifecycle.Observer { dataState ->
-            when (dataState) {
-                is DataState.Success<Boolean> -> {
-                    finishedProgress()
+        viewModel.newCategoryState.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer { dataState ->
+                when (dataState) {
+                    is DataState.Success<Boolean> -> {
+                        finishedProgress()
+                    }
+                    is DataState.Error -> {
+                        Utils.showOkDialog(
+                            "Error: ",
+                            requireContext(),
+                            dataState.exception.message.toString()
+                        )
+                        finishedProgress()
+                    }
+                    is DataState.Loading -> {
+                        showProgress()
+                    }
+                    else -> Unit
                 }
-                is DataState.Error -> {
-                    Utils.showOkDialog("Error: ", requireContext(), dataState.exception.message.toString())
-                    finishedProgress()
+            })
+
+
+        viewModel.getCategoriesState.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer { dataState ->
+                when (dataState) {
+                    is DataState.Success -> {
+                        categoryMutableList = dataState.data.toMutableList()
+                        initRecyclerView()
+                        Log.d("AdminCategoryList", "datos leidos")
+
+
+                    }
+                    is DataState.Error -> {
+                        Utils.showOkDialog(
+                            "Error: ",
+                            requireContext(),
+                            dataState.exception.message.toString()
+                        )
+
+
+                    }
+                    else -> Unit
                 }
-                is DataState.Loading -> {
-                    showProgress()
-                }
-                else -> Unit
-            }
-        })
+            })
+
         binding.btnAdd.setOnClickListener { createCategory() }
         return binding.root
     }
 
 
-    private fun finishedProgress(){
+    private fun finishedProgress() {
         myDialog.dismiss()
     }
+
     private fun showProgress() {
         val btnAccept = dialogBinding.findViewById<Button>(R.id.btn_doneCreate)
         val btnCancel = dialogBinding.findViewById<Button>(R.id.btn_cancelCreateCategorie)
-        val dialogTextBox = dialogBinding.findViewById<TextInputEditText>(R.id.txtInput_categoryName)
+        val dialogTextBox =
+            dialogBinding.findViewById<TextInputEditText>(R.id.txtInput_categoryName)
         val loading = dialogBinding.findViewById<ProgressBar>(R.id.newCategoryLoading)
         btnAccept.isEnabled = false
         btnCancel.isEnabled = false
@@ -98,8 +139,8 @@ class AdminCategoriesList : Fragment() {
 
     }
 
-    lateinit var dialogBinding : View
-    lateinit var myDialog : Dialog
+    lateinit var dialogBinding: View
+    lateinit var myDialog: Dialog
     private fun createCategory() {
 
         dialogBinding = layoutInflater.inflate(R.layout.create_category_dialog, null)
@@ -132,6 +173,7 @@ class AdminCategoriesList : Fragment() {
     }
 
     private fun initRecyclerView() {
+
         adapter = AdminCategoryAdapter(categoryList = categoryMutableList,
             onClickListener = { category -> onItemSelected(category) },
             onClickDelete = { position -> onDeletedItem(position) },
@@ -161,6 +203,7 @@ class AdminCategoriesList : Fragment() {
         findNavController().navigate(action)
     }
 
+
     private fun onDeletedItem(position: Int) {
 
         val dialogBinding = layoutInflater.inflate(R.layout.delete_category_alert_dialog, null)
@@ -183,7 +226,6 @@ class AdminCategoriesList : Fragment() {
     }
 
 
-
     private fun creteCategoryF(name: String): Category {
         return Category(
             name,
@@ -193,4 +235,10 @@ class AdminCategoriesList : Fragment() {
             UUID.randomUUID().toString()
         )
     }
+
+    private fun init(){
+        viewModel.getCategories()
+    }
+
+
 }
