@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.presentation.adapter.admin.AdminReportAdapter
@@ -14,6 +16,7 @@ import cat.copernic.letmedoit.data.provider.ReportProvider
 import cat.copernic.letmedoit.data.model.Report
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentAdminReportsBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class admin_reports : Fragment() {
@@ -43,6 +46,8 @@ class admin_reports : Fragment() {
         )
     }
 
+    private var open: Boolean = false
+
     private var _binding: FragmentAdminReportsBinding? = null
     private val binding get() = _binding!!
 
@@ -51,6 +56,11 @@ class admin_reports : Fragment() {
         ReportProvider.obtenerReportes().toMutableList()
     private lateinit var adapter: AdminReportAdapter
     private lateinit var llmanager: LinearLayoutManager
+
+    private lateinit var btnOpenMenu: FloatingActionButton
+    private lateinit var btnDelete: FloatingActionButton
+    private lateinit var btnArchived: FloatingActionButton
+    private lateinit var btnBan: FloatingActionButton
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,17 +79,56 @@ class admin_reports : Fragment() {
 
         initRecyclerView()
 
+        btnOpenMenu = binding.flbuttonOpenMenu
+        btnArchived = binding.flbuttonArchived
+        btnDelete = binding.flbuttonDelete
+        btnBan = binding.flbuttonBan
+
         binding.btnBackArrow.setOnClickListener {
             requireActivity().onBackPressed()
         }
 
-        binding.flbuttonOpenMenu.setOnClickListener { }
-        binding.flbuttonArchived.setOnClickListener { }
-        binding.flbuttonBan.setOnClickListener { }
-        binding.flbuttonDelete.setOnClickListener { }
+        btnOpenMenu.setOnClickListener {
+            openFloatingMenu()
+        }
+        btnArchived.setOnClickListener {
+            Toast.makeText(binding.root.context, "Hola", Toast.LENGTH_SHORT).show()
+        }
+        btnBan.setOnClickListener { }
+        btnDelete.setOnClickListener { }
 
 
         return binding.root
+    }
+
+    private fun openFloatingMenu(){
+        if(!open){
+            btnOpenMenu.startAnimation(rotateOpen)
+
+            btnDelete.isVisible = true
+            btnBan.isVisible = true
+            btnArchived.isVisible = true
+            btnDelete.isEnabled = true
+            btnBan.isEnabled = true
+            btnArchived.isEnabled = true
+            btnDelete.startAnimation(fromBottom)
+            btnBan.startAnimation(fromBottom)
+            btnArchived.startAnimation(fromBottom)
+            open = true
+        }else{
+            btnDelete.isEnabled = false
+            btnBan.isEnabled = false
+            btnArchived.isEnabled = false
+            btnOpenMenu.startAnimation(rotateClose)
+            btnDelete.startAnimation(toBottom)
+            btnBan.startAnimation(toBottom)
+            btnArchived.startAnimation(toBottom)
+
+            btnDelete.isVisible = false
+            btnBan.isVisible = false
+            btnArchived.isVisible = false
+            open = false
+        }
     }
 
     private fun initRecyclerView() {

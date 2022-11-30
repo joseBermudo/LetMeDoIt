@@ -32,20 +32,28 @@ import java.util.*
 
 @AndroidEntryPoint
 class AdminCategoriesList : Fragment() {
+
+    /*Declaración y incilizacion de variables*/
+
+    //Binding
     private var _binding: FragmentAdminCategoriesListBinding? = null
     private val binding get() = _binding!!
 
+    //BD
     private val viewModel: CreateCategoryViewModel by viewModels()
 
+    //RecyclerView
     private lateinit var recyclerView: RecyclerView
-
     private lateinit var categoryMutableList: MutableList<Category>
-
-
     private lateinit var adapter: AdminCategoryAdapter
     private lateinit var llmanager: LinearLayoutManager
-    private lateinit var barraBusqueda: android.widget.SearchView
 
+    //Otras views
+    private lateinit var barraBusqueda: android.widget.SearchView
+    lateinit var dialogBinding: View
+    lateinit var myDialog: Dialog
+
+    /*Metodos principales*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -56,20 +64,27 @@ class AdminCategoriesList : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
+        //inflamos la vista utilizando binding
         _binding = FragmentAdminCategoriesListBinding.inflate(inflater, container, false)
 
+        //asignamos valores al las variables que referecnian las vistas
         llmanager = LinearLayoutManager(binding.root.context)
         recyclerView = binding.rcvListaCategorias
         barraBusqueda = binding.searchViewAdminCategories
 
 
-        init()
+        init()//iniciar y cargar datos necerarios
 
 
+        //Listenners
         binding.btnBack.setOnClickListener {
             requireActivity().onBackPressed()
         }
 
+        binding.btnAdd.setOnClickListener { createCategory() }
+
+
+        //Obervers
         viewModel.newCategoryState.observe(
             viewLifecycleOwner,
             androidx.lifecycle.Observer { dataState ->
@@ -103,7 +118,6 @@ class AdminCategoriesList : Fragment() {
                         initRecyclerView()
 
 
-
                     }
                     is DataState.Error -> {
                         Utils.showOkDialog(
@@ -121,19 +135,21 @@ class AdminCategoriesList : Fragment() {
                 }
             })
 
-        binding.btnAdd.setOnClickListener { createCategory() }
+
 
 
 
         return binding.root
     }
 
-
+    /*Metodos privados*/
     private fun finishedProgress() {
+        //Hace: Finaliza el popup
         myDialog.dismiss()
     }
 
     private fun showProgress() {
+        //Hace: Muestra una barra de progresso y desactiva todos los contraloderes el popup
         val btnAccept = dialogBinding.findViewById<Button>(R.id.btn_doneCreate)
         val btnCancel = dialogBinding.findViewById<Button>(R.id.btn_cancelCreateCategorie)
         val dialogTextBox =
@@ -148,6 +164,7 @@ class AdminCategoriesList : Fragment() {
 
 
     private fun showProgressLoadCategories() {
+        //Hace: Descactiva todas las vista y muestra una barra de progreso
         binding.categoryLoading.isVisible = true
         binding.btnAdd.isEnabled = false
         binding.searchViewAdminCategories.isEnabled = false
@@ -155,16 +172,17 @@ class AdminCategoriesList : Fragment() {
 
     }
 
-    private fun finishLoadingProcess(){
+    private fun finishLoadingProcess() {
+        //Hace: Activa todas las vistas y descactiva la barra de progreso
         binding.categoryLoading.isVisible = false
         binding.categoryLoading.isEnabled = false
         binding.btnAdd.isEnabled = true
         binding.searchViewAdminCategories.isEnabled = true
     }
 
-    lateinit var dialogBinding: View
-    lateinit var myDialog: Dialog
+
     private fun createCategory() {
+        //Hace: Crear una categoria, la sube a la bd y refresca el recycler view
 
         dialogBinding = layoutInflater.inflate(R.layout.create_category_dialog, null)
         myDialog = Dialog(binding.root.context)
@@ -196,7 +214,7 @@ class AdminCategoriesList : Fragment() {
     }
 
     private fun initRecyclerView() {
-
+        //hace: Inicia y configura el recyclerView
         adapter = AdminCategoryAdapter(categoryList = categoryMutableList,
             onClickListener = { category -> onItemSelected(category) },
             onClickDelete = { position -> onDeletedItem(position) },
@@ -206,6 +224,7 @@ class AdminCategoriesList : Fragment() {
     }
 
     private fun onItemSelected(category: Category) {
+        //hace: muestra un popup con la descripcion correspondiente de la categoria pulsada
         val dialogBinding = layoutInflater.inflate(R.layout.show_category_description_dialog, null)
         val myDialog = Dialog(binding.root.context)
         myDialog.setContentView(dialogBinding)
@@ -220,6 +239,7 @@ class AdminCategoriesList : Fragment() {
     }
 
     private fun onEditItem(category: Category) {
+        //hace: dirige al usario a un fragment con las subcategorias correspodientes
         val action = AdminCategoriesListDirections.actionAdminCategoriesListToAdminSubcategoryList(
             subcategories = category.subcategories.toTypedArray()
         )
@@ -228,7 +248,7 @@ class AdminCategoriesList : Fragment() {
 
 
     private fun onDeletedItem(position: Int) {
-
+        //hace: elimina una categoria
         val dialogBinding = layoutInflater.inflate(R.layout.delete_category_alert_dialog, null)
         val myDialog = Dialog(binding.root.context)
         myDialog.setContentView(dialogBinding)
@@ -250,6 +270,8 @@ class AdminCategoriesList : Fragment() {
 
 
     private fun creteCategoryF(name: String): Category {
+        //hace: crear una categoria
+        //return: devuelve una categoria
         return Category(
             name,
             "pepe",
@@ -259,7 +281,8 @@ class AdminCategoriesList : Fragment() {
         )
     }
 
-    private fun init(){
+    private fun init() {
+        //hace: lee toda las categorias de la base de datos
         viewModel.getCategories()
     }
 
