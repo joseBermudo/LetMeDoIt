@@ -11,5 +11,5 @@ data class Category(
     val description: String = "",
     var subcategories: ArrayList<Subcategory> = arrayListOf(Subcategory("","","")),
     val image: String = "",
-    @get:Exclude val id : String = UUID.randomUUID().toString()
+    val id : String = UUID.randomUUID().toString(),
 )

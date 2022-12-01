@@ -107,6 +107,30 @@ class AdminCategoriesList : Fragment() {
                 }
             })
 
+        viewModel.deleteCategoryState.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer { dataState ->
+                when (dataState) {
+                    is DataState.Success<Boolean> -> {
+                        Log.d("AdminCategories",dataState.data.toString())
+                        finishedProgress()
+                    }
+                    is DataState.Error -> {
+                        Utils.showOkDialog(
+                            "Error: ",
+                            requireContext(),
+                            dataState.exception.message.toString()
+                        )
+                        finishedProgress()
+                    }
+                    is DataState.Loading -> {
+                        showDeleteProgress()
+                    }
+                    else -> Unit
+                }
+
+            })
+
 
         viewModel.getCategoriesState.observe(
             viewLifecycleOwner,
@@ -146,6 +170,15 @@ class AdminCategoriesList : Fragment() {
     private fun finishedProgress() {
         //Hace: Finaliza el popup
         myDialog.dismiss()
+    }
+
+    private fun showDeleteProgress() {
+        val btnAccept = dialogBinding.findViewById<Button>(R.id.btn_acceptDeleteCategory)
+        val btnCancel = dialogBinding.findViewById<Button>(R.id.btn_cancelDeleteCategory)
+        val loading = dialogBinding.findViewById<ProgressBar>(R.id.deleteCategoryLoading)
+        btnAccept.isEnabled = false
+        btnCancel.isEnabled = false
+        loading.isVisible = true
     }
 
     private fun showProgress() {
@@ -203,6 +236,7 @@ class AdminCategoriesList : Fragment() {
             val name = txtInput_name.text.toString().trim()
             if (!name.isEmpty() && !name.isBlank()) {
                 val category = creteCategoryF(name)
+                Log.d("Admin",category.id)
                 viewModel.insertCategory(category)
                 categoryMutableList.add(index = 0, category)
                 adapter.notifyItemInserted(0)
@@ -249,8 +283,8 @@ class AdminCategoriesList : Fragment() {
 
     private fun onDeletedItem(position: Int) {
         //hace: elimina una categoria
-        val dialogBinding = layoutInflater.inflate(R.layout.delete_category_alert_dialog, null)
-        val myDialog = Dialog(binding.root.context)
+        dialogBinding = layoutInflater.inflate(R.layout.delete_category_alert_dialog, null)
+        myDialog = Dialog(binding.root.context)
         myDialog.setContentView(dialogBinding)
         myDialog.setCancelable(true)
         myDialog.show()
@@ -261,9 +295,11 @@ class AdminCategoriesList : Fragment() {
         btn_cancel.setOnClickListener { myDialog.dismiss() }
 
         btn_accept.setOnClickListener {
+            Log.d("Admin",categoryMutableList.get(position).id)
+            viewModel.deleteCategory(categoryMutableList.get(position).id)
             categoryMutableList.removeAt(position)
             adapter.notifyItemRemoved(position)
-            myDialog.dismiss()
+
         }
 
     }
@@ -277,7 +313,6 @@ class AdminCategoriesList : Fragment() {
             "pepe",
             arrayListOf<Subcategory>(Subcategory("Pasear perros", "pepe", "100")),
             "favorites_icon",
-            UUID.randomUUID().toString()
         )
     }
 

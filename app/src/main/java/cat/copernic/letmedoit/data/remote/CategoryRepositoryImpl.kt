@@ -48,4 +48,21 @@ class CategoryRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
+    override suspend fun deleteCategory(id: String): Flow<DataState<Boolean>> = flow {
+        emit(DataState.Loading)
+        try {
+            var deleteStatus: Boolean = false
+            categoryCollection.document(id).delete()
+                .addOnSuccessListener { deleteStatus = true }
+                .addOnFailureListener { deleteStatus = false }
+                .await()
+
+            emit(DataState.Success(deleteStatus))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
 }
