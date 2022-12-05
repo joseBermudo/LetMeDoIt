@@ -27,5 +27,13 @@
         android:text="@string/txt_chat"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_arrow_back" />
+
+        <Button
+            android:id="@+id/btn_createDeal"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/ic_baseline_add_circle_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_title_editService" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

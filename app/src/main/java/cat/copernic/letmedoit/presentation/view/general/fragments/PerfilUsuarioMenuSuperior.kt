@@ -54,7 +54,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
     private val args: PerfilUsuarioMenuSuperiorArgs by navArgs()
 
     lateinit var adapter : FragmentStateAdapter
-    lateinit var binding :FragmentPerfilUsuarioMenuSuperiorBinding
+    lateinit var binding : FragmentPerfilUsuarioMenuSuperiorBinding
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
