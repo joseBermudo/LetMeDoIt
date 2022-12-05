@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ContactInfoMap (
-        val email : String,
-        val phone : String
+        val email : String = "",
+        val phone : String = ""
 ) : Parcelable

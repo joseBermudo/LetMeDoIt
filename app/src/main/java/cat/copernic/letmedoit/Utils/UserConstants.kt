@@ -20,4 +20,5 @@ object UserConstants {
     const val LOCATION = "location"
     const val RATING = "rating"
     const val CURRICULUM ="curriculum"
+    const val SCHEDULE = "schedule"
 }

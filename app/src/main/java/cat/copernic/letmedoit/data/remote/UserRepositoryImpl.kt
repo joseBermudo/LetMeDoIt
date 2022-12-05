@@ -406,7 +406,7 @@ class UserRepositoryImpl @Inject constructor(
         var uri = ""
         emit(DataState.Loading)
         val sRef: StorageReference =
-            FirebaseModule.storageProvider().reference.child("usersImages/${Constants.USER_LOGGED_IN_ID}")
+            FirebaseModule.storageProvider().reference.child("usersImages/${Constants.USER_LOGGED_IN_ID}/avatar")
 
         try {
             val downloadUrl = sRef.putFile(fileUri)
@@ -427,7 +427,7 @@ class UserRepositoryImpl @Inject constructor(
         var uri = ""
         emit(DataState.Loading)
         val sRef: StorageReference =
-            FirebaseModule.storageProvider().reference.child("usersCurriculums/${Constants.USER_LOGGED_IN_ID}")
+            FirebaseModule.storageProvider().reference.child("usersCurriculums/${Constants.USER_LOGGED_IN_ID}/curriculum.pdf")
 
         try {
             val downloadUrl = sRef.putFile(fileUri)
@@ -467,6 +467,7 @@ class UserRepositoryImpl @Inject constructor(
         try {
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
+                usersCollection.document(it).update(UserConstants.SURNAME, newSurname)
                 usersCollection.document(it).update(UserConstants.SURNAME, newSurname)
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
@@ -600,6 +601,24 @@ class UserRepositoryImpl @Inject constructor(
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
                 usersCollection.document(it).update(UserConstants.ABOUT_ME, aboutMe)
+                    .addOnSuccessListener { uploadSuccesful = true }
+                    .addOnFailureListener { uploadSuccesful = false }
+                    .await()
+            }
+            emit(DataState.Success(uploadSuccesful))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
+    override suspend fun updateSchedule(schedule: ScheduleMap): Flow<DataState<Boolean>>  = flow{
+        emit(DataState.Loading)
+        try {
+            var uploadSuccesful: Boolean = false
+            Constants.USER_LOGGED_IN_ID.let {
+                usersCollection.document(it).update(UserConstants.SCHEDULE, schedule)
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()

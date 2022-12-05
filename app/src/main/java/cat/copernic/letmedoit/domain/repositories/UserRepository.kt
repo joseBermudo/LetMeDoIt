@@ -44,6 +44,7 @@ interface UserRepository {
     suspend fun updateAvatar(imgLink : String) : Flow<DataState<Boolean>>
     suspend fun updateCurriculum(pdfLink : String) : Flow<DataState<Boolean>>
     suspend fun updateAboutMe(aboutMe : String) : Flow<DataState<Boolean>>
+    suspend fun updateSchedule(schedule: ScheduleMap) : Flow<DataState<Boolean>>
     suspend fun updateContactInfo(contactInfo : ContactInfoMap) : Flow<DataState<Boolean>>
     suspend fun updateLocation(newLocation : String) : Flow<DataState<Boolean>>
     suspend fun updateRating(updatedRating : Float) : Flow<DataState<Boolean>>

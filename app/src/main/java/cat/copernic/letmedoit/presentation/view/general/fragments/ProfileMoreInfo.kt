@@ -50,7 +50,7 @@ class ProfileMoreInfo(private val user: Users) : Fragment() {
         binding.locationIcon.setOnClickListener { user.location?.let { it1 -> openMaps(it1) } }
 
         binding.aboutMeText.text = user.aboutMe
-        binding.scheduleText.text = "${user.schedule?.initHour}  ${user.schedule?.endHour}"
+        binding.scheduleText.text = "${user.schedule?.initHour} -  ${user.schedule?.endHour}"
         binding.locationText.text = user.location
         return binding.root
     }

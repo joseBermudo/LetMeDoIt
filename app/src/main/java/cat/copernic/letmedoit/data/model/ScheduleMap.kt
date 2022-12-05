@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ScheduleMap (
-    val initHour : String,
-    val endHour  : String
+    val initHour : String = "",
+    val endHour  : String = ""
 ) : Parcelable
