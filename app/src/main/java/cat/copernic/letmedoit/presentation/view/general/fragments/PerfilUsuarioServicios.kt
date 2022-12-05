@@ -68,7 +68,9 @@ class PerfilUsuarioServicios(private val servicesId: ArrayList<UserServices>?) :
 
         val model = ViewModelProvider(requireActivity())[SearchViewViewModel::class.java]
         model.message.observe(viewLifecycleOwner, Observer {
-            adapter.filter(it)
+            //Por algún motivo hay un bug donde el buscador enviar un mensaje de filtro sin haber cargado siquiera el fragment cuando se cambia entre ver el servicio y el perfil de usuario??
+            if(::adapter.isInitialized)
+                adapter.filter(it)
         })
 
         return binding.root
