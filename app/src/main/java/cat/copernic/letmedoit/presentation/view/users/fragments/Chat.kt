@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.FragmentChatBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -40,6 +42,7 @@ class chat : Fragment() {
 
         binding = FragmentChatBinding.inflate(inflater, container, false)
         binding.btnArrowBack.setOnClickListener { requireActivity().onBackPressed() }
+        binding.btnCreateDeal.setOnClickListener { Utils.goToDestination(requireView(), R.id.createDeal) }
         return binding.root
     }
 

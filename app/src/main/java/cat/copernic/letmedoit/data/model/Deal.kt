@@ -9,4 +9,4 @@ data class Deal(
     val description:        String,
     val accepted :          Boolean,
     val conclude:           Boolean
-)
+) 
