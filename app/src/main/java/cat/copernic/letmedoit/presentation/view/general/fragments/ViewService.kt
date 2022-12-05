@@ -9,6 +9,8 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
@@ -16,11 +18,16 @@ import cat.copernic.letmedoit.data.model.Image
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.data.provider.ServiceProvider
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.Utils.Utils.Companion.goToDestination
+import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.FragmentViewServiceBinding
 import cat.copernic.letmedoit.presentation.adapter.general.SliderImagesAdapter
+import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 
 
 const val TAG_SLIDER_IMAGES = "sliderCardView"
@@ -34,6 +41,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [viewService.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class viewService : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -59,7 +67,8 @@ class viewService : Fragment() {
     }
 
 
-    val args: viewServiceArgs by navArgs()
+    private val userViewModel : UserViewModel by viewModels()
+    private val args: viewServiceArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if(FirebaseAuth.getInstance().currentUser == null){
@@ -70,26 +79,47 @@ class viewService : Fragment() {
         binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
 
         binding.btnReport.setOnClickListener{ Utils.goToUserReport(view, "1") }
-        initView(args.serviceID)
-        binding.btnGoToProfile.setOnClickListener { goToUserProfile(requireView(),R.id.perfilUsuarioMenuSuperior) }
+        initView(args.service)
+
+        initObservers()
+        binding.btnGoToProfile.setOnClickListener { goToUserProfile(requireView(),args.service.userid) }
         binding.btnChat.setOnClickListener{ goToDestination(requireView(),R.id.chat) }
     }
 
-    private fun goToUserProfile(view: View, fragmentID: Int) {
-        val action  = viewServiceDirections.viewServiceToUserProfile(userID = "1")
+    private fun initObservers() {
+        userViewModel.getUserState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Users?> -> {
+                    val user = dataState.data
+                    if(user != null){
+                        Picasso.get().load(user.avatar).into(binding.profileImage)
+                        binding.userRating.rating = user.rating
+                        binding.nameSurname.text = "${user.name} ${user.surname}"
+                    }
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> {  }
+                else -> Unit
+            }
+        } )
+    }
+
+    private fun goToUserProfile(view: View, userId: String) {
+        val action  = viewServiceDirections.viewServiceToUserProfile(userID = userId)
         view.findNavController().navigate(action)
     }
 
-    lateinit var service : Service
-    private fun initView(id: String) {
-
-        service = ServiceProvider.getServices().filter { it.id == id }[0]
+    private fun initView(service: Service) {
         binding.tittleService.text = service.title
         binding.subTextCategory.text = service.category.id_category
         binding.descriptionService.text = service.description
         binding.txtCountFav.text = service.n_likes.toString()
-
+        binding.txtEditedTime.text = service.edited_time
         createSliderDots(service.image)
+        userViewModel.getUser(service.userid)
+
 
         adapter = SliderImagesAdapter(service.image)
 

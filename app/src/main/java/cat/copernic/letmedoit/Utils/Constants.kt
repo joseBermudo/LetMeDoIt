@@ -1,5 +1,7 @@
 package cat.copernic.letmedoit.Utils
 
+import cat.copernic.letmedoit.data.model.Users
+
 object Constants {
     const val DEALS_COLLECTION = "deals"
     const val USERS_COLLECTION = "users"
@@ -11,8 +13,5 @@ object Constants {
     const val REASONS_REPORTS_COLLECTION = "reasons_reports"
 
     var USER_LOGGED_IN_ID = ""
-
-    fun valueOf(constant : Constants) : String{
-        return constant.toString()
-    }
+    lateinit var USER_LOGGED_IN : Users
 }

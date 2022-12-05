@@ -62,8 +62,8 @@
         android:label="fragment_view_service"
         tools:layout="@layout/fragment_view_service" >
         <argument
-            android:name="serviceID"
-            app:argType="string" />
+            android:name="service"
+            app:argType="cat.copernic.letmedoit.data.model.Service" />
         <action
             android:id="@+id/viewServiceToHomeFragment"
             app:destination="@id/homeFragment"

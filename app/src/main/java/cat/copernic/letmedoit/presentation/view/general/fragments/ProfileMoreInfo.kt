@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.FragmentProfileMoreInfoBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -20,7 +22,8 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ProfileMoreInfo.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ProfileMoreInfo : Fragment() {
+@AndroidEntryPoint
+class ProfileMoreInfo(private val user: Users) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -33,7 +36,6 @@ class ProfileMoreInfo : Fragment() {
         }
     }
 
-    //TODO: Implementar parametros basados en la base de datos
     lateinit var binding: FragmentProfileMoreInfoBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,10 +43,15 @@ class ProfileMoreInfo : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentProfileMoreInfoBinding.inflate(inflater,container,false)
-        binding.btnPdf.setOnClickListener{ openPDF("https://www.soundczech.cz/temp/lorem-ipsum.pdf") }
-        binding.btnEmail.setOnClickListener { sendEmail("alexcruceat@gmail.com") }
-        binding.btnMobile.setOnClickListener { callUser("648551479") }
-        binding.locationIcon.setOnClickListener { openMaps("Carretera de Matadepera") }
+
+        binding.btnPdf.setOnClickListener{ user.curriculum?.let { it1 -> openPDF(it1) } }
+        binding.btnEmail.setOnClickListener { user.contactInfo?.let { it1 -> sendEmail(it1.email) } }
+        binding.btnMobile.setOnClickListener { user.contactInfo?.let { it1 -> callUser(it1.phone) } }
+        binding.locationIcon.setOnClickListener { user.location?.let { it1 -> openMaps(it1) } }
+
+        binding.aboutMeText.text = user.aboutMe
+        binding.scheduleText.text = "${user.schedule?.initHour}  ${user.schedule?.endHour}"
+        binding.locationText.text = user.location
         return binding.root
     }
 
@@ -93,13 +100,15 @@ class ProfileMoreInfo : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileMoreInfo().apply {
+        fun newInstance(param1: String, param2: String): ProfileMoreInfo {
+            val user = Users()
+            return ProfileMoreInfo(user).apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
                 }
             }
+        }
     }
 
 }

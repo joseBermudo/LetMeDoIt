@@ -1,5 +1,9 @@
 package cat.copernic.letmedoit.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Opinions (
 
     val id :            String,
@@ -8,4 +12,4 @@ data class Opinions (
     val rating  :       Float,
     val description:    String
 
-)
+) : Parcelable

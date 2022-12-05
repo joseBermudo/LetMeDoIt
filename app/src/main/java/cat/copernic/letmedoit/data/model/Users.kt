@@ -1,9 +1,12 @@
 package cat.copernic.letmedoit.data.model
 
+import android.os.Parcelable
 import com.google.firebase.firestore.Exclude
+import kotlinx.parcelize.Parcelize
 
-class Users(
-    @get:Exclude val id: String? = "",
+@Parcelize
+data class Users(
+    @get:Exclude var id: String? = "",
     val name: String? = null,
     val surname: String? = null,
     val email: String? = null,
@@ -15,13 +18,13 @@ class Users(
     val aboutMe: String? = null,
     val contactInfo: ContactInfoMap? = null,
     val location: String? = null,
-    val servicesId: ArrayList<String>? = null,
-    val favorites: FavoritesMap? = null,
-    val chatsId: ArrayList<String>? = null,
-    val historyDeals: ArrayList<HistoryDeal>? = null,
-    val opinions: ArrayList<Opinions>? = null,
-    val rating: Float? = null,
+    @get:Exclude var servicesId: ArrayList<UserServices>? = null,
+    @get:Exclude val favorites: FavoritesMap? = null,
+    @get:Exclude val chatsId: ArrayList<UserChats>? = null,
+    @get:Exclude val historyDeals: ArrayList<HistoryDeal>? = null,
+    @get:Exclude val opinions: ArrayList<Opinions>? = null,
+    val rating: Float = 0f,
     val banned: Boolean? = null,
     val admin: Boolean? = null,
     val username: String? = null
-    )
+    ) : Parcelable

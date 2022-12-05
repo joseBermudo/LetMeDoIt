@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.Utils.DataState
-import cat.copernic.letmedoit.domain.usecases.RegisterUseCase
-import cat.copernic.letmedoit.domain.usecases.SaveUserUseCase
+import cat.copernic.letmedoit.domain.usecases.login.RegisterUseCase
+import cat.copernic.letmedoit.domain.usecases.login.SaveUserUseCase
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
