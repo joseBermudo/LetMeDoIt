@@ -135,7 +135,7 @@ class Register : AppCompatActivity() {
             null,
             null,
             null,
-            null,
+            0f,
             false,
             null,
             username

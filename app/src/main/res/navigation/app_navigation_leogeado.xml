@@ -96,8 +96,8 @@
         android:label="fragment_view_service"
         tools:layout="@layout/fragment_view_service">
         <argument
-            android:name="serviceID"
-            app:argType="string" />
+            android:name="service"
+            app:argType="cat.copernic.letmedoit.data.model.Service" />
 
         <action
             android:id="@+id/viewServiceBackToHome"
@@ -350,9 +350,17 @@
         android:name="cat.copernic.letmedoit.presentation.view.users.fragments.AccountOptions"
         android:label="fragment_opciones_de_cuenta"
         tools:layout="@layout/fragment_opciones_de_cuenta" >
+        <argument
+            android:name="user"
+            app:argType="cat.copernic.letmedoit.data.model.Users"/>
         <action
             android:id="@+id/opcionesCuentaToHome"
             app:destination="@id/homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/toSelf"
+            app:destination="@id/accountOptions"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
@@ -386,6 +394,9 @@
         android:name="cat.copernic.letmedoit.presentation.view.users.fragments.EditarInformacionPerfil"
         android:label="fragment_editar_informacion_perfil"
         tools:layout="@layout/fragment_editar_informacion_perfil" >
+        <argument
+            android:name="user"
+            app:argType="cat.copernic.letmedoit.data.model.Users"/>
         <action
             android:id="@+id/editarPerfilToOpcionesCuenta"
             app:destination="@id/accountOptions"

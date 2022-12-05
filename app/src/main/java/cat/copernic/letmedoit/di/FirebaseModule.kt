@@ -4,6 +4,7 @@ import cat.copernic.letmedoit.Utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,6 +30,12 @@ object FirebaseModule {
     @Singleton
     fun firestoreProvider() : FirebaseFirestore {
         return FirebaseFirestore.getInstance()
+    }
+
+    @Provides
+    @Singleton
+    fun storageProvider() : FirebaseStorage{
+        return FirebaseStorage.getInstance()
     }
 
     @UsersCollection

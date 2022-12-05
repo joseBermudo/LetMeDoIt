@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import cat.copernic.letmedoit.domain.usecases.InsertCategoryUseCase
+import cat.copernic.letmedoit.domain.usecases.admin.InsertCategoryUseCase
 import cat.copernic.letmedoit.data.model.Category
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.domain.usecases.DeleteCategoryUseCase

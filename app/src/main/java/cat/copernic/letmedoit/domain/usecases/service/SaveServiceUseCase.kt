@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.domain.usecases
+package cat.copernic.letmedoit.domain.usecases.service
 
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.domain.repositories.ServiceRepository

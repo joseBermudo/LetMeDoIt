@@ -45,24 +45,22 @@ class ServiceViewHolder(val binding: ServiceTemplateBinding, val defaultfav : Bo
         else serviceFav.background = ContextCompat.getDrawable(binding.root.context, R.drawable.favorites_ion_colored)
 
         serviceFav.setOnClickListener { anadirFavorito(serviceModel) }
-        service.setOnClickListener { goToService(serviceModel.id) }
+        service.setOnClickListener { goToService(serviceModel) }
     }
 
-    private fun goToService(id: String) {
+    private fun goToService(service: Service) {
         val destinationLabel = Navigation.findNavController(itemView).currentDestination?.label
 
         val action = when(destinationLabel){
-            "fragment_perfil_usuario_menu_superior" -> PerfilUsuarioMenuSuperiorDirections.userProfileToViewService(id)
-            "fragment_profiles_services_manager_vis" -> profiles_services_manager_visDirections.actionProfilesServicesManagerVisToViewService(id)
-            else -> HomeFragmentDirections.homeFragmentToViewService(id)
+            "fragment_perfil_usuario_menu_superior" -> PerfilUsuarioMenuSuperiorDirections.userProfileToViewService(service)
+            "fragment_profiles_services_manager_vis" -> profiles_services_manager_visDirections.actionProfilesServicesManagerVisToViewService(service)
+            else -> HomeFragmentDirections.homeFragmentToViewService(service)
         }
 
         Navigation.findNavController(itemView).navigate(action)
     }
 
     private fun anadirFavorito(serviceModel: Service) {
-
-
 
         if (FirebaseModule.firebaseAuthProvider().currentUser == null){
             binding.root.context.startActivity(Intent(binding.root.context, Login::class.java))

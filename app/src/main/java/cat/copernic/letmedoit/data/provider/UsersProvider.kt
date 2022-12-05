@@ -25,7 +25,7 @@ class UsersProvider {
                     null,
                     null,
                     null,
-                    null,
+                    5f,
                     true,
                     null,
                     null
@@ -49,7 +49,7 @@ class UsersProvider {
                     null,
                     null,
                     null,
-                    null,
+                    0f,
                     true,
                     null,
                     null
@@ -72,7 +72,7 @@ class UsersProvider {
                     null,
                     null,
                     null,
-                    null,
+                    2f,
                     false,
                     null,
                     null
@@ -95,7 +95,7 @@ class UsersProvider {
                     null,
                     null,
                     null,
-                    null,
+                    5f,
                     false,
                     null,
                     null
@@ -118,7 +118,7 @@ class UsersProvider {
                     null,
                     null,
                     null,
-                    null,
+                    3f,
                     true,
                     null,
                      null
@@ -141,7 +141,7 @@ class UsersProvider {
                     null,
                     null,
                     null,
-                    null,
+                    0f,
                     false,
                     null,
                     null
@@ -164,7 +164,7 @@ class UsersProvider {
                     null,
                     null,
                     null,
-                    null,
+                    5f,
                     true,
                     null,
                     null
@@ -187,7 +187,7 @@ class UsersProvider {
                     null,
                     null,
                     null,
-                    null,
+                    5f,
                     false,
                     null,
                     null
@@ -210,7 +210,7 @@ class UsersProvider {
                     null,
                     null,
                     null,
-                    null,
+                    5f,
                     false,
                     null,
                     null
@@ -233,7 +233,7 @@ class UsersProvider {
                     null,
                     null,
                     null,
-                    null,
+                    0f,
                     false,
                     null,
                     null
