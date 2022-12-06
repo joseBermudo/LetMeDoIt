@@ -109,12 +109,15 @@ class EditarInformacionPerfil : Fragment() {
         binding.btnEditSchedule.setOnClickListener      { editSchedule()        }
         binding.btnEditContactInfo.setOnClickListener   { editContactInfo()     }
         binding.btnEditLocation.setOnClickListener      { editLocation()        }
+        binding.btnEditPassword.setOnClickListener      { editPassword()        }
 
         binding.btnPdf.setOnClickListener{ user.curriculum?.let { it1 -> openPDF(it1) } }
         binding.btnEmail.setOnClickListener { user.contactInfo?.let { it1 -> sendEmail(it1.email) } }
         binding.btnMobile.setOnClickListener { user.contactInfo?.let { it1 -> callUser(it1.phone) } }
         binding.btnLocationIcon.setOnClickListener { user.location?.let { it1 -> openMaps(it1) } }
     }
+
+
 
     private fun initObservers(){
         userViewModel.deleteAvatarFromStorageState.observe(viewLifecycleOwner, Observer { dataState ->
@@ -302,6 +305,51 @@ class EditarInformacionPerfil : Fragment() {
                 else -> Unit
             }
         })
+        userViewModel.updateSurnameState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                    dialog.dismiss()
+                    binding.nameSurname.text = "${user.name} ${user.surname}"
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = false
+
+                    val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
+                    btn.isEnabled = true
+                    btn.text = resources.getText(R.string.done)
+                }
+                is DataState.Loading -> {
+                    dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = true
+                    val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
+                    btn.isEnabled = false
+                    btn.text = ""
+                }
+                else -> Unit
+            }
+        })
+        userViewModel.updatePasswordState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                    dialog.dismiss()
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = false
+
+                    val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
+                    btn.isEnabled = true
+                    btn.text = resources.getText(R.string.done)
+                }
+                is DataState.Loading -> {
+                    dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = true
+                    val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
+                    btn.isEnabled = false
+                    btn.text = ""
+                }
+                else -> Unit
+            }
+        })
     }
 
     private fun hideImageProgressBar() {
@@ -349,10 +397,7 @@ class EditarInformacionPerfil : Fragment() {
         mapView.onCreate(dialog.onSaveInstanceState())
         mapView.onResume()
 
-
         val geoCoder = Geocoder(requireContext())
-
-
 
         mapView.getMapAsync {
             googleMap = it
@@ -385,7 +430,6 @@ class EditarInformacionPerfil : Fragment() {
                 locationText.text = "${address.getAddressLine(0)}"
             }
         }
-
         dialog.show()
     }
 
@@ -402,6 +446,7 @@ class EditarInformacionPerfil : Fragment() {
             markers.add(marker)
         }
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f));
 
     }
 
@@ -478,6 +523,25 @@ class EditarInformacionPerfil : Fragment() {
 
     }
 
+    private fun editPassword() {
+        dialogBinding = layoutInflater.inflate(R.layout.dialog_edit_password,null)
+
+        dialog = Dialog(binding.root.context)
+        dialog.setContentView(dialogBinding)
+        dialog.setCancelable(true)
+        dialog.show()
+
+        dialogBinding.findViewById<Button>(R.id.btn_done).setOnClickListener{
+            val textEmail = dialogBinding.findViewById<TextInputEditText>(R.id.textEmail).text.toString()
+            val textOldPassword = dialogBinding.findViewById<TextInputEditText>(R.id.editOldPassword).text.toString()
+            val textNewPassword = dialogBinding.findViewById<TextInputEditText>(R.id.editNewPassword).text.toString()
+
+            userViewModel.updatePassword(textOldPassword,textNewPassword,textEmail)
+
+        }
+        dialogBinding.findViewById<Button>(R.id.btn_cancel).setOnClickListener { dialog.dismiss() }
+    }
+
     private fun manageDocumentUri(uri: Uri?) {
         if (uri == null)
             return
@@ -510,7 +574,31 @@ class EditarInformacionPerfil : Fragment() {
     }
 
     private fun editNameSurname() {
-        TODO("Not yet implemented")
+        dialogBinding = layoutInflater.inflate(R.layout.dialog_name_surname,null)
+
+        dialogBinding.findViewById<TextInputEditText>(R.id.textName).setText(user.name
+            ?: "")
+        dialogBinding.findViewById<TextInputEditText>(R.id.textSurname).setText(user.surname
+            ?: "")
+
+        dialog = Dialog(binding.root.context)
+        dialog.setContentView(dialogBinding)
+        dialog.setCancelable(true)
+        dialog.show()
+
+        dialogBinding.findViewById<Button>(R.id.btn_done).setOnClickListener{
+            val textName = dialogBinding.findViewById<TextInputEditText>(R.id.textName).text.toString()
+            val textSurname = dialogBinding.findViewById<TextInputEditText>(R.id.textSurname).text.toString()
+
+
+            userViewModel.updateName(textName)
+            userViewModel.updateSurname(textSurname)
+
+            user.name = textName
+            user.surname = textSurname
+
+        }
+        dialogBinding.findViewById<Button>(R.id.btn_cancel).setOnClickListener { dialog.dismiss() }
     }
 
     private fun managePhotoUri(uri: Uri?) {
