@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -65,7 +66,8 @@ class HomeServicesList : Fragment() {
         serviceViewModel.getAllServices()
         val model = ViewModelProvider(requireActivity())[SearchViewViewModel::class.java]
         model.message.observe(viewLifecycleOwner, Observer {
-            adapter.filter(it)
+            if(::adapter.isInitialized)
+                adapter.filter(it)
         })
     }
 
@@ -74,14 +76,26 @@ class HomeServicesList : Fragment() {
             when(dataState){
                 is DataState.Success<List<Service>> -> {
                     inicializarRecyclerView(dataState.data)
+                    hideProgress()
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    hideProgress()
                 }
-                is DataState.Loading -> {  }
+                is DataState.Loading -> {
+                    showProgress()
+                }
                 else -> Unit
             }
         } )
+    }
+
+    private fun hideProgress() {
+        binding.loadingServices.isVisible = false
+    }
+
+    private fun showProgress() {
+        binding.loadingServices.isVisible = true
     }
 
     private val serviceViewModel : ServiceViewModel by viewModels()

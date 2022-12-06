@@ -309,7 +309,7 @@ class EditarInformacionPerfil : Fragment() {
             when(dataState){
                 is DataState.Success<Boolean> -> {
                     dialog.dismiss()
-                    binding.nameSurname.text = "${user.name} ${user.surname}"
+                    binding.nameSurname.text = "${user.name} ${user.surname} \n @${user.username}"
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
@@ -624,14 +624,12 @@ class EditarInformacionPerfil : Fragment() {
 
         startActivity(browserIntent)
     }
-    private fun sendEmail(addresses : String){
+    private fun sendEmail(address : String){
+
         val intent = Intent(Intent.ACTION_SEND)
-        intent.data = Uri.parse("mailto:") // only email apps should handle this
+        intent.data = Uri.parse("mailto:${address}") // only email apps should handle this
 
-        intent.putExtra(Intent.EXTRA_EMAIL, addresses)
-
-        startActivity(
-            Intent.createChooser(intent,
+        startActivity(Intent.createChooser(intent,
             "Send Email Using: "))
     }
     private fun callUser(telf : String){

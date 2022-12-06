@@ -7,14 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Opinions
+import cat.copernic.letmedoit.data.model.UserFavoriteProfiles
 import cat.copernic.letmedoit.data.model.UserServices
 import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioMenuSuperiorBinding
@@ -52,7 +56,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
 
     private val userViewModel : UserViewModel by viewModels()
     private val args: PerfilUsuarioMenuSuperiorArgs by navArgs()
-
+    private var isUserFav = false
     lateinit var adapter : FragmentStateAdapter
     lateinit var binding : FragmentPerfilUsuarioMenuSuperiorBinding
     @SuppressLint("ClickableViewAccessibility")
@@ -65,13 +69,12 @@ class PerfilUsuarioMenuSuperior : Fragment() {
 
         initObservers()
         userViewModel.getUser(args.userID)
-
-
-        if(FirebaseAuth.getInstance().currentUser == null){
+        userViewModel.getFavoriteProfiles()
+        if(FirebaseAuth.getInstance().currentUser == null || args.userID == Constants.USER_LOGGED_IN_ID){
             binding.btnFavorites.visibility = View.INVISIBLE
             binding.btnReport.visibility = View.INVISIBLE
         }
-        binding.btnFavorites.setOnClickListener {  }
+        binding.btnFavorites.setOnClickListener { manageUserFavorite() }
 
         //Evento que se llama al empezar el drawing de la vista. Obtenemos el height del movil, luego el del Menu superior los restamos y lo utilizamos como height del viewpager. luego actualizamos el layout de nuevo
         var viewPagerHeightSize = 0
@@ -96,6 +99,18 @@ class PerfilUsuarioMenuSuperior : Fragment() {
         return binding.root
     }
 
+
+    private fun manageUserFavorite() {
+        if (!isUserFav) userViewModel.addFavoriteProfile(args.userID)
+        else userViewModel.deleteFavoriteProfile(args.userID)
+        isUserFav = !isUserFav
+        manageFavIcon()
+    }
+
+    private fun manageFavIcon(){
+        if (!isUserFav)binding.btnFavorites.background = ContextCompat.getDrawable(binding.root.context, R.drawable.favorites_ion_colored)
+        else binding.btnFavorites.background = ContextCompat.getDrawable(binding.root.context, R.drawable.ic_round_favorite_24)
+    }
     private lateinit var user : Users
     private fun initObservers() {
         userViewModel.getUserState.observe(viewLifecycleOwner, Observer { dataState ->
@@ -104,7 +119,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
                     user = dataState.data!!
                     Picasso.get().load(user.avatar).into(binding.profileImage)
                     binding.userRating.rating = user.rating
-                    binding.profileNameSurname.text = "${user.name} ${user.surname} \n ${user.username}"
+                    binding.profileNameSurname.text = "${user.name} ${user.surname} \n @${user.username}"
                     userViewModel.getServices(args.userID)
                 }
                 is DataState.Error -> {
@@ -139,6 +154,51 @@ class PerfilUsuarioMenuSuperior : Fragment() {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
                 }
                 is DataState.Loading -> {  }
+                else -> Unit
+            }
+        } )
+        userViewModel.getFavoriteProfilesState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<ArrayList<UserFavoriteProfiles>> -> {
+                    isUserFav = (dataState.data.contains(UserFavoriteProfiles(args.userID)))
+                    manageFavIcon()
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> {
+                }
+                else -> Unit
+            }
+        } )
+        userViewModel.addFavoriteProfileState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                    binding.btnFavorites.isEnabled = true
+                    isUserFav = true
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    binding.btnFavorites.isEnabled = true
+                }
+                is DataState.Loading -> {
+                    binding.btnFavorites.isEnabled = false
+                }
+                else -> Unit
+            }
+        } )
+        userViewModel.deleteFavoriteProfileState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                    binding.btnFavorites.isEnabled = true
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    binding.btnFavorites.isEnabled = true
+                }
+                is DataState.Loading -> {
+                    binding.btnFavorites.isEnabled = false
+                }
                 else -> Unit
             }
         } )
