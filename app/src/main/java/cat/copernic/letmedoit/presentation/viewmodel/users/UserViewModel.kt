@@ -27,6 +27,7 @@ class UserViewModel @Inject constructor(
     private val deleteCurriculumFromStorageUseCase: DeleteCurriculumFromStorageUseCase,
     private val deleteAvatarFromStorageUseCase: DeleteAvatarFromStorageUseCase,
     private val deleteFavoriteProfileUseCase: DeleteFavoriteProfileUseCase,
+    private val deleteFavoriteServiceUseCase: DeleteFavoriteServiceUseCase,
     private val deleteServiceUseCase: DeleteServiceUseCase,
     private val getChatsUseCase: GetChatsUseCase,
     private val getFavoriteProfilesUseCase: GetFavoriteProfilesUseCase,
@@ -167,6 +168,16 @@ class UserViewModel @Inject constructor(
         viewModelScope.launch {
             deleteFavoriteProfileUseCase(idProfile).onEach { dataState ->
                 mDeleteFavoriteProfileState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
+    private val mDeleteFavoriteServiceState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val deleteFavoriteServiceState: LiveData<DataState<Boolean>> get() = mDeleteFavoriteServiceState
+    fun deleteFavoriteService(idService : String) {
+        viewModelScope.launch {
+            deleteFavoriteServiceUseCase(idService).onEach { dataState ->
+                mDeleteFavoriteServiceState.value = dataState
             }.launchIn(viewModelScope)
         }
     }

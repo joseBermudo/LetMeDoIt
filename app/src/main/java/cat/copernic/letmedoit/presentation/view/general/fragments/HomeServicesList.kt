@@ -12,13 +12,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.Utils.DataState
+import cat.copernic.letmedoit.Utils.UserConstants
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Service
+import cat.copernic.letmedoit.data.model.UserFavoriteServices
 import cat.copernic.letmedoit.data.provider.ServiceProvider
 import cat.copernic.letmedoit.databinding.FragmentHomeServicesListBinding
 import cat.copernic.letmedoit.presentation.adapter.general.ServiceAdapter
 import cat.copernic.letmedoit.presentation.viewmodel.general.SearchViewViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
+import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
@@ -63,7 +66,7 @@ class HomeServicesList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initObserver()
-        serviceViewModel.getAllServices()
+        userViewModel.getFavoriteServices()
         val model = ViewModelProvider(requireActivity())[SearchViewViewModel::class.java]
         model.message.observe(viewLifecycleOwner, Observer {
             if(::adapter.isInitialized)
@@ -71,10 +74,16 @@ class HomeServicesList : Fragment() {
         })
     }
 
+    private var totalFavServices = 0
+    private var obtainedFavServices = 0
+
     private fun initObserver() {
         serviceViewModel.getServicesState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<List<Service>> -> {
+                    dataState.data.forEach{
+                        if(UserConstants.USER_FAVORITE_SERVICES_IDS.contains(it.id)) it.defaultFav = true
+                    }
                     inicializarRecyclerView(dataState.data)
                     hideProgress()
                 }
@@ -88,6 +97,21 @@ class HomeServicesList : Fragment() {
                 else -> Unit
             }
         } )
+        userViewModel.getFavoriteServicesState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<ArrayList<UserFavoriteServices>> -> {
+                    UserConstants.USER_FAVORITE_SERVICES_IDS.clear()
+                    dataState.data.forEach {  UserConstants.USER_FAVORITE_SERVICES_IDS.add(it.favorite_service_id) }
+                    serviceViewModel.getAllServices()
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> {
+                }
+                else -> Unit
+            }
+        } )
     }
 
     private fun hideProgress() {
@@ -97,6 +121,7 @@ class HomeServicesList : Fragment() {
     private fun showProgress() {
         binding.loadingServices.isVisible = true
     }
+    private val userViewModel : UserViewModel by viewModels()
 
     private val serviceViewModel : ServiceViewModel by viewModels()
 
@@ -115,7 +140,7 @@ class HomeServicesList : Fragment() {
 
         serviceRecyclerView.setHasFixedSize(true)
 
-        adapter = ServiceAdapter(ArrayList(data))
+        adapter = ServiceAdapter(ArrayList(data),this,userViewModel)
         serviceRecyclerView.adapter = adapter
 
     }

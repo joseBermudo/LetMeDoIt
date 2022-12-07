@@ -17,5 +17,6 @@ data class Service(
     @get:Exclude val image: ArrayList<Image> = arrayListOf(Image("","")),
     val n_likes : Int = 0,
     val edited_time : String = SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH).format(Calendar.getInstance().time),
-    val userid : String = Constants.USER_LOGGED_IN_ID
+    val userid : String = Constants.USER_LOGGED_IN_ID,
+    @get:Exclude var defaultFav: Boolean = false
 ) : Parcelable

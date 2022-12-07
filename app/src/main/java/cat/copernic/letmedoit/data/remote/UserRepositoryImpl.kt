@@ -327,7 +327,7 @@ class UserRepositoryImpl @Inject constructor(
             var uploadSuccesful: Boolean = false
             Constants.USER_LOGGED_IN_ID.let {
                 usersCollection.document(it).collection(UserConstants.FAVORITE_SERVICES)
-                    .document(idService).set(idService, SetOptions.merge())
+                    .document(idService).set(UserFavoriteServices(idService), SetOptions.merge())
                     .addOnSuccessListener { uploadSuccesful = true }
                     .addOnFailureListener { uploadSuccesful = false }
                     .await()

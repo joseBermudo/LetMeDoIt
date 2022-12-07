@@ -14,6 +14,8 @@ import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.data.model.Service
+import cat.copernic.letmedoit.data.model.UserFavoriteServices
 import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.ActivityHomeBinding
 import cat.copernic.letmedoit.presentation.view.admin.activities.MenuAdmin
@@ -26,7 +28,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class Home : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private val userViewModel : UserViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
