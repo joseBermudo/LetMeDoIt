@@ -8,5 +8,6 @@ import kotlinx.parcelize.Parcelize
 data class Image (
         @get:Exclude val  id : String = "",
         val img_link : String = "",
+        val index : Int = 0,
         @get:Exclude var checked : Boolean? = false
 ) : Parcelable

@@ -140,7 +140,7 @@ class HomeServicesList : Fragment() {
 
         serviceRecyclerView.setHasFixedSize(true)
 
-        adapter = ServiceAdapter(ArrayList(data),this,userViewModel)
+        adapter = ServiceAdapter(ArrayList(data),this,userViewModel,serviceViewModel)
         serviceRecyclerView.adapter = adapter
 
     }

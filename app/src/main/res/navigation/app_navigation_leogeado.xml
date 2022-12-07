@@ -119,6 +119,9 @@
             app:destination="@id/userReport"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_viewService_to_newService"
+            app:destination="@id/newService" />
     </fragment>
     <fragment
         android:id="@+id/chat"
@@ -326,6 +329,10 @@
         android:name="cat.copernic.letmedoit.presentation.view.users.fragments.NewService"
         android:label="fragment_new_service"
         tools:layout="@layout/fragment_new_service" >
+        <argument
+            android:name="serviceID"
+            app:argType="string"
+            android:defaultValue="null"/>
         <action
             android:id="@+id/newServiceToHome"
             app:destination="@id/homeFragment" />

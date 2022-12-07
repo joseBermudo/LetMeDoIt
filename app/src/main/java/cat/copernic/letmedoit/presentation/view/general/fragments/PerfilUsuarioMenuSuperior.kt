@@ -231,7 +231,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnReport.setOnClickListener{ Utils.goToUserReport(view, "1") }
+        binding.btnReport.setOnClickListener{ Utils.goToUserReport(view, args.userID) }
     }
     companion object {
         /**

@@ -140,7 +140,7 @@ class VerListadoFavServices : Fragment() {
         services.forEach { it.defaultFav = true }
         hideProgress()
         binding.recyclerFavServices.layoutManager = GridLayoutManager(binding.root.context, 2)
-        adapter = ServiceAdapter(services,this,userViewModel)
+        adapter = ServiceAdapter(services,this,userViewModel,serviceViewModel)
         binding.recyclerFavServices.adapter = adapter
         obtainedFavServices = 0
     }

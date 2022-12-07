@@ -8,10 +8,12 @@ import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
@@ -19,6 +21,7 @@ import cat.copernic.letmedoit.data.model.Image
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.data.provider.ServiceProvider
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.UserConstants
 import cat.copernic.letmedoit.Utils.Utils
@@ -97,6 +100,12 @@ class viewService : Fragment() {
         binding.btnReport.setOnClickListener{ Utils.goToUserReport(requireView(), args.service.userid) }
         binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
         binding.btnFav.setOnClickListener{ manageFavorite() }
+        binding.btnEdit.setOnClickListener{ gotToEditService() }
+    }
+
+    private fun gotToEditService() {
+        val action = viewServiceDirections.actionViewServiceToNewService(args.service.id)
+        Navigation.findNavController(requireView()).navigate(action)
     }
 
     private fun manageFavorite() {
@@ -161,6 +170,12 @@ class viewService : Fragment() {
 
     private fun initView(service: Service) {
 
+        if(Constants.USER_LOGGED_IN_ID == args.service.userid){
+            binding.btnFav.isVisible = false
+            binding.btnReport.isVisible = false
+            binding.btnChat.isVisible = false
+            binding.btnEdit.isVisible = true
+        }
         if(UserConstants.USER_FAVORITE_SERVICES_IDS.contains(service.id)) service.defaultFav = true
         changeFavIcon()
         binding.tittleService.text = service.title

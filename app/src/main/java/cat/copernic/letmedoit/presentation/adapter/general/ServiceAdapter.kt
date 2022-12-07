@@ -14,6 +14,7 @@ import cat.copernic.letmedoit.presentation.adapter.general.viewholder.ServiceVie
 import cat.copernic.letmedoit.presentation.view.general.fragments.HomeServicesList
 import cat.copernic.letmedoit.presentation.view.users.fragments.VerListadoFavServices
 import cat.copernic.letmedoit.presentation.view.users.fragments.viewFavUsers
+import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -23,7 +24,7 @@ import kotlin.collections.ArrayList
  * Adaptador de Categorias, implementa Filterable para así poder filtrar :)
  * @param categoryList ArrayList de servicios
  * */
-class ServiceAdapter(private var serviceList:ArrayList<Service>,private val fragment: Fragment? = null, private val userViewModel: UserViewModel) : RecyclerView.Adapter<ServiceViewHolder>() {
+class ServiceAdapter(private var serviceList:ArrayList<Service>,private val fragment: Fragment? = null, private val userViewModel: UserViewModel,private val serviceViewModel: ServiceViewModel) : RecyclerView.Adapter<ServiceViewHolder>() {
 
     lateinit var destinationLabel : String
     var favFragment = false
@@ -97,11 +98,12 @@ class ServiceAdapter(private var serviceList:ArrayList<Service>,private val frag
         }
         UserConstants.USER_FAVORITE_SERVICES_IDS.remove(service.id)
         userViewModel.deleteFavoriteService(service.id)
-        notifyDataSetChanged()
+        serviceViewModel.updateNLikes(service.id, --service.n_likes)
     }
 
     fun addFavService(service: Service) {
         userViewModel.addFavoriteService(service.id)
+        serviceViewModel.updateNLikes(service.id, ++service.n_likes)
     }
 
 }

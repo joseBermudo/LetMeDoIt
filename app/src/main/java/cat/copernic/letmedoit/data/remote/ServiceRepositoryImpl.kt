@@ -1,23 +1,28 @@
 package cat.copernic.letmedoit.data.remote
 
 import android.net.Uri
+import android.provider.ContactsContract.Data
+import androidx.core.content.ContentProviderCompat.requireContext
 import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.domain.repositories.ServiceRepository
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.ServiceConstants
+import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.CategoryMap
 import cat.copernic.letmedoit.data.model.Image
+import cat.copernic.letmedoit.data.model.Users
 import javax.inject.Inject
 import cat.copernic.letmedoit.di.FirebaseModule
+import com.google.android.gms.tasks.Tasks.await
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.tasks.await
 import org.checkerframework.checker.units.qual.s
 
@@ -99,8 +104,36 @@ class ServiceRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
+    override suspend fun removeImage(idService: String, imgIndex: Int,imgLink : String): Flow<DataState<Boolean>> = flow {
+        var isSuccessful = false
+        emit(DataState.Loading)
+
+        val sRef: StorageReference =
+            FirebaseModule.storageProvider().getReferenceFromUrl(imgLink)
+
+        try {
+            sRef.delete()
+                .addOnSuccessListener {
+                    isSuccessful = true
+                }
+                .addOnFailureListener {
+                    throw Exception(it)
+                }
+                .await()
+
+            serviceCollection.document(idService)
+                .collection(Constants.SERVICES_COLLECTION_IMAGES).document(imgIndex.toString()).delete().await()
+
+            emit(DataState.Success(isSuccessful))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
     suspend fun getServiceImages(service: Service) {
-        val images = serviceCollection.document(service.id).collection(ServiceConstants.IMAGES).get().await()
+        val images = serviceCollection.document(service.id).collection(ServiceConstants.IMAGES).orderBy("index").get().await()
                 .toObjects(Image::class.java)
 
         service.image.removeAll(service.image.toSet())
@@ -211,22 +244,34 @@ class ServiceRepositoryImpl @Inject constructor(
     }.flowOn(Dispatchers.IO)
 
     override suspend fun editServiceImage(
-        idService: String,
-        idImg: String,
-        oldFileUri: String,
-        newFileURI: Uri,
-        index: Int,
-    ): Flow<DataState<Boolean>> = flow {
+        idService : String,newFileURI : Uri, index: Int
+    ): Flow<DataState<String>> = flow {
 
-        var isSuccessful = false
         emit(DataState.Loading)
-
         try {
-            if (deleteServiceImage(oldFileUri))
-                saveServiceImage(newFileURI, idService, index)
+            var newUrl = ""
+            //deleteServiceImage(oldFileUri)
 
-            isSuccessful = true
-            emit(DataState.Success(isSuccessful))
+            var service = Service()
+
+
+            saveServiceImage(newFileURI, idService, index).collect{ dataState ->
+                when(dataState){
+                    is DataState.Success<String> -> {
+                        newUrl = dataState.data
+                        serviceCollection.document(idService)
+                            .collection(Constants.SERVICES_COLLECTION_IMAGES).document(index.toString())
+                            .set(Image(index.toString(),newUrl,index), SetOptions.merge()).await()
+                    }
+                    is DataState.Error -> {
+                    }
+                    is DataState.Loading -> {  }
+                    else -> Unit
+                }
+
+            }
+
+            emit(DataState.Success(newUrl))
             emit(DataState.Finished)
         } catch (e: Exception) {
             emit(DataState.Error(e))

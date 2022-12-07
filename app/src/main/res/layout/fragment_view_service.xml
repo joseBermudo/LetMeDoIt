@@ -44,6 +44,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            style="@style/IconoClickable"
+            android:id="@+id/btn_edit"
+            android:visibility="invisible"
+            android:contentDescription="@string/txt_edit_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margins_start_end"
+            android:src="@drawable/edit_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/imageServiceViewPagerContainer"
             android:layout_width="match_parent"

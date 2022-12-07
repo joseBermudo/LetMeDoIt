@@ -110,7 +110,7 @@ class PerfilUsuarioServicios(private val servicesId: ArrayList<UserServices>?) :
     private fun showServices() {
         hideProgress()
         services.forEach { if(UserConstants.USER_FAVORITE_SERVICES_IDS.contains(it.id)) it.defaultFav = true }
-        adapter = ServiceAdapter(services,this, userViewModel)
+        adapter = ServiceAdapter(services,this, userViewModel,serviceViewModel)
         serviceRecyclerView.adapter = adapter
         adapter.notifyDataSetChanged()
     }
