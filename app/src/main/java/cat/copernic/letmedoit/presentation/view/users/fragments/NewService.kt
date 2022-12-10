@@ -22,6 +22,7 @@ import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -89,9 +90,21 @@ class NewService : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentNewServiceBinding.inflate(inflater,container,false)
         initListeners()
+
+        if(findNavController().previousBackStackEntry?.destination?.label == "fragment_create_deal")
+            requireActivity().findViewById<BottomNavigationView>(R.id.menu_inferior).isVisible = false
+
         val categoryNames = CategoryProvider.obtenerCategorias().map { it.nombre } as ArrayList<String>
         Utils.AsignarPopUpSpinner(requireContext(),categoryNames,binding.spinnerCategory)
 
+        initRecyclerView()
+
+        if(args.serviceID != "null")
+            serviceViewModel.getService(args.serviceID)
+        return binding.root
+    }
+
+    private fun initListeners() {
         binding.editDescription.setOnTouchListener(object : OnTouchListener {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 binding.scrollableLayout.requestDisallowInterceptTouchEvent(true)
@@ -110,15 +123,6 @@ class NewService : Fragment() {
             }
 
         }
-
-        initRecyclerView()
-
-        if(args.serviceID != "null")
-            serviceViewModel.getService(args.serviceID)
-        return binding.root
-    }
-
-    private fun initListeners() {
         binding.btnAddImage.setOnClickListener { addImage() }
         binding.btnRemoveImage.setOnClickListener { removeImage() }
         binding.selectAll.setOnClickListener { selectAll() }
@@ -149,8 +153,7 @@ class NewService : Fragment() {
         imagesList.addAll(service.image)
         adapter.notifyDataSetChanged()
 
-        val menu_inferior = requireActivity().findViewById<BottomNavigationView>(R.id.menu_inferior)
-        menu_inferior.isVisible = false
+        requireActivity().findViewById<BottomNavigationView>(R.id.menu_inferior).isVisible = false
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

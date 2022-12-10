@@ -30,7 +30,7 @@ interface UserRepository {
     suspend fun addFavoriteProfiles(idProfile : String) : Flow<DataState<Boolean>>
     suspend fun addFavoriteServices(idService: String) : Flow<DataState<Boolean>>
     suspend fun addChat(idChat: String) : Flow<DataState<Boolean>>
-    suspend fun addHistoryDeal(idUser: String, idDeal : String) : Flow<DataState<Boolean>>
+    suspend fun addHistoryDeal(idUserOne: String, idUserTwo : String, idDeal : String) : Flow<DataState<Boolean>>
     suspend fun addOpinion(opinion : Opinions) : Flow<DataState<Boolean>>
     suspend fun addAvatarToStorage (fileUri: Uri): Flow<DataState<String>>
     suspend fun addCurriculumToStorage(fileUri : Uri) : Flow<DataState<String>>

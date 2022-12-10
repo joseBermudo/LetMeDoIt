@@ -15,8 +15,9 @@ import cat.copernic.letmedoit.presentation.view.users.fragments.verConversacione
 import cat.copernic.letmedoit.presentation.view.users.fragments.verListadoDeals
 import cat.copernic.letmedoit.presentation.viewmodel.general.BarChatsOrDealsViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.general.ChatsDealsManagerViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class chats_deals_manager_vis : Fragment() {
 
 

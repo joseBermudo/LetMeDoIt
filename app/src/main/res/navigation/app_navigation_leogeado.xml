@@ -128,6 +128,9 @@
         android:name="cat.copernic.letmedoit.presentation.view.users.fragments.chat"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" >
+        <argument
+            android:name="idUser"
+            app:argType="string" />
         <action
             android:id="@+id/chatToConversaciones"
             app:destination="@id/verConversaciones"
@@ -255,11 +258,21 @@
         android:name="cat.copernic.letmedoit.presentation.view.users.fragments.CreateDeal"
         android:label="fragment_create_deal"
         tools:layout="@layout/fragment_create_deal" >
+        <argument
+            android:name="userOne"
+            app:argType="cat.copernic.letmedoit.data.model.Users"
+            />
+        <argument
+            android:name="userTwo"
+            app:argType="cat.copernic.letmedoit.data.model.Users" />
         <action
             android:id="@+id/createDealToChat"
             app:destination="@id/chat"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_createDeal_to_newService"
+            app:destination="@id/newService" />
     </fragment>
     <fragment
         android:id="@+id/viewDeal"
@@ -267,8 +280,11 @@
         android:label="fragment_ver_deal"
         tools:layout="@layout/fragment_ver_deal" >
         <argument
-            android:name="dealID"
-            app:argType="string" />
+            android:name="deal"
+            app:argType="cat.copernic.letmedoit.data.model.Deal" />
+        <argument
+            android:name="user"
+            app:argType="cat.copernic.letmedoit.data.model.Users" />
         <action
             android:id="@+id/viewDealToListadoDeals"
             app:destination="@id/verListadoDeals"
@@ -279,6 +295,9 @@
             app:destination="@id/concludeDeal"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_viewDeal_to_viewService"
+            app:destination="@id/viewService" />
     </fragment>
     <fragment
         android:id="@+id/concludeDeal"

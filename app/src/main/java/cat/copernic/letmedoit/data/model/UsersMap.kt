@@ -1,7 +1,11 @@
 package cat.copernic.letmedoit.data.model
 
-data class UsersMap (
-    val userOneId : String,
-    val userTwoId : String
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-)
+@Parcelize
+data class UsersMap (
+    val userOneId : String = "",
+    val userTwoId : String = ""
+
+) : Parcelable

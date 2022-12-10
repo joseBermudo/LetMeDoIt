@@ -96,7 +96,7 @@ class viewService : Fragment() {
     }
     private fun initListeners() {
         binding.btnGoToProfile.setOnClickListener { goToUserProfile(requireView(),args.service.userid) }
-        binding.btnChat.setOnClickListener{ goToDestination(requireView(),R.id.chat) }
+        binding.btnChat.setOnClickListener{ goToChat() }
         binding.btnReport.setOnClickListener{ Utils.goToUserReport(requireView(), args.service.userid) }
         binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
         binding.btnFav.setOnClickListener{ manageFavorite() }
@@ -108,6 +108,10 @@ class viewService : Fragment() {
         Navigation.findNavController(requireView()).navigate(action)
     }
 
+    private fun goToChat(){
+        val action = viewServiceDirections.viewServiceToChat(args.service.userid)
+        Navigation.findNavController(requireView()).navigate(action)
+    }
     private fun manageFavorite() {
 
 

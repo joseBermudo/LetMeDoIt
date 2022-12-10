@@ -117,11 +117,22 @@ class UserRepositoryImpl @Inject constructor(
         var historyDeals = ArrayList<HistoryDeal>()
         emit(DataState.Loading)
         try {
-            val historyDeals = usersCollection.document(Constants.USER_LOGGED_IN_ID).collection(UserConstants.HISTORY_DEALS)
-                .get()
-                .await()
-                .toObjects(HistoryDeal::class.java)
 
+            val historyDealsColllection = usersCollection.document(Constants.USER_LOGGED_IN_ID).collection(UserConstants.HISTORY_DEALS).get().await()
+
+            var userDeals = ArrayList<UserDeals>()
+            historyDealsColllection.documents.forEach{ historyDeal ->
+                var id = historyDeal.id
+                userDeals.addAll(usersCollection
+                    .document(Constants.USER_LOGGED_IN_ID)
+                    .collection(UserConstants.HISTORY_DEALS)
+                    .document(id).collection("deals")
+                    .get()
+                    .await()
+                    .toObjects(UserDeals::class.java)
+                )
+                historyDeals.add(HistoryDeal(id,userDeals))
+            }
             emit(DataState.Success(ArrayList(historyDeals)))
             emit(DataState.Finished)
         } catch (e: Exception) {
@@ -361,15 +372,28 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun addHistoryDeal(idUser: String, idDeal: String): Flow<DataState<Boolean>> =
+    override suspend fun addHistoryDeal(idUserOne: String,idUserTwo : String, idDeal: String): Flow<DataState<Boolean>> =
         flow {
             emit(DataState.Loading)
             try {
                 var uploadSuccesful: Boolean = false
-                val newIndex = usersCollection.document(Constants.USER_LOGGED_IN_ID).collection(UserConstants.HISTORY_DEALS).document(idUser).collection(UserConstants.DEALS).get().await().documents.last().id.toInt() +1
-                Constants.USER_LOGGED_IN_ID.let {
+                var newIndex = 0
+
+                val historydeals = usersCollection.document(idUserOne).collection(UserConstants.HISTORY_DEALS)
+                    .document(idUserTwo)
+                    .collection(UserConstants.DEALS)
+                    .get()
+                    .await()
+
+                newIndex = if (historydeals.documents.size == 0) 0
+                else historydeals.documents.last().id.toInt()+1
+
+                    idUserOne.let {
                     usersCollection.document(it).collection(UserConstants.HISTORY_DEALS)
-                        .document(idUser).collection(UserConstants.DEALS).document(newIndex.toString())
+                        .document(idUserTwo).set(DummyData(),SetOptions.merge()).await()
+
+                    usersCollection.document(it).collection(UserConstants.HISTORY_DEALS)
+                        .document(idUserTwo).collection(UserConstants.DEALS).document(newIndex.toString())
                         .set(UserDeals(idDeal), SetOptions.merge())
                         .addOnSuccessListener { uploadSuccesful = true }
                         .addOnFailureListener { uploadSuccesful = false }

@@ -86,9 +86,9 @@ class UserViewModel @Inject constructor(
 
     private val mAddHistoryDealState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val addHistoryDealState: LiveData<DataState<Boolean>> get() = mAddHistoryDealState
-    fun addHistoryDeal(idUser : String, idDeal : String) {
+    fun addHistoryDeal(idUserOne : String,idUserTwo : String, idDeal : String) {
         viewModelScope.launch {
-            addHistoryDealUseCase(idUser, idDeal).onEach { dataState ->
+            addHistoryDealUseCase(idUserOne, idUserTwo, idDeal).onEach { dataState ->
                 mAddHistoryDealState.value = dataState
             }.launchIn(viewModelScope)
         }

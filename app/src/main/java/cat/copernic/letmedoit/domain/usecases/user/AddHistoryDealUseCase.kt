@@ -8,5 +8,5 @@ import javax.inject.Inject
 class AddHistoryDealUseCase @Inject constructor(
     private val userRepository: UserRepository
 ){
-    suspend operator fun invoke(idUser: String, idDeal : String) : Flow<DataState<Boolean>> = userRepository.addHistoryDeal(idUser,idDeal)
+    suspend operator fun invoke(idUserOne: String,idUserTwo : String, idDeal : String) : Flow<DataState<Boolean>> = userRepository.addHistoryDeal(idUserOne,idUserTwo,idDeal)
 }

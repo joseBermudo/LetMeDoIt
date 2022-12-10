@@ -56,7 +56,7 @@ class verConversaciones : Fragment() {
 
         }
     private fun onClickItem(users: Users) {
-        val action = chats_deals_manager_visDirections.conversacionesToChat()
+        val action = chats_deals_manager_visDirections.conversacionesToChat(users.id.toString())
         findNavController().navigate(action)
     }
 }
