@@ -9,8 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.Utils.DataState
-import cat.copernic.letmedoit.data.model.Category
-import cat.copernic.letmedoit.data.model.CategoryMap
+import cat.copernic.letmedoit.Utils.datahepers.CategoryMap
 import cat.copernic.letmedoit.domain.usecases.service.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn

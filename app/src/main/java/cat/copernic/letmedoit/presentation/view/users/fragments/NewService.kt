@@ -26,7 +26,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.data.model.CategoryMap
+import cat.copernic.letmedoit.Utils.datahepers.CategoryMap
 import cat.copernic.letmedoit.data.model.Image
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.data.provider.CategoryProvider

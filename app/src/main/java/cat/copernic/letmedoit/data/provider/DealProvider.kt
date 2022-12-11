@@ -1,8 +1,8 @@
 package cat.copernic.letmedoit.data.provider
 
 import cat.copernic.letmedoit.data.model.Deal
-import cat.copernic.letmedoit.data.model.ServicesMap
-import cat.copernic.letmedoit.data.model.UsersMap
+import cat.copernic.letmedoit.Utils.datahepers.ServicesMap
+import cat.copernic.letmedoit.Utils.datahepers.UsersMap
 
 class DealProvider {
     companion object{

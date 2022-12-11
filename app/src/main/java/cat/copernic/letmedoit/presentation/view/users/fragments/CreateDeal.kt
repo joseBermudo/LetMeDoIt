@@ -14,12 +14,14 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.Utils.datahepers.ServicesMap
+import cat.copernic.letmedoit.Utils.datahepers.UserServices
+import cat.copernic.letmedoit.Utils.datahepers.UsersMap
 import cat.copernic.letmedoit.data.model.*
 import cat.copernic.letmedoit.databinding.FragmentCreateDealBinding
 import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.DealViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
-import com.google.firebase.firestore.auth.User
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 

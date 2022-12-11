@@ -15,7 +15,7 @@ import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.UserConstants
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Service
-import cat.copernic.letmedoit.data.model.UserServices
+import cat.copernic.letmedoit.Utils.datahepers.UserServices
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioServiciosBinding
 import cat.copernic.letmedoit.presentation.adapter.general.ServiceAdapter
 import cat.copernic.letmedoit.presentation.viewmodel.general.SearchViewViewModel

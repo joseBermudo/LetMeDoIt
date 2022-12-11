@@ -1,18 +1,14 @@
 package cat.copernic.letmedoit.data.remote
 
 import android.net.Uri
-import cat.copernic.letmedoit.Utils.Constants
-import cat.copernic.letmedoit.Utils.DataState
-import cat.copernic.letmedoit.Utils.UserConstants
-import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.Utils.*
+import cat.copernic.letmedoit.Utils.datahepers.*
 import cat.copernic.letmedoit.data.model.*
 import cat.copernic.letmedoit.di.FirebaseModule
 import cat.copernic.letmedoit.domain.repositories.UserRepository
-import com.google.android.gms.tasks.Tasks.await
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.auth.User
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*

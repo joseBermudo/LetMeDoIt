@@ -16,7 +16,6 @@ import cat.copernic.letmedoit.Utils.UserConstants
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.data.model.UserFavoriteServices
-import cat.copernic.letmedoit.data.provider.ServiceProvider
 import cat.copernic.letmedoit.databinding.FragmentHomeServicesListBinding
 import cat.copernic.letmedoit.presentation.adapter.general.ServiceAdapter
 import cat.copernic.letmedoit.presentation.viewmodel.general.SearchViewViewModel

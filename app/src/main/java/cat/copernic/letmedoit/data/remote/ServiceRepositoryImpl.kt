@@ -1,30 +1,22 @@
 package cat.copernic.letmedoit.data.remote
 
 import android.net.Uri
-import android.provider.ContactsContract.Data
-import androidx.core.content.ContentProviderCompat.requireContext
 import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.domain.repositories.ServiceRepository
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.ServiceConstants
-import cat.copernic.letmedoit.Utils.Utils
-import cat.copernic.letmedoit.data.model.CategoryMap
+import cat.copernic.letmedoit.Utils.datahepers.CategoryMap
 import cat.copernic.letmedoit.data.model.Image
-import cat.copernic.letmedoit.data.model.Users
 import javax.inject.Inject
 import cat.copernic.letmedoit.di.FirebaseModule
-import com.google.android.gms.tasks.Tasks.await
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.tasks.await
-import org.checkerframework.checker.units.qual.s
 
 class ServiceRepositoryImpl @Inject constructor(
     private val storage: FirebaseStorage,

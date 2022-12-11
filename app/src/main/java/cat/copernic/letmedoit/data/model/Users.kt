@@ -1,6 +1,7 @@
 package cat.copernic.letmedoit.data.model
 
 import android.os.Parcelable
+import cat.copernic.letmedoit.Utils.datahepers.*
 import com.google.firebase.firestore.Exclude
 import kotlinx.parcelize.Parcelize
 

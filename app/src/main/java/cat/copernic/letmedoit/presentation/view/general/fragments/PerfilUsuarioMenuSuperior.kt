@@ -17,6 +17,8 @@ import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.data.model.UserFavoriteProfiles
+import cat.copernic.letmedoit.Utils.datahepers.UserServices
 import cat.copernic.letmedoit.data.model.*
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioMenuSuperiorBinding
 import cat.copernic.letmedoit.presentation.adapter.general.UserTopMenuAdapter

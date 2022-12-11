@@ -1,8 +1,7 @@
 package cat.copernic.letmedoit.domain.usecases.user
 
 import cat.copernic.letmedoit.Utils.DataState
-import cat.copernic.letmedoit.data.model.UserServices
-import cat.copernic.letmedoit.data.model.Users
+import cat.copernic.letmedoit.Utils.datahepers.UserServices
 import cat.copernic.letmedoit.domain.repositories.UserRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

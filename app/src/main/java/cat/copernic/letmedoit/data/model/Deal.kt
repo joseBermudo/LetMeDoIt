@@ -1,6 +1,8 @@
 package cat.copernic.letmedoit.data.model
 
 import android.os.Parcelable
+import cat.copernic.letmedoit.Utils.datahepers.ServicesMap
+import cat.copernic.letmedoit.Utils.datahepers.UsersMap
 import com.google.firebase.firestore.Exclude
 import kotlinx.parcelize.Parcelize
 import java.util.UUID

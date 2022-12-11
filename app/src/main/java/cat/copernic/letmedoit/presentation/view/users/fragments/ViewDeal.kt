@@ -15,10 +15,8 @@ import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Deal
-import cat.copernic.letmedoit.data.model.HistoryDeal
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.databinding.FragmentVerDealBinding
-import cat.copernic.letmedoit.presentation.view.general.fragments.viewServiceDirections
 import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.DealViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel

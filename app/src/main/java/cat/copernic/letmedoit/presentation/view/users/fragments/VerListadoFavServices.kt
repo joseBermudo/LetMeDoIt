@@ -9,14 +9,12 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.data.model.UserFavoriteServices
 import cat.copernic.letmedoit.data.model.*
 import cat.copernic.letmedoit.databinding.FragmentVerListadoFavServicesBinding
-import cat.copernic.letmedoit.databinding.FragmentViewFavUsersBinding
 import cat.copernic.letmedoit.presentation.adapter.general.ServiceAdapter
-import cat.copernic.letmedoit.presentation.adapter.users.FavUsersAdapter
 import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint

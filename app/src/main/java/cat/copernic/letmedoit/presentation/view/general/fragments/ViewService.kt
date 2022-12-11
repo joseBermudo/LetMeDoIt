@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.view.setMargins
@@ -19,19 +18,16 @@ import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import cat.copernic.letmedoit.data.model.Image
 import cat.copernic.letmedoit.data.model.Service
-import cat.copernic.letmedoit.data.provider.ServiceProvider
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.UserConstants
 import cat.copernic.letmedoit.Utils.Utils
-import cat.copernic.letmedoit.Utils.Utils.Companion.goToDestination
 import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.FragmentViewServiceBinding
 import cat.copernic.letmedoit.presentation.adapter.general.SliderImagesAdapter
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.auth.User
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
