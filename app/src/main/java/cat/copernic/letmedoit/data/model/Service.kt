@@ -1,6 +1,7 @@
 package cat.copernic.letmedoit.data.model
 
 import android.os.Parcelable
+import cat.copernic.letmedoit.Utils.datahepers.CategoryMap
 import cat.copernic.letmedoit.Utils.Constants
 import com.google.firebase.firestore.Exclude
 import kotlinx.parcelize.Parcelize
@@ -15,7 +16,8 @@ data class Service(
     val description : String = "",
     val category : CategoryMap = CategoryMap("",""),
     @get:Exclude val image: ArrayList<Image> = arrayListOf(Image("","")),
-    val n_likes : Int = 0,
+    var n_likes : Int = 0,
     val edited_time : String = SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH).format(Calendar.getInstance().time),
-    val userid : String = Constants.USER_LOGGED_IN_ID
+    val userid : String = Constants.USER_LOGGED_IN_ID,
+    @get:Exclude var defaultFav: Boolean = false
 ) : Parcelable

@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.domain.usecases
+package cat.copernic.letmedoit.domain.usecases.admin
 
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.data.model.Category

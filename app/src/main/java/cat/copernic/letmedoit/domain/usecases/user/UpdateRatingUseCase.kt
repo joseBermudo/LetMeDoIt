@@ -8,5 +8,5 @@ import javax.inject.Inject
 class UpdateRatingUseCase @Inject constructor(
     private val userRepository: UserRepository
 ){
-    suspend operator fun invoke(updatedRating : Float) : Flow<DataState<Boolean>> = userRepository.updateRating(updatedRating)
+    suspend operator fun invoke(updatedRating : Float,idUser: String) : Flow<DataState<Boolean>> = userRepository.updateRating(updatedRating,idUser)
 }

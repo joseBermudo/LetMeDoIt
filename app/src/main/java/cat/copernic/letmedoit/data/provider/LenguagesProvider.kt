@@ -1,6 +1,6 @@
 package cat.copernic.letmedoit.data.provider
 
-import cat.copernic.letmedoit.data.model.Lenguages
+import cat.copernic.letmedoit.Utils.datahepers.Lenguages
 
 
 

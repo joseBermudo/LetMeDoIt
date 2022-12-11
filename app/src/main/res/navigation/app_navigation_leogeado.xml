@@ -119,12 +119,18 @@
             app:destination="@id/userReport"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_viewService_to_newService"
+            app:destination="@id/newService" />
     </fragment>
     <fragment
         android:id="@+id/chat"
         android:name="cat.copernic.letmedoit.presentation.view.users.fragments.chat"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" >
+        <argument
+            android:name="idUser"
+            app:argType="string" />
         <action
             android:id="@+id/chatToConversaciones"
             app:destination="@id/verConversaciones"
@@ -252,11 +258,21 @@
         android:name="cat.copernic.letmedoit.presentation.view.users.fragments.CreateDeal"
         android:label="fragment_create_deal"
         tools:layout="@layout/fragment_create_deal" >
+        <argument
+            android:name="userOne"
+            app:argType="cat.copernic.letmedoit.data.model.Users"
+            />
+        <argument
+            android:name="userTwo"
+            app:argType="cat.copernic.letmedoit.data.model.Users" />
         <action
             android:id="@+id/createDealToChat"
             app:destination="@id/chat"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_createDeal_to_newService"
+            app:destination="@id/newService" />
     </fragment>
     <fragment
         android:id="@+id/viewDeal"
@@ -264,8 +280,11 @@
         android:label="fragment_ver_deal"
         tools:layout="@layout/fragment_ver_deal" >
         <argument
-            android:name="dealID"
-            app:argType="string" />
+            android:name="deal"
+            app:argType="cat.copernic.letmedoit.data.model.Deal" />
+        <argument
+            android:name="user"
+            app:argType="cat.copernic.letmedoit.data.model.Users" />
         <action
             android:id="@+id/viewDealToListadoDeals"
             app:destination="@id/verListadoDeals"
@@ -276,6 +295,12 @@
             app:destination="@id/concludeDeal"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_viewDeal_to_viewService"
+            app:destination="@id/viewService" />
+        <action
+            android:id="@+id/action_viewDeal_to_verConversaciones"
+            app:destination="@id/verConversaciones" />
     </fragment>
     <fragment
         android:id="@+id/concludeDeal"
@@ -283,8 +308,11 @@
         android:label="fragment_conclude_deal"
         tools:layout="@layout/fragment_conclude_deal" >
         <argument
-            android:name="dealID"
-            app:argType="string" />
+            android:name="deal"
+            app:argType="cat.copernic.letmedoit.data.model.Deal" />
+        <argument
+            android:name="user"
+            app:argType="cat.copernic.letmedoit.data.model.Users" />
         <action
             android:id="@+id/concludeDealToListadoDeals"
             app:destination="@id/verListadoDeals"
@@ -295,12 +323,27 @@
             app:destination="@id/rateUser"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_concludeDeal_to_viewService"
+            app:destination="@id/viewService" />
+        <action
+            android:id="@+id/action_concludeDeal_to_verConversaciones"
+            app:destination="@id/verConversaciones" />
     </fragment>
     <fragment
         android:id="@+id/rateUser"
         android:name="cat.copernic.letmedoit.presentation.view.users.fragments.RateUser"
         android:label="fragment_rate_user"
         tools:layout="@layout/fragment_rate_user" >
+        <argument
+            android:name="user"
+            app:argType="cat.copernic.letmedoit.data.model.Users" />
+        <argument
+            android:name="serviceId"
+            app:argType="string" />
+        <argument
+            android:name="dealId"
+            app:argType="string" />
         <action
             android:id="@+id/rateUserToHome"
             app:destination="@id/homeFragment"
@@ -326,6 +369,10 @@
         android:name="cat.copernic.letmedoit.presentation.view.users.fragments.NewService"
         android:label="fragment_new_service"
         tools:layout="@layout/fragment_new_service" >
+        <argument
+            android:name="serviceID"
+            app:argType="string"
+            android:defaultValue="null"/>
         <action
             android:id="@+id/newServiceToHome"
             app:destination="@id/homeFragment" />

@@ -19,13 +19,35 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
-        <ImageView
-            android:id="@+id/profile_image"
-            android:layout_width="@dimen/logo_dimen"
-            android:layout_height="@dimen/logo_dimen"
-            android:background="@drawable/profile_icon"
+
+        <ProgressBar
+            android:id="@+id/login_loading"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/azul_marino"
+            android:translationZ="90dp"
+            app:layout_constraintTop_toTopOf="@id/profile_image_container"
+            app:layout_constraintBottom_toBottomOf="@id/profile_image_container"
+            app:layout_constraintStart_toStartOf="@id/profile_image_container"
+            app:layout_constraintEnd_toEndOf="@id/profile_image_container"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profile_image_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="100dp"
             app:layout_constraintTop_toBottomOf="@id/back_Arrow"
-            app:layout_constraintStart_toStartOf="@id/back_Arrow"/>
+            app:layout_constraintStart_toStartOf="@id/back_Arrow">
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="@dimen/logo_dimen"
+                android:layout_height="@dimen/logo_dimen"
+                android:scaleType="centerCrop" />
+        </androidx.cardview.widget.CardView>
+
+
 
         <TextView
             android:id="@+id/name_surname"
@@ -35,7 +57,7 @@
             android:layout_marginStart="@dimen/padding_horizontal_cl"
             android:layout_marginTop="32dp"
             android:text="@string/name_surname"
-            app:layout_constraintStart_toEndOf="@id/profile_image"
+            app:layout_constraintStart_toEndOf="@id/profile_image_container"
             app:layout_constraintTop_toBottomOf="@id/back_Arrow" />
 
         <TextView
@@ -44,10 +66,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_horizontal_cl"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:inputType="textPassword"
             android:text="@string/password_example"
-            app:layout_constraintStart_toEndOf="@+id/profile_image"
+            app:layout_constraintStart_toEndOf="@+id/profile_image_container"
             app:layout_constraintTop_toBottomOf="@id/name_surname"
             tools:ignore="TextViewEdits" />
 
@@ -57,8 +79,8 @@
             android:layout_height="1dp"
             android:layout_marginVertical="@dimen/margin_forgot_password"
             android:background="@color/divider_color"
-            app:layout_constraintStart_toStartOf="@id/profile_image"
-            app:layout_constraintTop_toBottomOf="@id/profile_image" />
+            app:layout_constraintStart_toStartOf="@id/profile_image_container"
+            app:layout_constraintTop_toBottomOf="@id/profile_image_container" />
 
         <TextView
             android:id="@+id/about_me_title"
@@ -68,6 +90,8 @@
             android:text="@string/about_me"
             app:layout_constraintStart_toStartOf="@id/divider_profile"
             app:layout_constraintTop_toBottomOf="@id/divider_profile" />
+
+
 
         <TextView
             android:id="@+id/about_me_text"
@@ -101,7 +125,20 @@
             app:layout_constraintStart_toStartOf="@+id/divider_about_me"
             app:layout_constraintTop_toBottomOf="@id/divider_about_me" />
 
+        <ProgressBar
+            android:id="@+id/curriculum_loading"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="@dimen/app_icon_size_small"
+            android:layout_height="@dimen/app_icon_size_small"
+            android:indeterminateTint="@color/azul_marino"
+            android:translationZ="90dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/btn_pdf"
+            app:layout_constraintEnd_toEndOf="@id/btn_pdf"
+            app:layout_constraintStart_toStartOf="@id/btn_pdf"
+            app:layout_constraintTop_toTopOf="@id/btn_pdf" />
         <TextView
+            style="@style/IconoClickable"
             android:id="@+id/btn_pdf"
             android:layout_width="@dimen/padding_horizontal_cl"
             android:layout_height="@dimen/padding_vertical_cl"
@@ -155,6 +192,7 @@
             app:layout_constraintTop_toBottomOf="@id/divider_schedule" />
 
         <TextView
+            style="@style/IconoClickable"
             android:id="@+id/btn_email"
             android:layout_width="@dimen/padding_horizontal_cl"
             android:layout_height="@dimen/padding_vertical_cl"
@@ -163,6 +201,7 @@
             app:layout_constraintTop_toBottomOf="@id/contact_title" />
 
         <TextView
+            style="@style/IconoClickable"
             android:id="@+id/btn_mobile"
             android:layout_width="@dimen/padding_horizontal_cl"
             android:layout_height="@dimen/padding_vertical_cl"
@@ -193,12 +232,14 @@
             android:id="@+id/location_text"
             style="@style/Widget.LetMeDoIt.subtext"
             android:layout_width="wrap_content"
+            android:maxWidth="250dp"
             android:layout_height="wrap_content"
             android:text="@string/location_text"
             app:layout_constraintStart_toStartOf="@id/location_title"
             app:layout_constraintTop_toBottomOf="@id/location_title" />
 
         <TextView
+            style="@style/IconoClickable"
             android:id="@+id/btn_location_icon"
             android:layout_width="@dimen/padding_horizontal_cl"
             android:layout_height="@dimen/padding_vertical_cl"
@@ -220,10 +261,9 @@
             android:id="@+id/btn_edit_profile_image"
             android:layout_width="@dimen/app_icon_size_small"
             android:layout_height="@dimen/app_icon_size_small"
-            android:layout_marginStart="-24dp"
             android:background="@drawable/edit_icon"
-            app:layout_constraintStart_toEndOf="@+id/profile_image"
-            app:layout_constraintTop_toTopOf="@+id/profile_image" />
+            app:layout_constraintStart_toEndOf="@+id/profile_image_container"
+            app:layout_constraintTop_toTopOf="@+id/profile_image_container" />
 
         <TextView
             style="@style/IconoClickable"

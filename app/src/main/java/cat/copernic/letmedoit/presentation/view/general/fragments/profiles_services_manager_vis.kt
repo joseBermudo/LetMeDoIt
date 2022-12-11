@@ -18,8 +18,9 @@ import cat.copernic.letmedoit.presentation.view.users.fragments.viewFavUsers
 import cat.copernic.letmedoit.presentation.viewmodel.general.BarProfileOrServicesViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.general.ProfilesServicesManagerViewModel
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class profiles_services_manager_vis : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

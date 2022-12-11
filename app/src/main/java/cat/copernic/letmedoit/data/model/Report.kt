@@ -1,5 +1,6 @@
 package cat.copernic.letmedoit.data.model
 
+import cat.copernic.letmedoit.Utils.datahepers.UsersMap
 import com.google.firebase.firestore.Exclude
 
 data class Report(

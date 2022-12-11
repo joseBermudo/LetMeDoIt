@@ -22,7 +22,22 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout="@layout/fragment_search_view" />
 
+        <ProgressBar
+            android:id="@+id/loadingServices"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margins_start_end_extra_plus"
+            android:indeterminateTint="@color/azul_marino"
+            android:translationZ="90dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/recyclerParent"
+            app:layout_constraintEnd_toEndOf="@id/recyclerParent"
+            app:layout_constraintStart_toStartOf="@id/recyclerParent"
+            app:layout_constraintTop_toTopOf="@id/recyclerParent" />
+
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/recyclerParent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="@id/user_services_search_view"

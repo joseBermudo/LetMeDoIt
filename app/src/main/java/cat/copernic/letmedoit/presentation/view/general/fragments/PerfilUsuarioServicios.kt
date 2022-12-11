@@ -5,19 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.Utils.DataState
+import cat.copernic.letmedoit.Utils.UserConstants
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Service
-import cat.copernic.letmedoit.data.model.UserServices
+import cat.copernic.letmedoit.Utils.datahepers.UserServices
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioServiciosBinding
 import cat.copernic.letmedoit.presentation.adapter.general.ServiceAdapter
 import cat.copernic.letmedoit.presentation.viewmodel.general.SearchViewViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
+import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
@@ -45,6 +48,7 @@ class PerfilUsuarioServicios(private val servicesId: ArrayList<UserServices>?) :
     }
 
     private val serviceViewModel : ServiceViewModel by viewModels()
+    private val userViewModel : UserViewModel by viewModels()
     private var services = ArrayList<Service>()
     private lateinit var serviceRecyclerView : RecyclerView
 
@@ -55,6 +59,8 @@ class PerfilUsuarioServicios(private val servicesId: ArrayList<UserServices>?) :
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        services.clear()
         initObservers()
         servicesId?.forEach { serviceViewModel.getService(it.service_id) }
 
@@ -85,15 +91,26 @@ class PerfilUsuarioServicios(private val servicesId: ArrayList<UserServices>?) :
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    hideProgress()
                 }
-                is DataState.Loading -> {  }
+                is DataState.Loading -> { showProgress() }
                 else -> Unit
             }
         } )
     }
 
+    private fun showProgress() {
+        binding.loadingServices.isVisible = true
+    }
+
+    private fun hideProgress() {
+        binding.loadingServices.isVisible = false
+    }
+
     private fun showServices() {
-        adapter = ServiceAdapter(services)
+        hideProgress()
+        services.forEach { if(UserConstants.USER_FAVORITE_SERVICES_IDS.contains(it.id)) it.defaultFav = true }
+        adapter = ServiceAdapter(services,this, userViewModel,serviceViewModel)
         serviceRecyclerView.adapter = adapter
         adapter.notifyDataSetChanged()
     }

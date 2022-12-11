@@ -50,7 +50,7 @@ class ProfileMoreInfo(private val user: Users) : Fragment() {
         binding.locationIcon.setOnClickListener { user.location?.let { it1 -> openMaps(it1) } }
 
         binding.aboutMeText.text = user.aboutMe
-        binding.scheduleText.text = "${user.schedule?.initHour}  ${user.schedule?.endHour}"
+        binding.scheduleText.text = "${user.schedule?.initHour} -  ${user.schedule?.endHour}"
         binding.locationText.text = user.location
         return binding.root
     }
@@ -63,11 +63,10 @@ class ProfileMoreInfo(private val user: Users) : Fragment() {
 
         startActivity(browserIntent)
     }
-    private fun sendEmail(addresses : String){
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.data = Uri.parse("mailto:") // only email apps should handle this
+    private fun sendEmail(address : String){
 
-        intent.putExtra(Intent.EXTRA_EMAIL, addresses)
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.data = Uri.parse("mailto:${address}") // only email apps should handle this
 
         startActivity(Intent.createChooser(intent,
             "Send Email Using: "))
