@@ -23,9 +23,10 @@
             android:layout_gravity="center"
             app:cardCornerRadius="100dp">
             <ImageView
+                android:scaleType="centerCrop"
                 android:id="@+id/img_fa_user_profile"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="@dimen/marginTop_extra_big"
+                android:layout_height="@dimen/marginTop_extra_big"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/secundario_gris"
                 />

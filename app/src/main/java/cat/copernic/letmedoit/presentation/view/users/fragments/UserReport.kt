@@ -51,6 +51,7 @@ class UserReport : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentUserReportBinding.inflate(inflater,container,false)
+
         return binding.root
     }
 

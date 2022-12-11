@@ -22,7 +22,7 @@ data class Users(
     @get:Exclude val favorites: FavoritesMap? = null,
     @get:Exclude val chatsId: ArrayList<UserChats>? = null,
     @get:Exclude val historyDeals: ArrayList<HistoryDeal>? = null,
-    @get:Exclude val opinions: ArrayList<Opinions>? = null,
+    @get:Exclude var opinions: ArrayList<Opinion> = ArrayList(),
     val rating: Float = 0f,
     val banned: Boolean = false,
     val admin: Boolean = false,

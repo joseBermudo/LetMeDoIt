@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
@@ -20,6 +21,8 @@ import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.ActivityHomeBinding
 import cat.copernic.letmedoit.presentation.view.admin.activities.MenuAdmin
 import cat.copernic.letmedoit.di.FirebaseModule
+import cat.copernic.letmedoit.presentation.view.general.fragments.chats_deals_manager_visDirections
+import cat.copernic.letmedoit.presentation.view.users.fragments.concludeDealDirections
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
@@ -74,9 +77,16 @@ class Home : AppCompatActivity() {
 
     //Control para volver hacia atras en los recyclerviews, si el destino actual es la primera pantalla no vuelve hacia atras
     override fun onBackPressed() {
-        if ((binding.navController.findNavController().currentDestination?.id
-                ?: -1) != R.id.homeFragment
-        )
-            findNavController(R.id.navController).popBackStack()
+        val currentDestination = binding.navController.findNavController().currentDestination
+        if (currentDestination != null) {
+            if(currentDestination.label == "fragment_rate_user"){
+                findNavController(R.id.navController).navigate(R.id.verConversaciones)
+            }
+
+            else if ((currentDestination.id
+                    ?: -1) != R.id.homeFragment
+            ) findNavController(R.id.navController).popBackStack()
+        }
+
     }
 }

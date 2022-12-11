@@ -1,6 +1,5 @@
 package cat.copernic.letmedoit.presentation.viewmodel.admin
 
-import android.provider.ContactsContract.Data
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import cat.copernic.letmedoit.domain.usecases.admin.InsertCategoryUseCase
 import cat.copernic.letmedoit.data.model.Category
 import cat.copernic.letmedoit.Utils.DataState
-import cat.copernic.letmedoit.domain.usecases.DeleteCategoryUseCase
-import cat.copernic.letmedoit.domain.usecases.GetCategoriesUseCase
+import cat.copernic.letmedoit.domain.usecases.admin.DeleteCategoryUseCase
+import cat.copernic.letmedoit.domain.usecases.admin.GetCategoriesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

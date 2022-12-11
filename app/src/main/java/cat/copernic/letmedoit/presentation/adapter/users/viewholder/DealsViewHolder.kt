@@ -23,7 +23,13 @@ class DealsViewHolder(val binding: ItemVerDealsBinding): RecyclerView.ViewHolder
     }
 
     private fun onClickItem(deal: Deal, user: Users) {
-        val action  = chats_deals_manager_visDirections.actionVerConversacionesToViewDeal(deal, user)
-        Navigation.findNavController(itemView).navigate(action)
+        if (deal.accepted){
+            val action  = chats_deals_manager_visDirections.actionVerConversacionesToConcludeDeal(deal, user)
+            Navigation.findNavController(itemView).navigate(action)
+        }
+        else{
+            val action  = chats_deals_manager_visDirections.actionVerConversacionesToViewDeal(deal, user)
+            Navigation.findNavController(itemView).navigate(action)
+        }
     }
 }

@@ -5,8 +5,8 @@ import cat.copernic.letmedoit.domain.repositories.UserRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class UpdateRatingUseCase @Inject constructor(
+class DeleteDealFromHistoryUseCase @Inject constructor(
     private val userRepository: UserRepository
 ){
-    suspend operator fun invoke(updatedRating : Float,idUser: String) : Flow<DataState<Boolean>> = userRepository.updateRating(updatedRating,idUser)
+    suspend operator fun invoke(idDeal : String,idUser: String) : Flow<DataState<Boolean>> = userRepository.deleteDealFromHistory(idDeal,idUser)
 }

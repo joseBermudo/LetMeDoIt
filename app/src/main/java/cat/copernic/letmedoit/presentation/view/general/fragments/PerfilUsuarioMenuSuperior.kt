@@ -17,10 +17,7 @@ import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
-import cat.copernic.letmedoit.data.model.Opinions
-import cat.copernic.letmedoit.data.model.UserFavoriteProfiles
-import cat.copernic.letmedoit.data.model.UserServices
-import cat.copernic.letmedoit.data.model.Users
+import cat.copernic.letmedoit.data.model.*
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioMenuSuperiorBinding
 import cat.copernic.letmedoit.presentation.adapter.general.UserTopMenuAdapter
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
@@ -68,8 +65,10 @@ class PerfilUsuarioMenuSuperior : Fragment() {
         binding = FragmentPerfilUsuarioMenuSuperiorBinding.inflate(inflater,container,false)
 
         initObservers()
+
         userViewModel.getUser(args.userID)
         userViewModel.getFavoriteProfiles()
+
         if(FirebaseAuth.getInstance().currentUser == null || args.userID == Constants.USER_LOGGED_IN_ID){
             binding.btnFavorites.visibility = View.INVISIBLE
             binding.btnReport.visibility = View.INVISIBLE
@@ -112,14 +111,12 @@ class PerfilUsuarioMenuSuperior : Fragment() {
         else binding.btnFavorites.background = ContextCompat.getDrawable(binding.root.context, R.drawable.ic_round_favorite_24)
     }
     private lateinit var user : Users
+
     private fun initObservers() {
         userViewModel.getUserState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Users?> -> {
                     user = dataState.data!!
-                    Picasso.get().load(user.avatar).into(binding.profileImage)
-                    binding.userRating.rating = user.rating
-                    binding.profileNameSurname.text = "${user.name} ${user.surname} \n @${user.username}"
                     userViewModel.getServices(args.userID)
                 }
                 is DataState.Error -> {
@@ -134,7 +131,6 @@ class PerfilUsuarioMenuSuperior : Fragment() {
                 is DataState.Success<ArrayList<UserServices>> -> {
 
                     user.servicesId = dataState.data
-                    val test = user
                     userViewModel.getOpinions(args.userID)
                 }
                 is DataState.Error -> {
@@ -146,8 +142,8 @@ class PerfilUsuarioMenuSuperior : Fragment() {
         } )
         userViewModel.getOpinionsState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
-                is DataState.Success<ArrayList<Opinions>> -> {
-                    user.opinions?.addAll(dataState.data)
+                is DataState.Success<ArrayList<Opinion>> -> {
+                    user.opinions.addAll(dataState.data)
                     initView()
                 }
                 is DataState.Error -> {
@@ -204,7 +200,13 @@ class PerfilUsuarioMenuSuperior : Fragment() {
         } )
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initView() {
+        Picasso.get().load(user.avatar).into(binding.profileImage)
+        binding.userRating.rating = user.rating
+        binding.profileNameSurname.text = "${user.name} ${user.surname} \n @${user.username}"
+
+        val test = user.opinions
 
         //Fragmentos del TabLayout
         val fragments : ArrayList<Fragment> = arrayListOf(

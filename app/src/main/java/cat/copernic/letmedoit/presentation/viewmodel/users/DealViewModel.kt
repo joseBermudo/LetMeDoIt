@@ -20,7 +20,8 @@ class DealViewModel @Inject constructor(
     private val concludeDealUseCase: ConcludeDealUseCase,
     private val denyDealUseCase: DenyDealUseCase,
     private val insertDealUseCase: InsertDealUseCase,
-    private val getDealUseCase: GetDealUseCase
+    private val getDealUseCase: GetDealUseCase,
+    private val suscribeForUpdatesUseCase: SuscribeForUpdatesUseCase
 ): ViewModel(){
 
     private val mAcceptState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
@@ -43,6 +44,11 @@ class DealViewModel @Inject constructor(
     val getDealState: LiveData<DataState<Deal>>
         get() = mGetDealState
 
+
+    private val mSuscribeForUpdatesState: MutableLiveData<DataState<Deal?>> = MutableLiveData()
+    val suscribeForUpdatesState: LiveData<DataState<Deal?>>
+        get() = mSuscribeForUpdatesState
+
     fun accept(id: String){
         viewModelScope.launch() {
             acceptDealUseCase(id)
@@ -57,7 +63,7 @@ class DealViewModel @Inject constructor(
             concludeDealUseCase(id)
                 .onEach { dataState ->
                     mConcludeState.value = dataState
-                }
+                }.launchIn(viewModelScope)
         }
     }
 
@@ -83,6 +89,14 @@ class DealViewModel @Inject constructor(
             getDealUseCase(id)
                 .onEach { dataState ->
                     mGetDealState.value = dataState
+                }.launchIn(viewModelScope)
+        }
+    }
+    fun suscribeForUpdates(id : String){
+        viewModelScope.launch() {
+            suscribeForUpdatesUseCase(id)
+                .onEach { dataState ->
+                    mSuscribeForUpdatesState.value = dataState
                 }.launchIn(viewModelScope)
         }
     }

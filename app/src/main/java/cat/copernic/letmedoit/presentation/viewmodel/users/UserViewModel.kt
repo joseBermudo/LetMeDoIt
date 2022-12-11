@@ -29,6 +29,7 @@ class UserViewModel @Inject constructor(
     private val deleteFavoriteProfileUseCase: DeleteFavoriteProfileUseCase,
     private val deleteFavoriteServiceUseCase: DeleteFavoriteServiceUseCase,
     private val deleteServiceUseCase: DeleteServiceUseCase,
+    private val deleteDealFromHistoryUseCase: DeleteDealFromHistoryUseCase,
     private val getChatsUseCase: GetChatsUseCase,
     private val getFavoriteProfilesUseCase: GetFavoriteProfilesUseCase,
     private val getFavoriteServicesUseCase: GetFavoriteServicesUseCase,
@@ -96,9 +97,9 @@ class UserViewModel @Inject constructor(
 
     private val mAddOpinionState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val addOpinionState: LiveData<DataState<Boolean>> get() = mAddOpinionState
-    fun addOpinion(opinion : Opinions) {
+    fun addOpinion(opinion : Opinion,idUser : String) {
         viewModelScope.launch {
-            addOpinionUseCase(opinion).onEach { dataState ->
+            addOpinionUseCase(opinion,idUser).onEach { dataState ->
                 mAddOpinionState.value = dataState
             }.launchIn(viewModelScope)
         }
@@ -192,6 +193,17 @@ class UserViewModel @Inject constructor(
         }
     }
 
+    private val mDeleteDealFromHistoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val deleteDealFromHistoryState: LiveData<DataState<Boolean>> get() = mDeleteDealFromHistoryState
+
+    fun deleteDealFromHistory(idDeal: String,idUser : String) {
+        viewModelScope.launch {
+            deleteDealFromHistoryUseCase(idDeal, idUser).onEach { dataState ->
+                mDeleteDealFromHistoryState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
     private val mGetChatsState: MutableLiveData<DataState<ArrayList<UserChats>>> = MutableLiveData()
     val getChatsState: LiveData<DataState<ArrayList<UserChats>>> get() = mGetChatsState
     fun getChats() {
@@ -232,8 +244,8 @@ class UserViewModel @Inject constructor(
         }
     }
 
-    private val mGetOpinionsState: MutableLiveData<DataState<ArrayList<Opinions>>> = MutableLiveData()
-    val getOpinionsState: LiveData<DataState<ArrayList<Opinions>>> get() = mGetOpinionsState
+    private val mGetOpinionsState: MutableLiveData<DataState<ArrayList<Opinion>>> = MutableLiveData()
+    val getOpinionsState: LiveData<DataState<ArrayList<Opinion>>> get() = mGetOpinionsState
     fun getOpinions(idUser: String) {
         viewModelScope.launch {
             getOpinionsUseCase(idUser).onEach { dataState ->
@@ -365,9 +377,9 @@ class UserViewModel @Inject constructor(
 
     private val mUpdateRatingState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val updateRatingState: LiveData<DataState<Boolean>> get() = mUpdateRatingState
-    fun updateRating(updatedRating : Float) {
+    fun updateRating(updatedRating : Float,idUser: String) {
         viewModelScope.launch {
-            updateRatingUseCase(updatedRating).onEach { dataState ->
+            updateRatingUseCase(updatedRating,idUser).onEach { dataState ->
                 mUpdateRatingState.value = dataState
             }.launchIn(viewModelScope)
         }

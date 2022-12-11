@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import cat.copernic.letmedoit.presentation.adapter.general.BarChatsOrDealsAdapter
@@ -37,6 +38,7 @@ class chats_deals_manager_vis : Fragment() {
 
         binding = FragmentChatsDealsManagerVisBinding.inflate(inflater,container,false)
 
+
         val fragments : ArrayList<Fragment> = arrayListOf(
             verConversaciones(),
             verListadoDeals(),
@@ -64,7 +66,9 @@ class chats_deals_manager_vis : Fragment() {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
             }
         })
-            return binding.root
+        if(findNavController().previousBackStackEntry?.destination?.label == "fragment_rate_user")
+            binding.viewPagerChatsOrDeals.currentItem = 1
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

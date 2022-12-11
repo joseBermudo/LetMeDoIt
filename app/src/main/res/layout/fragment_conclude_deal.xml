@@ -52,17 +52,24 @@
                     android:text="@string/txt_deal_progress" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/icon_user"
-                android:layout_width="@dimen/logo_dimen"
-                android:layout_height="@dimen/logo_dimen"
-                android:contentDescription="@string/txt_profile_image"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/icon_user_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margins_start_end"
-                android:layout_marginTop="@dimen/marginTop"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="@dimen/margins_start_end"
-                android:src="@drawable/ic_baseline_account_circle_24"
+                app:cardCornerRadius="100dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/deal_layout" />
+                app:layout_constraintTop_toBottomOf="@+id/deal_layout">
+                <ImageView
+                    android:id="@+id/icon_user"
+                    android:contentDescription="@string/txt_profile_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    />
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/nameSurname"
@@ -74,8 +81,18 @@
                 android:layout_marginEnd="@dimen/margins_start_end"
                 android:text="@string/name_surname"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/icon_user" />
+                app:layout_constraintTop_toBottomOf="@+id/icon_user_layout" />
 
+            <TextView
+                android:id="@+id/seeMyService"
+                style="@style/IconoClickable"
+                android:layout_width="@dimen/app_icon_size_small"
+                android:layout_height="@dimen/app_icon_size_small"
+                android:background="@drawable/eye"
+                android:layout_marginStart="@dimen/marginTop"
+                app:layout_constraintStart_toEndOf="@id/myService"
+                app:layout_constraintTop_toTopOf="@id/myService"
+                app:layout_constraintBottom_toBottomOf="@id/myService"/>
             <TextView
                 android:id="@+id/myService"
                 android:layout_width="wrap_content"
@@ -94,10 +111,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margins_start_end"
                 android:layout_marginEnd="@dimen/margins_start_end"
-                android:text="@string/cut_hair"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/myService" />
 
+            <TextView
+                android:id="@+id/seeHisService"
+                style="@style/IconoClickable"
+                android:layout_width="@dimen/app_icon_size_small"
+                android:layout_height="@dimen/app_icon_size_small"
+                android:background="@drawable/eye"
+                android:layout_marginStart="@dimen/marginTop"
+                app:layout_constraintStart_toEndOf="@id/hisService"
+                app:layout_constraintTop_toTopOf="@id/hisService"
+                app:layout_constraintBottom_toBottomOf="@id/hisService"/>
             <TextView
                 android:id="@+id/hisService"
                 android:layout_width="wrap_content"
@@ -116,7 +142,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margins_start_end"
                 android:layout_marginEnd="@dimen/margins_start_end"
-                android:text="@string/math_teacher"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/hisService" />
 
@@ -140,10 +165,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/description">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/descriptionEdit"
                     style="@style/Widget.LetMeDoIt.TextArea"
                     android:layout_width="match_parent"
-                    android:focusable="false"
-                    android:text="@string/descriptionContent" />
+                    android:focusable="false" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

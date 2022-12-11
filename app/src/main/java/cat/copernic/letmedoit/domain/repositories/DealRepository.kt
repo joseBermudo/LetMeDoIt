@@ -10,4 +10,5 @@ interface DealRepository {
     suspend fun acceptDeal(id: String): Flow<DataState<Boolean>>
     suspend fun concludeDeal(id: String): Flow<DataState<Boolean>>
     suspend fun getDeal(id : String) : Flow<DataState<Deal>>
+    suspend fun suscribeForUpdates(idDeal : String) : Flow<DataState<Deal?>>
 }

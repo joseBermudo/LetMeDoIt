@@ -298,6 +298,9 @@
         <action
             android:id="@+id/action_viewDeal_to_viewService"
             app:destination="@id/viewService" />
+        <action
+            android:id="@+id/action_viewDeal_to_verConversaciones"
+            app:destination="@id/verConversaciones" />
     </fragment>
     <fragment
         android:id="@+id/concludeDeal"
@@ -305,8 +308,11 @@
         android:label="fragment_conclude_deal"
         tools:layout="@layout/fragment_conclude_deal" >
         <argument
-            android:name="dealID"
-            app:argType="string" />
+            android:name="deal"
+            app:argType="cat.copernic.letmedoit.data.model.Deal" />
+        <argument
+            android:name="user"
+            app:argType="cat.copernic.letmedoit.data.model.Users" />
         <action
             android:id="@+id/concludeDealToListadoDeals"
             app:destination="@id/verListadoDeals"
@@ -317,12 +323,27 @@
             app:destination="@id/rateUser"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_concludeDeal_to_viewService"
+            app:destination="@id/viewService" />
+        <action
+            android:id="@+id/action_concludeDeal_to_verConversaciones"
+            app:destination="@id/verConversaciones" />
     </fragment>
     <fragment
         android:id="@+id/rateUser"
         android:name="cat.copernic.letmedoit.presentation.view.users.fragments.RateUser"
         android:label="fragment_rate_user"
         tools:layout="@layout/fragment_rate_user" >
+        <argument
+            android:name="user"
+            app:argType="cat.copernic.letmedoit.data.model.Users" />
+        <argument
+            android:name="serviceId"
+            app:argType="string" />
+        <argument
+            android:name="dealId"
+            app:argType="string" />
         <action
             android:id="@+id/rateUserToHome"
             app:destination="@id/homeFragment"

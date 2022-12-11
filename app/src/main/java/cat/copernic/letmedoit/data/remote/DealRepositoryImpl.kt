@@ -1,14 +1,19 @@
 package cat.copernic.letmedoit.data.remote
 
+import android.provider.ContactsContract.Data
+import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.data.model.Deal
 import cat.copernic.letmedoit.di.FirebaseModule
 import cat.copernic.letmedoit.domain.repositories.DealRepository
+import com.google.android.gms.tasks.Tasks.await
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.auth.User
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.tasks.await
@@ -81,8 +86,23 @@ class DealRepositoryImpl @Inject constructor(
         emit(DataState.Loading)
         try {
             var uploadStatus: Boolean = false
+
             dealCollection.document(id).get().await().toObject(Deal::class.java)?.let { deal ->
-                dealCollection.document(id).update("conclude", deal.conclude++)
+                var dealStatus = deal.conclude
+
+                when(dealStatus){
+                    0 ->{
+                        if (Constants.USER_LOGGED_IN_ID == deal.users.userOneId) dealStatus = 1
+                        if (Constants.USER_LOGGED_IN_ID == deal.users.userTwoId) dealStatus = 2
+                    }
+                    1 ->{
+                        if (Constants.USER_LOGGED_IN_ID == deal.users.userTwoId) dealStatus = 3
+                    }
+                    2 -> {
+                        if (Constants.USER_LOGGED_IN_ID == deal.users.userOneId) dealStatus = 3
+                    }
+                }
+                dealCollection.document(id).update("conclude", dealStatus)
                     .addOnSuccessListener { uploadStatus = true }
                     .addOnFailureListener { uploadStatus = false }
                     .await()
@@ -100,9 +120,11 @@ class DealRepositoryImpl @Inject constructor(
         try {
             var tempDeal = Deal()
 
-            dealCollection.document(id).get().await().toObject(Deal::class.java).let { deal ->
+            val dealColRef = dealCollection.document(id).get().await()
+            dealColRef.toObject(Deal::class.java).let { deal ->
                 if (deal != null) {
                     tempDeal = deal
+                    tempDeal.id = dealColRef.id
                 }
             }
             emit(DataState.Success(tempDeal))
@@ -110,6 +132,30 @@ class DealRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             emit(DataState.Error(e))
             emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
+    override suspend fun suscribeForUpdates(idDeal: String): Flow<DataState<Deal?>> = callbackFlow{
+        send(DataState.Loading)
+        try {
+            var tempDeal : Deal? = null
+
+            dealCollection.document(idDeal).addSnapshotListener{ deal, error ->
+                if(error != null) close(error)
+                if (deal != null) {
+                    tempDeal = deal.toObject(Deal::class.java)
+                    if(tempDeal == null) return@addSnapshotListener
+                    tempDeal!!.id = idDeal
+                    trySend(DataState.Success(tempDeal))
+                    trySend(DataState.Finished)
+                }
+            }
+        } catch (e: Exception) {
+            send(DataState.Error(e))
+            send(DataState.Finished)
+        }
+        finally {
+            awaitClose()
         }
     }.flowOn(Dispatchers.IO)
 }

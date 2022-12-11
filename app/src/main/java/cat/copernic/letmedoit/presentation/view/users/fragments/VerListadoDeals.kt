@@ -80,6 +80,7 @@ class verListadoDeals : Fragment() {
                 is DataState.Success<ArrayList<HistoryDeal>> -> {
                     historyDeals.addAll(dataState.data)
                     historyDeals.forEach { historyDeal ->
+                        if (historyDeal.dealId.size == 0) hideProgress()
                         historyDeal.dealId.forEach {
                             dealViewModel.getDeal(it.deal_id)
                         }
