@@ -5,12 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cat.copernic.letmedoit.data.provider.UsersProvider
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.databinding.FragmentVerConversacionesBinding
 import cat.copernic.letmedoit.data.model.Users
 import androidx.navigation.fragment.findNavController
+import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.presentation.adapter.users.ConversacionesAdapter
 import cat.copernic.letmedoit.presentation.view.general.fragments.chats_deals_manager_visDirections
 
@@ -44,6 +47,9 @@ class verConversaciones : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 
     fun initRecyclerView(){
         conversacionesRecyclerView = binding.recyclerViewConversaciones
@@ -56,7 +62,7 @@ class verConversaciones : Fragment() {
 
         }
     private fun onClickItem(users: Users) {
-        val action = chats_deals_manager_visDirections.conversacionesToChat()
+        val action = chats_deals_manager_visDirections.conversacionesToChat(users.id.toString())
         findNavController().navigate(action)
     }
 }

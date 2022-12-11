@@ -7,20 +7,22 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.core.view.setMargins
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import cat.copernic.letmedoit.data.model.Image
 import cat.copernic.letmedoit.data.model.Service
-import cat.copernic.letmedoit.data.provider.ServiceProvider
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
+import cat.copernic.letmedoit.Utils.UserConstants
 import cat.copernic.letmedoit.Utils.Utils
-import cat.copernic.letmedoit.Utils.Utils.Companion.goToDestination
 import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.FragmentViewServiceBinding
 import cat.copernic.letmedoit.presentation.adapter.general.SliderImagesAdapter
@@ -69,21 +71,52 @@ class viewService : Fragment() {
 
     private val userViewModel : UserViewModel by viewModels()
     private val args: viewServiceArgs by navArgs()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         if(FirebaseAuth.getInstance().currentUser == null){
             binding.btnFav.visibility = View.INVISIBLE
             binding.btnReport.visibility = View.INVISIBLE
         }
-        //Volver hacia atras
-        binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
 
-        binding.btnReport.setOnClickListener{ Utils.goToUserReport(view, "1") }
         initView(args.service)
-
+        initListeners()
         initObservers()
+
+    }
+
+    private fun changeFavIcon(){
+        if (args.service.defaultFav) binding.btnFav.background = ContextCompat.getDrawable(binding.root.context, R.drawable.ic_round_favorite_24)
+        else binding.btnFav.background = ContextCompat.getDrawable(binding.root.context, R.drawable.favorites_ion_colored)
+    }
+    private fun initListeners() {
         binding.btnGoToProfile.setOnClickListener { goToUserProfile(requireView(),args.service.userid) }
-        binding.btnChat.setOnClickListener{ goToDestination(requireView(),R.id.chat) }
+        binding.btnChat.setOnClickListener{ goToChat() }
+        binding.btnReport.setOnClickListener{ Utils.goToUserReport(requireView(), args.service.userid) }
+        binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
+        binding.btnFav.setOnClickListener{ manageFavorite() }
+        binding.btnEdit.setOnClickListener{ gotToEditService() }
+    }
+
+    private fun gotToEditService() {
+        val action = viewServiceDirections.actionViewServiceToNewService(args.service.id)
+        Navigation.findNavController(requireView()).navigate(action)
+    }
+
+    private fun goToChat(){
+        val action = viewServiceDirections.viewServiceToChat(args.service.userid)
+        Navigation.findNavController(requireView()).navigate(action)
+    }
+    private fun manageFavorite() {
+
+
+        val service = args.service
+        service.defaultFav = !service.defaultFav
+        changeFavIcon()
+
+        if(service.defaultFav) userViewModel.addFavoriteService(service.id)
+        else userViewModel.deleteFavoriteService(service.id)
     }
 
     private fun initObservers() {
@@ -104,6 +137,30 @@ class viewService : Fragment() {
                 else -> Unit
             }
         } )
+        userViewModel.addFavoriteServiceState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                    UserConstants.USER_FAVORITE_SERVICES_IDS.add(args.service.id)
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> {  }
+                else -> Unit
+            }
+        } )
+        userViewModel.deleteFavoriteServiceState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                    UserConstants.USER_FAVORITE_SERVICES_IDS.remove(args.service.id)
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> {  }
+                else -> Unit
+            }
+        } )
     }
 
     private fun goToUserProfile(view: View, userId: String) {
@@ -112,6 +169,15 @@ class viewService : Fragment() {
     }
 
     private fun initView(service: Service) {
+
+        if(Constants.USER_LOGGED_IN_ID == args.service.userid){
+            binding.btnFav.isVisible = false
+            binding.btnReport.isVisible = false
+            binding.btnChat.isVisible = false
+            binding.btnEdit.isVisible = true
+        }
+        if(UserConstants.USER_FAVORITE_SERVICES_IDS.contains(service.id)) service.defaultFav = true
+        changeFavIcon()
         binding.tittleService.text = service.title
         binding.subTextCategory.text = service.category.id_category
         binding.descriptionService.text = service.description

@@ -118,27 +118,9 @@ class Register : AppCompatActivity() {
 
     private fun createUser(email: String, username: String): Users {
         return Users(
-            null,
-            null,
-            null,
-            email,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            0f,
-            false,
-            null,
-            username
+            email = email,
+            rating = 0f,
+            username = username
         )
     }
 

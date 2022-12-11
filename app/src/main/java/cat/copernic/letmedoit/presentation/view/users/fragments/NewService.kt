@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -23,9 +22,11 @@ import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.data.model.CategoryMap
+import cat.copernic.letmedoit.Utils.datahepers.CategoryMap
 import cat.copernic.letmedoit.data.model.Image
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.data.provider.CategoryProvider
@@ -37,7 +38,10 @@ import cat.copernic.letmedoit.databinding.FragmentNewServiceBinding
 import cat.copernic.letmedoit.presentation.adapter.general.ImagesAdapter
 import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -72,26 +76,35 @@ class NewService : Fragment() {
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
         READ_EXTERNAL_STORAGE
     )
-
+    private val args: NewServiceArgs by navArgs()
     private val serviceViewModel : ServiceViewModel by viewModels()
     private val userViewModel : UserViewModel by viewModels()
-
+    private lateinit var service : Service
     lateinit var getContent : ActivityResultLauncher<String>
     lateinit var binding : FragmentNewServiceBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         binding = FragmentNewServiceBinding.inflate(inflater,container,false)
-        binding.btnAddImage.setOnClickListener { addImage() }
-        binding.btnRemoveImage.setOnClickListener { removeImage() }
-        binding.selectAll.setOnClickListener { selectAll() }
-        binding.btnSave.setOnClickListener{ saveService() }
-        
+        initListeners()
+
+        if(findNavController().previousBackStackEntry?.destination?.label == "fragment_create_deal")
+            requireActivity().findViewById<BottomNavigationView>(R.id.menu_inferior).isVisible = false
+
         val categoryNames = CategoryProvider.obtenerCategorias().map { it.nombre } as ArrayList<String>
         Utils.AsignarPopUpSpinner(requireContext(),categoryNames,binding.spinnerCategory)
 
+        initRecyclerView()
+
+        if(args.serviceID != "null")
+            serviceViewModel.getService(args.serviceID)
+        return binding.root
+    }
+
+    private fun initListeners() {
         binding.editDescription.setOnTouchListener(object : OnTouchListener {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 binding.scrollableLayout.requestDisallowInterceptTouchEvent(true)
@@ -110,16 +123,82 @@ class NewService : Fragment() {
             }
 
         }
+        binding.btnAddImage.setOnClickListener { addImage() }
+        binding.btnRemoveImage.setOnClickListener { removeImage() }
+        binding.selectAll.setOnClickListener { selectAll() }
+        binding.btnSave.setOnClickListener{ saveService() }
+    }
 
-        initRecyclerView()
-        return binding.root
+
+    private fun initViewWithData(service: Service) {
+        binding.txtTitleEditService.text = resources.getText(R.string.txt_edit_service)
+        binding.editServiceTitle.setText(service.title)
+        var categoryPos = 0
+        var subCategoryPos = 0
+        for(i in 0 until binding.spinnerCategory.adapter.count){
+            if(binding.spinnerCategory.getItemAtPosition(i).equals(service.category.id_category)){
+                categoryPos = i
+                break
+            }
+        }
+        for(i in 0 until binding.spinnerSubcategory.adapter.count){
+            if(binding.spinnerCategory.getItemAtPosition(i).equals(service.category.id_category)){
+                subCategoryPos = i
+                break
+            }
+        }
+        binding.spinnerCategory.setSelection(categoryPos)
+        binding.spinnerSubcategory.setSelection(subCategoryPos)
+        binding.editDescription.setText(service.description)
+        imagesList.addAll(service.image)
+        adapter.notifyDataSetChanged()
+
+        requireActivity().findViewById<BottomNavigationView>(R.id.menu_inferior).isVisible = false
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initObservers()
     }
+    var totalImagesEdited = 0
     private fun initObservers() {
+        serviceViewModel.getServiceState.observe(viewLifecycleOwner,Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Service> -> {
+                    service = dataState.data
+                    initViewWithData(service)
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> {}
+                else -> Unit
+            }
+        })
+        serviceViewModel.updateServiceImageState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<String> -> {
+                    editImageSuccess(dataState.data)
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> { }
+                else -> Unit
+            }
+        } )
+        serviceViewModel.removeImageUseCaseState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                    removeImageSuccess()
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> { }
+                else -> Unit
+            }
+        } )
         serviceViewModel.saveImageState.observe(viewLifecycleOwner,Observer { dataState ->
             when(dataState){
                 is DataState.Success<String> -> {
@@ -159,7 +238,11 @@ class NewService : Fragment() {
                 else -> Unit
             }
         } )
+
     }
+
+
+
 
     private fun resetComponents() {
         binding.editDescription.setText("")
@@ -184,13 +267,29 @@ class NewService : Fragment() {
 
     private fun saveImages() {
         var index = 0
+        if (args.serviceID != "null"){
+            adapter.getItems().forEachIndexed { i, image ->
+                if(image.img_link.contains("content://")){
+                    serviceViewModel.editServiceImage(service.id,image.img_link.toUri(),i)
+                    totalImagesEdited++
+                }
+            }
+            if(adapter.getItems().size < service.image.size){
+                var startIndex = service.image.size-1
+                for (i in startIndex until adapter.getItems().size+1){
+                    serviceViewModel.removeImage(service.id,i,service.image[i].img_link)
+                    totalImagesEdited--
+                }
+            }
+            return
+        }
         adapter.getItems().forEach {
-            serviceViewModel.saveImage(requireActivity(),it.img_link.toUri(),idService,this,index)
+            serviceViewModel.saveImage(requireActivity(),it.img_link.toUri(),idServiceRandom,this,index)
             index++
         }
     }
 
-    lateinit var idService : String
+    lateinit var idServiceRandom : String
 
     private fun isDataSet() : Boolean{
         if(binding.editDescription.text.isNullOrEmpty()){
@@ -214,7 +313,7 @@ class NewService : Fragment() {
         if (!isDataSet())
             return
 
-        idService = UUID.randomUUID().toString()
+        idServiceRandom = UUID.randomUUID().toString()
         saveImages()
         showProgress()
 
@@ -223,23 +322,49 @@ class NewService : Fragment() {
     var numImgUploaded = 0
     var imagesUploaded = ArrayList<Image>()
     fun uploadImageSuccess(uri : String){
-        Log.d("NewService", "uploadImageSuccess: Image Uploaded")
-
-        imagesUploaded.add(Image(numImgUploaded.toString(),uri))
+        imagesUploaded.add(Image(numImgUploaded.toString(),uri,numImgUploaded))
         numImgUploaded++
         if(numImgUploaded >= adapter.itemCount)
             uploadService()
 
     }
+    var numImagesRemoved = 0
+    private fun removeImageSuccess() {
+        numImagesRemoved++
+        if(numImagesRemoved >= totalImagesEdited)
+            editService()
+    }
+    var numImgEdited = 0
+    var imagesEdited = ArrayList<Image>()
+    fun editImageSuccess(uri : String){
+
+        imagesEdited.add(Image(numImgEdited.toString(),uri))
+        numImgUploaded++
+        if(numImgUploaded >= totalImagesEdited)
+            editService()
+
+    }
+
+    private fun editService() {
+        serviceViewModel.updateTitle(service.id,binding.editServiceTitle.text.toString())
+        serviceViewModel.updateDescription(service.id,binding.editDescription.text.toString())
+        serviceViewModel.updateEditedTime(service.id,LocalDate.now().format(DateTimeFormatter.ofPattern(("dd-MM-yyyy"))))
+        serviceViewModel.updateCategory(service.id, CategoryMap(binding.spinnerCategory.selectedItem.toString(),binding.spinnerSubcategory.selectedItem.toString()))
+        hideProgress()
+
+    }
+
     private fun uploadService(){
         serviceViewModel.saveService(
             Service(
-                id = idService,
+                id = idServiceRandom,
                 title = binding.editServiceTitle.text.toString(),
                 description = binding.editDescription.text.toString(),
                 category = CategoryMap(binding.spinnerCategory.selectedItem.toString(),binding.spinnerSubcategory.selectedItem.toString()),
                 image = imagesUploaded,
-                userid = Constants.USER_LOGGED_IN_ID
+                userid = Constants.USER_LOGGED_IN_ID,
+                edited_time = LocalDate.now().format(DateTimeFormatter.ofPattern(("dd-MM-yyyy")))
+
             )
         )
     }
@@ -261,7 +386,7 @@ class NewService : Fragment() {
     private fun managePhotosUri(uriList: List<Uri>?) {
         var num = 0
         uriList?.forEach {
-            imagesList.add(Image(num.toString(),it.toString(),false))
+            imagesList.add(Image(num.toString(),it.toString(),num,false))
             num++
         }
         adapter.notifyDataSetChanged()

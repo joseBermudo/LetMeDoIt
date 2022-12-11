@@ -1,4 +1,4 @@
-package cat.copernic.letmedoit.presentation.viewmodel.general.users
+package cat.copernic.letmedoit.presentation.viewmodel.users
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

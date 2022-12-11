@@ -44,6 +44,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            style="@style/IconoClickable"
+            android:id="@+id/btn_edit"
+            android:visibility="invisible"
+            android:contentDescription="@string/txt_edit_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margins_start_end"
+            android:src="@drawable/edit_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/imageServiceViewPagerContainer"
             android:layout_width="match_parent"
@@ -115,15 +127,24 @@
             app:layout_constraintTop_toBottomOf="@+id/viewTopUser"
             tools:layout_editor_absoluteX="24dp">
 
-            <ImageView
-                android:id="@+id/profileImage"
-                android:contentDescription="@string/txt_profile_image"
-                android:layout_width="@dimen/marginTop_extra_big"
-                android:layout_height="@dimen/marginTop_extra_big"
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/profile_image_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margins_start_end"
                 android:layout_marginEnd="@dimen/margins_start_end"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_baseline_account_circle_24" />
+                android:layout_marginTop="4dp"
+                app:cardCornerRadius="100dp">
+                <ImageView
+                    android:id="@+id/profileImage"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/txt_profile_image"
+                    android:layout_width="@dimen/marginTop_extra_big"
+                    android:layout_height="@dimen/marginTop_extra_big" />
+            </androidx.cardview.widget.CardView>
+
+
 
             <LinearLayout
                 android:id="@+id/layout_name_rating"

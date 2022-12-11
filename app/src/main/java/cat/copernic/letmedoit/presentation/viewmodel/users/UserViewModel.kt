@@ -1,10 +1,12 @@
 package cat.copernic.letmedoit.presentation.viewmodel.users
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cat.copernic.letmedoit.Utils.DataState
+import cat.copernic.letmedoit.Utils.datahepers.*
 import cat.copernic.letmedoit.data.model.*
 import cat.copernic.letmedoit.domain.usecases.user.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,9 +23,14 @@ class UserViewModel @Inject constructor(
     private val addHistoryDealUseCase: AddHistoryDealUseCase,
     private val addOpinionUseCase: AddOpinionUseCase,
     private val addServiceUseCase: AddServiceUseCase,
+    private val addAvatarToStorageUseCase: AddAvatarToStorageUseCase,
+    private val addCurriculumToStorageUseCase: AddCurriculumToStorageUseCase,
+    private val deleteCurriculumFromStorageUseCase: DeleteCurriculumFromStorageUseCase,
     private val deleteAvatarFromStorageUseCase: DeleteAvatarFromStorageUseCase,
     private val deleteFavoriteProfileUseCase: DeleteFavoriteProfileUseCase,
+    private val deleteFavoriteServiceUseCase: DeleteFavoriteServiceUseCase,
     private val deleteServiceUseCase: DeleteServiceUseCase,
+    private val deleteDealFromHistoryUseCase: DeleteDealFromHistoryUseCase,
     private val getChatsUseCase: GetChatsUseCase,
     private val getFavoriteProfilesUseCase: GetFavoriteProfilesUseCase,
     private val getFavoriteServicesUseCase: GetFavoriteServicesUseCase,
@@ -42,7 +49,7 @@ class UserViewModel @Inject constructor(
     private val updateSurnameUseCase: UpdateSurnameUseCase,
     private val updatePasswordUseCase: UpdatePasswordUseCase,
     private val updateRatingUseCase: UpdateRatingUseCase,
-
+    private val updateScheduleUseCase: UpdateScheduleUseCase
 ) : ViewModel() {
 
     private val mAddChatState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
@@ -81,9 +88,9 @@ class UserViewModel @Inject constructor(
 
     private val mAddHistoryDealState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val addHistoryDealState: LiveData<DataState<Boolean>> get() = mAddHistoryDealState
-    fun addHistoryDeal(idUser : String, idDeal : String) {
+    fun addHistoryDeal(idUserOne : String,idUserTwo : String, idDeal : String) {
         viewModelScope.launch {
-            addHistoryDealUseCase(idUser, idDeal).onEach { dataState ->
+            addHistoryDealUseCase(idUserOne, idUserTwo, idDeal).onEach { dataState ->
                 mAddHistoryDealState.value = dataState
             }.launchIn(viewModelScope)
         }
@@ -91,9 +98,9 @@ class UserViewModel @Inject constructor(
 
     private val mAddOpinionState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val addOpinionState: LiveData<DataState<Boolean>> get() = mAddOpinionState
-    fun addOpinion(opinion : Opinions) {
+    fun addOpinion(opinion : Opinion,idUser : String) {
         viewModelScope.launch {
-            addOpinionUseCase(opinion).onEach { dataState ->
+            addOpinionUseCase(opinion,idUser).onEach { dataState ->
                 mAddOpinionState.value = dataState
             }.launchIn(viewModelScope)
         }
@@ -109,6 +116,29 @@ class UserViewModel @Inject constructor(
         }
     }
 
+    private val mAddAvatarToStorageState: MutableLiveData<DataState<String>> = MutableLiveData()
+    val addAvatarToStorageState: LiveData<DataState<String>> get() = mAddAvatarToStorageState
+
+    fun addAvatarToStorage(uri: Uri) {
+        viewModelScope.launch {
+            addAvatarToStorageUseCase(uri).onEach { dataState ->
+                mAddAvatarToStorageState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
+    private val mAddCurriculumToStorageState: MutableLiveData<DataState<String>> = MutableLiveData()
+    val addCurriculumToStorageState: LiveData<DataState<String>> get() = mAddCurriculumToStorageState
+
+    fun addCurriculumToStorage(uri: Uri) {
+        viewModelScope.launch {
+            addCurriculumToStorageUseCase(uri).onEach { dataState ->
+                mAddCurriculumToStorageState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
+
     private val mDeleteAvatarFromStorageState: MutableLiveData<DataState<Boolean>> =
         MutableLiveData()
     val deleteAvatarFromStorageState: LiveData<DataState<Boolean>> get() = mDeleteAvatarFromStorageState
@@ -120,6 +150,20 @@ class UserViewModel @Inject constructor(
         }
     }
 
+    private val mDeleteCurriculumFromStorageState: MutableLiveData<DataState<Boolean>> =
+        MutableLiveData()
+    val deleteCurriculumFromStorageState: LiveData<DataState<Boolean>> get() = mDeleteCurriculumFromStorageState
+
+    fun deleteCurriculumFromStorage(imgLink : String) {
+        viewModelScope.launch {
+            deleteCurriculumFromStorageUseCase(imgLink).onEach { dataState ->
+                mDeleteCurriculumFromStorageState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
+
+
     private val mDeleteFavoriteProfileState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val deleteFavoriteProfileState: LiveData<DataState<Boolean>> get() = mDeleteFavoriteProfileState
     fun deleteFavoriteProfile(idProfile : String) {
@@ -130,12 +174,33 @@ class UserViewModel @Inject constructor(
         }
     }
 
+    private val mDeleteFavoriteServiceState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val deleteFavoriteServiceState: LiveData<DataState<Boolean>> get() = mDeleteFavoriteServiceState
+    fun deleteFavoriteService(idService : String) {
+        viewModelScope.launch {
+            deleteFavoriteServiceUseCase(idService).onEach { dataState ->
+                mDeleteFavoriteServiceState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
     private val mDeleteServiceState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val deleteServiceState: LiveData<DataState<Boolean>> get() = mDeleteServiceState
     fun deleteService(idService: String) {
         viewModelScope.launch {
             deleteServiceUseCase(idService).onEach { dataState ->
                 mDeleteServiceState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
+    private val mDeleteDealFromHistoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val deleteDealFromHistoryState: LiveData<DataState<Boolean>> get() = mDeleteDealFromHistoryState
+
+    fun deleteDealFromHistory(idDeal: String,idUser : String) {
+        viewModelScope.launch {
+            deleteDealFromHistoryUseCase(idDeal, idUser).onEach { dataState ->
+                mDeleteDealFromHistoryState.value = dataState
             }.launchIn(viewModelScope)
         }
     }
@@ -180,8 +245,8 @@ class UserViewModel @Inject constructor(
         }
     }
 
-    private val mGetOpinionsState: MutableLiveData<DataState<ArrayList<Opinions>>> = MutableLiveData()
-    val getOpinionsState: LiveData<DataState<ArrayList<Opinions>>> get() = mGetOpinionsState
+    private val mGetOpinionsState: MutableLiveData<DataState<ArrayList<Opinion>>> = MutableLiveData()
+    val getOpinionsState: LiveData<DataState<ArrayList<Opinion>>> get() = mGetOpinionsState
     fun getOpinions(idUser: String) {
         viewModelScope.launch {
             getOpinionsUseCase(idUser).onEach { dataState ->
@@ -242,6 +307,7 @@ class UserViewModel @Inject constructor(
 
     private val mUpdateCurriculumState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val updateCurriculumState: LiveData<DataState<Boolean>> get() = mUpdateCurriculumState
+
     fun updateCurriculum(pdfLink : String) {
         viewModelScope.launch {
             updateCurriculumUseCase(pdfLink).onEach { dataState ->
@@ -312,10 +378,20 @@ class UserViewModel @Inject constructor(
 
     private val mUpdateRatingState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val updateRatingState: LiveData<DataState<Boolean>> get() = mUpdateRatingState
-    fun updateRating(updatedRating : Float) {
+    fun updateRating(updatedRating : Float,idUser: String) {
         viewModelScope.launch {
-            updateRatingUseCase(updatedRating).onEach { dataState ->
+            updateRatingUseCase(updatedRating,idUser).onEach { dataState ->
                 mUpdateRatingState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
+    private val mUpdateScheduleState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val updateScheduleState: LiveData<DataState<Boolean>> get() = mUpdateScheduleState
+    fun updateSchedule(schedule : ScheduleMap) {
+        viewModelScope.launch {
+            updateScheduleUseCase(schedule).onEach { dataState ->
+                mUpdateScheduleState.value = dataState
             }.launchIn(viewModelScope)
         }
     }

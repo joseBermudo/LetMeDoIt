@@ -1,13 +1,17 @@
 package cat.copernic.letmedoit.presentation.adapter.general.viewholder
 
+import android.annotation.SuppressLint
 import androidx.core.view.isVisible
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.data.model.Opinions
 import cat.copernic.letmedoit.presentation.view.general.fragments.*
 import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.data.model.Opinion
+import cat.copernic.letmedoit.data.model.Service
+import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.OpinionsUserTemplateBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
 
 
 class OpinionsViewHolder(val binding: OpinionsUserTemplateBinding) : RecyclerView.ViewHolder(binding.root)  {
@@ -20,14 +24,16 @@ class OpinionsViewHolder(val binding: OpinionsUserTemplateBinding) : RecyclerVie
 
     val opinion = binding.opinionLayout
 
-    fun render(opinionsModel: Opinions){
+    @SuppressLint("SetTextI18n")
+    fun render(opinionsModel: Opinion, user: Users, service: Service){
         //Asigación de datos a los controles del view.
-        serviceName.text = opinionsModel.service
+        serviceName.text = service.title
         description.text = opinionsModel.description
         rating.rating = opinionsModel.rating
-        nameSurname.text = opinionsModel.user
+        nameSurname.text = "${user.name} ${user.surname}"
+        Picasso.get().load(user.avatar).into(binding.profileImage)
 
-        opinion.setOnClickListener { goToUser(opinionsModel.id) }
+        opinion.setOnClickListener { goToUser(user.id) }
 
         if(FirebaseAuth.getInstance().currentUser == null){
             binding.btnReport.isEnabled = false
@@ -35,7 +41,7 @@ class OpinionsViewHolder(val binding: OpinionsUserTemplateBinding) : RecyclerVie
         }
 
 
-        binding.btnReport.setOnClickListener { Utils.goToUserReport(itemView, "1") }
+        binding.btnReport.setOnClickListener { Utils.goToUserReport(itemView, user.id) }
 
     }
 

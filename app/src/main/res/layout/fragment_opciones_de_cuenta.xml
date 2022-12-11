@@ -34,13 +34,21 @@
                     android:layout_marginStart="@dimen/margins_start_end"
                     android:gravity="center">
 
-                    <ImageView
-                        android:id="@+id/imageUser"
-                        android:layout_width="@dimen/profile_options_dimens"
-                        android:layout_height="@dimen/profile_options_dimens"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/txt_profile_image"
-                        android:src="@drawable/ic_baseline_account_circle_24" />
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/profile_image_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="100dp">
+                        <ImageView
+                            android:id="@+id/imageUser"
+                            android:layout_width="@dimen/profile_options_dimens"
+                            android:layout_height="@dimen/profile_options_dimens"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:contentDescription="@string/txt_profile_image" />
+                    </androidx.cardview.widget.CardView>
+
+
 
                     <ImageView
                         android:id="@+id/arrowProfile"

@@ -5,7 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cat.copernic.letmedoit.R
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
+import cat.copernic.letmedoit.Utils.DataState
+import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.data.model.UserFavoriteServices
+import cat.copernic.letmedoit.data.model.*
+import cat.copernic.letmedoit.databinding.FragmentVerListadoFavServicesBinding
+import cat.copernic.letmedoit.presentation.adapter.general.ServiceAdapter
+import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
+import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,6 +29,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [VerListadoFavServices.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class VerListadoFavServices : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -30,13 +43,107 @@ class VerListadoFavServices : Fragment() {
         }
     }
 
+    private lateinit var binding: FragmentVerListadoFavServicesBinding
+    private var totalFavServices = 0
+    private var obtainedFavServices = 0
+    private var services = ArrayList<Service>()
+    private val serviceViewModel : ServiceViewModel by viewModels()
+    private val userViewModel : UserViewModel by viewModels()
+    private lateinit var adapter : ServiceAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ver_listado_fav_services, container, false)
+        binding = FragmentVerListadoFavServicesBinding.inflate(inflater, container, false)
+        //initRecyclerView()
+        userViewModel.getFavoriteServices()
+        initObservers()
+        return binding.root
+
     }
+
+    private fun initObservers() {
+        userViewModel.getFavoriteServicesState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<ArrayList<UserFavoriteServices>> -> {
+                    if(::adapter.isInitialized) adapter.clear()
+
+                    totalFavServices = dataState.data.size
+                    if (totalFavServices == 0) hideProgress()
+
+                    dataState.data.forEach { serviceViewModel.getService(it.favorite_service_id) }
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    hideProgress()
+                }
+                is DataState.Loading -> {
+                    showProgress()
+                }
+                else -> Unit
+            }
+        } )
+        serviceViewModel.getServiceState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Service> -> {
+                    services.add(dataState.data)
+                    obtainedFavServices++
+                    if(obtainedFavServices == totalFavServices) initRecyclerView(services)
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    hideProgress()
+                }
+                is DataState.Loading -> {
+                }
+                else -> Unit
+            }
+        } )
+        userViewModel.deleteFavoriteServiceState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> {
+                }
+                else -> Unit
+            }
+        } )
+        userViewModel.addFavoriteServiceState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> {
+                }
+                else -> Unit
+            }
+        } )
+    }
+
+    private fun hideProgress() {
+        binding.loadingFavServices.isVisible = false
+    }
+
+    private fun showProgress() {
+        binding.loadingFavServices.isVisible = true
+    }
+    fun initRecyclerView(services: ArrayList<Service>) {
+        services.forEach { it.defaultFav = true }
+        hideProgress()
+        binding.recyclerFavServices.layoutManager = GridLayoutManager(binding.root.context, 2)
+        adapter = ServiceAdapter(services,this,userViewModel,serviceViewModel)
+        binding.recyclerFavServices.adapter = adapter
+        obtainedFavServices = 0
+    }
+
+
 
     companion object {
         /**

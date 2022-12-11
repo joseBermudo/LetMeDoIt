@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -94,6 +95,24 @@ class AccountOptions : Fragment() {
         val languagesString = ArrayList<String>()
         LenguagesProvider.obtenerLenguages().map { x -> x.lenguage }.toCollection(languagesString)
         Utils.AsignarPopUpSpinnerLenguages(requireContext(), languagesString, binding.spinnerLenguages)
+
+        binding.spinnerLenguages.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                userViewModel.updateLanguage(position)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
+
+        binding.darkThemeSwitch.setOnCheckedChangeListener{  _, isChecked -> userViewModel.updateDarkTheme(isChecked) }
     }
 
     private fun initSpinner() {
@@ -123,6 +142,32 @@ class AccountOptions : Fragment() {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
                 }
                 is DataState.Loading -> {  }
+                else -> Unit
+            }
+        } )
+        userViewModel.updateLanguageState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                    binding.spinnerLenguages.isEnabled = true
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    binding.spinnerLenguages.isEnabled = true
+                }
+                is DataState.Loading -> { binding.spinnerLenguages.isEnabled = false  }
+                else -> Unit
+            }
+        } )
+        userViewModel.updateDarkThemeState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                    binding.darkThemeSwitch.isEnabled = true
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    binding.darkThemeSwitch.isEnabled = true
+                }
+                is DataState.Loading -> { binding.darkThemeSwitch.isEnabled = false }
                 else -> Unit
             }
         } )

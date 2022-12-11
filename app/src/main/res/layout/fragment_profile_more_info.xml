@@ -150,6 +150,7 @@
                 style="@style/Widget.LetMeDoIt.subtext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxWidth="250dp"
                 android:text="@string/txt_location_text"
                 app:layout_constraintStart_toStartOf="@id/location_title"
                 app:layout_constraintTop_toBottomOf="@id/location_title" />
@@ -159,9 +160,9 @@
                 style="@style/IconoClickable"
                 android:layout_width="@dimen/padding_horizontal_cl"
                 android:layout_height="@dimen/padding_vertical_cl"
-                android:layout_marginStart="@dimen/spinner_layout_margin"
                 android:background="@drawable/map_location_icon"
-                app:layout_constraintStart_toEndOf="@id/location_text"
+                app:layout_constraintBottom_toBottomOf="@+id/location_text"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/location_title" />
 
             <View
@@ -172,7 +173,7 @@
                 android:background="@color/divider_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/location_icon" />
+                app:layout_constraintTop_toBottomOf="@+id/location_text" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
