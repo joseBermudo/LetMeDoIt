@@ -36,34 +36,6 @@ class CategoryRepositoryImpl @Inject constructor(
         }
     }.flowOn(IO)
 
-    override suspend fun getCategories(): Flow<DataState<List<Category>>> = flow {
-        emit(DataState.Loading)
-        try {
-            val categories = categoryCollection.get().await().toObjects(Category::class.java)
-            emit(DataState.Success(categories))
-            emit(DataState.Finished)
-        } catch (e: Exception) {
-            emit(DataState.Error(e))
-            emit(DataState.Finished)
-        }
-    }.flowOn(IO)
-
-    override suspend fun deleteCategory(id: String): Flow<DataState<Boolean>> = flow {
-        emit(DataState.Loading)
-        try {
-            var deleteStatus: Boolean = false
-            categoryCollection.document(id).delete()
-                .addOnSuccessListener { deleteStatus = true }
-                .addOnFailureListener { deleteStatus = false }
-                .await()
-
-            emit(DataState.Success(deleteStatus))
-            emit(DataState.Finished)
-        } catch (e: Exception) {
-            emit(DataState.Error(e))
-            emit(DataState.Finished)
-        }
-    }.flowOn(IO)
 
     override suspend fun getCategories(): Flow<DataState<List<Category>>> = flow {
         emit(DataState.Loading)
