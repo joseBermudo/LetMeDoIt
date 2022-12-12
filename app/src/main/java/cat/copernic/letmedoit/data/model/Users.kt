@@ -1,27 +1,31 @@
 package cat.copernic.letmedoit.data.model
 
+import android.os.Parcelable
+import cat.copernic.letmedoit.Utils.datahepers.*
 import com.google.firebase.firestore.Exclude
+import kotlinx.parcelize.Parcelize
 
-class Users(
-    @get:Exclude val id: String? = "",
-    val name: String? = null,
-    val surname: String? = null,
-    val email: String? = null,
-    val language: Int? = null,
-    val darkTheme: Boolean? = null,
-    val avatar: String? = null,
-    val curriculum: String? = null,
-    val schedule: ScheduleMap? = null,
-    val aboutMe: String? = null,
-    val contactInfo: ContactInfoMap? = null,
-    val location: String? = null,
-    val servicesId: ArrayList<String>? = null,
-    val favorites: FavoritesMap? = null,
-    val chatsId: ArrayList<String>? = null,
-    val historyDeals: ArrayList<HistoryDeal>? = null,
-    val opinions: ArrayList<Opinions>? = null,
-    val rating: Float? = null,
-    val banned: Boolean? = null,
-    val admin: Boolean? = null,
-    val username: String? = null
-    )
+@Parcelize
+data class Users(
+    @get:Exclude var id: String = "",
+    var name: String = "",
+    var surname: String = "",
+    val email: String = "",
+    val language: Int = 0,
+    val darkTheme: Boolean = false,
+    var avatar: String = "",
+    val curriculum: String = "",
+    var schedule: ScheduleMap = ScheduleMap("",""),
+    var aboutMe: String = "",
+    var contactInfo: ContactInfoMap = ContactInfoMap("",""),
+    var location: String = "",
+    @get:Exclude var servicesId: ArrayList<UserServices>? = null,
+    @get:Exclude val favorites: FavoritesMap? = null,
+    @get:Exclude val chatsId: ArrayList<UserChats>? = null,
+    @get:Exclude val historyDeals: ArrayList<HistoryDeal>? = null,
+    @get:Exclude var opinions: ArrayList<Opinion> = ArrayList(),
+    val rating: Float = 0f,
+    val banned: Boolean = false,
+    val admin: Boolean = false,
+    val username: String = ""
+    ) : Parcelable

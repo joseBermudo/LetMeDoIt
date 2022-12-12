@@ -120,7 +120,7 @@ class LoginRepositoryImpl @Inject constructor(
                     .addOnSuccessListener { document ->
                         val user = document.toObject(Users::class.java)!!
                         isSuccesful = true
-                        USER_LOGGED_IN_ID = user.id.toString()
+                        USER_LOGGED_IN_ID = user.id
                     }
                     .addOnFailureListener {
                         isSuccesful = false

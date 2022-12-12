@@ -5,14 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cat.copernic.letmedoit.data.provider.ServiceProvider
+import cat.copernic.letmedoit.Utils.DataState
+import cat.copernic.letmedoit.Utils.UserConstants
+import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.data.model.Service
+import cat.copernic.letmedoit.Utils.datahepers.UserServices
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioServiciosBinding
 import cat.copernic.letmedoit.presentation.adapter.general.ServiceAdapter
 import cat.copernic.letmedoit.presentation.viewmodel.general.SearchViewViewModel
+import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
+import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +33,8 @@ private const val ARG_PARAM2 = "param2"
  * Use the [PerfilUsuario.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PerfilUsuarioServicios : Fragment() {
+@AndroidEntryPoint
+class PerfilUsuarioServicios(private val servicesId: ArrayList<UserServices>?) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -37,14 +47,23 @@ class PerfilUsuarioServicios : Fragment() {
         }
     }
 
-    //RecyclerView
-    lateinit var serviceRecyclerView : RecyclerView
+    private val serviceViewModel : ServiceViewModel by viewModels()
+    private val userViewModel : UserViewModel by viewModels()
+    private var services = ArrayList<Service>()
+    private lateinit var serviceRecyclerView : RecyclerView
+
     lateinit var adapter : ServiceAdapter
     lateinit var binding : FragmentPerfilUsuarioServiciosBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        services.clear()
+        initObservers()
+        servicesId?.forEach { serviceViewModel.getService(it.service_id) }
+
         // Inflate the layout for this fragment
         binding = FragmentPerfilUsuarioServiciosBinding.inflate(inflater,container,false)
         serviceRecyclerView = binding.recylerViewServices
@@ -52,15 +71,48 @@ class PerfilUsuarioServicios : Fragment() {
         //Asignación del adaptador al recyclerview.
 
         serviceRecyclerView.setHasFixedSize(true)
-        adapter = ServiceAdapter(ServiceProvider.getServices())
-        serviceRecyclerView.adapter = adapter
 
         val model = ViewModelProvider(requireActivity())[SearchViewViewModel::class.java]
         model.message.observe(viewLifecycleOwner, Observer {
-            adapter.filter(it)
+            //Por algún motivo hay un bug donde el buscador enviar un mensaje de filtro sin haber cargado siquiera el fragment cuando se cambia entre ver el servicio y el perfil de usuario??
+            if(::adapter.isInitialized)
+                adapter.filter(it)
         })
 
         return binding.root
+    }
+
+    private fun initObservers() {
+        serviceViewModel.getServiceState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Service> -> {
+                    services.add(dataState.data)
+                    if(services.size == servicesId!!.size) showServices()
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    hideProgress()
+                }
+                is DataState.Loading -> { showProgress() }
+                else -> Unit
+            }
+        } )
+    }
+
+    private fun showProgress() {
+        binding.loadingServices.isVisible = true
+    }
+
+    private fun hideProgress() {
+        binding.loadingServices.isVisible = false
+    }
+
+    private fun showServices() {
+        hideProgress()
+        services.forEach { if(UserConstants.USER_FAVORITE_SERVICES_IDS.contains(it.id)) it.defaultFav = true }
+        adapter = ServiceAdapter(services,this, userViewModel,serviceViewModel)
+        serviceRecyclerView.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
 
     companion object {
@@ -74,12 +126,14 @@ class PerfilUsuarioServicios : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PerfilUsuarioServicios().apply {
+        fun newInstance(param1: String, param2: String): PerfilUsuarioServicios {
+            val servicesId = ArrayList<UserServices>()
+            return PerfilUsuarioServicios(servicesId = servicesId).apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
                 }
             }
+        }
     }
 }

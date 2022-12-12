@@ -14,6 +14,7 @@ import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.presentation.viewmodel.visitante.LoginViewModel
 import cat.copernic.letmedoit.databinding.ActivityLoginBinding
 import cat.copernic.letmedoit.presentation.view.general.activities.Home
+import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -43,12 +44,11 @@ class Login : AppCompatActivity() {
 
 
     }
-    private var activityChanged : Boolean = false
+
     private fun initObservers() {
         loginViewModel.loginState.observe(this,Observer { dataState ->
             when(dataState){
                 is DataState.Success<Boolean> -> {
-                    activityChanged = false
                     loginViewModel.getUserData()
                 }
                 is DataState.Error -> {
@@ -63,10 +63,6 @@ class Login : AppCompatActivity() {
         loginViewModel.userDataState.observe(this,Observer { dataState ->
             when(dataState){
                 is DataState.Success<Boolean> -> {
-                    if (activityChanged)
-                        return@Observer
-                    activityChanged = true
-                    loginViewModel.getUserData()
                     startActivity(Intent(this, Home::class.java))
                     finish()
 

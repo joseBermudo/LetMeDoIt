@@ -1,7 +1,7 @@
 package cat.copernic.letmedoit.data.provider
 
 import cat.copernic.letmedoit.data.model.Report
-import cat.copernic.letmedoit.data.model.UsersMap
+import cat.copernic.letmedoit.Utils.datahepers.UsersMap
 
 class ReportProvider {
     companion object{

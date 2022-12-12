@@ -2,11 +2,21 @@ package cat.copernic.letmedoit.presentation.adapter.general
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import cat.copernic.letmedoit.Utils.UserConstants
 import cat.copernic.letmedoit.data.model.Service
+import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.ServiceTemplateBinding
 import cat.copernic.letmedoit.presentation.adapter.general.viewholder.ServiceViewHolder
+import cat.copernic.letmedoit.presentation.view.general.fragments.HomeServicesList
+import cat.copernic.letmedoit.presentation.view.users.fragments.VerListadoFavServices
+import cat.copernic.letmedoit.presentation.view.users.fragments.viewFavUsers
+import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
+import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -14,7 +24,7 @@ import kotlin.collections.ArrayList
  * Adaptador de Categorias, implementa Filterable para así poder filtrar :)
  * @param categoryList ArrayList de servicios
  * */
-class ServiceAdapter(private var serviceList:ArrayList<Service>) : RecyclerView.Adapter<ServiceViewHolder>() {
+class ServiceAdapter(private var serviceList:ArrayList<Service>,private val fragment: Fragment? = null, private val userViewModel: UserViewModel,private val serviceViewModel: ServiceViewModel) : RecyclerView.Adapter<ServiceViewHolder>() {
 
     lateinit var destinationLabel : String
     var favFragment = false
@@ -25,14 +35,9 @@ class ServiceAdapter(private var serviceList:ArrayList<Service>) : RecyclerView.
      * @return Devuelve un CategoryViewHolder cargando la vista con los datos del listado.
      * */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceViewHolder {
-        var defaultFav = false
+
         val binding = ServiceTemplateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        destinationLabel = Navigation.findNavController(parent).currentDestination?.label.toString()
-        if(destinationLabel == "fragment_profiles_services_manager_vis"){
-            defaultFav = true
-            favFragment= true
-        }
-        return ServiceViewHolder(binding,defaultFav)
+        return ServiceViewHolder(binding)
     }
 
     /**
@@ -73,9 +78,32 @@ class ServiceAdapter(private var serviceList:ArrayList<Service>) : RecyclerView.
         notifyDataSetChanged()
     }
 
-    fun eliminarServicioFav(service : Service){
-        serviceListFiltered.remove(service)
-        notifyDataSetChanged()
+    fun clear(){
+        var size = serviceListFiltered.size
+        serviceListFiltered.clear()
+        notifyItemRangeRemoved(0,size)
+
+        size = serviceList.size
+        serviceList.clear()
+        notifyItemRangeRemoved(0,size)
+    }
+
+    fun deleteFavService(service: Service){
+        when(fragment){
+            is VerListadoFavServices ->  {
+                val position = serviceListFiltered.indexOf(service)
+                serviceListFiltered.remove(service)
+                notifyItemRemoved(position)
+            }
+        }
+        UserConstants.USER_FAVORITE_SERVICES_IDS.remove(service.id)
+        userViewModel.deleteFavoriteService(service.id)
+        serviceViewModel.updateNLikes(service.id, --service.n_likes)
+    }
+
+    fun addFavService(service: Service) {
+        userViewModel.addFavoriteService(service.id)
+        serviceViewModel.updateNLikes(service.id, ++service.n_likes)
     }
 
 }

@@ -1,6 +1,6 @@
 package cat.copernic.letmedoit.data.provider
 
-import cat.copernic.letmedoit.data.model.CategoryMap
+import cat.copernic.letmedoit.Utils.datahepers.CategoryMap
 import cat.copernic.letmedoit.data.model.Image
 import cat.copernic.letmedoit.data.model.Service
 import kotlin.collections.ArrayList
