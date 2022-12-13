@@ -286,34 +286,41 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun deleteDealFromHistory(
         idDeal: String,
-        idUser: String
+        idUser: String,
+        idUserTwo : String
     ): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
             var uploadSuccesful: Boolean = false
-            var newIndex = 0
 
-            val historydeals = usersCollection.document(Constants.USER_LOGGED_IN_ID)
+            var documentToDelete = ""
+
+            val historydeals = usersCollection.document(idUser)
                 .collection(UserConstants.HISTORY_DEALS)
-                .document(idUser)
+                .document(idUserTwo)
                 .collection(UserConstants.DEALS)
                 .get()
                 .await()
 
+            var idToDelete = ""
             historydeals.documents.forEach {
                 var deal = it.toObject(UserDeals::class.java)
                 if (deal != null) {
-                    if (deal.deal_id == idDeal)
-                        usersCollection.document(Constants.USER_LOGGED_IN_ID)
-                            .collection(UserConstants.HISTORY_DEALS)
-                            .document(idUser)
-                            .collection(UserConstants.DEALS).document(it.id)
-                            .delete()
-                            .await()
+                    if (deal.deal_id == idDeal) documentToDelete = it.id
+
                 }
             }
+
+            usersCollection.document(idUser)
+                .collection(UserConstants.HISTORY_DEALS)
+                .document(idUserTwo)
+                .collection(UserConstants.DEALS).document(documentToDelete)
+                .delete()
+                .await()
+
             emit(DataState.Success(uploadSuccesful))
             emit(DataState.Finished)
+
         } catch (e: Exception) {
             emit(DataState.Error(e))
             emit(DataState.Finished)

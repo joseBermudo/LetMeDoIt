@@ -128,7 +128,7 @@ class ViewDeal : Fragment() {
         dealViewModel.denyState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Boolean> -> {
-                    userViewModel.deleteDealFromHistory(deal.id,Constants.USER_LOGGED_IN_ID)
+                    userViewModel.deleteDealFromHistory(deal.id,Constants.USER_LOGGED_IN_ID,user.id)
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
@@ -141,10 +141,10 @@ class ViewDeal : Fragment() {
             when(dataState){
                 is DataState.Success<Boolean> -> {
                     if (firstDelete) {
-                        userViewModel.deleteDealFromHistory(deal.id,user.id)
+                        userViewModel.deleteDealFromHistory(deal.id,user.id,Constants.USER_LOGGED_IN_ID)
                         firstDelete = false
                     }
-                    else Utils.goToDestination(requireView(), R.id.verListadoDeals)
+                    else requireActivity().onBackPressed()
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())

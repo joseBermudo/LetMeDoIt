@@ -91,7 +91,9 @@ class Home : AppCompatActivity() {
             if(currentDestination.label == "fragment_rate_user"){
                 findNavController(R.id.navController).navigate(R.id.verConversaciones)
             }
-
+            if(currentDestination.label == "fragment_ver_deal"){
+                findNavController(R.id.navController).navigate(R.id.verConversaciones)
+            }
             else if ((currentDestination.id
                     ?: -1) != R.id.homeFragment
             ) findNavController(R.id.navController).popBackStack()

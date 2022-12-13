@@ -8,5 +8,5 @@ import javax.inject.Inject
 class DeleteDealFromHistoryUseCase @Inject constructor(
     private val userRepository: UserRepository
 ){
-    suspend operator fun invoke(idDeal : String,idUser: String) : Flow<DataState<Boolean>> = userRepository.deleteDealFromHistory(idDeal,idUser)
+    suspend operator fun invoke(idDeal : String,idUser: String, idUserTwo : String) : Flow<DataState<Boolean>> = userRepository.deleteDealFromHistory(idDeal,idUser,idUserTwo)
 }

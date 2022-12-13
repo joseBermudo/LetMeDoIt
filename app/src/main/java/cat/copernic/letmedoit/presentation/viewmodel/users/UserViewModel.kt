@@ -208,9 +208,9 @@ class UserViewModel @Inject constructor(
     private val mDeleteDealFromHistoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val deleteDealFromHistoryState: LiveData<DataState<Boolean>> get() = mDeleteDealFromHistoryState
 
-    fun deleteDealFromHistory(idDeal: String,idUser : String) {
+    fun deleteDealFromHistory(idDeal: String,idUser : String, idUserTwo : String) {
         viewModelScope.launch {
-            deleteDealFromHistoryUseCase(idDeal, idUser).onEach { dataState ->
+            deleteDealFromHistoryUseCase(idDeal, idUser,idUserTwo).onEach { dataState ->
                 mDeleteDealFromHistoryState.value = dataState
             }.launchIn(viewModelScope)
         }
