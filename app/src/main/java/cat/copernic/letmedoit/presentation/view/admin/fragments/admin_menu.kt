@@ -44,6 +44,7 @@ class admin_menu : Fragment() {
     ): View? {
         _binding = FragmentAdminMenuBinding.inflate(inflater, container, false)
 
+        
         initObservers()
         binding.cardvSignOff.setOnClickListener {
             loginViewModel.logOut()
