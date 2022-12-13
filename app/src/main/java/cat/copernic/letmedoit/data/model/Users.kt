@@ -27,5 +27,6 @@ data class Users(
     val rating: Float = 0f,
     val banned: Boolean = false,
     val admin: Boolean = false,
-    val username: String = ""
+    val username: String = "",
+    val deviceToken : String = ""
     ) : Parcelable

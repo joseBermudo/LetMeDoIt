@@ -23,6 +23,7 @@ class UserViewModel @Inject constructor(
     private val addHistoryDealUseCase: AddHistoryDealUseCase,
     private val addOpinionUseCase: AddOpinionUseCase,
     private val addServiceUseCase: AddServiceUseCase,
+    private val addDeviceTokenUseCase: AddDeviceTokenUseCase,
     private val addAvatarToStorageUseCase: AddAvatarToStorageUseCase,
     private val addCurriculumToStorageUseCase: AddCurriculumToStorageUseCase,
     private val deleteCurriculumFromStorageUseCase: DeleteCurriculumFromStorageUseCase,
@@ -112,6 +113,16 @@ class UserViewModel @Inject constructor(
         viewModelScope.launch {
             addServiceUseCase(idService).onEach { dataState ->
                 mAddServiceState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
+    private val mAddDeviceTokenState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val addDeviceTokenState: LiveData<DataState<Boolean>> get() = mAddDeviceTokenState
+    fun addDeviceToken(token: String) {
+        viewModelScope.launch {
+            addDeviceTokenUseCase(token).onEach { dataState ->
+                mAddDeviceTokenState.value = dataState
             }.launchIn(viewModelScope)
         }
     }

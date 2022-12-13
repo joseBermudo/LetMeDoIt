@@ -541,6 +541,25 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
+    override suspend fun addDeviceToken(token: String): Flow<DataState<Boolean>> = flow{
+        emit(DataState.Loading)
+        try {
+
+            var uploadSuccessful = false
+            Constants.USER_LOGGED_IN_ID.let {
+                usersCollection.document(it).update(UserConstants.DEVICE_TOKEN,token)
+                    .addOnSuccessListener { uploadSuccessful = true }
+                    .addOnFailureListener { uploadSuccessful = false }
+                    .await()
+            }
+            emit(DataState.Success(uploadSuccessful))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
     override suspend fun updateName(newName: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {

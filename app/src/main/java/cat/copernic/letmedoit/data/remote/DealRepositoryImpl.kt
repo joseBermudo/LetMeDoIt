@@ -6,10 +6,12 @@ import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.data.model.Deal
 import cat.copernic.letmedoit.di.FirebaseModule
 import cat.copernic.letmedoit.domain.repositories.DealRepository
+import com.android.car.ui.toolbar.MenuItem.builder
 import com.google.android.gms.tasks.Tasks.await
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.auth.User
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -18,7 +20,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
-
 
 class DealRepositoryImpl @Inject constructor(
     @FirebaseModule.DealCollection val dealCollection: CollectionReference
@@ -73,6 +74,7 @@ class DealRepositoryImpl @Inject constructor(
                     .addOnFailureListener { uploadStatus = false }
                     .await()
             }
+
             emit(DataState.Success(uploadStatus))
             emit(DataState.Finished)
         } catch (e: Exception) {

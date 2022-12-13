@@ -23,6 +23,7 @@ object UserConstants {
     const val RATING = "rating"
     const val CURRICULUM ="curriculum"
     const val SCHEDULE = "schedule"
+    const val DEVICE_TOKEN = "deviceToken"
 
     var USER_FAVORITE_SERVICES_IDS = ArrayList<String>()
 }

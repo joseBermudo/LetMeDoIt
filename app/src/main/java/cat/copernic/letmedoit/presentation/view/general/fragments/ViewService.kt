@@ -125,7 +125,7 @@ class viewService : Fragment() {
                 is DataState.Success<Users?> -> {
                     val user = dataState.data
                     if(user != null){
-                        Picasso.get().load(user.avatar).into(binding.profileImage)
+                        if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.profileImage)
                         binding.userRating.rating = user.rating
                         binding.nameSurname.text = "${user.name} ${user.surname}"
                     }

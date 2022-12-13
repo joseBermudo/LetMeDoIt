@@ -14,4 +14,5 @@ object Constants {
 
     var USER_LOGGED_IN_ID = ""
     lateinit var USER_LOGGED_IN : Users
+    var TOKEN = ""
 }

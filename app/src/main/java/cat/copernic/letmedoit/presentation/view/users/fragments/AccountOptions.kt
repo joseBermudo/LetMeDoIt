@@ -67,7 +67,9 @@ class AccountOptions : Fragment() {
     private fun initView() {
         val user =  Constants.USER_LOGGED_IN
 
-        Picasso.get().load(user.avatar).into(binding.imageUser)
+        if(user.avatar != "")
+            Picasso.get().load(user.avatar).into(binding.imageUser)
+        
         binding.nameSurname.text = "${user.name} ${user.surname} \n @${user.username} \n"
         binding.myRatingBar.rating = user.rating
         user.language?.let { binding.spinnerLenguages.setSelection(it) }

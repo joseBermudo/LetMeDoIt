@@ -35,6 +35,7 @@ interface UserRepository {
     suspend fun addOpinion(opinion : Opinion,idUser : String) : Flow<DataState<Boolean>>
     suspend fun addAvatarToStorage (fileUri: Uri): Flow<DataState<String>>
     suspend fun addCurriculumToStorage(fileUri : Uri) : Flow<DataState<String>>
+    suspend fun addDeviceToken(token : String) : Flow<DataState<Boolean>>
 
     //update
     suspend fun updateName(newName : String) : Flow<DataState<Boolean>>

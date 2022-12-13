@@ -107,7 +107,7 @@ class RateUser : Fragment() {
     }
     @SuppressLint("SetTextI18n")
     private fun initView() {
-        Picasso.get().load(user.avatar).into(binding.iconUser)
+        if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.iconUser)
         binding.user.text = "${user.name} ${user.surname} \n @${user.username}"
     }
 

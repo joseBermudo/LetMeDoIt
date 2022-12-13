@@ -204,7 +204,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun initView() {
-        Picasso.get().load(user.avatar).into(binding.profileImage)
+        if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.profileImage)
         binding.userRating.rating = user.rating
         binding.profileNameSurname.text = "${user.name} ${user.surname} \n @${user.username}"
 

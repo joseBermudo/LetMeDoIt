@@ -201,7 +201,7 @@ class CreateDeal : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun initView() {
         args.userTwo.let { user ->
-            Picasso.get().load(user.avatar).into(binding.userImage)
+            if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.userImage)
             binding.nameSurnameText.text = "${user.name} ${user.surname} \n @${user.username}"
         }
         args.userOne.id?.let { userViewModel.getServices(it) }

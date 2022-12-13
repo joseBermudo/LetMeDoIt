@@ -107,6 +107,8 @@ dependencies {
     //Para poder usar awaits con snapshots
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4'
 
+    //Cloud Messaging
+    implementation 'com.google.firebase:firebase-messaging:23.1.0'
 }
 
 // Allow references to generated code
