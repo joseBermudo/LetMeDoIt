@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -19,6 +21,13 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class admin_menu : Fragment() {
+
+    private val bouncyEasterEgg: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            binding.root.context,
+            R.anim.bouncy_anim
+        )
+    }
 
     private var _binding: FragmentAdminMenuBinding? = null
     private val binding get() = _binding!!
@@ -35,24 +44,29 @@ class admin_menu : Fragment() {
     ): View? {
         _binding = FragmentAdminMenuBinding.inflate(inflater, container, false)
 
+        
         initObservers()
-        binding.btnSingOff.setOnClickListener {
+        binding.cardvSignOff.setOnClickListener {
             loginViewModel.logOut()
         }
 
-        binding.btnCategories.setOnClickListener {
+        binding.adminTitle.setOnClickListener {
+            binding.adminTitle.startAnimation(bouncyEasterEgg)
+        }
+
+        binding.cardvCategories.setOnClickListener {
             findNavController().navigate(R.id.action_admin_menu_to_adminCategoriesList)
         }
 
-        binding.btnUsers.setOnClickListener {
+        binding.cardvUsers.setOnClickListener {
             findNavController().navigate(R.id.action_admin_menu_to_admin_view_users)
         }
 
-        binding.btnReports.setOnClickListener {
+        binding.cardvReports.setOnClickListener {
             findNavController().navigate(R.id.action_admin_menu_to_admin_reports)
         }
 
-        binding.btnArchivedReports.setOnClickListener {
+        binding.cardvArchreports.setOnClickListener {
             findNavController().navigate(R.id.action_admin_menu_to_admin_archived_reports)
         }
 

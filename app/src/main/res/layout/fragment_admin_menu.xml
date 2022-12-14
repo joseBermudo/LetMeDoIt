@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/marginTop"
             android:text="@string/txt_admin"
+            android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,76 +30,242 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/admin_title" />
 
-        <Button
-            android:id="@+id/btn_Users"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margins_start_end_extra"
-            android:layout_marginTop="@dimen/marginTop_extra"
-            android:layout_marginEnd="@dimen/margins_start_end_extra"
-            android:text="@string/admin_users"
-            app:layout_constraintEnd_toEndOf="parent"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardv_users"
+            android:layout_width="156dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:animateLayoutChanges="true"
+            app:cardCornerRadius="@dimen/item_cateogry_admin_cardCornesRadius"
+            app:cardElevation="@dimen/item_category_admin_cardElevation"
+            app:cardUseCompatPadding="true"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view" />
+            app:layout_constraintTop_toBottomOf="@+id/admin_title"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true">
 
-        <Button
-            android:id="@+id/btn_reports"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margins_start_end_extra"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="@dimen/margins_start_end_extra"
-            android:text="@string/reports"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_Users" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="8dp">
 
-        <Button
-            android:id="@+id/btn_archivedReports"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margins_start_end_extra"
-            android:layout_marginEnd="@dimen/margins_start_end_extra"
-            android:text="@string/archived_reports"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_reports" />
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_baseline_person_outline_24" />
 
-        <Button
-            android:id="@+id/btn_categories"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margins_start_end_extra"
-            android:layout_marginEnd="@dimen/margins_start_end_extra"
-            android:layout_marginTop="@dimen/margins_start_end_extra"
-            android:text="@string/categories"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_archivedReports" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/admin_users" />
+            </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_createAdmin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margins_start_end_extra"
-            android:layout_marginEnd="@dimen/margins_start_end_extra"
-            android:layout_marginTop="@dimen/margins_start_end_extra"
-            android:text="@string/create_admin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_categories" />
 
-        <Button
-            android:id="@+id/btn_singOff"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margins_start_end_extra"
-            android:layout_marginTop="@dimen/btn_marginTop_signOff_admin"
-            android:layout_marginEnd="@dimen/margins_start_end_extra"
-            android:text="@string/sign_off"
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardv_categories"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:layout_width="156dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:animateLayoutChanges="true"
+            app:cardCornerRadius="@dimen/item_cateogry_admin_cardCornesRadius"
+            app:cardElevation="@dimen/item_category_admin_cardElevation"
+            app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/admin_title">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_baseline_category_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/categories" />
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardv_reports"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:layout_width="156dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:animateLayoutChanges="true"
+            app:cardCornerRadius="@dimen/item_cateogry_admin_cardCornesRadius"
+            app:cardElevation="@dimen/item_category_admin_cardElevation"
+            app:cardUseCompatPadding="true"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_createAdmin" />
+            app:layout_constraintTop_toBottomOf="@+id/cardv_users">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_baseline_report_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/reports" />
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardv_archreports"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:layout_width="156dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:animateLayoutChanges="true"
+            app:cardCornerRadius="@dimen/item_cateogry_admin_cardCornesRadius"
+            app:cardElevation="@dimen/item_category_admin_cardElevation"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardv_categories">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_baseline_archive_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Archived" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="reports" />
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardv_createAdmin"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:layout_width="156dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:animateLayoutChanges="true"
+            app:cardCornerRadius="@dimen/item_cateogry_admin_cardCornesRadius"
+            app:cardElevation="@dimen/item_category_admin_cardElevation"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardv_reports">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_baseline_add_moderator_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Create" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="admin" />
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardv_signOff"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:layout_width="156dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:animateLayoutChanges="true"
+            app:cardCornerRadius="@dimen/item_cateogry_admin_cardCornesRadius"
+            app:cardElevation="@dimen/item_category_admin_cardElevation"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardv_archreports">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_baseline_exit_to_app_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/sign_off" />
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
