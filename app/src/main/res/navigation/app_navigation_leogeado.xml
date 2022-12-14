@@ -11,11 +11,6 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/filtroCategoria"
-            app:destination="@id/filtroCategoria"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@animator/nav_default_exit_anim" />
-        <action
             android:id="@+id/homeFragmentToViewService"
             app:destination="@id/viewService"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -40,6 +35,9 @@
             app:destination="@id/newService"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_homeFragment_to_filtroCategoria"
+            app:destination="@id/filtroCategorias" />
     </fragment>
     <fragment
         android:id="@+id/profiles_services_manager_vis"
@@ -79,7 +77,7 @@
             app:destination="@id/perfilUsuarioMenuSuperior" />
     </fragment>
     <fragment
-        android:id="@+id/filtroCategoria"
+        android:id="@+id/filtroCategorias"
         android:name="cat.copernic.letmedoit.presentation.view.general.fragments.FiltroCategorias"
         android:label="fragment_filtro_categorias"
         tools:layout="@layout/fragment_filtro_categorias" >
