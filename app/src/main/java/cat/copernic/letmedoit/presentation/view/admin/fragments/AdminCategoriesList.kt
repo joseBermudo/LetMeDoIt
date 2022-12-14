@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
+import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -112,7 +113,7 @@ class AdminCategoriesList : Fragment() {
             androidx.lifecycle.Observer { dataState ->
                 when (dataState) {
                     is DataState.Success<Boolean> -> {
-                        Log.d("AdminCategories",dataState.data.toString())
+                        Log.d("AdminCategories", dataState.data.toString())
                         finishedProgress()
                     }
                     is DataState.Error -> {
@@ -236,7 +237,6 @@ class AdminCategoriesList : Fragment() {
             val name = txtInput_name.text.toString().trim()
             if (!name.isEmpty() && !name.isBlank()) {
                 val category = creteCategoryF(name)
-                Log.d("Admin",category.id)
                 viewModel.insertCategory(category)
                 categoryMutableList.add(index = 0, category)
                 adapter.notifyItemInserted(0)
@@ -295,7 +295,7 @@ class AdminCategoriesList : Fragment() {
         btn_cancel.setOnClickListener { myDialog.dismiss() }
 
         btn_accept.setOnClickListener {
-            Log.d("Admin",categoryMutableList.get(position).id)
+            Log.d("Admin", categoryMutableList.get(position).id)
             viewModel.deleteCategory(categoryMutableList.get(position).id)
             categoryMutableList.removeAt(position)
             adapter.notifyItemRemoved(position)
