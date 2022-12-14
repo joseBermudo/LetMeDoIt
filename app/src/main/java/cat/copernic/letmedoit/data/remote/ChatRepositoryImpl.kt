@@ -15,7 +15,7 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class ChatRepositoryImpl @Inject constructor(
-    @FirebaseModule.DealCollection val chatCollection: CollectionReference
+    @FirebaseModule.ChatCollection val chatCollection: CollectionReference
 ) : ChatRepository {
 
     override suspend fun createChat(chat: Chat): Flow<DataState<Boolean>> = flow {
