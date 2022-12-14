@@ -23,6 +23,7 @@ class UserViewModel @Inject constructor(
     private val addHistoryDealUseCase: AddHistoryDealUseCase,
     private val addOpinionUseCase: AddOpinionUseCase,
     private val addServiceUseCase: AddServiceUseCase,
+    private val addDeviceTokenUseCase: AddDeviceTokenUseCase,
     private val addAvatarToStorageUseCase: AddAvatarToStorageUseCase,
     private val addCurriculumToStorageUseCase: AddCurriculumToStorageUseCase,
     private val deleteCurriculumFromStorageUseCase: DeleteCurriculumFromStorageUseCase,
@@ -116,6 +117,16 @@ class UserViewModel @Inject constructor(
         }
     }
 
+    private val mAddDeviceTokenState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val addDeviceTokenState: LiveData<DataState<Boolean>> get() = mAddDeviceTokenState
+    fun addDeviceToken(token: String) {
+        viewModelScope.launch {
+            addDeviceTokenUseCase(token).onEach { dataState ->
+                mAddDeviceTokenState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
     private val mAddAvatarToStorageState: MutableLiveData<DataState<String>> = MutableLiveData()
     val addAvatarToStorageState: LiveData<DataState<String>> get() = mAddAvatarToStorageState
 
@@ -197,9 +208,9 @@ class UserViewModel @Inject constructor(
     private val mDeleteDealFromHistoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val deleteDealFromHistoryState: LiveData<DataState<Boolean>> get() = mDeleteDealFromHistoryState
 
-    fun deleteDealFromHistory(idDeal: String,idUser : String) {
+    fun deleteDealFromHistory(idDeal: String,idUser : String, idUserTwo : String) {
         viewModelScope.launch {
-            deleteDealFromHistoryUseCase(idDeal, idUser).onEach { dataState ->
+            deleteDealFromHistoryUseCase(idDeal, idUser,idUserTwo).onEach { dataState ->
                 mDeleteDealFromHistoryState.value = dataState
             }.launchIn(viewModelScope)
         }

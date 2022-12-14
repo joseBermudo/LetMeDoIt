@@ -66,7 +66,8 @@ class chats_deals_manager_vis : Fragment() {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
             }
         })
-        if(findNavController().previousBackStackEntry?.destination?.label == "fragment_rate_user")
+        val currentDestinationLabel =  findNavController().previousBackStackEntry?.destination?.label
+        if(currentDestinationLabel == "fragment_rate_user" || currentDestinationLabel == "fragment_ver_deal")
             binding.viewPagerChatsOrDeals.currentItem = 1
         return binding.root
     }

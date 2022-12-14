@@ -16,12 +16,14 @@ import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Deal
 import cat.copernic.letmedoit.data.model.Service
+import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.FragmentVerDealBinding
 import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.DealViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.tasks.await
 
 @AndroidEntryPoint
 class ViewDeal : Fragment() {
@@ -48,6 +50,7 @@ class ViewDeal : Fragment() {
 
         if (deal.accepted) goToConcludeDeal()
 
+        userViewModel.getUser(Constants.USER_LOGGED_IN_ID)
         dealViewModel.suscribeForUpdates(deal.id)
         services.clear()
         serviceViewModel.getService(deal.services.serviceOneId)
@@ -56,6 +59,7 @@ class ViewDeal : Fragment() {
         return binding.root
     }
 
+    private lateinit var myUser : Users
     private val user by lazy {
         args.user
     }
@@ -64,6 +68,19 @@ class ViewDeal : Fragment() {
     }
     private val services = ArrayList<Service>()
     private fun initObservers() {
+        userViewModel.getUserState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Users?> -> {
+                    if(dataState.data != null)
+                        myUser = dataState.data
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> {  }
+                else -> Unit
+            }
+        } )
         serviceViewModel.getServiceState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Service> -> {
@@ -98,6 +115,7 @@ class ViewDeal : Fragment() {
             when(dataState){
                 is DataState.Success<Boolean> -> {
                     deal.accepted = true
+
                     if(deal.accepted) goToConcludeDeal()
                 }
                 is DataState.Error -> {
@@ -110,7 +128,7 @@ class ViewDeal : Fragment() {
         dealViewModel.denyState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Boolean> -> {
-                    userViewModel.deleteDealFromHistory(deal.id,Constants.USER_LOGGED_IN_ID)
+                    userViewModel.deleteDealFromHistory(deal.id,Constants.USER_LOGGED_IN_ID,user.id)
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
@@ -123,10 +141,10 @@ class ViewDeal : Fragment() {
             when(dataState){
                 is DataState.Success<Boolean> -> {
                     if (firstDelete) {
-                        userViewModel.deleteDealFromHistory(deal.id,user.id)
+                        userViewModel.deleteDealFromHistory(deal.id,user.id,Constants.USER_LOGGED_IN_ID)
                         firstDelete = false
                     }
-                    else Utils.goToDestination(requireView(), R.id.verListadoDeals)
+                    else requireActivity().onBackPressed()
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
@@ -177,7 +195,7 @@ class ViewDeal : Fragment() {
             hisService = services[0]
         }
 
-        Picasso.get().load(user.avatar).into(binding.iconUser)
+        if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.iconUser)
         binding.txtProgressDeal.text = if (!deal.accepted)  "1/2" else "2/2"
         if(Constants.USER_LOGGED_IN_ID == deal.users.userOneId) binding.btnAccept.isEnabled = false
         binding.nameSurname.text = "${user.name} ${user.surname} \n @${user.username}"

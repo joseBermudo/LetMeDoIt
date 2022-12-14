@@ -17,7 +17,7 @@ class DealsViewHolder(val binding: ItemVerDealsBinding): RecyclerView.ViewHolder
 
         binding.txtUserName.text = "${user.name} ${user.surname} \n @${user.username}"
         binding.txtServiceName.text = service.title
-        Picasso.get().load(user.avatar).into(binding.imgProfile)
+        if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.imgProfile)
 
         binding.cardvVerDeals.setOnClickListener{ onClickItem(deal,user) }
     }

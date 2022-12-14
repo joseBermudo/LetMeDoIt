@@ -11,12 +11,6 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/homeFragmentToFiltroCategorias"
-            app:destination="@id/filtroCategorias"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popExitAnim="@anim/from_left" />
-        <action
             android:id="@+id/homeFragmentToViewService"
             app:destination="@id/viewService" />
         <action
@@ -41,6 +35,9 @@
         <action
             android:id="@+id/action_homeFragment_to_profiles_services_manager_vis"
             app:destination="@id/profiles_services_manager_vis" />
+        <action
+            android:id="@+id/action_homeFragment_to_filtroCategoria"
+            app:destination="@id/filtroCategorias" />
     </fragment>
     <fragment
         android:id="@+id/filtroCategorias"

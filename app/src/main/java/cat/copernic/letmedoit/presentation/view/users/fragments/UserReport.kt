@@ -91,7 +91,8 @@ class UserReport : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun initView() {
-        Picasso.get().load(user.avatar).into(binding.userImage)
+        if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.userImage)
+
         binding.userName.text = "${user.name} ${user.surname} \n @${user.username}"
     }
 

@@ -31,7 +31,7 @@ class OpinionsViewHolder(val binding: OpinionsUserTemplateBinding) : RecyclerVie
         description.text = opinionsModel.description
         rating.rating = opinionsModel.rating
         nameSurname.text = "${user.name} ${user.surname}"
-        Picasso.get().load(user.avatar).into(binding.profileImage)
+        if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.profileImage)
 
         opinion.setOnClickListener { goToUser(user.id) }
 

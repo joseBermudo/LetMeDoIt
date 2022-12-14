@@ -90,7 +90,7 @@ class EditarInformacionPerfil : Fragment() {
     private fun initView() {
         user =  args.user
 
-        Picasso.get().load(user.avatar).into(binding.profileImage)
+        if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.profileImage)
         binding.nameSurname.text = "${user.name} ${user.surname} \n @${user.username} \n"
         binding.aboutMeText.text = user.aboutMe
         binding.scheduleText.text = "${user.schedule?.initHour} - ${user.schedule?.endHour}"
@@ -149,7 +149,7 @@ class EditarInformacionPerfil : Fragment() {
             when(dataState){
                 is DataState.Success<Boolean> -> {
                     if(dataState.data)
-                        Picasso.get().load(user.avatar).into(binding.profileImage)
+                        if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.profileImage)
                     hideImageProgressBar()
                 }
                 is DataState.Error -> {

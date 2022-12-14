@@ -75,7 +75,7 @@ class concludeDeal : Fragment() {
             myService = services[1]
             hisService = services[0]
         }
-        Picasso.get().load(user.avatar).into(binding.iconUser)
+        if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.iconUser)
         manageDealProgress()
 
         binding.nameSurname.text = "${user.name} ${user.surname} \n @${user.username}"

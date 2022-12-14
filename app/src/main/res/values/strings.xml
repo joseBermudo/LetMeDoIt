@@ -1,4 +1,5 @@
 <resources>
+    <string name="deals_notification_id">LETMEDOIT_CH_DEALS</string>
     <string name="app_name">LetMeDoIt</string>
     <string name="save">Save</string>
     <string name="type_here">Type here</string>
@@ -180,5 +181,4 @@
     <string name="name">Name</string>
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
-    <string name="invalid_category_name_alert">Invalid category name</string>
 </resources>

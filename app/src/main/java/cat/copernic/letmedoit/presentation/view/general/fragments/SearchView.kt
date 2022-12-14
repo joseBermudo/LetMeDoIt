@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.databinding.FragmentSearchViewBinding
@@ -46,8 +49,13 @@ class SearchView : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSearchViewBinding.inflate(layoutInflater,container,false)
 
-        binding.iconFilter.setOnClickListener{ Utils.goToDestination(requireView(), R.id.filtroCategorias) }
+        binding.iconFilter.setOnClickListener{ goToFilter() }
         return binding.root
+    }
+
+    private fun goToFilter() {
+        val action  = HomeFragmentDirections.actionHomeFragmentToFiltroCategoria()
+        requireView().findNavController().navigate(action)
     }
 
     lateinit var model : SearchViewViewModel

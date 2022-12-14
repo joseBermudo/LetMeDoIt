@@ -85,7 +85,7 @@ class verListadoDeals : Fragment() {
                             dealViewModel.getDeal(it.deal_id)
                         }
                     }
-                }
+                    if(historyDeals.size == 0 ) hideProgress()                }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
                 }

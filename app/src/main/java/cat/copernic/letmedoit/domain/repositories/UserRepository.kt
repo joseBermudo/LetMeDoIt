@@ -24,7 +24,7 @@ interface UserRepository {
     suspend fun deleteFavoriteService(idService: String) : Flow<DataState<Boolean>>
     suspend fun deleteAvatarFromStorage(imgLink: String) : Flow<DataState<Boolean>>
     suspend fun deleteCurriculumFromStorage(pdfLink : String) : Flow<DataState<Boolean>>
-    suspend fun deleteDealFromHistory(idDeal: String, idUser: String) : Flow<DataState<Boolean>>
+    suspend fun deleteDealFromHistory(idDeal: String, idUserOne: String, idUserTwo : String) : Flow<DataState<Boolean>>
 
     //add
     suspend fun addService(idService : String) : Flow<DataState<Boolean>>
@@ -35,6 +35,7 @@ interface UserRepository {
     suspend fun addOpinion(opinion : Opinion,idUser : String) : Flow<DataState<Boolean>>
     suspend fun addAvatarToStorage (fileUri: Uri): Flow<DataState<String>>
     suspend fun addCurriculumToStorage(fileUri : Uri) : Flow<DataState<String>>
+    suspend fun addDeviceToken(token : String) : Flow<DataState<Boolean>>
 
     //update
     suspend fun updateName(newName : String) : Flow<DataState<Boolean>>

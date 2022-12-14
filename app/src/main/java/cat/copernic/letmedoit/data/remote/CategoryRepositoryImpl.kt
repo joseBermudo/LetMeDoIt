@@ -36,7 +36,6 @@ class CategoryRepositoryImpl @Inject constructor(
         }
     }.flowOn(IO)
 
-
     override suspend fun getCategories(): Flow<DataState<List<Category>>> = flow {
         emit(DataState.Loading)
         try {
@@ -47,7 +46,7 @@ class CategoryRepositoryImpl @Inject constructor(
             emit(DataState.Error(e))
             emit(DataState.Finished)
         }
-    }.flowOn(Dispatchers.IO)
+    }.flowOn(IO)
 
     override suspend fun deleteCategory(id: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
@@ -64,6 +63,6 @@ class CategoryRepositoryImpl @Inject constructor(
             emit(DataState.Error(e))
             emit(DataState.Finished)
         }
-    }.flowOn(Dispatchers.IO)
+    }.flowOn(IO)
 
 }
