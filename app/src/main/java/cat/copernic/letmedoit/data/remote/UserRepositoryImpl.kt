@@ -124,6 +124,7 @@ class UserRepositoryImpl @Inject constructor(
 
             var userDeals = ArrayList<UserDeals>()
             historyDealsColllection.documents.forEach { historyDeal ->
+                userDeals.clear()
                 var id = historyDeal.id
                 userDeals.addAll(
                     usersCollection
@@ -134,7 +135,8 @@ class UserRepositoryImpl @Inject constructor(
                         .await()
                         .toObjects(UserDeals::class.java)
                 )
-                historyDeals.add(HistoryDeal(id, userDeals))
+                val tempUserDeal = userDeals.map { it.copy() }
+                historyDeals.add(HistoryDeal(id, ArrayList(tempUserDeal)))
             }
             emit(DataState.Success(ArrayList(historyDeals)))
             emit(DataState.Finished)
