@@ -4,11 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import cat.copernic.letmedoit.domain.usecases.admin.InsertCategoryUseCase
 import cat.copernic.letmedoit.data.model.Category
 import cat.copernic.letmedoit.Utils.DataState
-import cat.copernic.letmedoit.domain.usecases.admin.DeleteCategoryUseCase
-import cat.copernic.letmedoit.domain.usecases.admin.GetCategoriesUseCase
+import cat.copernic.letmedoit.domain.usecases.admin.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -19,8 +17,16 @@ import javax.inject.Inject
 class CreateCategoryViewModel @Inject constructor(
     val newCategoryUseCase: InsertCategoryUseCase,
     val getCategoriesUseCase: GetCategoriesUseCase,
-    val deleteCategoryUseCase: DeleteCategoryUseCase
+    val deleteCategoryUseCase: DeleteCategoryUseCase,
+    val updateCategoryDescUseCase: UpdateCategoryDescUseCase,
+    val updateCategoryNameUseCase: UpdateCategoryNameUseCase
 ) : ViewModel() {
+
+    private val mUpdateNameCategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val updateNameCategoryState: LiveData<DataState<Boolean>> get() = mUpdateNameCategoryState
+
+    private val mUpdateDescCategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val updateDescCategoryState: LiveData<DataState<Boolean>> get() = mUpdateDescCategoryState
 
     private val mNewCategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val newCategoryState: LiveData<DataState<Boolean>> get() = mNewCategoryState
@@ -30,6 +36,23 @@ class CreateCategoryViewModel @Inject constructor(
 
     private val mGetCategoriesState: MutableLiveData<DataState<List<Category>>> = MutableLiveData()
     val getCategoriesState: LiveData<DataState<List<Category>>> get() = mGetCategoriesState
+
+
+    fun updateName(id: String, name: String) {
+        viewModelScope.launch {
+            updateCategoryNameUseCase(id, name).onEach { dataState ->
+                mUpdateNameCategoryState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
+    fun updateDesc(id: String, desc: String) {
+        viewModelScope.launch {
+            updateCategoryDescUseCase(id, desc).onEach { dataState ->
+                mUpdateDescCategoryState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
 
     fun insertCategory(category: Category) {
         viewModelScope.launch {

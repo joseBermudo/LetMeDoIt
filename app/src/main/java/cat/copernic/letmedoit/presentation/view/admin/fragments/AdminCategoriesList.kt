@@ -132,7 +132,6 @@ class AdminCategoriesList : Fragment() {
 
             })
 
-
         viewModel.getCategoriesState.observe(
             viewLifecycleOwner,
             androidx.lifecycle.Observer { dataState ->
