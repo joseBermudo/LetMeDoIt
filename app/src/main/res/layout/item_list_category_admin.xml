@@ -75,7 +75,7 @@
                 android:layout_width="@dimen/categoryAdmin_icons_wh"
                 android:layout_height="@dimen/categoryAdmin_icons_wh"
                 android:layout_marginEnd="@dimen/item_category_edit_icon_marginEnd"
-                android:background="@drawable/edit_icon"
+                android:background="@drawable/ic_baseline_subdirectory_arrow_right_24"
                 android:backgroundTint="@color/azul_marino"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 app:layout_constraintBottom_toBottomOf="parent"

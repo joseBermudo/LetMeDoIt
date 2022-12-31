@@ -1,41 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingVertical="0dp"
     android:paddingHorizontal="@dimen/padding_horizontal_cl">
 
-    <TextView
-        android:id="@+id/category_name"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInput_layout_categoryName"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Category name"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-    <TextView
-        android:id="@+id/category_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/category_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        style="@style/Widget.LetMeDoIt.subtext"
-        android:text="eijdeijdeideideidjeidiediejdiejdide"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInput_categoryName"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Category Name"
+            android:hint="hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInput_layout_categoryDesc"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInput_layout_categoryName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInput_categoryDesc"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Category description"
+            android:hint="hint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
     <Button
         android:id="@+id/btn_closse_dialog"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/category_description"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/denegar"
+        android:text="@string/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInput_layout_categoryDesc" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_closse_dialog"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/close_icon"
-        android:layout_marginBottom="8dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/txtInput_layout_categoryDesc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

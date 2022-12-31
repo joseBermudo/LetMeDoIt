@@ -234,9 +234,11 @@ class AdminCategoriesList : Fragment() {
         btn_done.setOnClickListener {
             val txtInput_name =
                 dialogBinding.findViewById<TextInputEditText>(R.id.txtInput_categoryName)
+            val txtInput_desc = dialogBinding.findViewById<TextInputEditText>(R.id.txtInput_categoryDesc)
             val name = txtInput_name.text.toString().trim()
-            if (!name.isEmpty() && !name.isBlank()) {
-                val category = creteCategoryF(name)
+            val desc = txtInput_desc.text.toString().trim()
+            if (!name.isEmpty() && !name.isBlank() && !desc.isEmpty() && !desc.isBlank()) {
+                val category = creteCategoryF(name,desc)
                 viewModel.insertCategory(category)
                 categoryMutableList.add(index = 0, category)
                 adapter.notifyItemInserted(0)
@@ -263,8 +265,8 @@ class AdminCategoriesList : Fragment() {
         val myDialog = Dialog(binding.root.context)
         myDialog.setContentView(dialogBinding)
         myDialog.setCancelable(true)
-        dialogBinding.findViewById<TextView>(R.id.category_name).text = category.nombre
-        dialogBinding.findViewById<TextView>(R.id.category_description).text = category.description
+        dialogBinding.findViewById<TextView>(R.id.textInput_categoryName).text = category.nombre
+        dialogBinding.findViewById<TextView>(R.id.textInput_categoryDesc).text = category.description
         myDialog.show()
 
         dialogBinding.findViewById<Button>(R.id.btn_closse_dialog).setOnClickListener {
@@ -305,12 +307,12 @@ class AdminCategoriesList : Fragment() {
     }
 
 
-    private fun creteCategoryF(name: String): Category {
+    private fun creteCategoryF(name: String, desc: String): Category {
         //hace: crear una categoria
         //return: devuelve una categoria
         return Category(
             name,
-            "pepe",
+            desc,
             arrayListOf<Subcategory>(Subcategory("Pasear perros", "pepe", "100")),
             "favorites_icon",
         )
