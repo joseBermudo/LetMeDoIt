@@ -16,11 +16,15 @@ import cat.copernic.letmedoit.Utils.UserConstants
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.Utils.datahepers.UserServices
+import cat.copernic.letmedoit.data.model.Deal
 import cat.copernic.letmedoit.databinding.FragmentPerfilUsuarioServiciosBinding
 import cat.copernic.letmedoit.presentation.adapter.general.ServiceAdapter
+import cat.copernic.letmedoit.presentation.adapter.users.viewholder.DealsViewHolder
 import cat.copernic.letmedoit.presentation.viewmodel.general.SearchViewViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
+import cat.copernic.letmedoit.presentation.viewmodel.users.DealViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
+import com.google.firebase.firestore.auth.User
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
@@ -97,6 +101,47 @@ class PerfilUsuarioServicios(private val servicesId: ArrayList<UserServices>?) :
                 else -> Unit
             }
         } )
+        dealsViewModel.getDealsState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<List<Deal>> -> {
+                    val test = dealsToDelete
+                    dataState.data.forEach{
+                        if(it.services.serviceOneId == serviceToDeleteId || it.services.serviceTwoId == serviceToDeleteId) dealsToDelete.add(it)
+                    }
+
+                    dealsToDelete.forEach {
+                        userViewModel.deleteDealFromHistory(it.id,it.users.userOneId,it.users.userTwoId)
+                        userViewModel.deleteDealFromHistory(it.id,it.users.userTwoId,it.users.userOneId)
+                        dealsViewModel.deny(it.id)
+                    }
+                    serviceViewModel.removeService(serviceToDeleteId)
+                    userViewModel.deleteService(serviceToDeleteId)
+
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    hideProgress()
+                }
+                is DataState.Loading -> { showProgress() }
+                else -> Unit
+            }
+        } )
+        serviceViewModel.removeServiceState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                    val service = services.filter { it.id == serviceToDeleteId }[0]
+                    services.remove(service)
+                    adapter.removeService(service)
+                    hideProgress()
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    hideProgress()
+                }
+                is DataState.Loading -> { showProgress() }
+                else -> Unit
+            }
+        } )
     }
 
     private fun showProgress() {
@@ -115,6 +160,17 @@ class PerfilUsuarioServicios(private val servicesId: ArrayList<UserServices>?) :
         adapter.notifyDataSetChanged()
     }
 
+
+    private val dealsViewModel : DealViewModel by viewModels()
+    private lateinit var serviceToDeleteId : String
+    private var dealsToDelete = ArrayList<Deal>()
+    fun deleteService(idService : String){
+        serviceToDeleteId = idService
+
+        //Obtenemos un listado con todos los tratos y a partir de ello borramos todos los servicios relacionados a estos ultimos.
+        // Orden de borrado --> HistoryDeals -> Deal -> Service -> Referencia del servicio en el usuario.
+        dealsViewModel.getDeals()
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

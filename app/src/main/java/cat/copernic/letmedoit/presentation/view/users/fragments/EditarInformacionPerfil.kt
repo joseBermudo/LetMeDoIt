@@ -601,7 +601,7 @@ class EditarInformacionPerfil : Fragment() {
         if (uri == null)
             return
 
-        if(user.avatar != null)
+        if(user.avatar != "")
             userViewModel.deleteAvatarFromStorage(user.avatar!!)
 
         userViewModel.addAvatarToStorage(uri)
@@ -649,10 +649,13 @@ class EditarInformacionPerfil : Fragment() {
     override fun onResume() {
         super.onResume()
         if(!checkPermission()){
-            dialog.dismiss()
-            googleMap.isMyLocationEnabled = false
-            dialog.show()
-            askPermission()
+            if(::dialog.isInitialized){
+                dialog.dismiss()
+                googleMap.isMyLocationEnabled = false
+                dialog.show()
+                askPermission()
+            }
+
         }
     }
 }

@@ -15,26 +15,42 @@
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/divider_16dp_margin_top"
+            android:layout_marginStart="@dimen/divider_16dp_margin_top"
+            android:layout_marginTop="@dimen/divider_16dp_margin_top"
+            android:layout_marginBottom="@dimen/divider_16dp_margin_top"
+            android:layout_marginEnd="60dp"
             android:background="@drawable/spinner_frame_layout_style"
             android:iconifiedByDefault="false"
             android:searchIcon="@drawable/search_icon"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/iconFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="-48dp"
-            android:background="@drawable/filter_icon"
+        android:id="@+id/iconFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_vertical_start_end_8"
+        android:background="@drawable/filter_icon"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/searchView"
+        app:layout_constraintStart_toEndOf="@+id/searchView"
+        app:layout_constraintTop_toTopOf="@+id/searchView" />
+
+        <TextView
+            android:id="@+id/clearFilters"
+            android:layout_width="@dimen/icon_category_wh"
+            android:layout_height="@dimen/icon_category_wh"
+            android:visibility="gone"
+            android:layout_marginStart="@dimen/padding_vertical_start_end_8"
+            android:background="@drawable/close_icon"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="@+id/searchView"
             app:layout_constraintStart_toEndOf="@+id/searchView"
-            android:clickable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:layout_constraintTop_toTopOf="@+id/searchView"
-            android:focusable="true" />
+            app:layout_constraintTop_toTopOf="@+id/searchView" />
 
         <View
             android:id="@+id/divider_menu"

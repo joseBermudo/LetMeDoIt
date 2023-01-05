@@ -21,6 +21,7 @@ class DealViewModel @Inject constructor(
     private val denyDealUseCase: DenyDealUseCase,
     private val insertDealUseCase: InsertDealUseCase,
     private val getDealUseCase: GetDealUseCase,
+    private val getDealsUseCase: GetDealsUseCase,
     private val suscribeForUpdatesUseCase: SuscribeForUpdatesUseCase
 ): ViewModel(){
 
@@ -44,10 +45,14 @@ class DealViewModel @Inject constructor(
     val getDealState: LiveData<DataState<Deal>>
         get() = mGetDealState
 
+    private val mGetDealsState: MutableLiveData<DataState<List<Deal>>> = MutableLiveData()
+    val getDealsState: LiveData<DataState<List<Deal>>>
+        get() = mGetDealsState
 
     private val mSuscribeForUpdatesState: MutableLiveData<DataState<Deal?>> = MutableLiveData()
     val suscribeForUpdatesState: LiveData<DataState<Deal?>>
         get() = mSuscribeForUpdatesState
+
 
     fun accept(id: String){
         viewModelScope.launch() {
@@ -89,6 +94,14 @@ class DealViewModel @Inject constructor(
             getDealUseCase(id)
                 .onEach { dataState ->
                     mGetDealState.value = dataState
+                }.launchIn(viewModelScope)
+        }
+    }
+    fun getDeals(){
+        viewModelScope.launch() {
+            getDealsUseCase()
+                .onEach { dataState ->
+                    mGetDealsState.value = dataState
                 }.launchIn(viewModelScope)
         }
     }

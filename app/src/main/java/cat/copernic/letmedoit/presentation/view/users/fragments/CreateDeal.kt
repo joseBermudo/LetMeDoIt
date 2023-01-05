@@ -69,6 +69,7 @@ class CreateDeal : Fragment() {
         binding.addButton.setOnClickListener { goToServiceManager("null") }
         binding.editButton.setOnClickListener { goToServiceManager(servicesUserOne[binding.spinnerMyService.selectedItemPosition].id) }
         binding.btnCreate.setOnClickListener { createDeal() }
+        binding.backArrow.setOnClickListener{ requireActivity().onBackPressed()}
     }
 
     private lateinit var deal : Deal
@@ -107,14 +108,16 @@ class CreateDeal : Fragment() {
 
                     if (gettingUserOneServices){
                         servicesUserOneIds.addAll(dataState.data)
+                        if(servicesUserOneIds.size == 0){
+                            gettingUserOneServices = false
+                            args.userTwo.id.let { userViewModel.getServices(it) }
+                        }
                         servicesUserOneIds.forEach { serviceViewModel.getService(it.service_id) }
                     }
                     else{
                         servicesUserTwoIds.addAll(dataState.data)
                         dataState.data.forEach { serviceViewModel.getService(it.service_id) }
                     }
-
-
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
@@ -132,11 +135,13 @@ class CreateDeal : Fragment() {
                     if(servicesUserOne.size == servicesUserOneIds.size && gettingUserOneServices){
                         initSpinner(servicesUserOne,binding.spinnerMyService)
                         gettingUserOneServices = false
-                        args.userTwo.id?.let { userViewModel.getServices(it) }
+                        args.userTwo.id.let { userViewModel.getServices(it) }
                     }
 
-                    if(servicesUserTwo.size == servicesUserTwoIds.size && servicesUserTwo.size > 1)
+                    if(servicesUserTwo.size == servicesUserTwoIds.size && servicesUserTwo.size >= 1){
                         initSpinner(servicesUserTwo,binding.spinnerHisService)
+                        binding.btnCreate.isEnabled = true
+                    }
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
@@ -200,6 +205,7 @@ class CreateDeal : Fragment() {
     private val args : CreateDealArgs by navArgs()
     @SuppressLint("SetTextI18n")
     private fun initView() {
+        binding.btnCreate.isEnabled = false
         args.userTwo.let { user ->
             if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.userImage)
             binding.nameSurnameText.text = "${user.name} ${user.surname} \n @${user.username}"

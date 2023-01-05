@@ -84,6 +84,18 @@
                 app:layout_constraintTop_toBottomOf="@id/profile_name_surname" />
 
             <TextView
+                android:id="@+id/ratingNum"
+                style="@style/Widget.LetMeDoIt.subtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_vertical_start_end_8"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/user_rating"
+                app:layout_constraintEnd_toEndOf="@id/user_rating"
+                app:layout_constraintTop_toBottomOf="@id/user_rating"
+                android:text="(0.0)" />
+
+            <TextView
                 android:id="@+id/btn_report"
                 style="@style/IconoClickable"
                 android:layout_width="@dimen/app_icon_size_small"

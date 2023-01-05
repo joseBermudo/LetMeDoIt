@@ -26,10 +26,12 @@ import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.FragmentViewServiceBinding
 import cat.copernic.letmedoit.presentation.adapter.general.SliderImagesAdapter
+import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.DecimalFormat
 
 
 const val TAG_SLIDER_IMAGES = "sliderCardView"
@@ -79,7 +81,6 @@ class viewService : Fragment() {
             binding.btnFav.visibility = View.INVISIBLE
             binding.btnReport.visibility = View.INVISIBLE
         }
-
         initView(args.service)
         initListeners()
         initObservers()
@@ -120,6 +121,18 @@ class viewService : Fragment() {
     }
 
     private fun initObservers() {
+        serviceViewModel.getServiceState.observe(viewLifecycleOwner,Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Service> -> {
+                    initView(dataState.data)
+                }
+                is DataState.Error -> {
+                    requireActivity().onBackPressed()
+                }
+                is DataState.Loading -> { }
+                else -> {}
+            }
+        })
         userViewModel.getUserState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Users?> -> {
@@ -127,7 +140,9 @@ class viewService : Fragment() {
                     if(user != null){
                         if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.profileImage)
                         binding.userRating.rating = user.rating
-                        binding.nameSurname.text = "${user.name} ${user.surname}"
+                        binding.ratingNum.text = "(${DecimalFormat("#.##").format(user.rating)})"
+                        if(user.name != "")  binding.nameSurname.text = "${user.name} ${user.surname}"
+                        else binding.nameSurname.text = "@${user.username}"
                     }
                 }
                 is DataState.Error -> {
@@ -170,6 +185,8 @@ class viewService : Fragment() {
 
     private fun initView(service: Service) {
 
+        val test = Constants.USER_LOGGED_IN_ID
+        if(Constants.USER_LOGGED_IN_ID == "") binding.btnChat.visibility = View.GONE
         if(Constants.USER_LOGGED_IN_ID == args.service.userid){
             binding.btnFav.isVisible = false
             binding.btnReport.isVisible = false
@@ -180,14 +197,13 @@ class viewService : Fragment() {
         changeFavIcon()
         binding.tittleService.text = service.title
         binding.subTextCategory.text = service.category.id_category
+        binding.subTextSubCategory.text = service.category.id_subcategory
         binding.descriptionService.text = service.description
         binding.txtCountFav.text = service.n_likes.toString()
         binding.txtEditedTime.text = service.edited_time
-        createSliderDots(service.image)
         userViewModel.getUser(service.userid)
-
-
         adapter = SliderImagesAdapter(service.image)
+        createSliderDots(service.image)
 
 
         //Eventos del ViewPager de imagenes
@@ -232,6 +248,7 @@ class viewService : Fragment() {
     //Por cada foto creamos un punto gris debajo de la imagen utilizando cardviews
     private fun createSliderDots(images: ArrayList<Image>) {
         var contador = 0
+        binding.SliderDots.removeAllViews()
         images.forEach { _ ->
             contador++
             val cardViewDotContainer = CardView(requireContext())
@@ -246,6 +263,11 @@ class viewService : Fragment() {
         }
     }
 
+    private val serviceViewModel : ServiceViewModel by viewModels()
+    override fun onResume() {
+        super.onResume()
+        serviceViewModel.getService(args.service.id)
+    }
 
     //Cambiamos el color del CardView a azul o a gris
     private var lastColored : CardView? = null

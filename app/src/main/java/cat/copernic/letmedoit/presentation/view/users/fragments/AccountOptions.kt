@@ -30,6 +30,7 @@ import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import com.squareup.picasso.Picasso
 
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.DecimalFormat
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,6 +73,7 @@ class AccountOptions : Fragment() {
         
         binding.nameSurname.text = "${user.name} ${user.surname} \n @${user.username} \n"
         binding.myRatingBar.rating = user.rating
+        binding.ratingNum.text = "(${DecimalFormat("#.##").format(user.rating)})"
         user.language?.let { binding.spinnerLenguages.setSelection(it) }
         binding.darkThemeSwitch.isChecked = user.darkTheme == true
     }
@@ -137,6 +139,7 @@ class AccountOptions : Fragment() {
         loginViewModel.logOutState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Boolean> -> {
+                    Constants.USER_LOGGED_IN_ID = ""
                     startActivity(Intent(requireActivity(), Home::class.java))
                     requireActivity().finish()
                 }

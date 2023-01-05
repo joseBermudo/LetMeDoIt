@@ -5,6 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.FrameLayout.LayoutParams
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -61,6 +65,13 @@ class SearchView : Fragment() {
     lateinit var model : SearchViewViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val currentDestination = parentFragment?.findNavController()?.currentDestination?.label
+
+        if(currentDestination != "fragment_home"){
+            binding.iconFilter.isEnabled = false
+            binding.iconFilter.isVisible = false
+        }
 
         model = ViewModelProvider(requireActivity())[SearchViewViewModel::class.java]
 
