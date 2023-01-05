@@ -9,14 +9,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.Utils.datahepers.UsersMap
+import cat.copernic.letmedoit.data.model.Report
 import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.FragmentUserReportBinding
 import cat.copernic.letmedoit.presentation.view.general.fragments.PerfilUsuarioMenuSuperiorArgs
+import cat.copernic.letmedoit.presentation.viewmodel.general.ReportsViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.UUID
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,6 +51,7 @@ class UserReport : Fragment() {
     lateinit var binding : FragmentUserReportBinding
     private val args: UserReportArgs by navArgs()
     private val userViewModel : UserViewModel by viewModels()
+    private val reportViewModel : ReportsViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -78,6 +85,18 @@ class UserReport : Fragment() {
                 else -> Unit
             }
         } )
+        reportViewModel.createReportState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                    Utils.showOkDialog("User reported",requireContext(),"User has been reported.")
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> { binding.btnReport.isEnabled = false }
+                else -> Unit
+            }
+        } )
     }
 
     private fun initListeners() {
@@ -86,7 +105,29 @@ class UserReport : Fragment() {
     }
 
     private fun reportUser() {
+        if(!isDataSet()) return
+        reportViewModel.createReport(buildReport())
+    }
 
+    private fun isDataSet(): Boolean {
+        if(binding.reportReason.checkedRadioButtonId == -1){
+            Utils.showOkDialog("Unfilled information",requireContext(),"Report reason must be indicated")
+            return false
+        }
+        if(binding.editCommentText.text.toString().isBlank()){
+            Utils.showOkDialog("Unfilled information",requireContext(),"You must make a comment for the report")
+            return false
+        }
+        return true
+    }
+
+    private fun buildReport(): Report {
+        var reasonId = when(binding.reportReason.checkedRadioButtonId){
+            R.id.report_misbehaviour -> 1
+            R.id.report_fraud -> 2
+            else -> 3
+        }
+        return Report(UUID.randomUUID().toString(), UsersMap(Constants.USER_LOGGED_IN_ID,user.id),binding.editCommentText.text.toString(),reasonId,false)
     }
 
     @SuppressLint("SetTextI18n")

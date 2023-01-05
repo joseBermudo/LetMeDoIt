@@ -2,6 +2,7 @@ package cat.copernic.letmedoit.presentation.adapter.general.viewholder
 
 import android.content.Intent
 import android.net.Uri
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.Navigation
@@ -36,8 +37,22 @@ class ServiceViewHolder(val binding: ServiceTemplateBinding) : RecyclerView.View
      * @param categoryModel El modelo de datos que se utilizara para asignar los datos a la view.
      * */
     fun render(serviceModel: Service){
-        if(serviceModel.userid == Constants.USER_LOGGED_IN_ID)
+
+        //Comprobamos el fragmento de origen para poder aplicar el delete
+        val serviceAdapter = bindingAdapter as ServiceAdapter
+        val fragment = serviceAdapter.fragment
+        val fragmentName = serviceAdapter.fragment?.javaClass?.simpleName.toString()
+        if(serviceModel.userid == Constants.USER_LOGGED_IN_ID) {
             serviceFav.isVisible = false
+            if(fragmentName == "PerfilUsuarioServicios"){
+                binding.deleteServiceContainer.visibility = View.VISIBLE
+            }
+            binding.deleteService.setOnClickListener{
+                if(fragmentName == "PerfilUsuarioServicios"){
+                    (fragment as PerfilUsuarioServicios).deleteService(serviceModel.id)
+                }
+            }
+        }
 
         //Asigación de datos a los controles del view.
         serviceTitle.text = serviceModel.title

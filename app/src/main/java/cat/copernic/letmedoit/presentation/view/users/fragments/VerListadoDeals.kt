@@ -24,6 +24,7 @@ import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.DealViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 @AndroidEntryPoint
 class verListadoDeals : Fragment() {
 
@@ -47,7 +48,7 @@ class verListadoDeals : Fragment() {
 
         historyDealsIndex = 0
         historyDeals.clear()
-        deals.clear()
+        userDeals.clear()
         users.clear()
         services.clear()
         _binding = FragmentVerListadoDealsBinding.inflate(inflater, container, false)
@@ -68,12 +69,12 @@ class verListadoDeals : Fragment() {
     }
 
     private var historyDeals = ArrayList<HistoryDeal>()
-    private var deals = ArrayList<Deal>()
+    private var userDeals = ArrayList<Deal>()
     private var users = ArrayList<Users>()
     private var services = ArrayList<Service>()
 
     private var historyDealsIndex = 0
-
+    private var tempDeals = ArrayList<Deal>()
     private fun initObservers() {
         userViewModel.getHistoryDealsState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
@@ -96,12 +97,22 @@ class verListadoDeals : Fragment() {
         dealViewModel.getDealState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Deal> -> {
-                    deals.add(dataState.data)
-                    if(historyDeals[historyDealsIndex].dealId.size == deals.size) deals.forEach {
+                    var test = historyDeals
+                    var test2 = historyDealsIndex
+                    var test3 = tempDeals
+                    tempDeals.add(dataState.data)
+
+                    if(historyDeals[historyDealsIndex].dealId.size == tempDeals.size){
+                        tempDeals.forEach {
+                            userDeals.add(it)
+                            if(it.users.userOneId == Constants.USER_LOGGED_IN_ID) userViewModel.getUser(it.users.userTwoId)
+                            else userViewModel.getUser(it.users.userOneId)
+                        }
+                        tempDeals.clear()
                         historyDealsIndex++
-                        if(it.users.userOneId == Constants.USER_LOGGED_IN_ID) userViewModel.getUser(it.users.userTwoId)
-                        else userViewModel.getUser(it.users.userOneId)
                     }
+
+                    if(historyDealsIndex >= historyDeals.size) return@Observer
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
@@ -113,8 +124,10 @@ class verListadoDeals : Fragment() {
         userViewModel.getUserState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Users?> -> {
+                    var test1 = userDeals
+                    var test2 = users
                     dataState.data?.let { users.add(it) }
-                    if(users.size == deals.size) deals.forEach {
+                    if(users.size == userDeals.size) userDeals.forEach {
                         if(it.users.userOneId == Constants.USER_LOGGED_IN_ID) serviceViewModel.getService(it.services.serviceTwoId)
                         else serviceViewModel.getService(it.services.serviceOneId)
                     }
@@ -130,7 +143,7 @@ class verListadoDeals : Fragment() {
             when(dataState){
                 is DataState.Success<Service> -> {
                     services.add(dataState.data)
-                    if(services.size == deals.size) initView()
+                    if(services.size == userDeals.size) initView()
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
@@ -147,7 +160,7 @@ class verListadoDeals : Fragment() {
         binding.recyclerViewListadoDeals.layoutManager = LinearLayoutManager(binding.root.context)
 
 
-        adapter = DealsAdapter(deals,users,services)
+        adapter = DealsAdapter(userDeals,users,services)
 
         dealsRecyclerView.adapter = adapter
     }

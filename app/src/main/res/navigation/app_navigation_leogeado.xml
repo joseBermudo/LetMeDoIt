@@ -10,6 +10,15 @@
         android:name="cat.copernic.letmedoit.presentation.view.general.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
+        <argument
+            android:name="sortingType"
+            app:argType="integer"
+            android:defaultValue="-1"/>
+        <argument
+            app:nullable="true"
+            android:name="category"
+            app:argType="cat.copernic.letmedoit.data.model.Category"
+            android:defaultValue="@null"/>
         <action
             android:id="@+id/homeFragmentToViewService"
             app:destination="@id/viewService"
@@ -38,6 +47,9 @@
         <action
             android:id="@+id/action_homeFragment_to_filtroCategoria"
             app:destination="@id/filtroCategorias" />
+        <action
+            android:id="@+id/action_homeFragment_self"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/profiles_services_manager_vis"
@@ -174,11 +186,11 @@
             android:id="@+id/conversacionesToChat"
             app:destination="@id/chat" />
         <action
-            android:id="@+id/action_verConversaciones_to_viewDeal"
-            app:destination="@id/viewDeal" />
-        <action
             android:id="@+id/action_verConversaciones_to_concludeDeal"
             app:destination="@id/concludeDeal" />
+        <action
+            android:id="@+id/action_verConversaciones_to_viewDeal"
+            app:destination="@id/viewDeal" />
     </fragment>
     <fragment
         android:id="@+id/verListadoDeals"
@@ -286,6 +298,8 @@
         <action
             android:id="@+id/viewDealToListadoDeals"
             app:destination="@id/verListadoDeals"
+            app:popUpTo="@id/verListadoDeals"
+            app:popUpToInclusive="true"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
@@ -298,7 +312,9 @@
             app:destination="@id/viewService" />
         <action
             android:id="@+id/action_viewDeal_to_verConversaciones"
-            app:destination="@id/verConversaciones" />
+            app:destination="@id/verConversaciones"
+            app:popUpTo="@id/verConversaciones"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/concludeDeal"

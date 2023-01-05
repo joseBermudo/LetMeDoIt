@@ -7,6 +7,7 @@ import cat.copernic.letmedoit.di.FirebaseModule
 import cat.copernic.letmedoit.domain.repositories.ReportRepository
 import cat.copernic.letmedoit.presentation.view.users.fragments.chat
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,7 +23,7 @@ class ReportRepositoryImpl @Inject constructor(
         try {
             var uploadStatus: Boolean = false
             report.id.let {
-                reportsCollection.document(it).get()
+                reportsCollection.document(it).set(report, SetOptions.merge())
                     .addOnSuccessListener { uploadStatus = true }
                     .addOnFailureListener { uploadStatus = false }
                     .await()

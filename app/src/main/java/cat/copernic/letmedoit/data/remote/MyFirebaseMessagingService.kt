@@ -16,6 +16,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
 
+        //Manejar notificaciones cuando la aplicacion esta abierta:
+
         //Titulo y Mensaje de la notificación
         val messageTitle = message.notification?.title
         val messageBody = message.notification?.body

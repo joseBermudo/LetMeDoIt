@@ -5,10 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import cat.copernic.letmedoit.Utils.DataState
+import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.data.model.Category
 import cat.copernic.letmedoit.data.provider.CategoryProvider
 import cat.copernic.letmedoit.presentation.adapter.general.CategoryAdapter
 import cat.copernic.letmedoit.databinding.FragmentHomeCategoriesListBinding
+import cat.copernic.letmedoit.presentation.viewmodel.admin.CreateCategoryViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,19 +27,22 @@ private const val ARG_PARAM2 = "param2"
  * Use the [HomeCategoriesList.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class HomeCategoriesList : Fragment(){
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
+    private val categoryViewModel : CreateCategoryViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
     }
+
+
 
     lateinit var binding : FragmentHomeCategoriesListBinding
     override fun onCreateView(
@@ -41,16 +51,31 @@ class HomeCategoriesList : Fragment(){
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeCategoriesListBinding.inflate(inflater,container,false)
-
+        initObservers()
+        categoryViewModel.getCategories()
         //Inicializamos el RecyclerView
-        inicializarRecyclerView()
+
         return binding.root
     }
 
+    private fun initObservers() {
+        categoryViewModel.getCategoriesState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<List<Category>> -> {
+                    inicializarRecyclerView(dataState.data)
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> {}
+                else -> Unit
+            }
+        } )
+    }
     /**
      * Inicializa el RecyclerView
      * */
-    private fun inicializarRecyclerView() {
+    private fun inicializarRecyclerView(categories: List<Category>) {
 
         val categoryRecyclerView = binding.categoryRecycleView
         //LinearLayoutManager HORIZONTAL
@@ -58,7 +83,7 @@ class HomeCategoriesList : Fragment(){
         //Asignación del adaptador al recyclerview.
         categoryRecyclerView.adapter =
             CategoryAdapter(
-                CategoryProvider.obtenerCategorias()
+                categories as ArrayList<Category>
             )
     }
 

@@ -186,6 +186,11 @@ class ViewDeal : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun initView() {
+        if(user.banned){
+            binding.nameSurname.text = "This user has been banned"
+            binding.btnAccept.isEnabled = false
+            return
+        }
         if(deal.users.userOneId == Constants.USER_LOGGED_IN_ID){
             myService = services[0]
             hisService = services[1]
@@ -197,7 +202,10 @@ class ViewDeal : Fragment() {
 
         if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.iconUser)
         binding.txtProgressDeal.text = if (!deal.accepted)  "1/2" else "2/2"
-        if(Constants.USER_LOGGED_IN_ID == deal.users.userOneId) binding.btnAccept.isEnabled = false
+        if(Constants.USER_LOGGED_IN_ID == deal.users.userOneId) {
+            binding.btnAccept.isEnabled = false
+            binding.btnAccept.setBackgroundColor(resources.getColor(R.color.secundario_gris_50))
+        }
         binding.nameSurname.text = "${user.name} ${user.surname} \n @${user.username}"
         binding.myServiceSubText.text = myService.title
         binding.hisServiceSubText.text = hisService.title

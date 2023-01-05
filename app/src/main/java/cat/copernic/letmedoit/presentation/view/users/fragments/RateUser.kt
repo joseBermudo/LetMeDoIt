@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
@@ -65,6 +66,7 @@ class RateUser : Fragment() {
 
     private fun initListeners() {
         binding.saveBtn.setOnClickListener{ addOpinion() }
+        binding.btnBack.setOnClickListener{ requireActivity().onBackPressed()}
     }
 
     private fun addOpinion() {
@@ -83,7 +85,9 @@ class RateUser : Fragment() {
             when(dataState){
                 is DataState.Success<Boolean> -> {
                     hideProgress()
-                    requireActivity().onBackPressed()
+
+                    val action = RateUserDirections.rateUserToHome()
+                    Navigation.findNavController(requireView()).navigate(action)
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())

@@ -10,6 +10,15 @@
         android:name="cat.copernic.letmedoit.presentation.view.general.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
+        <argument
+            android:name="sortingType"
+            app:argType="integer"
+            android:defaultValue="-1"/>
+        <argument
+            app:nullable="true"
+            android:name="category"
+            app:argType="cat.copernic.letmedoit.data.model.Category"
+            android:defaultValue="@null"/>
         <action
             android:id="@+id/homeFragmentToViewService"
             app:destination="@id/viewService" />
@@ -38,13 +47,16 @@
         <action
             android:id="@+id/action_homeFragment_to_filtroCategoria"
             app:destination="@id/filtroCategorias" />
+        <action
+            android:id="@+id/action_homeFragment_self"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/filtroCategorias"
         android:name="cat.copernic.letmedoit.presentation.view.general.fragments.FiltroCategorias"
         android:label="FiltroCategorias" >
         <action
-            android:id="@+id/filtroCategoriasToHomeFragment"
+            android:id="@+id/filterBackToHome"
             app:destination="@id/homeFragment"
             app:argType="string"
             app:enterAnim="@anim/nav_default_enter_anim"

@@ -18,6 +18,7 @@ interface ServiceRepository {
 
     //delete
     suspend fun removeImage(idService: String, imgIndex: Int,imgLink : String) : Flow<DataState<Boolean>>
+    suspend fun removeService(idService : String) : Flow<DataState<Boolean>>
 
     //update
     suspend fun updateTitle(idService : String, newTitle : String): Flow<DataState<Boolean>>
@@ -26,5 +27,6 @@ interface ServiceRepository {
     suspend fun updateNLikes(idService : String, newNum : Int): Flow<DataState<Boolean>>
     suspend fun updateEditedTime(idService : String, newEditedTime : String): Flow<DataState<Boolean>>
     suspend fun editServiceImage(idService : String,newFileURI : Uri, index: Int): Flow<DataState<String>>
+
 
 }
