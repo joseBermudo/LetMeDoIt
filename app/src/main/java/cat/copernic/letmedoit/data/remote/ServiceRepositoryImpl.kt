@@ -1,6 +1,7 @@
 package cat.copernic.letmedoit.data.remote
 
 import android.net.Uri
+import android.provider.ContactsContract.Data
 import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.domain.repositories.ServiceRepository
@@ -10,6 +11,7 @@ import cat.copernic.letmedoit.Utils.datahepers.CategoryMap
 import cat.copernic.letmedoit.data.model.Image
 import javax.inject.Inject
 import cat.copernic.letmedoit.di.FirebaseModule
+import com.google.android.gms.tasks.Tasks.await
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
@@ -124,10 +126,40 @@ class ServiceRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    suspend fun getServiceImages(service: Service) {
-        val images = serviceCollection.document(service.id).collection(ServiceConstants.IMAGES).orderBy("index").get().await()
-                .toObjects(Image::class.java)
+    override suspend fun removeService(idService: String): Flow<DataState<Boolean>> = flow{
+        var isSuccessful = false
+        emit(DataState.Loading)
+        try {
+            val imagesDocuments = serviceCollection.document(idService).collection(ServiceConstants.IMAGES).get().await().documents
+            imagesDocuments.forEach {
+                val image = it.toObject(Image::class.java)
+                if (image != null) {
+                    FirebaseModule.storageProvider().getReferenceFromUrl(image.img_link).delete().await()
+                    serviceCollection.document(idService).collection(ServiceConstants.IMAGES).document(it.id).delete().await()
+                }
+            }
+            serviceCollection.document(idService)
+                .delete()
+                .addOnSuccessListener { isSuccessful = true  }
+                .addOnFailureListener { isSuccessful = false }
+                .await()
 
+
+            emit(DataState.Success(isSuccessful))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun getServiceImages(service: Service) {
+        val ref = serviceCollection.document(service.id).collection(ServiceConstants.IMAGES).orderBy("index").get().await()
+        val images = ref.toObjects(Image::class.java)
+
+        ref.documents.forEachIndexed { i, document ->
+            images[i].id = document.id
+        }
         service.image.removeAll(service.image.toSet())
         service.image.addAll(images)
     }
@@ -242,11 +274,9 @@ class ServiceRepositoryImpl @Inject constructor(
         emit(DataState.Loading)
         try {
             var newUrl = ""
-            //deleteServiceImage(oldFileUri)
+            //deleteServiceImage(newFileURI)
 
             var service = Service()
-
-
             saveServiceImage(newFileURI, idService, index).collect{ dataState ->
                 when(dataState){
                     is DataState.Success<String> -> {
@@ -262,7 +292,6 @@ class ServiceRepositoryImpl @Inject constructor(
                 }
 
             }
-
             emit(DataState.Success(newUrl))
             emit(DataState.Finished)
         } catch (e: Exception) {
@@ -270,7 +299,6 @@ class ServiceRepositoryImpl @Inject constructor(
             emit(DataState.Finished)
         }
     }.flowOn(Dispatchers.IO)
-
 
     private suspend fun deleteServiceImage(oldFileUri: String): Boolean {
         var isSuccessful = false

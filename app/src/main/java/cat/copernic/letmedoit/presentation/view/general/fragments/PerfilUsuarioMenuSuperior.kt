@@ -27,6 +27,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.DecimalFormat
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -204,12 +205,15 @@ class PerfilUsuarioMenuSuperior : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun initView() {
+        if(user.banned){
+            binding.profileNameSurname.text = "This user has been banned"
+            return
+        }
+
         if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.profileImage)
         binding.userRating.rating = user.rating
+        binding.ratingNum.text = "(${DecimalFormat("#.##").format(user.rating)})"
         binding.profileNameSurname.text = "${user.name} ${user.surname} \n @${user.username}"
-
-        val test = user.opinions
-
         //Fragmentos del TabLayout
         val fragments : ArrayList<Fragment> = arrayListOf(
             PerfilUsuarioServicios(user.servicesId),

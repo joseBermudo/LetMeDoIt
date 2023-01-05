@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.Utils.UserConstants
+import cat.copernic.letmedoit.data.model.Category
 import cat.copernic.letmedoit.data.model.Service
 import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.ServiceTemplateBinding
@@ -17,6 +18,8 @@ import cat.copernic.letmedoit.presentation.view.users.fragments.viewFavUsers
 import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import org.checkerframework.checker.units.qual.s
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -24,7 +27,7 @@ import kotlin.collections.ArrayList
  * Adaptador de Categorias, implementa Filterable para así poder filtrar :)
  * @param categoryList ArrayList de servicios
  * */
-class ServiceAdapter(private var serviceList:ArrayList<Service>,private val fragment: Fragment? = null, private val userViewModel: UserViewModel,private val serviceViewModel: ServiceViewModel) : RecyclerView.Adapter<ServiceViewHolder>() {
+class ServiceAdapter(private var serviceList:ArrayList<Service>,val fragment: Fragment? = null, private val userViewModel: UserViewModel,private val serviceViewModel: ServiceViewModel) : RecyclerView.Adapter<ServiceViewHolder>() {
 
     lateinit var destinationLabel : String
     var favFragment = false
@@ -38,6 +41,7 @@ class ServiceAdapter(private var serviceList:ArrayList<Service>,private val frag
 
         val binding = ServiceTemplateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ServiceViewHolder(binding)
+
     }
 
     /**
@@ -78,6 +82,43 @@ class ServiceAdapter(private var serviceList:ArrayList<Service>,private val frag
         notifyDataSetChanged()
     }
 
+    fun sortByCategory(category: Category?) {
+        if (category != null) {
+            serviceListFiltered = serviceListFiltered.filter { it.category.id_category == category.nombre } as ArrayList<Service>
+            notifyDataSetChanged()
+        }
+    }
+    private fun sortByCategorySubcategory(category: Category?){
+        if (category != null) {
+            serviceListFiltered =  serviceListFiltered.filter { it.category.id_category == category.nombre && it.category.id_subcategory == category.subcategories[0].nombre } as ArrayList<Service>
+        }
+    }
+    fun orderByName(category: Category?){
+        serviceListFiltered.sortBy { it.title }
+        sortByCategorySubcategory(category)
+        notifyDataSetChanged()
+    }
+    fun orderByNewestDate(category: Category?){
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy",Locale.US)
+        serviceListFiltered.sortWith(
+            compareByDescending { dateFormat.parse(it.edited_time)?.time }
+        )
+        sortByCategorySubcategory(category)
+        notifyDataSetChanged()
+    }
+    fun orderByOldestDate(category: Category?){
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy",Locale.US)
+        serviceListFiltered.sortWith(
+            compareBy { dateFormat.parse(it.edited_time)?.time }
+        )
+        sortByCategorySubcategory(category)
+        notifyDataSetChanged()
+    }
+
+    fun clearFilters(){
+        serviceListFiltered = serviceList
+        notifyDataSetChanged()
+    }
     fun clear(){
         var size = serviceListFiltered.size
         serviceListFiltered.clear()
@@ -105,5 +146,12 @@ class ServiceAdapter(private var serviceList:ArrayList<Service>,private val frag
         userViewModel.addFavoriteService(service.id)
         serviceViewModel.updateNLikes(service.id, ++service.n_likes)
     }
+
+    fun removeService(service: Service) {
+        val position = serviceListFiltered.indexOf(service)
+        serviceListFiltered.remove(service)
+        notifyItemRemoved(position)
+    }
+
 
 }

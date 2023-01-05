@@ -27,9 +27,10 @@ class ServiceViewModel @Inject constructor(
     private val updateEditedTimeUseCase: UpdateEditedTimeUseCase,
     private val updateNLikesUseCase: UpdateNLikesUseCase,
     private val updateDescriptionUseCase: UpdateDescriptionUseCase,
-    private val editServiceImageUseCase: EditServiceImageUseCase,
     private val updateCategoryUseCase: UpdateCategoryUseCase,
-    private val removeImageUseCase: RemoveImageUseCase
+    private val removeImageUseCase: RemoveImageUseCase,
+    private val editServiceImageUseCase: EditServiceImageUseCase,
+    private val removeServiceUseCase: RemoveServiceUseCase
 ): ViewModel() {
 
     private val mGetServiceState: MutableLiveData<DataState<Service>> = MutableLiveData()
@@ -77,7 +78,7 @@ class ServiceViewModel @Inject constructor(
         }
     }
 
-    fun saveImage(activity: Activity, fileUri : Uri, serviceId : String, fragment: Fragment,index : Int){
+    fun saveImage(fileUri : Uri, serviceId : String,index : Int){
         viewModelScope.launch {
             saveImageUseCase(fileUri, serviceId,index)
                 .onEach { dataState ->
@@ -111,6 +112,19 @@ class ServiceViewModel @Inject constructor(
             updateDescriptionUseCase(idService, newDescription)
                 .onEach { dataState ->
                     mUpdateDescriptionState.value = dataState
+                }.launchIn(viewModelScope)
+        }
+    }
+    private val mUpdateServiceImageState: MutableLiveData<DataState<String>> = MutableLiveData()
+
+    val updateServiceImageState: LiveData<DataState<String>>
+        get() = mUpdateServiceImageState
+
+    fun editServiceImage(idService : String,newFileURI : Uri, index: Int){
+        viewModelScope.launch {
+            editServiceImageUseCase(idService,newFileURI,index)
+                .onEach { dataState ->
+                    mUpdateServiceImageState.value = dataState
                 }.launchIn(viewModelScope)
         }
     }
@@ -157,19 +171,7 @@ class ServiceViewModel @Inject constructor(
         }
     }
 
-    private val mUpdateServiceImageState: MutableLiveData<DataState<String>> = MutableLiveData()
 
-    val updateServiceImageState: LiveData<DataState<String>>
-        get() = mUpdateServiceImageState
-
-    fun editServiceImage(idService : String,newFileURI : Uri, index: Int){
-        viewModelScope.launch {
-            editServiceImageUseCase(idService,newFileURI,index)
-                .onEach { dataState ->
-                    mUpdateServiceImageState.value = dataState
-                }.launchIn(viewModelScope)
-        }
-    }
 
     private val mRemoveImageUseCaseState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
 
@@ -185,4 +187,17 @@ class ServiceViewModel @Inject constructor(
         }
     }
 
+    private val mRemoveServiceState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+
+    val removeServiceState: LiveData<DataState<Boolean>>
+        get() = mRemoveServiceState
+
+    fun removeService(idService : String){
+        viewModelScope.launch {
+            removeServiceUseCase(idService)
+                .onEach { dataState ->
+                    mRemoveServiceState.value = dataState
+                }.launchIn(viewModelScope)
+        }
+    }
 }

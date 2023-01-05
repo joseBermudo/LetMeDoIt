@@ -1,11 +1,11 @@
 package cat.copernic.letmedoit.presentation.adapter.general.viewholder
 
 import androidx.core.content.ContextCompat
-import androidx.navigation.findNavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import cat.copernic.letmedoit.data.model.Category
-import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.ItemCategoryTemplateBinding
+import cat.copernic.letmedoit.presentation.view.general.fragments.HomeFragmentDirections
 
 /**
  * Holder de Views.
@@ -25,6 +25,11 @@ class CategoryViewHolder(val binding: ItemCategoryTemplateBinding,) : ViewHolder
         categoryIcon.background = ContextCompat.getDrawable(binding.root.context,binding.root.resources.getIdentifier(categoryModel.image, "drawable","cat.copernic.letmedoit"))
         categoryText.text = categoryModel.nombre.replace(" ","\n")
 
-        binding.itemCategory.setOnClickListener{ binding.root.findNavController().navigate(R.id.homeFragment) }
+        binding.itemCategory.setOnClickListener{ applyFilter(categoryModel) }
+    }
+
+    private fun applyFilter(categoryModel: Category) {
+        val action = HomeFragmentDirections.actionHomeFragmentSelf(3,categoryModel)
+        Navigation.findNavController(itemView).navigate(action)
     }
 }

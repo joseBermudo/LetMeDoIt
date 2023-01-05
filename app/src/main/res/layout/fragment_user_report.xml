@@ -66,30 +66,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/userName" />
 
-            <CheckBox
-                android:id="@+id/checkBox_Misbehavior"
+            <RadioGroup
+                android:id="@+id/reportReason"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/txt_misbehaviour"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/by" />
+                app:layout_constraintTop_toBottomOf="@id/by"
+                app:layout_constraintStart_toStartOf="@id/by">
 
-            <CheckBox
-                android:id="@+id/checkBox_Fraud"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_fraud"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_Misbehavior" />
+                <RadioButton
+                    android:id="@+id/report_misbehaviour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_misbehaviour" />
+                <RadioButton
+                    android:id="@+id/report_fraud"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_fraud" />
+                <RadioButton
+                    android:id="@+id/report_offesive_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_ofensive_content" />
+            </RadioGroup>
 
-
-            <CheckBox
-                android:id="@+id/checkBox_OfensiveContent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_ofensive_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_Fraud" />
 
             <TextView
                 android:id="@+id/comment_title"
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/txt_comment"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_OfensiveContent" />
+                app:layout_constraintTop_toBottomOf="@+id/reportReason" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_comment_text"
@@ -125,6 +125,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_comment_text" />
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

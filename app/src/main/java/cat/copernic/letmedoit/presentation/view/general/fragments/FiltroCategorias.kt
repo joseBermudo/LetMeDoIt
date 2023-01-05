@@ -5,9 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.data.model.Category
+import cat.copernic.letmedoit.data.model.Subcategory
 import cat.copernic.letmedoit.databinding.FragmentFiltroCategoriasBinding
+import cat.copernic.letmedoit.presentation.viewmodel.admin.CreateCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+import kotlin.collections.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,21 +47,70 @@ class FiltroCategorias : Fragment() {
         }
     }
 
+    private val categoryViewModel : CreateCategoryViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentFiltroCategoriasBinding.inflate(inflater, container, false)
-        Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerCategory)
-        Utils.AsignarPopUpSpinner(requireContext(), Utils.createList(),binding.spinnerSubcategory)
+        binding.btnDone.isEnabled = false
 
-        binding.backArrow.setOnClickListener { requireActivity().onBackPressed() }
-        binding.btnDone.setOnClickListener{ requireActivity().onBackPressed() }
+        categoryViewModel.getCategories()
+        initObserver()
+        initListeners()
         return binding.root
     }
 
+    private lateinit var categoryList : List<Category>
+    private lateinit var  categoryNameList : List<String>
 
+    private fun initListeners() {
+        binding.backArrow.setOnClickListener { requireActivity().onBackPressed() }
+        binding.btnDone.setOnClickListener{ applyFilter() }
+
+        //Al seleccionar un item del spinner de categorias
+        binding.spinnerCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val subcategoryNameList = ArrayList(categoryList[position].subcategories.map { it.nombre }.toList())
+                Utils.AsignarPopUpSpinner(requireContext(), subcategoryNameList,binding.spinnerSubcategory)
+            }
+        }
+    }
+
+    private fun applyFilter() {
+        val action = FiltroCategoriasDirections
+            .filterBackToHome(binding.spinnerOrderby.selectedItemPosition, Category(nombre = binding.spinnerCategory.selectedItem.toString(), subcategories = arrayListOf(Subcategory(nombre = binding.spinnerSubcategory.selectedItem.toString()))))
+        Navigation.findNavController(requireView()).navigate(action)
+    }
+
+    private fun initObserver() {
+        categoryViewModel.getCategoriesState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<List<Category>> -> {
+                    binding.btnDone.isEnabled = true
+                    categoryList = dataState.data
+                    initView()
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                }
+                is DataState.Loading -> {  }
+                else -> Unit
+            }
+        } )
+    }
+
+    private fun initView(){
+        categoryNameList = categoryList.map { it.nombre }.toList()
+        Utils.AsignarPopUpSpinner(requireContext(), categoryNameList as ArrayList<String>,binding.spinnerCategory)
+        val orderByList = ArrayList<String>()
+        orderByList.addAll(listOf("Service Name","Date (Newest)","Date (Oldest)"))
+        Utils.AsignarPopUpSpinner(requireContext(), orderByList,binding.spinnerOrderby)
+    }
 
     companion object {
         /**
