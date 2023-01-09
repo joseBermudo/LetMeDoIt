@@ -144,18 +144,19 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardv_archreports"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="false"
             android:layout_width="156dp"
             android:layout_height="200dp"
             android:layout_marginTop="16dp"
             android:animateLayoutChanges="true"
+            android:clickable="false"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:visibility="invisible"
             app:cardCornerRadius="@dimen/item_cateogry_admin_cardCornesRadius"
             app:cardElevation="@dimen/item_category_admin_cardElevation"
-            android:visibility="invisible"
+
             app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardv_categories">
+            app:layout_constraintTop_toBottomOf="@+id/cardv_signOff">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -190,7 +191,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardv_createAdmin"
             android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
+            android:clickable="false"
+            android:visibility="invisible"
             android:layout_width="156dp"
             android:layout_height="200dp"
             android:layout_marginTop="16dp"
@@ -232,17 +234,17 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardv_signOff"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
             android:layout_width="156dp"
             android:layout_height="200dp"
             android:layout_marginTop="16dp"
             android:animateLayoutChanges="true"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             app:cardCornerRadius="@dimen/item_cateogry_admin_cardCornesRadius"
             app:cardElevation="@dimen/item_category_admin_cardElevation"
             app:cardUseCompatPadding="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardv_archreports">
+            app:layout_constraintTop_toBottomOf="@+id/cardv_categories">
 
             <LinearLayout
                 android:layout_width="wrap_content"
