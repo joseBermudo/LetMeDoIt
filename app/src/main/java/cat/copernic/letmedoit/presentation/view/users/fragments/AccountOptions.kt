@@ -76,7 +76,6 @@ class AccountOptions : Fragment() {
         binding.nameSurname.text = "${user.name} ${user.surname} \n @${user.username} \n"
         binding.myRatingBar.rating = user.rating
         binding.ratingNum.text = "(${DecimalFormat("#.##").format(user.rating)})"
-        user.language?.let { binding.spinnerLenguages.setSelection(it) }
         binding.darkThemeSwitch.isChecked = user.darkTheme == true
     }
 
@@ -100,7 +99,6 @@ class AccountOptions : Fragment() {
     private fun initListeners() {
         val languagesString = ArrayList<String>()
         LenguagesProvider.obtenerLenguages().map { x -> x.lenguage }.toCollection(languagesString)
-        Utils.AsignarPopUpSpinnerLenguages(requireContext(), languagesString, binding.spinnerLenguages)
         binding.darkThemeSwitch.setOnCheckedChangeListener{  _, isChecked -> userViewModel.updateDarkTheme(isChecked) }
     }
 
@@ -132,19 +130,6 @@ class AccountOptions : Fragment() {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
                 }
                 is DataState.Loading -> {  }
-                else -> Unit
-            }
-        } )
-        userViewModel.updateLanguageState.observe(viewLifecycleOwner, Observer { dataState ->
-            when(dataState){
-                is DataState.Success<Boolean> -> {
-                    binding.spinnerLenguages.isEnabled = true
-                }
-                is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
-                    binding.spinnerLenguages.isEnabled = true
-                }
-                is DataState.Loading -> { binding.spinnerLenguages.isEnabled = false  }
                 else -> Unit
             }
         } )
