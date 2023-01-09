@@ -2,6 +2,7 @@ package cat.copernic.letmedoit.presentation.view.admin.fragments
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -76,6 +77,29 @@ class AdminSubcategoryList : Fragment() {
                 }
             })
 
+        viewModel.deleteSubcategoryState.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer { dataState ->
+                when (dataState) {
+                    is DataState.Success<Boolean> -> {
+                        finishedProgress()
+                    }
+                    is DataState.Error -> {
+                        Utils.showOkDialog(
+                            "Error: ",
+                            requireContext(),
+                            dataState.exception.message.toString()
+                        )
+                        finishedProgress()
+                    }
+                    is DataState.Loading -> {
+                        showDeleteProgress()
+                    }
+                    else -> Unit
+                }
+
+            })
+
 
 
         binding.btnBack.setOnClickListener {
@@ -85,6 +109,15 @@ class AdminSubcategoryList : Fragment() {
             createSubcategory()
         }
         return binding.root
+    }
+
+    private fun showDeleteProgress() {
+        val btnAccept = dialogBinding.findViewById<Button>(R.id.btn_acceptDeleteCategory)
+        val btnCancel = dialogBinding.findViewById<Button>(R.id.btn_cancelDeleteCategory)
+        val loading = dialogBinding.findViewById<ProgressBar>(R.id.deleteCategoryLoading)
+        btnAccept.isEnabled = false
+        btnCancel.isEnabled = false
+        loading.isVisible = true
     }
 
     private fun createSubcategory() {
@@ -149,9 +182,38 @@ class AdminSubcategoryList : Fragment() {
         )
     }
 
+    private fun onDeletedItem(position: Int) {
+        //hace: elimina una categoria
+        dialogBinding = layoutInflater.inflate(R.layout.delete_category_alert_dialog, null)
+        myDialog = Dialog(binding.root.context)
+        myDialog.setContentView(dialogBinding)
+        myDialog.setCancelable(true)
+        dialogBinding.findViewById<TextView>(R.id.txt_title_deleteCategory).text =
+            "Delete Subcategory"
+        myDialog.show()
+
+        val btn_cancel = dialogBinding.findViewById<Button>(R.id.btn_cancelDeleteCategory)
+        val btn_accept = dialogBinding.findViewById<Button>(R.id.btn_acceptDeleteCategory)
+
+        btn_cancel.setOnClickListener { myDialog.dismiss() }
+
+        btn_accept.setOnClickListener {
+            viewModel.deleteSubcategory(categoryID,subcateogryMutableList.get(position).id)
+            subcateogryMutableList.removeAt(position)
+            adapter.notifyItemRemoved(position)
+
+        }
+
+    }
+
 
     private fun initRecylerView() {
-        adapter = AdminSubcategoryAdapter(subcategoryList = subcateogryMutableList)
+        adapter =
+            AdminSubcategoryAdapter(
+                subcategoryList = subcateogryMutableList,
+                onClickDelete = { position ->
+                    onDeletedItem(position)
+                })
         binding.rcvListaSubcategories.adapter = adapter
         binding.rcvListaSubcategories.layoutManager = llmanager
     }

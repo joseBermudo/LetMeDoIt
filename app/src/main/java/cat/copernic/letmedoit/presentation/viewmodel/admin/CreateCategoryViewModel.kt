@@ -21,7 +21,8 @@ class CreateCategoryViewModel @Inject constructor(
     val getCategoriesUseCase: GetCategoriesUseCase,
     val deleteCategoryUseCase: DeleteCategoryUseCase,
     val updateCategoryDescUseCase: UpdateCategoryDescUseCase,
-    val updateCategoryNameUseCase: UpdateCategoryNameUseCase
+    val updateCategoryNameUseCase: UpdateCategoryNameUseCase,
+    val deleteSubcategoryUseCase: DeleteSubcategoryUseCase
 ) : ViewModel() {
 
     private val mUpdateNameCategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
@@ -36,6 +37,10 @@ class CreateCategoryViewModel @Inject constructor(
 
     private val mNewCategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val newCategoryState: LiveData<DataState<Boolean>> get() = mNewCategoryState
+
+    private val mDeleteSubcategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val deleteSubcategoryState: LiveData<DataState<Boolean>> get() = mDeleteSubcategoryState
+
 
     private val mDeleteCategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val deleteCategoryState: LiveData<DataState<Boolean>> get() = mDeleteCategoryState
@@ -80,6 +85,14 @@ class CreateCategoryViewModel @Inject constructor(
         viewModelScope.launch {
             deleteCategoryUseCase(id).onEach { dataState ->
                 mDeleteCategoryState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
+    fun deleteSubcategory(categoryId: String, subcategoryId: String) {
+        viewModelScope.launch {
+            deleteSubcategoryUseCase(categoryId, subcategoryId).onEach { dataState ->
+                mDeleteSubcategoryState.value = dataState
             }.launchIn(viewModelScope)
         }
     }

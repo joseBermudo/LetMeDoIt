@@ -1,5 +1,6 @@
 package cat.copernic.letmedoit.data.remote
 
+import android.util.Log
 import cat.copernic.letmedoit.Utils.CategoryConstants
 import cat.copernic.letmedoit.domain.repositories.CategoryRepository
 import cat.copernic.letmedoit.data.model.Category
@@ -72,6 +73,7 @@ class CategoryRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
+
     override suspend fun insertCategory(category: Category): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
@@ -101,7 +103,8 @@ class CategoryRepositoryImpl @Inject constructor(
         try {
 
             categoryCollection.document(categoryId).collection(CategoryConstants.SUBCAT)
-                .add(subcategory).addOnSuccessListener { dataStatus = true }
+                .document(subcategory.id).set(subcategory, SetOptions.merge())
+                .addOnSuccessListener { dataStatus = true }
                 .addOnFailureListener { dataStatus = false }
             emit(DataState.Success(dataStatus))
             emit(DataState.Finished)
@@ -142,5 +145,28 @@ class CategoryRepositoryImpl @Inject constructor(
             emit(DataState.Finished)
         }
     }.flowOn(IO)
+
+    override suspend fun deleteSubcategory(
+        categoryId: String,
+        subcategoryId: String
+    ): Flow<DataState<Boolean>> = flow {
+        emit(DataState.Loading)
+        try {
+            Log.d("sub", subcategoryId)
+            Log.d("sub", categoryId)
+            var deleteStatus: Boolean = false
+            categoryCollection.document(categoryId).collection(CategoryConstants.SUBCAT)
+                .document(subcategoryId).delete()
+                .addOnSuccessListener { deleteStatus = true }
+                .addOnFailureListener { deleteStatus = false }
+                .await()
+
+            emit(DataState.Success(deleteStatus))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }
 
 }
