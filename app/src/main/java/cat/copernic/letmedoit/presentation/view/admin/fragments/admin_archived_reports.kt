@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.data.model.Report
-import cat.copernic.letmedoit.data.provider.ReportProvider
 import cat.copernic.letmedoit.databinding.FragmentAdminArchivedReportsBinding
 import cat.copernic.letmedoit.presentation.adapter.admin.AdminArchivedReportsAdapter
 
@@ -19,8 +18,7 @@ class admin_archived_reports : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var recyclerView: RecyclerView
-    private var reportMutableList: MutableList<Report> =
-        ReportProvider.obtenerReportes().toMutableList()
+    private var reportMutableList = ArrayList<Report>()
 
     private lateinit var adapter: AdminArchivedReportsAdapter
     private lateinit var llmanager: LinearLayoutManager
