@@ -1,5 +1,5 @@
 <resources>
-    <string name="deals_notification_id">LETMEDOIT_CH_DEALS</string>
+    <string name="deals_notification_id" translatable="false">LETMEDOIT_CH_DEALS</string>
     <string name="app_name">LetMeDoIt</string>
     <string name="save">Save</string>
     <string name="type_here">Type here</string>

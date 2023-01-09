@@ -97,9 +97,6 @@ class verListadoDeals : Fragment() {
         dealViewModel.getDealState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Deal> -> {
-                    var test = historyDeals
-                    var test2 = historyDealsIndex
-                    var test3 = tempDeals
                     tempDeals.add(dataState.data)
 
                     if(historyDeals[historyDealsIndex].dealId.size == tempDeals.size){
@@ -124,8 +121,6 @@ class verListadoDeals : Fragment() {
         userViewModel.getUserState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Users?> -> {
-                    var test1 = userDeals
-                    var test2 = users
                     dataState.data?.let { users.add(it) }
                     if(users.size == userDeals.size) userDeals.forEach {
                         if(it.users.userOneId == Constants.USER_LOGGED_IN_ID) serviceViewModel.getService(it.services.serviceTwoId)
