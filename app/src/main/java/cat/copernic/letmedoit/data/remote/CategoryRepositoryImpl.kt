@@ -4,6 +4,7 @@ import cat.copernic.letmedoit.Utils.CategoryConstants
 import cat.copernic.letmedoit.domain.repositories.CategoryRepository
 import cat.copernic.letmedoit.data.model.Category
 import cat.copernic.letmedoit.Utils.DataState
+import cat.copernic.letmedoit.data.model.Subcategory
 import cat.copernic.letmedoit.di.FirebaseModule
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
@@ -41,6 +42,15 @@ class CategoryRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
+    suspend fun getSubCat(category: Category) {
+        val ref =
+            categoryCollection.document(category.id).collection(CategoryConstants.SUBCAT).get()
+                .await()
+        val subcategories = ref.toObjects(Subcategory::class.java)
+        category.subcategories.removeAll(category.subcategories.toSet())
+        category.subcategories.addAll(subcategories)
+    }
+
     override suspend fun updateDescription(
         idCategory: String,
         newDescription: String
@@ -71,7 +81,9 @@ class CategoryRepositoryImpl @Inject constructor(
                     .addOnSuccessListener { uploadStatus = true }
                     .addOnFailureListener { uploadStatus = false }
                     .await()
+                categoryCollection.document(it).collection(CategoryConstants.SUBCAT)
             }
+
             emit(DataState.Success(uploadStatus))
             emit(DataState.Finished)
         } catch (e: Exception) {
@@ -80,10 +92,32 @@ class CategoryRepositoryImpl @Inject constructor(
         }
     }.flowOn(IO)
 
+    override suspend fun insertSubcategory(
+        categoryId: String,
+        subcategory: Subcategory
+    ): Flow<DataState<Boolean>> = flow<DataState<Boolean>> {
+        var dataStatus: Boolean = false
+        emit(DataState.Loading)
+        try {
+
+            categoryCollection.document(categoryId).collection(CategoryConstants.SUBCAT)
+                .add(subcategory).addOnSuccessListener { dataStatus = true }
+                .addOnFailureListener { dataStatus = false }
+            emit(DataState.Success(dataStatus))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
     override suspend fun getCategories(): Flow<DataState<List<Category>>> = flow {
         emit(DataState.Loading)
         try {
             val categories = categoryCollection.get().await().toObjects(Category::class.java)
+            categories.forEach {
+                getSubCat(it)
+            }
             emit(DataState.Success(categories))
             emit(DataState.Finished)
         } catch (e: Exception) {

@@ -11,7 +11,7 @@ data class Category(
 
     var nombre: String = "",
     var description: String = "",
-    var subcategories: ArrayList<Subcategory> = arrayListOf(Subcategory("","","")),
+    @get:Exclude var subcategories: ArrayList<Subcategory> = arrayListOf(Subcategory("","","")),
     val image: String = "",
     val id : String = UUID.randomUUID().toString(),
 ) : Parcelable
