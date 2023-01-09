@@ -127,7 +127,7 @@ class UserReport : Fragment() {
             R.id.report_fraud -> 2
             else -> 3
         }
-        return Report(UUID.randomUUID().toString(), UsersMap(Constants.USER_LOGGED_IN_ID,user.id),binding.editCommentText.text.toString(),reasonId,false)
+        return Report(UUID.randomUUID().toString(), UsersMap(Constants.USER_LOGGED_IN_ID,user.id),binding.editCommentText.text.toString(),reasonId,Constants.USER_LOGGED_IN.username,user.username,false)
     }
 
     @SuppressLint("SetTextI18n")

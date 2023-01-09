@@ -113,6 +113,7 @@ class ServiceAdapter(private var serviceList:ArrayList<Service>,val fragment: Fr
         )
         sortByCategorySubcategory(category)
         notifyDataSetChanged()
+        val a = ArrayList<String>()
     }
 
     fun clearFilters(){
