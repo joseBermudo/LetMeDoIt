@@ -140,22 +140,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/ratingBar3"
                 tools:ignore="SmallSp" />
 
-            <!-- Apartado lenguage !-->
-            <LinearLayout
-                android:id="@+id/btn_language"
-                style="@style/LinearLayoutPaddingVerticalStartEnd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <Spinner
-                    android:id="@+id/spinner_lenguages"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:textColor="@color/negro" />
-            </LinearLayout>
-
             <!-- Divider !-->
             <View
                 android:id="@+id/divider_lenguage_darkTheme"
