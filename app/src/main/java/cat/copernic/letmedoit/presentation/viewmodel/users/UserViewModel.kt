@@ -278,6 +278,7 @@ class UserViewModel @Inject constructor(
 
     private val mGetUserState: MutableLiveData<DataState<Users?>> = MutableLiveData()
     val getUserState: LiveData<DataState<Users?>> get() = mGetUserState
+
     fun getUser(idUser: String) {
         viewModelScope.launch {
             getUserUseCase(idUser).onEach { dataState ->
