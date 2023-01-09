@@ -13,7 +13,7 @@ class AdminCategoryViewHolder(val binding: ItemListCategoryAdminBinding) :
     val subcategoryNumber = binding.txtSubcategoryNumber
     fun render(
         categoryModel: Category,
-        onClickListener: (Category) -> Unit,
+        onClickListener: (Category, Int) -> Unit,
         onClickDelete: (Int) -> Unit,
         onClickEdit: (Category) -> Unit
     ) {
@@ -27,7 +27,7 @@ class AdminCategoryViewHolder(val binding: ItemListCategoryAdminBinding) :
         )
         categoryName.text = categoryModel.nombre.replace("_","\n")
         subcategoryNumber.text = categoryModel.subcategories.size.toString()
-        itemView.setOnClickListener { onClickListener(categoryModel) }
+        itemView.setOnClickListener { onClickListener(categoryModel,absoluteAdapterPosition) }
         binding.itemCategoryDeleteIcon.setOnClickListener { onClickDelete(absoluteAdapterPosition)}
         binding.itemCategoryEditIcon.setOnClickListener {onClickEdit(categoryModel) }
     }

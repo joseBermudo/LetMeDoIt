@@ -9,7 +9,7 @@ import cat.copernic.letmedoit.presentation.adapter.admin.viewholder.AdminCategor
 
 class AdminCategoryAdapter(
     private val categoryList: List<Category>,
-    private val onClickListener: (Category) -> Unit,
+    private val onClickListener: (Category, Int) -> Unit,
     private val onClickDelete:(Int) -> Unit,
     private val onClickEdit:(Category) -> Unit
 ) : RecyclerView.Adapter<AdminCategoryViewHolder>() {
