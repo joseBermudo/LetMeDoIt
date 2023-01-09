@@ -75,6 +75,11 @@ class chat : Fragment() {
                     if(dataState.data != null) users.add(dataState.data)
                     if(users.size == 1 ) userViewModel.getUser(args.idUser)
                     binding.btnCreateDeal.isEnabled = true
+
+                    if(users.size > 1 && users[1].banned){
+                        binding.txtTitleChat.text = "User has been banned"
+                        binding.btnCreateDeal.isEnabled = false
+                    }
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())

@@ -137,6 +137,25 @@ class DealRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
+    override suspend fun getDeals(): Flow<DataState<List<Deal>>> = flow{
+        emit(DataState.Loading)
+        try {
+            val deals = ArrayList<Deal>()
+
+            val dbDeals = dealCollection.get().await()
+            deals.addAll(dbDeals.toObjects(Deal::class.java))
+
+            deals.forEachIndexed { i, deal ->
+                deal.id = dbDeals.documents[i].id
+            }
+            emit(DataState.Success(deals))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
     override suspend fun suscribeForUpdates(idDeal: String): Flow<DataState<Deal?>> = callbackFlow{
         send(DataState.Loading)
         try {

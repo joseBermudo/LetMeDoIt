@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
+import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentHomeBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,6 +32,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private val args: HomeFragmentArgs by navArgs()
     lateinit var binding : FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +40,14 @@ class HomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
+        //pasamos el sorting a servicelist
+        val servicesFragment = childFragmentManager.findFragmentById(R.id.fragment_newServices)
+        val bundle = Bundle()
+        bundle.putInt("sortingType",args.sortingType)
+        bundle.putParcelable("category",args.category)
+        if (servicesFragment != null) {
+            servicesFragment.arguments = bundle
+        }
 
         return binding.root
     }

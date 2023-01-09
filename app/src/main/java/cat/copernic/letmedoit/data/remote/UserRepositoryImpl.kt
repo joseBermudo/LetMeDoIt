@@ -15,12 +15,22 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-
+/**
+ * Implementación de la interfaz [UserRepository] para el almacenamiento remoto de datos de usuario.
+ * Utiliza Firebase como fuente de datos.
+ *
+ * @param usersCollection Referencia a la colección de usuarios en Firebase
+ */
 class UserRepositoryImpl @Inject constructor(
     @FirebaseModule.UsersCollection val usersCollection: CollectionReference
 ) : UserRepository {
 
-    //GET
+    /**
+     * Obtiene el usuario con el ID especificado desde Firebase.
+     *
+     * @param idUser ID del usuario a obtener
+     * @return Flujo de datos con el estado y el usuario obtenido, o un error en caso de fallo
+     */
     override suspend fun getUser(idUser: String): Flow<DataState<Users?>> = flow {
         emit(DataState.Loading)
         try {
@@ -39,6 +49,12 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
+    /**
+     * Obtiene los servicios del usuario con el ID especificado desde Firebase.
+     *
+     * @param idUser ID del usuario cuya lista de servicios se desea obtener
+     * @return Flujo de datos con el estado y la lista de servicios obtenida, o un error en caso de fallo
+     */
     override suspend fun getServices(idUser: String): Flow<DataState<ArrayList<UserServices>>> =
         flow {
             emit(DataState.Loading)
@@ -57,6 +73,11 @@ class UserRepositoryImpl @Inject constructor(
             }
         }.flowOn(Dispatchers.IO)
 
+    /**
+     * Obtiene los perfiles favoritos del usuario actualmente logueado desde Firebase.
+     *
+     * @return Flujo de datos con el estado y la lista de perfiles favoritos obtenida, o un error en caso de fallo
+     */
     override suspend fun getFavoriteProfiles(): Flow<DataState<ArrayList<UserFavoriteProfiles>>> =
         flow {
             emit(DataState.Loading)
@@ -76,6 +97,11 @@ class UserRepositoryImpl @Inject constructor(
             }
         }.flowOn(Dispatchers.IO)
 
+    /**
+     * Obtiene los servicios favoritos del usuario actualmente logueado desde Firebase.
+     *
+     * @return Flujo de datos con el estado y la lista de servicios favoritos obtenida, o un error en caso de fallo
+     */
     override suspend fun getFavoriteServices(): Flow<DataState<ArrayList<UserFavoriteServices>>> =
         flow {
             emit(DataState.Loading)
@@ -95,6 +121,11 @@ class UserRepositoryImpl @Inject constructor(
             }
         }
 
+    /**
+     * Obtiene los chats del usuario actualmente logueado desde Firebase.
+     *
+     * @return Flujo de datos con el estado y la lista de chats obtenida, o un error en caso de fallo
+     */
     override suspend fun getChats(): Flow<DataState<ArrayList<UserChats>>> = flow {
         emit(DataState.Loading)
         try {
@@ -113,7 +144,12 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-
+    /**
+     * Devuelve un flujo de estado de datos que contiene una lista de objetos [HistoryDeal] del usuario actualmente conectado.
+     * El flujo se ejecuta en el hilo de I/O dispatching.
+     *
+     * @return un flujo de estado de datos que contiene una lista de objetos [HistoryDeal]
+     */
     override suspend fun getHistoryDeals(): Flow<DataState<ArrayList<HistoryDeal>>> = flow {
         var historyDeals = ArrayList<HistoryDeal>()
         emit(DataState.Loading)
@@ -124,6 +160,7 @@ class UserRepositoryImpl @Inject constructor(
 
             var userDeals = ArrayList<UserDeals>()
             historyDealsColllection.documents.forEach { historyDeal ->
+                userDeals.clear()
                 var id = historyDeal.id
                 userDeals.addAll(
                     usersCollection
@@ -134,7 +171,8 @@ class UserRepositoryImpl @Inject constructor(
                         .await()
                         .toObjects(UserDeals::class.java)
                 )
-                historyDeals.add(HistoryDeal(id, userDeals))
+                val tempUserDeal = userDeals.map { it.copy() }
+                historyDeals.add(HistoryDeal(id, ArrayList(tempUserDeal)))
             }
             emit(DataState.Success(ArrayList(historyDeals)))
             emit(DataState.Finished)
@@ -160,13 +198,30 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    //DELETE
+    /**
+     * Elimina el servicio especificado para el usuario con el ID especificado en Firebase.
+     *
+     * @param idUser ID del usuario al que se le eliminará el servicio
+     * @param service Servicio a eliminar
+     * @return Flujo de datos con el estado y el servicio eliminado, o un error en caso de fallo
+     */
     override suspend fun deleteService(idService: String): Flow<DataState<Boolean>> = flow {
         var isSuccesful = false
         emit(DataState.Loading)
         try {
+            var indexToDelete = ""
+            val sRef = usersCollection.document(Constants.USER_LOGGED_IN_ID).collection(UserConstants.SERVICES).get().await()
+            sRef.documents.forEach{
+                val id = it.id
+                val serviceId = it.toObject(UserServices::class.java)
+
+                if (serviceId != null) {
+                    if(serviceId.service_id == idService) indexToDelete = id
+                }
+            }
+
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).collection(UserConstants.SERVICES).document(idService)
+                usersCollection.document(it).collection(UserConstants.SERVICES).document(indexToDelete)
                     .delete()
                     .addOnSuccessListener { data ->
                         isSuccesful = true
@@ -484,7 +539,7 @@ class UserRepositoryImpl @Inject constructor(
             opinions.forEach{
                 media+=it.rating
             }
-            media/opinions.size
+            media /= opinions.size
 
             updateRating(media,idUser).collect{ dataState->
                 when(dataState){
