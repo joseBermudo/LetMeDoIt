@@ -12,6 +12,7 @@ interface UserRepository {
 
     //get
     suspend fun getUser (idUser : String) : Flow<DataState<Users?>>
+    suspend fun getAllUsers():Flow<DataState<List<Users>>>
     suspend fun getServices (idUser : String) : Flow<DataState<ArrayList<UserServices>>>
     suspend fun getFavoriteProfiles() : Flow<DataState<ArrayList<UserFavoriteProfiles>>>
     suspend fun getFavoriteServices() : Flow<DataState<ArrayList<UserFavoriteServices>>>

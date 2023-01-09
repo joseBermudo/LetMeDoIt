@@ -51,6 +51,20 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
+    override suspend fun getAllUsers(): Flow<DataState<List<Users>>> =
+        flow<DataState<List<Users>>> {
+            emit(DataState.Loading)
+            try {
+                val users = usersCollection.get().await().toObjects(Users::class.java)
+
+                emit(DataState.Success(users))
+                emit(DataState.Finished)
+            } catch (e: Exception) {
+                emit(DataState.Error(e))
+                emit(DataState.Finished)
+            }
+        }.flowOn(Dispatchers.IO)
+
     /**
      * Obtiene los servicios del usuario con el ID especificado desde Firebase.
      *

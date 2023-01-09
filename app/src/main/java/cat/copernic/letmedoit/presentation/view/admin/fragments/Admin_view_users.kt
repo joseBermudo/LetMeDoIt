@@ -1,4 +1,3 @@
-
 package cat.copernic.letmedoit.presentation.view.admin.fragments
 
 import android.os.Bundle
@@ -10,15 +9,22 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.DataState
+import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.data.provider.UsersProvider
 import cat.copernic.letmedoit.presentation.view.general.fragments.*
 import cat.copernic.letmedoit.databinding.FragmentAdminViewUsersBinding
 import cat.copernic.letmedoit.presentation.adapter.general.UsersAdapter
+import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
+import com.bumptech.glide.Glide.init
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class admin_view_users : Fragment() {
 
     private val rotateOpen: Animation by lazy {
@@ -48,9 +54,10 @@ class admin_view_users : Fragment() {
 
     private var open: Boolean = false
 
-    private var _binding:FragmentAdminViewUsersBinding? = null
+    private var _binding: FragmentAdminViewUsersBinding? = null
     private val binding get() = _binding!!
-
+    private var usersList = ArrayList<Users>()
+    private val viewModel: UserViewModel by viewModels()
     private lateinit var btnOpenMenu: FloatingActionButton
     private lateinit var btnDelete: FloatingActionButton
     private lateinit var btnNewUser: FloatingActionButton
@@ -67,7 +74,35 @@ class admin_view_users : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAdminViewUsersBinding.inflate(inflater, container, false)
-        initRecyclerView()
+        init()
+
+
+        viewModel.getAllUserState.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer { dataState ->
+                when (dataState) {
+                    is DataState.Success -> {
+                        usersList =
+                            ArrayList(dataState.data)
+                        initRecyclerView()
+                    }
+                    is DataState.Error -> {
+                        Utils.showOkDialog(
+                            "Error: ",
+                            requireContext(),
+                            dataState.exception.message.toString()
+                        )
+
+
+                    }
+                    is DataState.Loading -> {
+
+                    }
+                    else -> Unit
+                }
+            })
+
+
 
         btnOpenMenu = binding.flbuttonOpenMenu
         btnNewUser = binding.flbuttonNewUser
@@ -88,39 +123,37 @@ class admin_view_users : Fragment() {
         return binding.root
     }
 
-    fun initRecyclerView(){
+    fun initRecyclerView() {
         binding.recyclerViewUsers.layoutManager = LinearLayoutManager(binding.root.context)
-        binding.recyclerViewUsers.adapter = UsersAdapter(UsersProvider.obtenerUsers())
+        binding.recyclerViewUsers.adapter = UsersAdapter(usersList)
     }
 
-    private fun openFloatingMenu(){
-        if(!open){
+    private fun openFloatingMenu() {
+        if (!open) {
             btnOpenMenu.startAnimation(rotateOpen)
 
-            btnDelete.isVisible = true
+
             btnBan.isVisible = true
             btnNewUser.isVisible = true
-            btnDelete.isEnabled = true
             btnBan.isEnabled = true
             btnNewUser.isEnabled = true
-            btnDelete.startAnimation(fromBottom)
             btnBan.startAnimation(fromBottom)
             btnNewUser.startAnimation(fromBottom)
             open = true
-        }else{
-            btnDelete.isEnabled = false
+        } else {
             btnBan.isEnabled = false
             btnNewUser.isEnabled = false
             btnOpenMenu.startAnimation(rotateClose)
-            btnDelete.startAnimation(toBottom)
             btnBan.startAnimation(toBottom)
             btnNewUser.startAnimation(toBottom)
-
-            btnDelete.isVisible = false
             btnBan.isVisible = false
             btnNewUser.isVisible = false
             open = false
         }
+    }
+
+    private fun init() {
+        viewModel.getAllUser()
     }
 
 }

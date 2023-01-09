@@ -51,6 +51,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <SearchView
+            android:visibility="invisible"
             android:id="@+id/buscar_users"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,6 +60,7 @@
             android:layout_marginEnd="24dp"
             android:background="@drawable/spinner_frame_layout_style"
             android:closeIcon="@null"
+
             android:iconifiedByDefault="false"
             android:queryHint="@string/search_user_name"
             android:searchIcon="@drawable/search_icon"
@@ -68,6 +70,7 @@
 
 
         <CheckBox
+            android:visibility="invisible"
             android:id="@+id/select_all_users"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

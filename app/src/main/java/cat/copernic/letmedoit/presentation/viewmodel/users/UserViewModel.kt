@@ -33,6 +33,7 @@ class UserViewModel @Inject constructor(
     private val deleteServiceUseCase: DeleteServiceUseCase,
     private val deleteDealFromHistoryUseCase: DeleteDealFromHistoryUseCase,
     private val getChatsUseCase: GetChatsUseCase,
+    private val getAllUserUseCase: GetAllUsersUseCase,
     private val getFavoriteProfilesUseCase: GetFavoriteProfilesUseCase,
     private val getFavoriteServicesUseCase: GetFavoriteServicesUseCase,
     private val getHistoryDealsUseCase: GetHistoryDealsUseCase,
@@ -291,6 +292,19 @@ class UserViewModel @Inject constructor(
             }.launchIn(viewModelScope)
         }
     }
+
+
+    private val mGetAllUserState: MutableLiveData<DataState<List<Users>>> = MutableLiveData()
+    val getAllUserState: LiveData<DataState<List<Users>>> get() = mGetAllUserState
+
+    fun getAllUser() {
+        viewModelScope.launch {
+            getAllUserUseCase().onEach { dataState ->
+                mGetAllUserState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
 
     private val mUpdateAboutMeState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val updateAboutMeState: LiveData<DataState<Boolean>> get() = mUpdateAboutMeState
