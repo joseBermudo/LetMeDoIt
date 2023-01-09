@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.data.model.Report
 import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.data.provider.UsersProvider
 import cat.copernic.letmedoit.presentation.view.general.fragments.*
@@ -58,6 +59,7 @@ class admin_view_users : Fragment() {
     private val binding get() = _binding!!
     private var usersList = ArrayList<Users>()
     private val viewModel: UserViewModel by viewModels()
+    private lateinit var adapter: UsersAdapter
     private lateinit var btnOpenMenu: FloatingActionButton
     private lateinit var btnDelete: FloatingActionButton
     private lateinit var btnNewUser: FloatingActionButton
@@ -74,6 +76,8 @@ class admin_view_users : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAdminViewUsersBinding.inflate(inflater, container, false)
+
+
         init()
 
 
@@ -117,15 +121,47 @@ class admin_view_users : Fragment() {
             openFloatingMenu()
         }
         btnNewUser.setOnClickListener {}
-        btnBan.setOnClickListener { }
-        btnDelete.setOnClickListener { }
+        btnBan.setOnClickListener {
+            banearUsuarios()
+        }
+
+
+
 
         return binding.root
     }
 
+    private fun banearUsuarios() {
+
+        usersList.forEachIndexed { i, user ->
+            if (user.check == true) {
+                if (user.banned == true) {
+                    viewModel.updateBan(user.id, false)
+                    usersList.get(i).banned = false
+                } else {
+                    viewModel.updateBan(user.id, true)
+                    usersList.get(i).banned = true
+                }
+                adapter.notifyItemChanged(i)
+
+            }
+        }
+    }
+
     fun initRecyclerView() {
         binding.recyclerViewUsers.layoutManager = LinearLayoutManager(binding.root.context)
-        binding.recyclerViewUsers.adapter = UsersAdapter(usersList)
+        adapter =
+            UsersAdapter(usersList, onClickCheckBox = { user -> checkTheBox(user) })
+
+        binding.recyclerViewUsers.adapter = adapter
+    }
+
+    private fun checkTheBox(user: Users) {
+        if (user.check) {
+            user.check = false
+        } else {
+            user.check = true
+        }
     }
 
     private fun openFloatingMenu() {

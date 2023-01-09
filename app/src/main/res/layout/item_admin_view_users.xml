@@ -49,6 +49,7 @@
                 android:id="@+id/img_user_banned"
                 android:layout_width="@dimen/img_size"
                 android:layout_height="@dimen/img_size"
+                android:visibility="invisible"
                 android:background="@drawable/ic_baseline_person_off_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/checkBoxUsers"
