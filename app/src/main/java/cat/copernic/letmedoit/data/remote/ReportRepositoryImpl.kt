@@ -25,6 +25,7 @@ class ReportRepositoryImpl @Inject constructor(
             emit(DataState.Loading)
             try {
                 val reports = reportsCollection.get().await().toObjects(Report::class.java)
+
                 emit(DataState.Success(reports))
                 emit(DataState.Finished)
             } catch (e: Exception) {
