@@ -132,7 +132,6 @@ class AdminCategoriesList : Fragment() {
 
             })
 
-
         viewModel.getCategoriesState.observe(
             viewLifecycleOwner,
             androidx.lifecycle.Observer { dataState ->
@@ -234,9 +233,11 @@ class AdminCategoriesList : Fragment() {
         btn_done.setOnClickListener {
             val txtInput_name =
                 dialogBinding.findViewById<TextInputEditText>(R.id.txtInput_categoryName)
+            val txtInput_desc = dialogBinding.findViewById<TextInputEditText>(R.id.txtInput_categoryDesc)
             val name = txtInput_name.text.toString().trim()
-            if (!name.isEmpty() && !name.isBlank()) {
-                val category = creteCategoryF(name)
+            val desc = txtInput_desc.text.toString().trim()
+            if (!name.isEmpty() && !name.isBlank() && !desc.isEmpty() && !desc.isBlank()) {
+                val category = creteCategoryF(name,desc)
                 viewModel.insertCategory(category)
                 categoryMutableList.add(index = 0, category)
                 adapter.notifyItemInserted(0)
@@ -250,26 +251,45 @@ class AdminCategoriesList : Fragment() {
     private fun initRecyclerView() {
         //hace: Inicia y configura el recyclerView
         adapter = AdminCategoryAdapter(categoryList = categoryMutableList,
-            onClickListener = { category -> onItemSelected(category) },
+            onClickListener = { category,position -> onItemSelected(category,position) },
             onClickDelete = { position -> onDeletedItem(position) },
             onClickEdit = { category -> onEditItem(category) })
         recyclerView.layoutManager = llmanager
         recyclerView.adapter = adapter
     }
 
-    private fun onItemSelected(category: Category) {
+    private fun onItemSelected(category: Category,position: Int) {
         //hace: muestra un popup con la descripcion correspondiente de la categoria pulsada
         val dialogBinding = layoutInflater.inflate(R.layout.show_category_description_dialog, null)
         val myDialog = Dialog(binding.root.context)
         myDialog.setContentView(dialogBinding)
         myDialog.setCancelable(true)
-        dialogBinding.findViewById<TextView>(R.id.category_name).text = category.nombre
-        dialogBinding.findViewById<TextView>(R.id.category_description).text = category.description
+        dialogBinding.findViewById<TextView>(R.id.textInput_categoryName).text = category.nombre
+        dialogBinding.findViewById<TextView>(R.id.textInput_categoryDesc).text = category.description
         myDialog.show()
 
         dialogBinding.findViewById<Button>(R.id.btn_closse_dialog).setOnClickListener {
             myDialog.dismiss()
         }
+        dialogBinding.findViewById<Button>(R.id.btn_save).setOnClickListener {
+            val txtInput_name =
+                dialogBinding.findViewById<TextInputEditText>(R.id.textInput_categoryName)
+            val txtInput_desc = dialogBinding.findViewById<TextInputEditText>(R.id.textInput_categoryDesc)
+            val name = txtInput_name.text.toString().trim()
+            val desc = txtInput_desc.text.toString().trim()
+
+            if (!name.isEmpty() && !name.isBlank() && !desc.isEmpty() && !desc.isBlank()) {
+                category.nombre = name
+                category.description = desc
+                viewModel.updateName(category.id,category.nombre)
+                viewModel.updateDesc(category.id,category.description)
+
+                categoryMutableList.set(position,category)
+                adapter.notifyItemChanged(position)
+                myDialog.dismiss()
+            }
+        }
+
     }
 
     private fun onEditItem(category: Category) {
@@ -305,12 +325,12 @@ class AdminCategoriesList : Fragment() {
     }
 
 
-    private fun creteCategoryF(name: String): Category {
+    private fun creteCategoryF(name: String, desc: String): Category {
         //hace: crear una categoria
         //return: devuelve una categoria
         return Category(
             name,
-            "pepe",
+            desc,
             arrayListOf<Subcategory>(Subcategory("Pasear perros", "pepe", "100")),
             "favorites_icon",
         )

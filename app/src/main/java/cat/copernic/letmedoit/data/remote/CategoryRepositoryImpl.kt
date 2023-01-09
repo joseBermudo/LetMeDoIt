@@ -1,5 +1,6 @@
 package cat.copernic.letmedoit.data.remote
 
+import cat.copernic.letmedoit.Utils.CategoryConstants
 import cat.copernic.letmedoit.domain.repositories.CategoryRepository
 import cat.copernic.letmedoit.data.model.Category
 import cat.copernic.letmedoit.Utils.DataState
@@ -17,6 +18,49 @@ import javax.inject.Inject
 class CategoryRepositoryImpl @Inject constructor(
     @FirebaseModule.CategoryCollection val categoryCollection: CollectionReference
 ) : CategoryRepository {
+
+
+    override suspend fun updateNombre(
+        idCategory: String,
+        newNombre: String
+    ): Flow<DataState<Boolean>> = flow {
+        emit(DataState.Loading)
+        try {
+            var updateStatus: Boolean = false
+            idCategory.let {
+                categoryCollection.document(it).update(CategoryConstants.NOMBRE, newNombre)
+                    .addOnFailureListener { updateStatus = false }
+                    .addOnSuccessListener { updateStatus = true }
+                    .await()
+            }
+            emit(DataState.Success(updateStatus))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
+
+    override suspend fun updateDescription(
+        idCategory: String,
+        newDescription: String
+    ): Flow<DataState<Boolean>> = flow {
+        emit(DataState.Loading)
+        try {
+            var updateStatus: Boolean = false
+            idCategory.let {
+                categoryCollection.document(it).update(CategoryConstants.DESC, newDescription)
+                    .addOnFailureListener { updateStatus = false }
+                    .addOnSuccessListener { updateStatus = true }
+                    .await()
+            }
+            emit(DataState.Success(updateStatus))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
 
     override suspend fun insertCategory(category: Category): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)

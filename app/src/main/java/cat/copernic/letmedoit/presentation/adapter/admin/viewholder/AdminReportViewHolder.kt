@@ -13,7 +13,7 @@ class AdminReportViewHolder(val binding: ItemAdminReportListBinding) :
     fun render(
         reportModel: Report
     ) {
-        userA.text = reportModel.users.userOneId
-        userReported.text = reportModel.users.userTwoId
+        userA.text = reportModel.user_1
+        userReported.text = reportModel.user_2
     }
 }
