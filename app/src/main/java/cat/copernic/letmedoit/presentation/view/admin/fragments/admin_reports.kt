@@ -61,10 +61,7 @@ class admin_reports : Fragment() {
     private var reportMutableList = ArrayList<Report>()
     private lateinit var adapter: AdminReportAdapter
     private lateinit var llmanager: LinearLayoutManager
-    private var userList = ArrayList<Users>()
-    private var reportIndex = 0
     private val viewModel: ReportsViewModel by viewModels()
-    private val viewModelUser: UserViewModel by viewModels()
     private lateinit var btnOpenMenu: FloatingActionButton
     private lateinit var btnDelete: FloatingActionButton
     private lateinit var btnArchived: FloatingActionButton
@@ -86,45 +83,13 @@ class admin_reports : Fragment() {
         recyclerView = binding.rcvAdminReportList
         init()
 
-        var users_1_array = ArrayList<String>()
-        var users_2_array = ArrayList<String>()
-        var contador = 0
-        viewModelUser.getUserState.observe(
-            viewLifecycleOwner,
-            androidx.lifecycle.Observer { dataState ->
-                when (dataState) {
-                    is DataState.Success -> {
-
-                    }
-                    is DataState.Error -> {
-                        Utils.showOkDialog(
-                            "Error: ",
-                            requireContext(),
-                            dataState.exception.message.toString()
-                        )
-
-
-                    }
-                    is DataState.Loading -> {
-
-                    }
-                    else -> Unit
-                }
-            })
-
-
         viewModel.getReportState.observe(
             viewLifecycleOwner,
             androidx.lifecycle.Observer { dataState ->
                 when (dataState) {
                     is DataState.Success -> {
                         reportMutableList = ArrayList(dataState.data)
-                        reportMutableList.forEachIndexed { i, rep ->
-                            viewModelUser.getUser(rep.users.userOneId)
-                        }
-
-
-
+                        initRecyclerView()
                     }
                     is DataState.Error -> {
                         Utils.showOkDialog(
