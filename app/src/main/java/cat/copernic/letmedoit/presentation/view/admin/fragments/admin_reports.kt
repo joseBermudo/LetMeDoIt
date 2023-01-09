@@ -1,6 +1,7 @@
 package cat.copernic.letmedoit.presentation.view.admin.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -88,7 +89,8 @@ class admin_reports : Fragment() {
             androidx.lifecycle.Observer { dataState ->
                 when (dataState) {
                     is DataState.Success -> {
-                        reportMutableList = ArrayList(dataState.data)
+                        reportMutableList =
+                            ArrayList(dataState.data)
                         initRecyclerView()
                     }
                     is DataState.Error -> {
@@ -105,6 +107,30 @@ class admin_reports : Fragment() {
                     }
                     else -> Unit
                 }
+            })
+
+        viewModel.deleteReportState.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer { dataState ->
+                when (dataState) {
+                    is DataState.Success<Boolean> -> {
+                        Log.d("AdminCategories", dataState.data.toString())
+
+                    }
+                    is DataState.Error -> {
+                        Utils.showOkDialog(
+                            "Error: ",
+                            requireContext(),
+                            dataState.exception.message.toString()
+                        )
+
+                    }
+                    is DataState.Loading -> {
+
+                    }
+                    else -> Unit
+                }
+
             })
 
 
@@ -124,11 +150,23 @@ class admin_reports : Fragment() {
             Toast.makeText(binding.root.context, "Hola", Toast.LENGTH_SHORT).show()
         }
         btnBan.setOnClickListener { }
-        btnDelete.setOnClickListener { }
+        btnDelete.setOnClickListener {
+            eliminarReportes()
+        }
 
 
         return binding.root
     }
+
+    private fun eliminarReportes() {
+        var checkReportList = reportMutableList.filter { report -> report.check == true }
+        checkReportList.forEachIndexed { i, report ->
+            viewModel.deleteReport(report.id)
+            reportMutableList.removeAt(i)
+            adapter.notifyItemRemoved(i)
+        }
+    }
+
 
     private fun openFloatingMenu() {
         if (!open) {
@@ -136,36 +174,43 @@ class admin_reports : Fragment() {
 
             btnDelete.isVisible = true
             btnBan.isVisible = true
-            btnArchived.isVisible = true
             btnDelete.isEnabled = true
             btnBan.isEnabled = true
-            btnArchived.isEnabled = true
+
             btnDelete.startAnimation(fromBottom)
             btnBan.startAnimation(fromBottom)
-            btnArchived.startAnimation(fromBottom)
+
             open = true
         } else {
             btnDelete.isEnabled = false
             btnBan.isEnabled = false
-            btnArchived.isEnabled = false
             btnOpenMenu.startAnimation(rotateClose)
             btnDelete.startAnimation(toBottom)
             btnBan.startAnimation(toBottom)
-            btnArchived.startAnimation(toBottom)
 
             btnDelete.isVisible = false
             btnBan.isVisible = false
-            btnArchived.isVisible = false
             open = false
         }
     }
 
     private fun initRecyclerView() {
+
+
         adapter = AdminReportAdapter(
-            reportList = reportMutableList
+            reportList = reportMutableList,
+            onClickCheckBox = { report -> checkTheBox(report) },
         )
         recyclerView.layoutManager = llmanager
         recyclerView.adapter = adapter
+    }
+
+    private fun checkTheBox(report: Report) {
+        if (report.check) {
+            report.check = false
+        } else {
+            report.check = true
+        }
     }
 
     private fun init() {

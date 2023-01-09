@@ -32,6 +32,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <SearchView
+            android:visibility="invisible"
             android:id="@+id/searchView_adminReports"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,6 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchView_adminReports" />
 
@@ -97,14 +99,14 @@
             android:id="@+id/flbutton_archived"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:focusable="true"
-            android:layout_marginStart="112dp"
             android:layout_marginBottom="8dp"
-            android:visibility="invisible"
             android:backgroundTint="@color/azul_marino"
             android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/ic_baseline_archive_24"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/flbutton_openMenu"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:tint="@color/principal_blanco" />
 
@@ -127,16 +129,17 @@
             android:id="@+id/flbutton_ban"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="112dp"
             android:layout_marginBottom="8dp"
-            android:focusable="true"
-            android:clickable="true"
-            android:visibility="invisible"
-            app:tint="@color/principal_blanco"
             android:backgroundTint="@color/azul_marino"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/ic_baseline_person_off_24"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/flbutton_openMenu"
-            app:layout_constraintEnd_toStartOf="@+id/flbutton_delete"
-            app:layout_constraintStart_toEndOf="@+id/flbutton_archived" />
+            app:layout_constraintEnd_toStartOf="@+id/flbutton_archived"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/principal_blanco" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
