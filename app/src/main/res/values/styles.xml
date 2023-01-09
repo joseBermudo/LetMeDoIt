@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="Widget.LetMeDoIT.principalButton" parent="Widget.AppCompat.Button">
-        <item name="android:gravity">center_vertical</item>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--
+    <style name="Widget.LetMeDoIt.SearchBar" parent="Widget.AppCompat.SearchView">
+    </style>
+-->
+    <style name="Widget.LetMeDoIT.principalButton" parent="Widget.MaterialComponents.Button">
         <item name="android:backgroundTint">@color/azul_marino</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
@@ -39,12 +42,103 @@
 
     <style name="Widget.LetMeDoIt.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
         <item name="buttonTint">@color/azul_marino</item>
+        <item name="android:textColor">@color/secundario_gris</item>
     </style>
 
     <style name="Widget.LetMeDoIt.TextArea" parent="ThemeOverlay.Material3.TextInputEditText.FilledBox">
-        <item name="height">200dp</item>
+        <item name="android:layout_height">200dp</item>
         <item name="android:scrollbarThumbVertical">@color/azul_marino</item>
         <item name="android:scrollbars">vertical</item>
         <item name="android:gravity">top</item>
     </style>
+
+    <style name="CustomSpinnerLayout">
+        <item name="android:background">@drawable/spinner_frame_layout_style</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="Widget.LetMeDoIt.CustomSpinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:popupBackground">@drawable/bg_rounded</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:background">?android:attr/listDivider</item>
+    </style>
+
+    <style name="DividerUp">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:background">@drawable/up_shadow</item>
+    </style>
+    <style name="DividerDown">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:background">@drawable/down_shadow</item>
+    </style>
+
+    <style name="RatingBar.Style" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/secundario_gris</item>
+        <item name="colorControlActivated">@color/azul_marino</item>
+    </style>
+
+    <style name="LinearLayoutPaddingVerticalStartEnd">
+        <item name="android:paddingStart">@dimen/padding_vertical_start_end_8</item>
+        <item name="android:paddingEnd">@dimen/padding_vertical_start_end_8</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/padding_vertical_start_end_8</item>
+    </style>
+
+    <style name="Switch.Style" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/azul_marino</item>
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/secundario_gris</item>
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">@color/secundario_gris</item>
+    </style>
+
+    <!-- Estilo del TextView QUE UTILIZAMOS PARA VOLVER HACIA ATRAS, IMPLEMENTAR ON CLICK -->
+    <style name="ToolBarBackArrow">
+        <item name="android:background">@drawable/arrow_back</item>
+        <item name="android:layout_width">@dimen/app_icon_size_small</item>
+        <item name="android:layout_height">@drawable/arrow_back</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <!-- hacemos que los iconos sean clicables -->
+    <style name="IconoClickable">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <!-- Estilo del Material Custom Dialog -->
+    <style name="Widget.LetMeDoIt.AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="materialAlertDialogTitleTextStyle">@style/Widget.LetMeDoIt.AlertDialog.Title</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/Widget.LetMeDoIt.AlertDialog.Text</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.LetMeDoIT.AlertDialog.positiveDialogButtonStyle</item>
+    </style>
+
+    <!-- Estilo Botón positivo del Alert Dialog -->
+    <style name="Widget.LetMeDoIT.AlertDialog.positiveDialogButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="backgroundTint">@color/azul_marino</item>
+        <item name="android:textColor">@color/principal_blanco</item>
+        <item name="android:textSize">@dimen/subtext_size</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <!-- Estilo Titulo del Alert Dialog -->
+    <style name="Widget.LetMeDoIt.AlertDialog.Title" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">@color/secundario_gris</item>
+        <item name="android:textSize">@dimen/subtext_size</item>
+    </style>
+
+    <!-- Estilo del texto del Alert Dialog -->
+    <style name="Widget.LetMeDoIt.AlertDialog.Text" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:textColor">@color/secundario_gris</item>
+        <item name="android:textSize">@dimen/subtext_size</item>
+    </style>
+
 </resources>

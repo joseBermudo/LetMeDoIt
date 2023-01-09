@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.view.users.fragments.UserReport">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/padding_horizontal_cl"
+            android:paddingVertical="@dimen/padding_vertical_cl">
+
+
+            <ImageView
+                android:id="@+id/reportUser_backArrow"
+                android:contentDescription="@string/txt_volver_atras"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/userImageContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="100dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/marginTop_extra_big"
+                app:layout_constraintTop_toTopOf="parent">
+                <ImageView
+                    android:id="@+id/userImage"
+                    android:contentDescription="@string/txt_profile_image"
+                    android:layout_width="@dimen/logo_dimen"
+                    android:scaleType="centerCrop"
+                    android:layout_height="@dimen/logo_dimen"
+                    />
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/userName"
+                style="@style/Widget.LetMeDoIt.title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/userReport_userName_marginTop"
+                android:text="@string/name_surname"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userImageContainer" />
+
+            <TextView
+                android:id="@+id/by"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop_extra"
+                android:text="@string/by"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userName" />
+
+            <RadioGroup
+                android:id="@+id/reportReason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/by"
+                app:layout_constraintStart_toStartOf="@id/by">
+
+                <RadioButton
+                    android:id="@+id/report_misbehaviour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_misbehaviour" />
+                <RadioButton
+                    android:id="@+id/report_fraud"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_fraud" />
+                <RadioButton
+                    android:id="@+id/report_offesive_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_ofensive_content" />
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/comment_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_comment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reportReason" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_comment_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/userReport_comment_marginTop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/comment_title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_comment_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/userReport_comment_h"
+                    style="@style/Widget.LetMeDoIt.TextArea"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_report"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end_extra"
+                android:layout_marginTop="@dimen/marginTop"
+                android:layout_marginEnd="@dimen/margins_start_end_extra"
+                android:text="@string/report"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_comment_text" />
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>
