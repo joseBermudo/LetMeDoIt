@@ -1,6 +1,7 @@
 package cat.copernic.letmedoit.data.remote
 
 import android.net.Uri
+import android.provider.ContactsContract.Data
 import cat.copernic.letmedoit.Utils.*
 import cat.copernic.letmedoit.Utils.datahepers.*
 import cat.copernic.letmedoit.data.model.*
@@ -9,6 +10,7 @@ import cat.copernic.letmedoit.domain.repositories.UserRepository
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.auth.User
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
@@ -210,18 +212,20 @@ class UserRepositoryImpl @Inject constructor(
         emit(DataState.Loading)
         try {
             var indexToDelete = ""
-            val sRef = usersCollection.document(Constants.USER_LOGGED_IN_ID).collection(UserConstants.SERVICES).get().await()
-            sRef.documents.forEach{
+            val sRef = usersCollection.document(Constants.USER_LOGGED_IN_ID)
+                .collection(UserConstants.SERVICES).get().await()
+            sRef.documents.forEach {
                 val id = it.id
                 val serviceId = it.toObject(UserServices::class.java)
 
                 if (serviceId != null) {
-                    if(serviceId.service_id == idService) indexToDelete = id
+                    if (serviceId.service_id == idService) indexToDelete = id
                 }
             }
 
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).collection(UserConstants.SERVICES).document(indexToDelete)
+                usersCollection.document(it).collection(UserConstants.SERVICES)
+                    .document(indexToDelete)
                     .delete()
                     .addOnSuccessListener { data ->
                         isSuccesful = true
@@ -342,7 +346,7 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun deleteDealFromHistory(
         idDeal: String,
         idUser: String,
-        idUserTwo : String
+        idUserTwo: String
     ): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
@@ -517,49 +521,51 @@ class UserRepositoryImpl @Inject constructor(
             }
         }.flowOn(Dispatchers.IO)
 
-    override suspend fun addOpinion(opinion: Opinion,idUser : String): Flow<DataState<Boolean>> = flow {
-        emit(DataState.Loading)
-        try {
-            var uploadSuccesful: Boolean = false
-            idUser.let {
-                usersCollection.document(it).collection(UserConstants.OPINIONS).document(opinion.id)
-                    .set(opinion, SetOptions.merge())
-                    .addOnSuccessListener { uploadSuccesful = true }
-                    .addOnFailureListener { uploadSuccesful = false }
-                    .await()
-            }
-
-            val opinions = idUser.let {
-                usersCollection.document(it)
-                    .collection(UserConstants.OPINIONS)
-                    .get()
-                    .await().toObjects(Opinion::class.java)
-            }
-            var media = 0f
-            opinions.forEach{
-                media+=it.rating
-            }
-            media /= opinions.size
-
-            updateRating(media,idUser).collect{ dataState->
-                when(dataState){
-                    is DataState.Success<Boolean> -> {
-                        emit(DataState.Success(dataState.data))
-                        emit(DataState.Finished)
-                    }
-                    is DataState.Error -> {
-                        emit(DataState.Error(dataState.exception))
-                        emit(DataState.Finished)
-                    }
-                    is DataState.Loading -> {}
-                    else -> Unit
+    override suspend fun addOpinion(opinion: Opinion, idUser: String): Flow<DataState<Boolean>> =
+        flow {
+            emit(DataState.Loading)
+            try {
+                var uploadSuccesful: Boolean = false
+                idUser.let {
+                    usersCollection.document(it).collection(UserConstants.OPINIONS)
+                        .document(opinion.id)
+                        .set(opinion, SetOptions.merge())
+                        .addOnSuccessListener { uploadSuccesful = true }
+                        .addOnFailureListener { uploadSuccesful = false }
+                        .await()
                 }
+
+                val opinions = idUser.let {
+                    usersCollection.document(it)
+                        .collection(UserConstants.OPINIONS)
+                        .get()
+                        .await().toObjects(Opinion::class.java)
+                }
+                var media = 0f
+                opinions.forEach {
+                    media += it.rating
+                }
+                media /= opinions.size
+
+                updateRating(media, idUser).collect { dataState ->
+                    when (dataState) {
+                        is DataState.Success<Boolean> -> {
+                            emit(DataState.Success(dataState.data))
+                            emit(DataState.Finished)
+                        }
+                        is DataState.Error -> {
+                            emit(DataState.Error(dataState.exception))
+                            emit(DataState.Finished)
+                        }
+                        is DataState.Loading -> {}
+                        else -> Unit
+                    }
+                }
+            } catch (e: Exception) {
+                emit(DataState.Error(e))
+                emit(DataState.Finished)
             }
-        } catch (e: Exception) {
-            emit(DataState.Error(e))
-            emit(DataState.Finished)
-        }
-    }.flowOn(Dispatchers.IO)
+        }.flowOn(Dispatchers.IO)
 
     override suspend fun addAvatarToStorage(fileUri: Uri): Flow<DataState<String>> = flow {
         var uri = ""
@@ -603,13 +609,13 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun addDeviceToken(token: String): Flow<DataState<Boolean>> = flow{
+    override suspend fun addDeviceToken(token: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
 
             var uploadSuccessful = false
             Constants.USER_LOGGED_IN_ID.let {
-                usersCollection.document(it).update(UserConstants.DEVICE_TOKEN,token)
+                usersCollection.document(it).update(UserConstants.DEVICE_TOKEN, token)
                     .addOnSuccessListener { uploadSuccessful = true }
                     .addOnFailureListener { uploadSuccessful = false }
                     .await()
@@ -714,6 +720,28 @@ class UserRepositoryImpl @Inject constructor(
                 emit(DataState.Finished)
             }
         }.flowOn(Dispatchers.IO)
+
+
+    override suspend fun updateBan(userId: String, ban: Boolean): Flow<DataState<Boolean>> =
+        flow<DataState<Boolean>> {
+            emit(DataState.Loading)
+            try {
+                var uploadSuccesful: Boolean = false
+
+                usersCollection.document(userId).update(UserConstants.BANNED, ban)
+                    .addOnSuccessListener {
+                        uploadSuccesful = true
+                    }.addOnFailureListener { uploadSuccesful = false }.await()
+                emit(DataState.Success(uploadSuccesful))
+                emit(DataState.Finished)
+            } catch (e: Exception) {
+                emit(DataState.Error(e))
+                emit(DataState.Finished)
+            }
+
+
+        }.flowOn(Dispatchers.IO)
+
 
     override suspend fun updateDarkTheme(darkTheme: Boolean): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
@@ -848,7 +876,11 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun updateRating(updatedRating: Float,idUser: String): Flow<DataState<Boolean>> = flow {
+
+    override suspend fun updateRating(
+        updatedRating: Float,
+        idUser: String
+    ): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
 
         try {

@@ -22,6 +22,7 @@ import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.FragmentAdminReportsBinding
 import cat.copernic.letmedoit.presentation.viewmodel.general.ReportsViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
+import com.bumptech.glide.Glide.init
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -63,6 +64,7 @@ class admin_reports : Fragment() {
     private lateinit var adapter: AdminReportAdapter
     private lateinit var llmanager: LinearLayoutManager
     private val viewModel: ReportsViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
     private lateinit var btnOpenMenu: FloatingActionButton
     private lateinit var btnDelete: FloatingActionButton
     private lateinit var btnArchived: FloatingActionButton
@@ -114,7 +116,31 @@ class admin_reports : Fragment() {
             androidx.lifecycle.Observer { dataState ->
                 when (dataState) {
                     is DataState.Success<Boolean> -> {
-                        Log.d("AdminCategories", dataState.data.toString())
+                        Log.d("Banear usuario", dataState.data.toString())
+
+                    }
+                    is DataState.Error -> {
+                        Utils.showOkDialog(
+                            "Error: ",
+                            requireContext(),
+                            dataState.exception.message.toString()
+                        )
+
+                    }
+                    is DataState.Loading -> {
+
+                    }
+                    else -> Unit
+                }
+
+            })
+
+        userViewModel.updateBanState.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer { dataState ->
+                when (dataState) {
+                    is DataState.Success<Boolean> -> {
+                        Log.d("Banear usuario", dataState.data.toString())
 
                     }
                     is DataState.Error -> {
@@ -146,10 +172,10 @@ class admin_reports : Fragment() {
         btnOpenMenu.setOnClickListener {
             openFloatingMenu()
         }
-        btnArchived.setOnClickListener {
-            Toast.makeText(binding.root.context, "Hola", Toast.LENGTH_SHORT).show()
+
+        btnBan.setOnClickListener {
+            banearUsuarios()
         }
-        btnBan.setOnClickListener { }
         btnDelete.setOnClickListener {
             eliminarReportes()
         }
@@ -158,15 +184,29 @@ class admin_reports : Fragment() {
         return binding.root
     }
 
+
     private fun eliminarReportes() {
-        var checkReportList = reportMutableList.filter { report -> report.check == true }
-        checkReportList.forEachIndexed { i, report ->
-            viewModel.deleteReport(report.id)
-            reportMutableList.removeAt(i)
-            adapter.notifyItemRemoved(i)
+
+        reportMutableList.forEachIndexed { i, report ->
+            if (report.check == true) {
+                viewModel.deleteReport(report.id)
+                reportMutableList.removeAt(i)
+                adapter.notifyItemRemoved(i)
+            }
         }
     }
 
+    private fun banearUsuarios() {
+
+        reportMutableList.forEachIndexed { i, report ->
+            if (report.check == true) {
+                userViewModel.updateBan(report.users.userTwoId, true)
+                viewModel.deleteReport(report.id)
+                reportMutableList.removeAt(i)
+                adapter.notifyItemRemoved(i)
+            }
+        }
+    }
 
     private fun openFloatingMenu() {
         if (!open) {
