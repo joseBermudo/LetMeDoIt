@@ -6,15 +6,18 @@ import cat.copernic.letmedoit.databinding.ItemListSubcategoryAdminBinding
 
 class AdminSubcategoryViewHolder(
     val binding: ItemListSubcategoryAdminBinding
-): RecyclerView.ViewHolder(binding.root) {
+) : RecyclerView.ViewHolder(binding.root) {
 
     val subcategoryName = binding.txtSubcategoryName
 
     fun render(
-        subcategoryModel: Subcategory
-    ){
+        subcategoryModel: Subcategory,
+        onClickDelete: (Int) -> Unit,
+    ) {
 
-        subcategoryName.text = subcategoryModel.nombre.replace("_","\n")
-
+        subcategoryName.text = subcategoryModel.nombre.replace("_", "\n")
+        binding.itemSubcategoryDeleteIcon.setOnClickListener {
+            onClickDelete(absoluteAdapterPosition)
+        }
     }
 }

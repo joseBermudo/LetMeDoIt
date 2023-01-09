@@ -295,7 +295,8 @@ class AdminCategoriesList : Fragment() {
     private fun onEditItem(category: Category) {
         //hace: dirige al usario a un fragment con las subcategorias correspodientes
         val action = AdminCategoriesListDirections.actionAdminCategoriesListToAdminSubcategoryList(
-            subcategories = category.subcategories.toTypedArray()
+            subcategories = category.subcategories.toTypedArray(),
+            categoryId = category.id
         )
         findNavController().navigate(action)
     }
@@ -331,7 +332,7 @@ class AdminCategoriesList : Fragment() {
         return Category(
             name,
             desc,
-            arrayListOf<Subcategory>(Subcategory("Pasear perros", "pepe", "100")),
+            arrayListOf<Subcategory>(),
             "favorites_icon",
         )
     }

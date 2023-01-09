@@ -4,6 +4,7 @@ import android.net.Uri
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.datahepers.*
 import cat.copernic.letmedoit.data.model.*
+import com.google.firebase.firestore.auth.User
 import kotlinx.coroutines.flow.Flow
 
 
@@ -11,6 +12,7 @@ interface UserRepository {
 
     //get
     suspend fun getUser (idUser : String) : Flow<DataState<Users?>>
+    suspend fun getAllUsers():Flow<DataState<List<Users>>>
     suspend fun getServices (idUser : String) : Flow<DataState<ArrayList<UserServices>>>
     suspend fun getFavoriteProfiles() : Flow<DataState<ArrayList<UserFavoriteProfiles>>>
     suspend fun getFavoriteServices() : Flow<DataState<ArrayList<UserFavoriteServices>>>
@@ -43,6 +45,7 @@ interface UserRepository {
     suspend fun updatePassword(oldPassword : String, newPassword : String, email : String) : Flow<DataState<Boolean>>
     suspend fun updateLanguage(language : Int) : Flow<DataState<Boolean>>
     suspend fun updateDarkTheme(darkTheme : Boolean) : Flow<DataState<Boolean>>
+    suspend fun updateBan(userId:String, ban: Boolean): Flow<DataState<Boolean>>
     suspend fun updateAvatar(imgLink : String) : Flow<DataState<Boolean>>
     suspend fun updateCurriculum(pdfLink : String) : Flow<DataState<Boolean>>
     suspend fun updateAboutMe(aboutMe : String) : Flow<DataState<Boolean>>

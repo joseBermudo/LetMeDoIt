@@ -4,10 +4,12 @@ import android.os.Parcelable
 import cat.copernic.letmedoit.Utils.datahepers.*
 import com.google.firebase.firestore.Exclude
 import kotlinx.parcelize.Parcelize
+import java.util.*
+import kotlin.collections.ArrayList
 
 @Parcelize
 data class Users(
-    @get:Exclude var id: String = "",
+    var id: String = UUID.randomUUID().toString(),
     var name: String = "",
     var surname: String = "",
     val email: String = "",
@@ -24,8 +26,9 @@ data class Users(
     @get:Exclude val chatsId: ArrayList<UserChats>? = null,
     @get:Exclude val historyDeals: ArrayList<HistoryDeal>? = null,
     @get:Exclude var opinions: ArrayList<Opinion> = ArrayList(),
+    @get:Exclude var check: Boolean = false,
     val rating: Float = 0f,
-    val banned: Boolean = false,
+    var banned: Boolean = false,
     val admin: Boolean = false,
     val username: String = "",
     val deviceToken : String = ""

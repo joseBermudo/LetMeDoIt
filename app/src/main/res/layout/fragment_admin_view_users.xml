@@ -51,6 +51,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <SearchView
+            android:visibility="invisible"
             android:id="@+id/buscar_users"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,6 +60,7 @@
             android:layout_marginEnd="24dp"
             android:background="@drawable/spinner_frame_layout_style"
             android:closeIcon="@null"
+
             android:iconifiedByDefault="false"
             android:queryHint="@string/search_user_name"
             android:searchIcon="@drawable/search_icon"
@@ -68,6 +70,7 @@
 
 
         <CheckBox
+            android:visibility="invisible"
             android:id="@+id/select_all_users"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,63 +79,18 @@
             app:layout_constraintTop_toBottomOf="@+id/buscar_users" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/flbutton_openMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/azul_marino"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/ic_baseline_add_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/principal_blanco" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/flbutton_newUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="112dp"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/azul_marino"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/ic_baseline_person_add_24"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/flbutton_openMenu"
-            app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/principal_blanco" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/flbutton_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="112dp"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/azul_marino"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/ic_baseline_delete_24"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/flbutton_openMenu"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/principal_blanco" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/flbutton_ban"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:focusable="true"
-            android:clickable="true"
-            android:visibility="invisible"
-            app:tint="@color/principal_blanco"
             android:backgroundTint="@color/azul_marino"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/ic_baseline_person_off_24"
-            app:layout_constraintBottom_toTopOf="@+id/flbutton_openMenu"
-            app:layout_constraintEnd_toStartOf="@+id/flbutton_delete"
-            app:layout_constraintStart_toEndOf="@+id/flbutton_newUser" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/principal_blanco" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

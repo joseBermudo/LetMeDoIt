@@ -9,6 +9,7 @@ import cat.copernic.letmedoit.presentation.adapter.admin.viewholder.AdminReportV
 
 class AdminReportAdapter(
     val reportList: List<Report>,
+    private val onClickCheckBox:(Report) -> Unit,
 ) : RecyclerView.Adapter<AdminReportViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdminReportViewHolder {
@@ -19,7 +20,7 @@ class AdminReportAdapter(
 
     override fun onBindViewHolder(holder: AdminReportViewHolder, position: Int) {
         val item = reportList[position]
-        holder.render(item)
+        holder.render(item,onClickCheckBox)
     }
 
     override fun getItemCount(): Int = reportList.size

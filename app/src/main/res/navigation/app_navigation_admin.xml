@@ -63,6 +63,9 @@
         <argument
             android:name="subcategories"
             app:argType="cat.copernic.letmedoit.data.model.Subcategory[]" />
+        <argument
+            android:name="categoryId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/admin_reports"

@@ -8,7 +8,8 @@ import cat.copernic.letmedoit.databinding.ItemListSubcategoryAdminBinding
 import cat.copernic.letmedoit.presentation.adapter.admin.viewholder.AdminSubcategoryViewHolder
 
 class AdminSubcategoryAdapter(
-    private val subcategoryList: List<Subcategory>
+    private val subcategoryList: List<Subcategory>,
+    private val onClickDelete:(Int) -> Unit,
 ):RecyclerView.Adapter<AdminSubcategoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdminSubcategoryViewHolder {
@@ -18,7 +19,7 @@ class AdminSubcategoryAdapter(
 
     override fun onBindViewHolder(holder: AdminSubcategoryViewHolder, position: Int) {
         val item = subcategoryList[position]
-        holder.render(item)
+        holder.render(item,onClickDelete)
     }
 
     override fun getItemCount(): Int = subcategoryList.size

@@ -7,6 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface ReportRepository {
     suspend fun createReport(report: Report): Flow<DataState<Boolean>>
-    suspend fun deleteReport(report: Report): Flow<DataState<Boolean>>
+    suspend fun deleteReport(reportId: String): Flow<DataState<Boolean>>
     suspend fun getReports(): Flow<DataState<List<Report>>>
 }
