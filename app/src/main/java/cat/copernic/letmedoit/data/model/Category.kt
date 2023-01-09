@@ -7,8 +7,8 @@ import kotlin.collections.ArrayList
 
 data class Category(
 
-    val nombre: String = "",
-    val description: String = "",
+    var nombre: String = "",
+    var description: String = "",
     var subcategories: ArrayList<Subcategory> = arrayListOf(Subcategory("","","")),
     val image: String = "",
     val id : String = UUID.randomUUID().toString(),

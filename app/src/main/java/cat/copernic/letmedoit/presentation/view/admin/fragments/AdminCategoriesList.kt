@@ -251,14 +251,14 @@ class AdminCategoriesList : Fragment() {
     private fun initRecyclerView() {
         //hace: Inicia y configura el recyclerView
         adapter = AdminCategoryAdapter(categoryList = categoryMutableList,
-            onClickListener = { category -> onItemSelected(category) },
+            onClickListener = { category,position -> onItemSelected(category,position) },
             onClickDelete = { position -> onDeletedItem(position) },
             onClickEdit = { category -> onEditItem(category) })
         recyclerView.layoutManager = llmanager
         recyclerView.adapter = adapter
     }
 
-    private fun onItemSelected(category: Category) {
+    private fun onItemSelected(category: Category,position: Int) {
         //hace: muestra un popup con la descripcion correspondiente de la categoria pulsada
         val dialogBinding = layoutInflater.inflate(R.layout.show_category_description_dialog, null)
         val myDialog = Dialog(binding.root.context)
@@ -271,6 +271,25 @@ class AdminCategoriesList : Fragment() {
         dialogBinding.findViewById<Button>(R.id.btn_closse_dialog).setOnClickListener {
             myDialog.dismiss()
         }
+        dialogBinding.findViewById<Button>(R.id.btn_save).setOnClickListener {
+            val txtInput_name =
+                dialogBinding.findViewById<TextInputEditText>(R.id.textInput_categoryName)
+            val txtInput_desc = dialogBinding.findViewById<TextInputEditText>(R.id.textInput_categoryDesc)
+            val name = txtInput_name.text.toString().trim()
+            val desc = txtInput_desc.text.toString().trim()
+
+            if (!name.isEmpty() && !name.isBlank() && !desc.isEmpty() && !desc.isBlank()) {
+                category.nombre = name
+                category.description = desc
+                viewModel.updateName(category.id,category.nombre)
+                viewModel.updateDesc(category.id,category.description)
+
+                categoryMutableList.set(position,category)
+                adapter.notifyItemChanged(position)
+                myDialog.dismiss()
+            }
+        }
+
     }
 
     private fun onEditItem(category: Category) {

@@ -1,6 +1,7 @@
 package cat.copernic.letmedoit.data.remote
 
 import cat.copernic.letmedoit.Utils.DataState
+import cat.copernic.letmedoit.data.model.Category
 import cat.copernic.letmedoit.data.model.Chat
 import cat.copernic.letmedoit.data.model.Report
 import cat.copernic.letmedoit.di.FirebaseModule
@@ -16,7 +17,22 @@ import javax.inject.Inject
 
 class ReportRepositoryImpl @Inject constructor(
     @FirebaseModule.ReportsCollection val reportsCollection: CollectionReference
-): ReportRepository{
+) : ReportRepository {
+
+
+    override suspend fun getReports(): Flow<DataState<List<Report>>> =
+        flow<DataState<List<Report>>> {
+            emit(DataState.Loading)
+            try {
+                val reports = reportsCollection.get().await().toObjects(Report::class.java)
+                emit(DataState.Success(reports))
+                emit(DataState.Finished)
+            } catch (e: Exception) {
+                emit(DataState.Error(e))
+                emit(DataState.Finished)
+            }
+        }.flowOn(Dispatchers.IO)
+
     override suspend fun createReport(report: Report): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
@@ -34,6 +50,7 @@ class ReportRepositoryImpl @Inject constructor(
             emit(DataState.Finished)
         }
     }.flowOn(Dispatchers.IO)
+
     override suspend fun deleteReport(report: Report): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
