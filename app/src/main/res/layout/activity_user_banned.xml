@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/divider_16dp_margin_top"
+    tools:context=".presentation.view.visitante.activities.UserBanned">
+
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="@dimen/logo_dimen"
+        android:layout_height="@dimen/logo_dimen"
+        android:background="@drawable/logo_letmedoit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtBannedTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You have been banned"
+        android:layout_marginTop="@dimen/divider_16dp_margin_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo" />
+
+    <TextView
+        style="@style/Widget.LetMeDoIt.title2"
+        android:id="@+id/txtBannedSubtitle"
+        android:layout_marginTop="@dimen/divider_16dp_margin_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="your account has been suspended, contact technical support for more information."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtBannedTitle" />
+
+    <TextView
+        style="@style/IconoClickable"
+        android:id="@+id/emailIcon"
+        android:layout_width="@dimen/logo_dimen"
+        android:layout_height="@dimen/logo_dimen"
+        android:layout_marginBottom="@dimen/divider_16dp_margin_top"
+        android:background="@drawable/email_menu_icon_colored"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

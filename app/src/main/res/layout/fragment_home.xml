@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.view.general.fragments.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/searchbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <fragment
+                android:id="@+id/fragment_searchview"
+                android:name="cat.copernic.letmedoit.presentation.view.general.fragments.SearchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout="@layout/fragment_search_view" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/categories_services"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/fragment_searchview"
+            app:layout_constraintStart_toStartOf="@id/fragment_searchview"
+            app:layout_constraintTop_toBottomOf="@id/fragment_searchview">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical">
+
+                <fragment
+                    android:id="@+id/fragment_categoryFilter"
+                    android:name="cat.copernic.letmedoit.presentation.view.general.fragments.HomeCategoriesList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout="@layout/fragment_home_categories_list" />
+
+                <fragment
+                    android:id="@+id/fragment_newServices"
+                    android:name="cat.copernic.letmedoit.presentation.view.general.fragments.HomeServicesList"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="bottom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/fragment_categoryFilter"
+                    app:layout_constraintHeight="wrap_content_constrained"
+                    app:layout_constraintStart_toStartOf="@+id/fragment_categoryFilter"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_categoryFilter"
+                    tools:layout="@layout/fragment_home_categories_list" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

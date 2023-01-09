@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Utils.CustomSpinner">
+
+    <!-- EJEMPLO DE CREACIÓN DE SPINNER, HAY QUE IMPLEMENTAR EL CODIGO DE CUSTOMSPINNER -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/relative_layout_spinner_margin"
+        style="@style/CustomSpinnerLayout"
+        tools:ignore="MissingConstraints">
+
+        <Spinner
+            android:id="@+id/spinner_subcategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.view.users.fragments.NewService">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_horizontal_cl">
+
+            <TextView
+                android:id="@+id/txt_title_chat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_new_service"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_title_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop"
+                android:text="@string/txt_new_service_title"
+                android:textSize="@dimen/title2_size"
+                app:layout_constraintStart_toStartOf="@+id/txt_title_chat"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title_chat" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_edit_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/new_service_margin_top"
+                app:layout_constraintStart_toStartOf="@+id/txt_title_title"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title_title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_service_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/txt_new_service_serviceTitle"
+                    android:padding="@dimen/dimen_newService_padding_editText" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txt_title_title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop_extra"
+                android:text="@string/txt_new_service_category"
+                android:textSize="@dimen/title2_size"
+                app:layout_constraintStart_toStartOf="@+id/layout_edit_title"
+                app:layout_constraintTop_toBottomOf="@+id/layout_edit_title" />
+
+            <FrameLayout
+                android:id="@+id/container_spinner_category"
+                style="@style/CustomSpinnerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/new_service_margin_top"
+                app:layout_constraintStart_toStartOf="@+id/txt_title_title2"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title_title2"
+                tools:ignore="MissingConstraints">
+
+                <Spinner
+                    android:id="@+id/spinner_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/txt_title_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop_extra"
+                android:text="@string/txt_new_service_subcategory"
+                android:textSize="@dimen/title2_size"
+                app:layout_constraintStart_toStartOf="@+id/container_spinner_category"
+                app:layout_constraintTop_toBottomOf="@+id/container_spinner_category" />
+
+            <FrameLayout
+                android:id="@+id/container_spinner_subcategory"
+                style="@style/CustomSpinnerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/new_service_margin_top"
+                app:layout_constraintStart_toStartOf="@+id/txt_title_category"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title_category"
+                tools:ignore="MissingConstraints">
+
+                <Spinner
+                    android:id="@+id/spinner_subcategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/txt_title_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop_extra"
+                android:text="@string/txt_new_service_description"
+                android:textSize="@dimen/title2_size"
+                app:layout_constraintStart_toStartOf="@+id/container_spinner_subcategory"
+                app:layout_constraintTop_toBottomOf="@+id/container_spinner_subcategory" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_edit_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/txt_title_description"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title_description">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_description"
+                    style="@style/Widget.LetMeDoIt.TextArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_width_newService_spinnerLayout"
+                    android:hint="@string/txt_new_service_description"
+                    android:padding="@dimen/dimen_newService_padding_editText" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txt_title_images"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop_extra"
+                android:text="@string/txt_new_service_images"
+                android:textSize="@dimen/title2_size"
+                app:layout_constraintStart_toStartOf="@+id/layout_edit_description"
+                app:layout_constraintTop_toBottomOf="@+id/layout_edit_description" />
+
+            <TextView
+                android:id="@+id/btn_add_image"
+                style="@style/IconoClickable"
+                android:layout_width="@dimen/dimen_newService_width"
+                android:layout_height="@dimen/dimen_newService_width"
+                android:layout_marginTop="@dimen/marginTop_extra"
+                android:layout_marginEnd="48dp"
+                android:background="@drawable/upload_icon_colored"
+                app:layout_constraintEnd_toStartOf="@+id/btn_remove_image"
+                app:layout_constraintTop_toBottomOf="@+id/layout_edit_description" />
+
+            <TextView
+                android:id="@+id/btn_remove_image"
+                style="@style/IconoClickable"
+                android:layout_width="@dimen/dimen_newService_width"
+                android:layout_height="@dimen/dimen_newService_width"
+                android:layout_marginTop="@dimen/marginTop_extra"
+                android:layout_marginEnd="48dp"
+                android:background="@drawable/remove_icon"
+                app:layout_constraintEnd_toEndOf="@+id/layout_edit_description"
+                app:layout_constraintTop_toBottomOf="@+id/layout_edit_description" />
+
+            <CheckBox
+                android:id="@+id/select_all"
+                style="@style/Widget.LetMeDoIt.CheckBox"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="@dimen/new_service_margin_top"
+                app:layout_constraintBottom_toBottomOf="@id/btn_remove_image"
+                app:layout_constraintStart_toEndOf="@id/btn_remove_image"
+                app:layout_constraintTop_toTopOf="@id/btn_remove_image" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:nestedScrollingEnabled="false"
+                android:id="@+id/list_images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/txt_title_images"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title_images" />
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/marginTop_extra"
+                android:layout_marginBottom="48dp"
+                android:text="@string/save"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/list_images"
+                app:layout_constraintTop_toBottomOf="@+id/list_images" />
+
+            <ProgressBar
+                android:id="@+id/uploadServiceLoading"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:visibility="invisible"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/principal_blanco"
+                android:translationZ="90dp"
+                app:layout_constraintTop_toTopOf="@id/btn_save"
+                app:layout_constraintBottom_toBottomOf="@id/btn_save"
+                app:layout_constraintStart_toStartOf="@id/btn_save"
+                app:layout_constraintEnd_toEndOf="@id/btn_save"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>
