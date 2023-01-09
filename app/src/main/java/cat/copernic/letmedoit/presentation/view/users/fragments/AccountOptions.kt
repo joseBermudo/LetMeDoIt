@@ -2,27 +2,29 @@ package cat.copernic.letmedoit.presentation.view.users.fragments
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build.VERSION_CODES.S
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import cat.copernic.letmedoit.Utils.DataState
-import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.presentation.viewmodel.visitante.LoginViewModel
 import cat.copernic.letmedoit.databinding.FragmentOpcionesDeCuentaBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import cat.copernic.letmedoit.R
-import cat.copernic.letmedoit.Utils.Constants
+import cat.copernic.letmedoit.Utils.*
 import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.data.provider.LenguagesProvider
 import cat.copernic.letmedoit.presentation.view.general.activities.Home
@@ -99,23 +101,6 @@ class AccountOptions : Fragment() {
         val languagesString = ArrayList<String>()
         LenguagesProvider.obtenerLenguages().map { x -> x.lenguage }.toCollection(languagesString)
         Utils.AsignarPopUpSpinnerLenguages(requireContext(), languagesString, binding.spinnerLenguages)
-
-        binding.spinnerLenguages.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                userViewModel.updateLanguage(position)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-        }
-
         binding.darkThemeSwitch.setOnCheckedChangeListener{  _, isChecked -> userViewModel.updateDarkTheme(isChecked) }
     }
 
