@@ -1,20 +1,22 @@
 package cat.copernic.letmedoit.presentation.view.general.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
 import cat.copernic.letmedoit.R
-import cat.copernic.letmedoit.Utils.Constants
-import cat.copernic.letmedoit.Utils.DataState
-import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.Utils.*
 import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.ActivityHomeBinding
 import cat.copernic.letmedoit.presentation.view.admin.activities.MenuAdmin
@@ -48,7 +50,7 @@ class Home : AppCompatActivity() {
         })
 
         val currentUser = FirebaseModule.firebaseAuthProvider().currentUser
-
+        val bundle = intent.extras
         if (currentUser != null) {
             Constants.USER_LOGGED_IN_ID = currentUser.uid
             initObserver()
