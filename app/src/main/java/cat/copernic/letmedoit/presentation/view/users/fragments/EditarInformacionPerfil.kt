@@ -186,7 +186,8 @@ class EditarInformacionPerfil : Fragment() {
         userViewModel.deleteCurriculumFromStorageState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Boolean> -> {
-                    binding.aboutMeText.text = user.aboutMe
+                    user.curriculum = ""
+                    binding.btnEditCurriculum.isEnabled = true
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
@@ -202,7 +203,7 @@ class EditarInformacionPerfil : Fragment() {
             when(dataState){
                 is DataState.Success<String> -> {
                     userViewModel.updateCurriculum(dataState.data)
-                    user.aboutMe = dataState.data
+                    user.curriculum = dataState.data
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
@@ -542,8 +543,8 @@ class EditarInformacionPerfil : Fragment() {
         if (uri == null)
             return
 
-        if(user.curriculum != null)
-            userViewModel.deleteCurriculumFromStorage(user.curriculum!!)
+        if(user.curriculum != "")
+            userViewModel.deleteCurriculumFromStorage(user.curriculum)
 
         userViewModel.addCurriculumToStorage(uri)
     }

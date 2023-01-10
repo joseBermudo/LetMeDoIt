@@ -108,8 +108,7 @@ class NewService : Fragment() {
 
         initRecyclerView()
 
-        if(args.serviceID != "null")
-            serviceViewModel.getService(args.serviceID)
+
         return binding.root
     }
 
@@ -178,6 +177,8 @@ class NewService : Fragment() {
                     categoryList = dataState.data
                     val categoryNames = categoryList.map { it.nombre } as ArrayList<String>
                     Utils.AsignarPopUpSpinner(requireContext(),categoryNames,binding.spinnerCategory)
+                    if(args.serviceID != "null")
+                        serviceViewModel.getService(args.serviceID)
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
@@ -307,7 +308,7 @@ class NewService : Fragment() {
             when(dataState){
                 is DataState.Success<Boolean> -> {
                     hideProgress()
-                    resetComponents()
+                    Utils.goToDestination(requireView(),R.id.homeFragment)
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())

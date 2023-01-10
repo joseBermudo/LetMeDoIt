@@ -16,7 +16,7 @@ data class Users(
     val language: Int = 0,
     val darkTheme: Boolean = false,
     var avatar: String = "",
-    val curriculum: String = "",
+    var curriculum: String = "",
     var schedule: ScheduleMap = ScheduleMap("",""),
     var aboutMe: String = "",
     var contactInfo: ContactInfoMap = ContactInfoMap("",""),

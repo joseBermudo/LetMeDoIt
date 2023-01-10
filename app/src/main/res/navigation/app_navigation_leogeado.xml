@@ -115,11 +115,6 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/viewServiceToChat"
-            app:destination="@id/chat"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
-        <action
             android:id="@+id/viewServiceToUserProfile"
             app:destination="@id/perfilUsuarioMenuSuperior"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -132,25 +127,9 @@
         <action
             android:id="@+id/action_viewService_to_newService"
             app:destination="@id/newService" />
-    </fragment>
-    <fragment
-        android:id="@+id/chat"
-        android:name="cat.copernic.letmedoit.presentation.view.users.fragments.chat"
-        android:label="fragment_chat"
-        tools:layout="@layout/fragment_chat" >
-        <argument
-            android:name="idUser"
-            app:argType="string" />
         <action
-            android:id="@+id/chatToConversaciones"
-            app:destination="@id/verConversaciones"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
-        <action
-            android:id="@+id/chatToCreateDeal"
-            app:destination="@id/createDeal"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            android:id="@+id/action_viewService_to_createDeal"
+            app:destination="@id/createDeal" />
     </fragment>
     <fragment
         android:id="@+id/verConversaciones"
@@ -182,9 +161,6 @@
             app:destination="@id/accountOptions"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
-        <action
-            android:id="@+id/conversacionesToChat"
-            app:destination="@id/chat" />
         <action
             android:id="@+id/action_verConversaciones_to_concludeDeal"
             app:destination="@id/concludeDeal" />
@@ -275,11 +251,6 @@
         <argument
             android:name="userTwo"
             app:argType="cat.copernic.letmedoit.data.model.Users" />
-        <action
-            android:id="@+id/createDealToChat"
-            app:destination="@id/chat"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/action_createDeal_to_newService"
             app:destination="@id/newService" />

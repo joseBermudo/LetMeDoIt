@@ -1,11 +1,13 @@
 package cat.copernic.letmedoit.data.model
 
 import android.os.Parcelable
+import androidx.annotation.Keep
 import com.google.firebase.firestore.Exclude
 import kotlinx.parcelize.Parcelize
 import java.util.*
 import kotlin.collections.ArrayList
 
+@Keep
 @Parcelize
 data class Category(
 

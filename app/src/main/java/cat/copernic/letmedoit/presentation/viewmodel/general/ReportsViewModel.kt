@@ -11,7 +11,6 @@ import cat.copernic.letmedoit.data.model.Report
 import cat.copernic.letmedoit.domain.usecases.admin.GetReportsUseCase
 import cat.copernic.letmedoit.domain.usecases.reports.CreateReportUseCase
 import cat.copernic.letmedoit.domain.usecases.reports.DeleteReportUseCase
-import cat.copernic.letmedoit.presentation.view.users.fragments.chat
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
