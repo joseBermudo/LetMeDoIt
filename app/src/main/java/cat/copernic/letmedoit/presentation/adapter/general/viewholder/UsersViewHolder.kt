@@ -12,7 +12,7 @@ class UsersViewHolder(val binding: ItemAdminViewUsersBinding) :
     val user_name = binding.txtUserName
     val ban_users = binding.imgUserBanned
     fun render(usersModel: Users, onClickCheckBox: (Users) -> Unit) {
-        user_name.text = usersModel.name?.replace(" ", "\n") ?: ""
+        user_name.text = usersModel.username
         binding.imgUserBanned.isVisible = usersModel.banned == true
 
         binding.checkBoxUsers.setOnClickListener{onClickCheckBox(usersModel)}
