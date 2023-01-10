@@ -24,6 +24,7 @@ object UserConstants {
     const val CURRICULUM ="curriculum"
     const val SCHEDULE = "schedule"
     const val DEVICE_TOKEN = "deviceToken"
+    const val BANNED = "banned"
 
     var USER_FAVORITE_SERVICES_IDS = ArrayList<String>()
 }

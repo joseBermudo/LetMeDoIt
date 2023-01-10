@@ -8,6 +8,7 @@ import javax.inject.Inject
 
 class DeleteReportUseCase @Inject constructor(
     private val reportRepository: ReportRepository
-){
-    suspend operator fun invoke(report: Report): Flow<DataState<Boolean>> = reportRepository.deleteReport(report)
+) {
+    suspend operator fun invoke(idReport: String): Flow<DataState<Boolean>> =
+        reportRepository.deleteReport(idReport)
 }

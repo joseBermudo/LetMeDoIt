@@ -52,9 +52,9 @@ class ReportsViewModel @Inject constructor(
                 }.launchIn(viewModelScope)
         }
     }
-    fun deleteReport(report: Report){
+    fun deleteReport(idReport: String){
         viewModelScope.launch(){
-            deleteReportUseCase(report)
+            deleteReportUseCase(idReport)
                 .onEach { dataState ->
                     mDeleteReportState.value = dataState
                 }.launchIn(viewModelScope)

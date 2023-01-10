@@ -11,5 +11,6 @@ data class Report(
     val reason_id: Int = 0,
     val user_1: String = "",
     val user_2: String = "",
-    val archived: Boolean = false
+    val archived: Boolean = false,
+    @get:Exclude var check: Boolean = false
 )

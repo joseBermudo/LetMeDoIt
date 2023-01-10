@@ -1,6 +1,7 @@
 package cat.copernic.letmedoit.presentation.view.admin.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.FragmentAdminReportsBinding
 import cat.copernic.letmedoit.presentation.viewmodel.general.ReportsViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
+import com.bumptech.glide.Glide.init
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -61,10 +63,8 @@ class admin_reports : Fragment() {
     private var reportMutableList = ArrayList<Report>()
     private lateinit var adapter: AdminReportAdapter
     private lateinit var llmanager: LinearLayoutManager
-    private var userList = ArrayList<Users>()
-    private var reportIndex = 0
     private val viewModel: ReportsViewModel by viewModels()
-    private val viewModelUser: UserViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
     private lateinit var btnOpenMenu: FloatingActionButton
     private lateinit var btnDelete: FloatingActionButton
     private lateinit var btnArchived: FloatingActionButton
@@ -86,15 +86,14 @@ class admin_reports : Fragment() {
         recyclerView = binding.rcvAdminReportList
         init()
 
-        var users_1_array = ArrayList<String>()
-        var users_2_array = ArrayList<String>()
-        var contador = 0
-        viewModelUser.getUserState.observe(
+        viewModel.getReportState.observe(
             viewLifecycleOwner,
             androidx.lifecycle.Observer { dataState ->
                 when (dataState) {
                     is DataState.Success -> {
-
+                        reportMutableList =
+                            ArrayList(dataState.data)
+                        initRecyclerView()
                     }
                     is DataState.Error -> {
                         Utils.showOkDialog(
@@ -112,18 +111,12 @@ class admin_reports : Fragment() {
                 }
             })
 
-
-        viewModel.getReportState.observe(
+        viewModel.deleteReportState.observe(
             viewLifecycleOwner,
             androidx.lifecycle.Observer { dataState ->
                 when (dataState) {
-                    is DataState.Success -> {
-                        reportMutableList = ArrayList(dataState.data)
-                        reportMutableList.forEachIndexed { i, rep ->
-                            viewModelUser.getUser(rep.users.userOneId)
-                        }
-
-
+                    is DataState.Success<Boolean> -> {
+                        Log.d("Banear usuario", dataState.data.toString())
 
                     }
                     is DataState.Error -> {
@@ -133,6 +126,29 @@ class admin_reports : Fragment() {
                             dataState.exception.message.toString()
                         )
 
+                    }
+                    is DataState.Loading -> {
+
+                    }
+                    else -> Unit
+                }
+
+            })
+
+        userViewModel.updateBanState.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer { dataState ->
+                when (dataState) {
+                    is DataState.Success<Boolean> -> {
+                        Log.d("Banear usuario", dataState.data.toString())
+
+                    }
+                    is DataState.Error -> {
+                        Utils.showOkDialog(
+                            "Error: ",
+                            requireContext(),
+                            dataState.exception.message.toString()
+                        )
 
                     }
                     is DataState.Loading -> {
@@ -140,6 +156,7 @@ class admin_reports : Fragment() {
                     }
                     else -> Unit
                 }
+
             })
 
 
@@ -155,14 +172,40 @@ class admin_reports : Fragment() {
         btnOpenMenu.setOnClickListener {
             openFloatingMenu()
         }
-        btnArchived.setOnClickListener {
-            Toast.makeText(binding.root.context, "Hola", Toast.LENGTH_SHORT).show()
+
+        btnBan.setOnClickListener {
+            banearUsuarios()
         }
-        btnBan.setOnClickListener { }
-        btnDelete.setOnClickListener { }
+        btnDelete.setOnClickListener {
+            eliminarReportes()
+        }
 
 
         return binding.root
+    }
+
+
+    private fun eliminarReportes() {
+
+        reportMutableList.forEachIndexed { i, report ->
+            if (report.check == true) {
+                viewModel.deleteReport(report.id)
+                reportMutableList.removeAt(i)
+                adapter.notifyItemRemoved(i)
+            }
+        }
+    }
+
+    private fun banearUsuarios() {
+
+        reportMutableList.forEachIndexed { i, report ->
+            if (report.check == true) {
+                userViewModel.updateBan(report.users.userTwoId, true)
+                viewModel.deleteReport(report.id)
+                reportMutableList.removeAt(i)
+                adapter.notifyItemRemoved(i)
+            }
+        }
     }
 
     private fun openFloatingMenu() {
@@ -171,36 +214,43 @@ class admin_reports : Fragment() {
 
             btnDelete.isVisible = true
             btnBan.isVisible = true
-            btnArchived.isVisible = true
             btnDelete.isEnabled = true
             btnBan.isEnabled = true
-            btnArchived.isEnabled = true
+
             btnDelete.startAnimation(fromBottom)
             btnBan.startAnimation(fromBottom)
-            btnArchived.startAnimation(fromBottom)
+
             open = true
         } else {
             btnDelete.isEnabled = false
             btnBan.isEnabled = false
-            btnArchived.isEnabled = false
             btnOpenMenu.startAnimation(rotateClose)
             btnDelete.startAnimation(toBottom)
             btnBan.startAnimation(toBottom)
-            btnArchived.startAnimation(toBottom)
 
             btnDelete.isVisible = false
             btnBan.isVisible = false
-            btnArchived.isVisible = false
             open = false
         }
     }
 
     private fun initRecyclerView() {
+
+
         adapter = AdminReportAdapter(
-            reportList = reportMutableList
+            reportList = reportMutableList,
+            onClickCheckBox = { report -> checkTheBox(report) },
         )
         recyclerView.layoutManager = llmanager
         recyclerView.adapter = adapter
+    }
+
+    private fun checkTheBox(report: Report) {
+        if (report.check) {
+            report.check = false
+        } else {
+            report.check = true
+        }
     }
 
     private fun init() {

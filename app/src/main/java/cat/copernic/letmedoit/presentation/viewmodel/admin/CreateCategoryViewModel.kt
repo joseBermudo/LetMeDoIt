@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cat.copernic.letmedoit.data.model.Category
 import cat.copernic.letmedoit.Utils.DataState
+import cat.copernic.letmedoit.data.model.Subcategory
 import cat.copernic.letmedoit.domain.usecases.admin.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -16,10 +17,12 @@ import javax.inject.Inject
 @HiltViewModel
 class CreateCategoryViewModel @Inject constructor(
     val newCategoryUseCase: InsertCategoryUseCase,
+    val insertSubcategoryUseCase: InsertSubcategoryUseCase,
     val getCategoriesUseCase: GetCategoriesUseCase,
     val deleteCategoryUseCase: DeleteCategoryUseCase,
     val updateCategoryDescUseCase: UpdateCategoryDescUseCase,
-    val updateCategoryNameUseCase: UpdateCategoryNameUseCase
+    val updateCategoryNameUseCase: UpdateCategoryNameUseCase,
+    val deleteSubcategoryUseCase: DeleteSubcategoryUseCase
 ) : ViewModel() {
 
     private val mUpdateNameCategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
@@ -28,8 +31,16 @@ class CreateCategoryViewModel @Inject constructor(
     private val mUpdateDescCategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val updateDescCategoryState: LiveData<DataState<Boolean>> get() = mUpdateDescCategoryState
 
+
+    private val mIsertSubcategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val insertCategoryState: LiveData<DataState<Boolean>> get() = mIsertSubcategoryState
+
     private val mNewCategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val newCategoryState: LiveData<DataState<Boolean>> get() = mNewCategoryState
+
+    private val mDeleteSubcategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val deleteSubcategoryState: LiveData<DataState<Boolean>> get() = mDeleteSubcategoryState
+
 
     private val mDeleteCategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val deleteCategoryState: LiveData<DataState<Boolean>> get() = mDeleteCategoryState
@@ -54,6 +65,14 @@ class CreateCategoryViewModel @Inject constructor(
         }
     }
 
+    fun insertSubategory(categoryId: String, subcategory: Subcategory) {
+        viewModelScope.launch {
+            insertSubcategoryUseCase(categoryId, subcategory).onEach { dataState ->
+                mIsertSubcategoryState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
     fun insertCategory(category: Category) {
         viewModelScope.launch {
             newCategoryUseCase(category).onEach { dataState ->
@@ -66,6 +85,14 @@ class CreateCategoryViewModel @Inject constructor(
         viewModelScope.launch {
             deleteCategoryUseCase(id).onEach { dataState ->
                 mDeleteCategoryState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
+
+    fun deleteSubcategory(categoryId: String, subcategoryId: String) {
+        viewModelScope.launch {
+            deleteSubcategoryUseCase(categoryId, subcategoryId).onEach { dataState ->
+                mDeleteSubcategoryState.value = dataState
             }.launchIn(viewModelScope)
         }
     }

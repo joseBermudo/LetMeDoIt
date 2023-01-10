@@ -11,9 +11,11 @@ class AdminReportViewHolder(val binding: ItemAdminReportListBinding) :
     val userReported = binding.txtUserReported
 
     fun render(
-        reportModel: Report
+        reportModel: Report,
+        onClickCheckBox:(Report) -> Unit,
     ) {
         userA.text = reportModel.user_1
         userReported.text = reportModel.user_2
+        binding.checkBoxReport.setOnClickListener{onClickCheckBox(reportModel)}
     }
 }

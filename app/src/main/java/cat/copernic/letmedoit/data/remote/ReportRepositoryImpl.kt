@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -53,16 +54,16 @@ class ReportRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun deleteReport(report: Report): Flow<DataState<Boolean>> = flow {
+    override suspend fun deleteReport(reportId: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
             var uploadStatus: Boolean = false
-            report.id.let {
-                reportsCollection.document(it).delete()
-                    .addOnSuccessListener { uploadStatus = true }
-                    .addOnFailureListener { uploadStatus = false }
-                    .await()
-            }
+
+            reportsCollection.document(reportId).delete()
+                .addOnSuccessListener { uploadStatus = true }
+                .addOnFailureListener { uploadStatus = false }
+                .await()
+
             emit(DataState.Success(uploadStatus))
             emit(DataState.Finished)
         } catch (e: Exception) {
