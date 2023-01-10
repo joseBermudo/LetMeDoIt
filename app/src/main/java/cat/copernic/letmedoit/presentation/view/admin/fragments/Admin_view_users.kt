@@ -121,11 +121,7 @@ class admin_view_users : Fragment() {
     }
 
     private fun checkTheBox(user: Users) {
-        if (user.check) {
-            user.check = false
-        } else {
-            user.check = true
-        }
+        user.check = !user.check
     }
 
 
