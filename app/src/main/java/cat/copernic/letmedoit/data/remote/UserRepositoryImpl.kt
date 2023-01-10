@@ -55,7 +55,14 @@ class UserRepositoryImpl @Inject constructor(
         flow<DataState<List<Users>>> {
             emit(DataState.Loading)
             try {
-                val users = usersCollection.get().await().toObjects(Users::class.java)
+                val users  = ArrayList<Users>()
+                usersCollection.get().await().let {
+                    it.forEach {
+                        val user = it.toObject(Users::class.java)
+                        user.id = it.id
+                        users.add(user)
+                    }
+                }
 
                 emit(DataState.Success(users))
                 emit(DataState.Finished)

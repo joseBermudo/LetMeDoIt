@@ -76,6 +76,7 @@ class FiltroCategorias : Fragment() {
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val subcategoryNameList = ArrayList(categoryList[position].subcategories.map { it.nombre }.toList())
+                if(subcategoryNameList.size <= 0) return
                 Utils.AsignarPopUpSpinner(requireContext(), subcategoryNameList,binding.spinnerSubcategory)
             }
         }
@@ -106,7 +107,7 @@ class FiltroCategorias : Fragment() {
 
     private fun initView(){
         categoryNameList = categoryList.map { it.nombre }.toList()
-        Utils.AsignarPopUpSpinner(requireContext(), categoryNameList as ArrayList<String>,binding.spinnerCategory)
+        Utils.AsignarPopUpSpinner(requireContext(), ArrayList(categoryNameList),binding.spinnerCategory)
         val orderByList = ArrayList<String>()
         orderByList.addAll(listOf("Service Name","Date (Newest)","Date (Oldest)"))
         Utils.AsignarPopUpSpinner(requireContext(), orderByList,binding.spinnerOrderby)

@@ -9,7 +9,7 @@ import kotlin.collections.ArrayList
 
 @Parcelize
 data class Users(
-    @get:Exclude  var id: String = UUID.randomUUID().toString(),
+    @get:Exclude var id: String = UUID.randomUUID().toString(),
     var name: String = "",
     var surname: String = "",
     val email: String = "",

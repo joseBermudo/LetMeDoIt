@@ -78,6 +78,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
         }
         binding.btnFavorites.setOnClickListener { manageUserFavorite() }
 
+        binding.btnBack.setOnClickListener{ requireActivity().onBackPressed() }
         //Evento que se llama al empezar el drawing de la vista. Obtenemos el height del movil, luego el del Menu superior los restamos y lo utilizamos como height del viewpager. luego actualizamos el layout de nuevo
         var viewPagerHeightSize = 0
         binding.viewPager.viewTreeObserver.addOnGlobalLayoutListener( object :
@@ -205,10 +206,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun initView() {
-        if(user.banned){
-            binding.profileNameSurname.text = "This user has been banned"
-            return
-        }
+
 
         if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.profileImage)
         binding.userRating.rating = user.rating
