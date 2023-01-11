@@ -26,7 +26,7 @@
             <ImageView
                 android:id="@+id/service_img"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/service_image_height"
+                android:layout_height="256dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +49,7 @@
                 android:layout_marginStart="@dimen/padding_vertical_start_end_8"
                 android:layout_marginTop="@dimen/padding_vertical_start_end_8"
                 android:maxLength="18"
-                android:textSize="@dimen/text_size"
+                android:textSize="48sp"
                 app:layout_constraintStart_toStartOf="@id/divider_img"
                 app:layout_constraintTop_toBottomOf="@id/divider_img"
                 tools:text="Title" />
@@ -57,8 +57,8 @@
             <TextView
                 android:id="@+id/service_fav"
                 style="@style/IconoClickable"
-                android:layout_width="@dimen/app_icon_size_small"
-                android:layout_height="@dimen/app_icon_size_small"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="@dimen/padding_vertical_start_end_8"
                 android:layout_marginEnd="@dimen/padding_vertical_start_end_8"
                 android:background="@drawable/favorites_icon_colored"
@@ -93,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:maxLength="15"
                 android:maxLines="2"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@id/service_title"
                 app:layout_constraintTop_toBottomOf="@id/service_title"
                 tools:text="Description" />
@@ -104,6 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/padding_vertical_start_end_8"
                 android:layout_marginBottom="@dimen/padding_vertical_start_end_8"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Category" />
