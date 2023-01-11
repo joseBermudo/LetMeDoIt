@@ -88,13 +88,11 @@
             android:id="@+id/action_viewService_to_userReport"
             app:destination="@id/userReport" />
         <action
-            android:id="@+id/viewServiceToChat"
-            app:destination="@id/chat"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
-        <action
             android:id="@+id/action_viewService_to_newService"
             app:destination="@id/newService" />
+        <action
+            android:id="@+id/action_viewService_to_createDeal"
+            app:destination="@id/createDeal" />
 
     </fragment>
     <fragment
@@ -171,15 +169,6 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/chat"
-        android:name="cat.copernic.letmedoit.presentation.view.users.fragments.chat"
-        android:label="fragment_chat"
-        tools:layout="@layout/fragment_chat" >
-        <argument
-            android:name="idUser"
-            app:argType="string" />
-    </fragment>
-    <fragment
         android:id="@+id/newService"
         android:name="cat.copernic.letmedoit.presentation.view.users.fragments.NewService"
         android:label="fragment_new_service"
@@ -188,5 +177,21 @@
             android:name="serviceID"
             app:argType="string"
             android:defaultValue="null"/>
+    </fragment>
+    <fragment
+        android:id="@+id/createDeal"
+        android:name="cat.copernic.letmedoit.presentation.view.users.fragments.CreateDeal"
+        android:label="fragment_create_deal"
+        tools:layout="@layout/fragment_create_deal" >
+        <argument
+            android:name="userOne"
+            app:argType="cat.copernic.letmedoit.data.model.Users"
+            />
+        <argument
+            android:name="userTwo"
+            app:argType="cat.copernic.letmedoit.data.model.Users" />
+        <action
+            android:id="@+id/action_createDeal_to_newService"
+            app:destination="@id/newService" />
     </fragment>
 </navigation>

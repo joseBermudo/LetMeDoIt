@@ -1,7 +1,11 @@
 package cat.copernic.letmedoit.presentation.view.general.activities
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
+import android.os.Build.VERSION_CODES.S
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -9,6 +13,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -37,29 +42,40 @@ class Home : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Utils.showOkDialog("Error", this ,"Fetching FCM registration token failed ${task.exception}")
-                return@OnCompleteListener
-            }
-
-            // Get new FCM registration token
-            val token = task.result
-            Constants.TOKEN = token
-            userViewModel.addDeviceToken(token)
-        })
+        askPermissions()
 
         val currentUser = FirebaseModule.firebaseAuthProvider().currentUser
-        val bundle = intent.extras
         if (currentUser != null) {
             Constants.USER_LOGGED_IN_ID = currentUser.uid
             initObserver()
             userViewModel.getUser(Constants.USER_LOGGED_IN_ID)
+            FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Utils.showOkDialog("Error", this ,"Fetching FCM registration token failed ${task.exception}")
+                    return@OnCompleteListener
+                }
+
+                // Get new FCM registration token
+                val token = task.result
+                Constants.TOKEN = token
+                userViewModel.addDeviceToken(token)
+            })
         }
         else{
             binding.navController.getFragment<Fragment>().findNavController().setGraph(R.navigation.app_navigation_visitante)
         }
 
+    }
+
+    private fun askPermissions() {
+        val permissions = ArrayList(arrayListOf(
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+        ))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(permissions.toTypedArray(),101)
+        }
     }
 
     private fun initObserver() {
@@ -73,7 +89,7 @@ class Home : AppCompatActivity() {
                     manageUserNavigation(user)
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",this,dataState.exception.message.toString())
+                    //Utils.showOkDialog("Error: ",this,dataState.exception.message.toString())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit

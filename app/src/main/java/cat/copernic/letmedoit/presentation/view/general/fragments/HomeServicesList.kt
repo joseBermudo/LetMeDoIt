@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.R
@@ -150,6 +151,7 @@ class HomeServicesList : Fragment() {
     lateinit var serviceRecyclerView: RecyclerView
     lateinit var adapter: ServiceAdapter
 
+    private var filterCleared = false
     /**
      * Inicializa el RecyclerView
      * */
@@ -170,17 +172,20 @@ class HomeServicesList : Fragment() {
             iconFilter!!.background = ResourcesCompat.getDrawable(resources,R.drawable.filter_icon,null)
         }
         val args = arguments
-        val sortingType = args?.getInt("sortingType")
+        var sortingType = args?.getInt("sortingType")
+        if(filterCleared) sortingType = -1
         val category = args?.getParcelable<Category>("category")
-        if (sortingType != null) {
+        if (sortingType != null && sortingType != -1) {
             iconClearFilter?.setOnClickListener {
                 adapter.clearFilters()
                 if (iconFilter != null) {
                     iconFilter!!.visibility = View.VISIBLE
                     iconClearFilter!!.visibility = View.GONE
+                    filterCleared = true
                 }
             }
             if (sortingType >= 0) {
+                filterCleared = false
                 when (sortingType) {
                     0 -> {
                         adapter.orderByName(category)
