@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
+import cat.copernic.letmedoit.Utils.datahepers.DealsUsersServicesJoin
 import cat.copernic.letmedoit.data.model.Deal
 import cat.copernic.letmedoit.Utils.datahepers.HistoryDeal
 import cat.copernic.letmedoit.data.model.Service
@@ -86,7 +87,8 @@ class verListadoDeals : Fragment() {
                             dealViewModel.getDeal(it.deal_id)
                         }
                     }
-                    if(historyDeals.size == 0 ) hideProgress()                }
+                    if(historyDeals.size == 0 ) hideProgress()
+                }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
                 }
@@ -102,8 +104,12 @@ class verListadoDeals : Fragment() {
                     if(historyDeals[historyDealsIndex].dealId.size == tempDeals.size){
                         tempDeals.forEach {
                             userDeals.add(it)
-                            if(it.users.userOneId == Constants.USER_LOGGED_IN_ID) userViewModel.getUser(it.users.userTwoId)
-                            else userViewModel.getUser(it.users.userOneId)
+                            if(it.users.userOneId == Constants.USER_LOGGED_IN_ID) {
+                                userViewModel.getUser(it.users.userTwoId)
+                            }
+                            else{
+                                userViewModel.getUser(it.users.userOneId)
+                            }
                         }
                         tempDeals.clear()
                         historyDealsIndex++
@@ -149,13 +155,33 @@ class verListadoDeals : Fragment() {
         } )
     }
 
-    fun initRecyclerView() {
+    private fun initRecyclerView() {
         hideProgress()
         dealsRecyclerView = binding.recyclerViewListadoDeals
         binding.recyclerViewListadoDeals.layoutManager = LinearLayoutManager(binding.root.context)
 
 
-        adapter = DealsAdapter(userDeals,users,services)
+        val test = userDeals
+        val test2 = users
+        val test3 = services
+        val dealsItemToShow = ArrayList<DealsUsersServicesJoin>()
+        userDeals.forEachIndexed {i, userDeal ->
+            val usersFiltered = users.filter { it.id == if(userDeal.users.userOneId == Constants.USER_LOGGED_IN_ID) userDeal.users.userTwoId else userDeal.users.userOneId }
+            val servicesFiltered = services.filter { it.id == if(userDeal.users.userOneId == Constants.USER_LOGGED_IN_ID) userDeal.services.serviceTwoId else userDeal.services.serviceOneId }
+
+            if(usersFiltered.isNullOrEmpty())return
+            if(servicesFiltered.isNullOrEmpty())return
+            val user = usersFiltered[0]
+            val service = servicesFiltered[0]
+            dealsItemToShow.add(DealsUsersServicesJoin(
+                userDeal,
+                Constants.USER_LOGGED_IN,
+                user,
+                service
+            ))
+        }
+
+        adapter = DealsAdapter(dealsItemToShow)
 
         dealsRecyclerView.adapter = adapter
     }

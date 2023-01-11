@@ -1,5 +1,7 @@
 package cat.copernic.letmedoit.presentation.view.general.fragments
 
+import android.Manifest
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -41,6 +43,7 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
         //pasamos el sorting a servicelist
+        //askPermissions()
         val servicesFragment = childFragmentManager.findFragmentById(R.id.fragment_newServices)
         val bundle = Bundle()
         bundle.putInt("sortingType",args.sortingType)
@@ -51,6 +54,7 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
+
     companion object {
         /**
          * Use this factory method to create a new instance of

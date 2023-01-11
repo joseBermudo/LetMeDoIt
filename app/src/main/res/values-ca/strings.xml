@@ -3,7 +3,7 @@
     <string name="save">Desa</string>
     <string name="type_here">Escriu aquí</string>
     <string name="coment">Comentari:</string>
-    <string name="deny">Negar</string>
+    <string name="deny">Cancelar</string>
     <string name="accept">Acceptar</string>
     <string name="descriptionContent">Lorem Ipsum és simplement un text simulat de la indústria de la impressió i la composició.</string>
     <string name="description">Descripció</string>
@@ -45,8 +45,8 @@
     <string name="get_recovery_code">Obteniu el codi de recuperació</string>
     <string name="admin_users">Usuaris</string>
     <string name="banned_users">Usuaris prohibits</string>
-    <string name="reports">Informes</string>
-    <string name="archived_reports">Informes arxivats</string>
+    <string name="reports">Reports</string>
+    <string name="archived_reports">Reports archivats</string>
     <string name="categories">Categories</string>
     <string name="create_admin">Crea un administrador</string>
     <string name="sign_off">Tanqueu la sessió</string>
@@ -60,7 +60,7 @@
     <string name="txt_new_service_description">Descripció</string>
     <string name="txt_new_service_images">Imatges</string>
     <string name="txt_edit_service_editService">Servei d\'edició</string>
-    <string name="name_username">Nom Nom d\'usuari</string>
+    <string name="name_username">Nom d\'usuari</string>
     <string name="password_example">Exemple de contrasenya</string>
     <string name="about_me">Sobre mi</string>
     <string name="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis torttor ut quam interdum dignissim. Nulla lobortis id tellus sed placerat. Curabitur varius metus magna, vitae ultrices orci gravida vel. Pellentesque vel erat vel lacus porta mattis vestibulum vel felis. In tellus arcu, pulvinar eget dolor id, ultrices egestas sem. Fusce finibus sapien vehicula nisl finibus, sed condimentum orci tempor. Cras viverra maximus massa, nec posuere velit commodo eget. Etiam in lacus venenatis, porttitor metus ut, pellentesque dolor. Donec et faucibus turpis. Duis eu dapibus turpis. Proin ultrices, neque lacinia hendrerit posuere, augue ipsum tincidunt nisi, at bibendum dui ipsum vitae metus.</string>
@@ -86,7 +86,7 @@
     <string name="order_by">Demanat per</string>
     <string name="done">Fet</string>
     <string name="by">Per:</string>
-    <string name="report">Informeu</string>
+    <string name="report">Report</string>
     <string name="sign_in_or_register">Inicieu sessió o registreu-vos</string>
     <string name="visFav_descrtiption_title">Perfils que t\'agradin</string>
     <string name="visFavSev_descrtiption_title">Serveis que t\'agradin</string>
@@ -141,7 +141,7 @@
     <string name="txt_conclude_progress">1/2</string>
     <string name="txt_deal_progress_1">1/2</string>
     <string name="txt_add_to_favorites">Afegir a preferits</string>
-    <string name="txt_report_service">Servei d\'Informes</string>
+    <string name="txt_report_service">Servei de Reports</string>
     <string name="txt_edited_x_time_ago">Editat fa X temps</string>
     <string name="txt_num_favorites">100</string>
     <string name="txt_chat">Xatejar</string>
@@ -164,7 +164,7 @@
     <string name="bottom_menu_home_text">Casa</string>
     <string name="bottom_menu_favorites_text">Preferits</string>
     <string name="bottom_menu_upload_text">Carrega</string>
-    <string name="bottom_menu_email_text">Correu electrònic</string>
+    <string name="bottom_menu_email_text">Tractes</string>
     <string name="bottom_menu_profile_text">Perfil</string>
     <string name="recovery_email_text">S\'ha enviat un correu electrònic de recuperació.\nCanvia la teva contrasenya i torna a iniciar sessió.</string>
     <string name="recovery_email_sent_title">Correu electrònic de recuperació enviat</string>
@@ -180,4 +180,6 @@
     <string name="name">Nom</string>
     <string name="old_password">contrasenya antiga</string>
     <string name="new_password">nova contrasenya</string>
+    <string name="deals">Tractes</string>
+    <string name="sign_in_to_make_deals">Inicieu sessió per fer tractes</string>
 </resources>

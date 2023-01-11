@@ -1,5 +1,6 @@
 package cat.copernic.letmedoit.presentation.view.general.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,7 @@ import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.FragmentViewServiceBinding
 import cat.copernic.letmedoit.presentation.adapter.general.SliderImagesAdapter
+import cat.copernic.letmedoit.presentation.view.visitante.activities.Login
 import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -93,7 +95,7 @@ class viewService : Fragment() {
     }
     private fun initListeners() {
         binding.btnGoToProfile.setOnClickListener { goToUserProfile(requireView(),args.service.userid) }
-        binding.btnChat.setOnClickListener{ goToChat() }
+        binding.btnChat.setOnClickListener{ goToCreateDeal() }
         binding.btnReport.setOnClickListener{ Utils.goToUserReport(requireView(), args.service.userid) }
         binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
         binding.btnFav.setOnClickListener{ manageFavorite() }
@@ -105,9 +107,14 @@ class viewService : Fragment() {
         Navigation.findNavController(requireView()).navigate(action)
     }
 
-    private fun goToChat(){
-        val action = viewServiceDirections.viewServiceToChat(args.service.userid)
-        Navigation.findNavController(requireView()).navigate(action)
+    private fun goToCreateDeal(){
+
+
+        if(Constants.USER_LOGGED_IN_ID=="") startActivity(Intent(requireContext(),Login::class.java))
+        else {
+            val action = viewServiceDirections.actionViewServiceToCreateDeal(Constants.USER_LOGGED_IN,user)
+            Navigation.findNavController(requireView()).navigate(action)
+        }
     }
     private fun manageFavorite() {
 
@@ -120,6 +127,7 @@ class viewService : Fragment() {
         else userViewModel.deleteFavoriteService(service.id)
     }
 
+    private lateinit var user : Users
     private fun initObservers() {
         serviceViewModel.getServiceState.observe(viewLifecycleOwner,Observer { dataState ->
             when(dataState){
@@ -136,14 +144,12 @@ class viewService : Fragment() {
         userViewModel.getUserState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Users?> -> {
-                    val user = dataState.data
-                    if(user != null){
-                        if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.profileImage)
-                        binding.userRating.rating = user.rating
-                        binding.ratingNum.text = "(${DecimalFormat("#.##").format(user.rating)})"
-                        if(user.name != "")  binding.nameSurname.text = "${user.name} ${user.surname}"
-                        else binding.nameSurname.text = "@${user.username}"
-                    }
+                    user = dataState.data!!
+                    if(user.avatar != "") Picasso.get().load(user.avatar).into(binding.profileImage)
+                    binding.userRating.rating = user.rating
+                    binding.ratingNum.text = "(${DecimalFormat("#.##").format(user.rating)})"
+                    if(user.name != "")  binding.nameSurname.text = "${user.name} ${user.surname}"
+                    else binding.nameSurname.text = "@${user.username}"
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
@@ -185,8 +191,8 @@ class viewService : Fragment() {
 
     private fun initView(service: Service) {
 
-        val test = Constants.USER_LOGGED_IN_ID
-        if(Constants.USER_LOGGED_IN_ID == "") binding.btnChat.visibility = View.GONE
+        if(Constants.USER_LOGGED_IN_ID == "") binding.btnChat.text = resources.getString(R.string.sign_in_to_make_deals)
+
         if(Constants.USER_LOGGED_IN_ID == args.service.userid){
             binding.btnFav.isVisible = false
             binding.btnReport.isVisible = false
