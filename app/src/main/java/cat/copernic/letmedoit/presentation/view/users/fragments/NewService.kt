@@ -127,6 +127,14 @@ class NewService : Fragment() {
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val subCategoryNames = categoryList[position].subcategories.map { it.nombre } as ArrayList<String>
+                if(subCategoryNames.size <= 0) {
+                    binding.txtTitleSubcategory.visibility = View.GONE
+                    binding.containerSpinnerSubcategory.visibility = View.GONE
+                }
+                else{
+                    binding.txtTitleSubcategory.visibility = View.VISIBLE
+                    binding.containerSpinnerSubcategory.visibility = View.VISIBLE
+                }
                 Utils.AsignarPopUpSpinner(requireContext(), subCategoryNames,binding.spinnerSubcategory)
             }
 
@@ -439,12 +447,14 @@ class NewService : Fragment() {
     }
 
     private fun uploadService(){
+        val subcategory = binding.spinnerSubcategory.selectedItem
+        val subcategoryName = subcategory?.toString() ?: ""
         serviceViewModel.saveService(
             Service(
                 id = idServiceRandom,
                 title = binding.editServiceTitle.text.toString(),
                 description = binding.editDescription.text.toString(),
-                category = CategoryMap(binding.spinnerCategory.selectedItem.toString(),binding.spinnerSubcategory.selectedItem.toString()),
+                category = CategoryMap(binding.spinnerCategory.selectedItem.toString(),subcategoryName),
                 image = imagesUploaded,
                 userid = Constants.USER_LOGGED_IN_ID,
                 edited_time = LocalDate.now().format(DateTimeFormatter.ofPattern(("dd-MM-yyyy")))

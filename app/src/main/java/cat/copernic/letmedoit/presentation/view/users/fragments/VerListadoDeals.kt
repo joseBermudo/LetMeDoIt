@@ -104,8 +104,12 @@ class verListadoDeals : Fragment() {
                     if(historyDeals[historyDealsIndex].dealId.size == tempDeals.size){
                         tempDeals.forEach {
                             userDeals.add(it)
-                            if(it.users.userOneId == Constants.USER_LOGGED_IN_ID) userViewModel.getUser(it.users.userTwoId)
-                            else userViewModel.getUser(it.users.userOneId)
+                            if(it.users.userOneId == Constants.USER_LOGGED_IN_ID) {
+                                userViewModel.getUser(it.users.userTwoId)
+                            }
+                            else{
+                                userViewModel.getUser(it.users.userOneId)
+                            }
                         }
                         tempDeals.clear()
                         historyDealsIndex++
@@ -162,11 +166,18 @@ class verListadoDeals : Fragment() {
         val test3 = services
         val dealsItemToShow = ArrayList<DealsUsersServicesJoin>()
         userDeals.forEachIndexed {i, userDeal ->
+            val usersFiltered = users.filter { it.id == if(userDeal.users.userOneId == Constants.USER_LOGGED_IN_ID) userDeal.users.userTwoId else userDeal.users.userOneId }
+            val servicesFiltered = services.filter { it.id == if(userDeal.users.userOneId == Constants.USER_LOGGED_IN_ID) userDeal.services.serviceTwoId else userDeal.services.serviceOneId }
+
+            if(usersFiltered.isNullOrEmpty())return
+            if(servicesFiltered.isNullOrEmpty())return
+            val user = usersFiltered[0]
+            val service = servicesFiltered[0]
             dealsItemToShow.add(DealsUsersServicesJoin(
                 userDeal,
                 Constants.USER_LOGGED_IN,
-                users.filter { it.id == userDeal.users.userTwoId }[0],
-                services.filter { it.id == userDeal.services.serviceTwoId }[0]
+                user,
+                service
             ))
         }
 

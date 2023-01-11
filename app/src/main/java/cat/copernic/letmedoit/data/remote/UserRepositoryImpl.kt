@@ -571,6 +571,7 @@ class UserRepositoryImpl @Inject constructor(
                 updateRating(media, idUser).collect { dataState ->
                     when (dataState) {
                         is DataState.Success<Boolean> -> {
+                            Constants.USER_LOGGED_IN.rating = media
                             emit(DataState.Success(dataState.data))
                             emit(DataState.Finished)
                         }
@@ -878,6 +879,7 @@ class UserRepositoryImpl @Inject constructor(
             }
         }.flowOn(Dispatchers.IO)
 
+    
     override suspend fun updateLocation(newLocation: String): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
 
@@ -898,6 +900,11 @@ class UserRepositoryImpl @Inject constructor(
     }.flowOn(Dispatchers.IO)
 
 
+    /**
+     * Actualiza el RATING del usuario.
+     * @param updatedRating Nuevo valor a actualizar
+     * @param idUser ID del usuario a actualizar
+     */
     override suspend fun updateRating(
         updatedRating: Float,
         idUser: String

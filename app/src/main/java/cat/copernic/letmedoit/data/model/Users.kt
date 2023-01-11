@@ -27,7 +27,7 @@ data class Users(
     @get:Exclude val historyDeals: ArrayList<HistoryDeal>? = null,
     @get:Exclude var opinions: ArrayList<Opinion> = ArrayList(),
     @get:Exclude var check: Boolean = false,
-    val rating: Float = 0f,
+    var rating: Float = 0f,
     var banned: Boolean = false,
     val admin: Boolean = false,
     val username: String = "",

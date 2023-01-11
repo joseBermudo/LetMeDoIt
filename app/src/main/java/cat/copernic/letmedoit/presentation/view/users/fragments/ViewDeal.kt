@@ -206,6 +206,11 @@ class ViewDeal : Fragment() {
             binding.btnAccept.isEnabled = false
             binding.btnAccept.setBackgroundColor(resources.getColor(R.color.secundario_gris_50))
         }
+        else{
+            binding.btnAccept.isEnabled = false
+            binding.btnAccept.setBackgroundColor(resources.getColor(R.color.azul_marino))
+            binding.btnAccept.setTextColor(resources.getColor(R.color.principal_blanco))
+        }
         binding.nameSurname.text = "${user.name} ${user.surname} \n @${user.username}"
         binding.myServiceSubText.text = myService.title
         binding.hisServiceSubText.text = hisService.title

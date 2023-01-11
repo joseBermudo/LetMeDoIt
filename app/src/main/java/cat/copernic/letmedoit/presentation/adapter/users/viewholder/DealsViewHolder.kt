@@ -25,10 +25,19 @@ class DealsViewHolder(val binding: ItemVerDealsBinding): RecyclerView.ViewHolder
 
     private fun onClickItem(deal: Deal, user: Users) {
         if (deal.accepted){
+            //En caso de dar a la vez clic en un trato en estado de conclusion y una sin concluir peta.
+            //Esta linea debería solucionarlo.
+            if(Navigation.findNavController(itemView).currentDestination?.label == "fragment_ver_deal") return
+
             val action  = chats_deals_manager_visDirections.actionVerConversacionesToConcludeDeal(deal, user)
             Navigation.findNavController(itemView).navigate(action)
         }
         else{
+            //En caso de dar a la vez clic en un trato en estado de conclusion y una sin concluir peta.
+            //Estas lineas deberían solucionarlo.
+            if(Navigation.findNavController(itemView).currentDestination?.label == "fragment_conclude_deal") return
+            if(Navigation.findNavController(itemView).currentDestination?.label == "fragment_ver_deal") return
+
             val action  = chats_deals_manager_visDirections.actionVerConversacionesToViewDeal(deal, user)
             Navigation.findNavController(itemView).navigate(action)
         }
