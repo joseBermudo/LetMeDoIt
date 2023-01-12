@@ -128,11 +128,11 @@ class NewService : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val subCategoryNames = categoryList[position].subcategories.map { it.nombre } as ArrayList<String>
                 if(subCategoryNames.size <= 0) {
-                    binding.txtTitleSubcategory.visibility = View.GONE
+                    binding.txtTitleSubcategory!!.visibility = View.GONE
                     binding.containerSpinnerSubcategory.visibility = View.GONE
                 }
                 else{
-                    binding.txtTitleSubcategory.visibility = View.VISIBLE
+                    binding.txtTitleSubcategory!!.visibility = View.VISIBLE
                     binding.containerSpinnerSubcategory.visibility = View.VISIBLE
                 }
                 Utils.AsignarPopUpSpinner(requireContext(), subCategoryNames,binding.spinnerSubcategory)
@@ -371,8 +371,8 @@ class NewService : Fragment() {
             val deletedImages = service.image.minus(adapter.getItems().toSet())
             imagesToDelete = deletedImages.size
             deletedImages.forEach{
-                    serviceViewModel.removeImage(service.id,it.id.toInt(),it.img_link)
-                    totalImagesEdited--
+                serviceViewModel.removeImage(service.id,it.id.toInt(),it.img_link)
+                totalImagesEdited--
             }
             return
         }
@@ -490,10 +490,10 @@ class NewService : Fragment() {
     var cameraPermission = false
     private fun checkPermissions(permissions: Map<String, @JvmSuppressWildcards Boolean>) {
         permissions.forEach{
-            actionMap -> when(actionMap.key){
-                CAMERA -> { cameraPermission = actionMap.value }
-                READ_EXTERNAL_STORAGE ->  { storagePermission = actionMap.value }
-            }
+                actionMap -> when(actionMap.key){
+            CAMERA -> { cameraPermission = actionMap.value }
+            READ_EXTERNAL_STORAGE ->  { storagePermission = actionMap.value }
+        }
         }
     }
 
