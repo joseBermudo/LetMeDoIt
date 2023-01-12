@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.view.users.fragments.CreateDeal">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".CreateDealTest"
+            android:paddingVertical="@dimen/padding_vertical_cl"
+            android:paddingHorizontal="@dimen/padding_horizontal_cl">
+
+            <ImageView
+                android:id="@+id/back_arrow"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/txt_volver_atras"
+                android:src="@drawable/arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/create_deal_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop_extra"
+                android:text="@string/create_deal"
+                android:textSize="48sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/user_image_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="100dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_deal_title">
+
+                <ImageView
+                    android:id="@+id/user_image"
+                    android:layout_width="156dp"
+                    android:layout_height="156dp"
+                    android:layout_marginTop="@dimen/marginTop_userImage"
+                    android:contentDescription="@string/txt_profile_image"
+                    android:scaleType="centerCrop" />
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/name_surname_text"
+                style="@style/Widget.LetMeDoIt.title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_surname"
+                android:textSize="34sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/user_image_layout" />
+
+            <TextView
+                android:id="@+id/my_service_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/txt_my_service"
+                android:textSize="34sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name_surname_text" />
+
+            <LinearLayout
+                android:id="@+id/linear_layout_my_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:weightSum="1"
+                android:gravity="start|center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my_service_text">
+
+                <FrameLayout
+                    android:id="@+id/layout_spinner_myService"
+                    style="@style/CustomSpinnerLayout"
+                    android:layout_weight="1"
+                    android:layout_width="@dimen/relative_layout_w"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/revalite_layout_marginEnd"
+                    tools:ignore="MissingConstraints">
+
+                    <Spinner
+                        android:id="@+id/spinner_myService"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </FrameLayout>
+
+                <ImageView
+                    android:id="@+id/add_button"
+                    style="@style/IconoClickable"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="@dimen/create_deal_iconButton_marginStart"
+                    android:contentDescription="@string/txt_create_service"
+                    android:src="@drawable/ic_baseline_add_circle_24" />
+
+                <ImageView
+                    android:id="@+id/edit_button"
+                    style="@style/IconoClickable"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="@dimen/create_deal_iconButton_marginStart"
+                    android:contentDescription="@string/txt_edit_service"
+                    android:src="@drawable/ic_baseline_edit_24" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/his_service_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/his_service"
+                android:textSize="34sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linear_layout_my_service" />
+
+            <LinearLayout
+                android:id="@+id/linear_layout_his_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/his_service_marginTop"
+                android:weightSum="1"
+                android:gravity="start|center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/his_service_text">
+
+                <FrameLayout
+                    android:id="@+id/layout_spinner_hisService"
+                    style="@style/CustomSpinnerLayout"
+                    android:layout_weight="0.6"
+                    android:layout_width="@dimen/his_service_spinner_w"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    tools:ignore="MissingConstraints">
+
+                    <Spinner
+                        android:id="@+id/spinner_hisService"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/description_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/marginTop_extra"
+                android:text="@string/description"
+                android:textSize="34sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linear_layout_his_service" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_text_area_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_deal_text_area_marginTop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/description_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_area_description"
+                    style="@style/Widget.LetMeDoIt.TextArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:hint="@string/description"
+                    android:textSize="24sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ProgressBar
+                android:id="@+id/createDealLoading"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:visibility="invisible"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/azul_marino"
+                android:translationZ="90dp"
+                app:layout_constraintTop_toTopOf="@id/btn_create"
+                app:layout_constraintBottom_toBottomOf="@id/btn_create"
+                app:layout_constraintStart_toStartOf="@id/btn_create"
+                app:layout_constraintEnd_toEndOf="@id/btn_create"/>
+
+            <Button
+                android:id="@+id/btn_create"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end_extra_plus"
+                android:layout_marginTop="@dimen/marginTop_extra"
+                android:layout_marginEnd="@dimen/margins_start_end_extra_plus"
+                android:text="@string/create"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_text_area_description" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>
