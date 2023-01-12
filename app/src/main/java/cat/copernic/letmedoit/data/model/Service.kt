@@ -1,6 +1,7 @@
 package cat.copernic.letmedoit.data.model
 
 import android.os.Parcelable
+import androidx.annotation.Keep
 import cat.copernic.letmedoit.Utils.datahepers.CategoryMap
 import cat.copernic.letmedoit.Utils.Constants
 import com.google.firebase.firestore.Exclude
@@ -9,6 +10,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+@Keep
 @Parcelize
 data class Service(
     @get:Exclude var id : String = UUID.randomUUID().toString(),
