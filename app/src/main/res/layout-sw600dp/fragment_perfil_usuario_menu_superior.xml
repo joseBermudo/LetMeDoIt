@@ -21,8 +21,8 @@
 
             <TextView
                 android:id="@+id/btn_back"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="@dimen/seventwoDP"
+                android:layout_height="@dimen/seventwoDP"
                 android:layout_margin="@dimen/padding_horizontal_cl"
                 android:background="@drawable/arrow_back"
                 app:layout_constraintStart_toStartOf="parent"
@@ -31,8 +31,8 @@
             <TextView
                 android:id="@+id/btn_favorites"
                 style="@style/IconoClickable"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="@dimen/seventwoDP"
+                android:layout_height="@dimen/seventwoDP"
                 android:layout_margin="@dimen/padding_horizontal_cl"
                 android:background="@drawable/favorites_icon_colored"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -51,8 +51,8 @@
 
                 <ImageView
                     android:id="@+id/profile_image"
-                    android:layout_width="156dp"
-                    android:layout_height="156dp"
+                    android:layout_width="@dimen/logo_dimen"
+                    android:layout_height="@dimen/logo_dimen"
                     android:contentDescription="@string/txt_profile_image"
                     android:scaleType="centerCrop" />
             </androidx.cardview.widget.CardView>
@@ -70,15 +70,15 @@
 
             <RatingBar
                 android:id="@+id/user_rating"
-                style="@style/Widget.AppCompat.RatingBar.Small"
+                style="@style/Widget.AppCompat.RatingBar"
                 android:theme="@style/RatingBar.Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margins_start_end"
                 android:isIndicator="true"
                 android:numStars="5"
-                android:scaleY="2"
-                android:scaleX="2"
+                android:scaleY="1"
+                android:scaleX="1"
                 android:rating="2.5"
                 android:stepSize="0.1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padding_vertical_start_end_8"
                 android:text="(0.0)"
-                android:textSize="24sp"
+                android:textSize="@dimen/table_text_subtitle"
                 app:layout_constraintEnd_toEndOf="@id/user_rating"
                 app:layout_constraintStart_toStartOf="@id/user_rating"
                 app:layout_constraintTop_toBottomOf="@id/user_rating" />
@@ -100,8 +100,8 @@
             <TextView
                 android:id="@+id/btn_report"
                 style="@style/IconoClickable"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="@dimen/seventwoDP"
+                android:layout_height="@dimen/seventwoDP"
                 android:layout_marginEnd="@dimen/padding_horizontal_cl"
                 android:background="@drawable/report_icon"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -137,6 +137,9 @@
                     <com.google.android.material.tabs.TabLayout
                         android:id="@+id/tablayout_user_profile"
                         android:layout_width="match_parent"
+                        app:tabMaxWidth="0dp"
+                        app:tabGravity="fill"
+                        app:tabMode="fixed"
                         android:layout_height="wrap_content"
                         app:layout_scrollFlags="enterAlways"
                         app:tabTextAppearance="@style/Widget.LetMeDoIt.text">

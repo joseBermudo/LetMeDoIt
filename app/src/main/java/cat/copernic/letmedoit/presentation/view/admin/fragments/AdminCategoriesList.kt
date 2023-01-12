@@ -95,9 +95,10 @@ class AdminCategoriesList : Fragment() {
                     }
                     is DataState.Error -> {
                         Utils.showOkDialog(
-                            "Error: ",
+                            "${resources.getString(R.string.error)}",
                             requireContext(),
-                            dataState.exception.message.toString()
+                            dataState.exception.message.toString(),
+                            requireActivity()
                         )
                         finishedProgress()
                     }
@@ -118,9 +119,10 @@ class AdminCategoriesList : Fragment() {
                     }
                     is DataState.Error -> {
                         Utils.showOkDialog(
-                            "Error: ",
+                            "${resources.getString(R.string.error)}",
                             requireContext(),
-                            dataState.exception.message.toString()
+                            dataState.exception.message.toString(),
+                            requireActivity()
                         )
                         finishedProgress()
                     }
@@ -145,9 +147,10 @@ class AdminCategoriesList : Fragment() {
                     }
                     is DataState.Error -> {
                         Utils.showOkDialog(
-                            "Error: ",
+                            "${resources.getString(R.string.error)}",
                             requireContext(),
-                            dataState.exception.message.toString()
+                            dataState.exception.message.toString(),
+                            requireActivity()
                         )
                         finishLoadingProcess()
 

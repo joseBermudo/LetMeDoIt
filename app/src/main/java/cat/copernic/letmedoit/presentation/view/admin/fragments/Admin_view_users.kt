@@ -61,9 +61,10 @@ class admin_view_users : Fragment() {
                     }
                     is DataState.Error -> {
                         Utils.showOkDialog(
-                            "Error: ",
+                            "${resources.getString(R.string.error)}",
                             requireContext(),
-                            dataState.exception.message.toString()
+                            dataState.exception.message.toString(),
+                            requireActivity()
                         )
 
 

@@ -1,14 +1,19 @@
 package cat.copernic.letmedoit.Utils
 
+import android.app.Activity
 import android.content.Context
+import android.util.DisplayMetrics
 import android.view.View
-import android.widget.Spinner
 import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.Navigation
-import cat.copernic.letmedoit.presentation.view.general.fragments.*
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.presentation.view.general.fragments.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlin.math.sqrt
+
 
 abstract class Utils {
     //Companion Object --> permite llamar a la función sin instanciar la clase
@@ -31,25 +36,16 @@ abstract class Utils {
             spinner.adapter = adapter
         }
 
-
-        fun AsignarPopUpSpinnerLenguages(
-            context: Context,
-            list: ArrayList<String>, spinner: Spinner, layout: Int= R.layout.spinner_items
-        ) {
-            val adapter: ArrayAdapter<String> = ArrayAdapter<String>(context,
-                R.layout.spinner_items, list)
-            spinner.adapter = adapter
-        }
-
         /**
          * Función que muestra un AlertDialog con el titulo especificado y un botón de OK
          * @         * */
-        fun showOkDialog(title : String,context: Context, message : String = "") {
+        fun showOkDialog(title : String,context: Context, message : String = "", activity: Activity) {
             val alertDialog: AlertDialog = context.let {
                 val builder = MaterialAlertDialogBuilder(context,R.style.Widget_LetMeDoIt_AlertDialogTheme)
                 builder.apply {
                     this.setTitle(title)
                     this.setMessage(message)
+
                     setPositiveButton(R.string.ok) { dialog, id ->
                         // User clicked OK button
                     }
@@ -57,9 +53,26 @@ abstract class Utils {
                 // Create the AlertDialog
                 builder.create()
             }
+            val isTablet = checkIfTablet(activity)
             alertDialog.show()
+            if(isTablet){
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).textSize = context.resources.getDimension(R.dimen.tablet_textInput_text)
+                alertDialog.findViewById<TextView>(androidx.appcompat.R.id.alertTitle)?.textSize = context.resources.getDimension(R.dimen.tablet_textInput_text)
+                alertDialog.findViewById<TextView>(android.R.id.message)?.textSize = context.resources.getDimension(R.dimen.tablet_textInput_text)
+            }
 
 
+        }
+
+        private fun checkIfTablet(activity: Activity): Boolean {
+            val metrics = DisplayMetrics()
+            //Esto es compatible con API 21, la función que no está deprecated no (es API 30)
+             activity.windowManager.defaultDisplay.getMetrics(metrics)
+
+            val yInches = metrics.heightPixels / metrics.ydpi
+            val xInches = metrics.widthPixels / metrics.xdpi
+            val diagonalInches = sqrt((xInches * xInches + yInches * yInches).toDouble())
+            return diagonalInches >= 9
         }
 
         /**

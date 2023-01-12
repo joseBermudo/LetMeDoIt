@@ -17,14 +17,24 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_horizontal_cl">
 
+            <Button
+                android:id="@+id/btnArrowBack"
+                android:visibility="gone"
+                android:layout_width="@dimen/seventwoDP"
+                android:layout_height="@dimen/seventwoDP"
+                android:background="@drawable/arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/txt_title_chat"
+                android:layout_marginTop="@dimen/divider_16dp_margin_top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_new_service"
-                android:textSize="48sp"
+                android:textSize="@dimen/tabled_text_title"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/btnArrowBack" />
 
             <TextView
                 android:id="@+id/txt_title_title"
@@ -32,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/marginTop"
                 android:text="@string/txt_new_service_title"
-                android:textSize="34sp"
+                android:textSize="@dimen/table_text_subtitle"
                 app:layout_constraintStart_toStartOf="@+id/txt_title_chat"
                 app:layout_constraintTop_toBottomOf="@+id/txt_title_chat" />
 
@@ -59,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/marginTop_extra"
                 android:text="@string/txt_new_service_category"
-                android:textSize="34sp"
+                android:textSize="@dimen/table_text_subtitle"
                 app:layout_constraintStart_toStartOf="@+id/layout_edit_title"
                 app:layout_constraintTop_toBottomOf="@+id/layout_edit_title" />
 
@@ -80,12 +90,12 @@
             </FrameLayout>
 
             <TextView
-                android:id="@+id/txt_title_category"
+                android:id="@+id/txt_title_subcategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/marginTop_extra"
                 android:text="@string/txt_new_service_subcategory"
-                android:textSize="34sp"
+                android:textSize="@dimen/table_text_subtitle"
                 app:layout_constraintStart_toStartOf="@+id/container_spinner_category"
                 app:layout_constraintTop_toBottomOf="@+id/container_spinner_category" />
 
@@ -95,8 +105,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/new_service_margin_top"
-                app:layout_constraintStart_toStartOf="@+id/txt_title_category"
-                app:layout_constraintTop_toBottomOf="@+id/txt_title_category"
+                app:layout_constraintStart_toStartOf="@+id/txt_title_subcategory"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title_subcategory"
                 tools:ignore="MissingConstraints">
 
                 <Spinner
@@ -111,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/marginTop_extra"
                 android:text="@string/txt_new_service_description"
-                android:textSize="34sp"
+                android:textSize="@dimen/table_text_subtitle"
                 app:layout_constraintStart_toStartOf="@+id/container_spinner_subcategory"
                 app:layout_constraintTop_toBottomOf="@+id/container_spinner_subcategory" />
 
@@ -138,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/marginTop_extra"
                 android:text="@string/txt_new_service_images"
-                android:textSize="@dimen/title2_size"
+                android:textSize="@dimen/table_text_subtitle"
                 app:layout_constraintStart_toStartOf="@+id/layout_edit_description"
                 app:layout_constraintTop_toBottomOf="@+id/layout_edit_description" />
 
@@ -175,10 +185,11 @@
                 app:layout_constraintTop_toTopOf="@id/btn_remove_image" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:nestedScrollingEnabled="false"
                 android:id="@+id/list_images"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margins_start_end_extra_plus"
+                android:nestedScrollingEnabled="false"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/txt_title_images"
@@ -190,7 +201,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/marginTop_extra"
-                android:layout_marginBottom="48dp"
+                android:layout_marginBottom="150dp"
                 android:text="@string/save"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"

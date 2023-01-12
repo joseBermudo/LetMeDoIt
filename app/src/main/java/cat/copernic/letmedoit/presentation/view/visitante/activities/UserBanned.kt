@@ -26,7 +26,7 @@ class UserBanned : AppCompatActivity() {
 
         startActivity(
             Intent.createChooser(intent,
-            "Send Email Using: "))
+            resources.getString(R.string.sendEmail)))
     }
     override fun onBackPressed() {
         return

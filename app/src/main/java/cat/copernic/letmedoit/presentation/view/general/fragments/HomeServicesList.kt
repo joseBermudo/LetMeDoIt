@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.UserConstants
 import cat.copernic.letmedoit.Utils.Utils
@@ -88,7 +89,7 @@ class HomeServicesList : Fragment() {
 
     private var totalFavServices = 0
     private var obtainedFavServices = 0
-    private lateinit var services: List<Service>
+    private var services =  ArrayList<Service>()
     private var searchView: Fragment? = null
     private var iconFilter: TextView? = null
     private var iconClearFilter: TextView? = null
@@ -96,18 +97,24 @@ class HomeServicesList : Fragment() {
         serviceViewModel.getServicesState.observe(viewLifecycleOwner, Observer { dataState ->
             when (dataState) {
                 is DataState.Success<List<Service>> -> {
-                    dataState.data.forEach {
-                        if (UserConstants.USER_FAVORITE_SERVICES_IDS.contains(it.id)) it.defaultFav = true
+                    services.clear()
+                    if(Constants.USER_LOGGED_IN_ID != ""){
+                        dataState.data.forEach {
+                            if (UserConstants.USER_FAVORITE_SERVICES_IDS.contains(it.id)) it.defaultFav = true
+                            if(it.userid != Constants.USER_LOGGED_IN_ID) services.add(it)
+                        }
                     }
-                    services = dataState.data
+                    else services = ArrayList(dataState.data)
+
                     inicializarRecyclerView()
                     hideProgress()
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog(
-                        "Error: ",
+                        "${resources.getString(R.string.error)}",
                         requireContext(),
-                        dataState.exception.message.toString()
+                        dataState.exception.message.toString(),
+                        requireActivity()
                     )
                     hideProgress()
                 }
@@ -125,9 +132,10 @@ class HomeServicesList : Fragment() {
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog(
-                        "Error: ",
+                        "${resources.getString(R.string.error)}",
                         requireContext(),
-                        dataState.exception.message.toString()
+                        dataState.exception.message.toString(),
+                        requireActivity()
                     )
                 }
                 is DataState.Loading -> {}

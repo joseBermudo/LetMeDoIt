@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
+import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.ActivityRecoveryPasswordEmailBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -27,13 +28,13 @@ class RecoveryPassword_email : AppCompatActivity() {
     private fun checkEmail() {
         val email = binding.editEmail.text.toString().trim().lowercase()
         if(email.isEmpty()){
-            Toast.makeText(this,"Please fill out Email !!!",
+            Toast.makeText(this,resources.getString(R.string.emailemptyerror),
                 Toast.LENGTH_LONG).show()
             return
         }
         val pattern: Pattern = Patterns.EMAIL_ADDRESS
         if (!pattern.matcher(email).matches()){
-            Toast.makeText(this,"Not a valid email !!!",
+            Toast.makeText(this,resources.getString(R.string.notvalidemail),
                 Toast.LENGTH_LONG).show()
             return
         }
@@ -44,7 +45,7 @@ class RecoveryPassword_email : AppCompatActivity() {
     private fun sendRecoveryCode(email: String) {
         auth.sendPasswordResetEmail(email).addOnCompleteListener{ response ->
             if (!response.isSuccessful){
-                Toast.makeText(this,"Recovery failed :(",
+                Toast.makeText(this,resources.getString(R.string.errorResetPassword),
                     Toast.LENGTH_LONG).show()
                 return@addOnCompleteListener
             }

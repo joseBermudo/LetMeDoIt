@@ -251,6 +251,9 @@
         <argument
             android:name="userTwo"
             app:argType="cat.copernic.letmedoit.data.model.Users" />
+        <argument
+            android:name="serviceToDealWith"
+            app:argType="cat.copernic.letmedoit.data.model.Service" />
         <action
             android:id="@+id/action_createDeal_to_newService"
             app:destination="@id/newService" />

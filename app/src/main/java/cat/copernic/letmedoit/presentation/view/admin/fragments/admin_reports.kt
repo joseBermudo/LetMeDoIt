@@ -97,9 +97,10 @@ class admin_reports : Fragment() {
                     }
                     is DataState.Error -> {
                         Utils.showOkDialog(
-                            "Error: ",
+                            "${resources.getString(R.string.error)}",
                             requireContext(),
-                            dataState.exception.message.toString()
+                            dataState.exception.message.toString(),
+                            requireActivity()
                         )
 
 
@@ -121,9 +122,10 @@ class admin_reports : Fragment() {
                     }
                     is DataState.Error -> {
                         Utils.showOkDialog(
-                            "Error: ",
+                            "${resources.getString(R.string.error)}",
                             requireContext(),
-                            dataState.exception.message.toString()
+                            dataState.exception.message.toString(),
+                            requireActivity()
                         )
 
                     }
@@ -145,9 +147,10 @@ class admin_reports : Fragment() {
                     }
                     is DataState.Error -> {
                         Utils.showOkDialog(
-                            "Error: ",
+                            "${resources.getString(R.string.error)}",
                             requireContext(),
-                            dataState.exception.message.toString()
+                            dataState.exception.message.toString(),
+                            requireActivity()
                         )
 
                     }

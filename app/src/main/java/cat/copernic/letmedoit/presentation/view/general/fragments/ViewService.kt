@@ -112,7 +112,7 @@ class viewService : Fragment() {
 
         if(Constants.USER_LOGGED_IN_ID=="") startActivity(Intent(requireContext(),Login::class.java))
         else {
-            val action = viewServiceDirections.actionViewServiceToCreateDeal(Constants.USER_LOGGED_IN,user)
+            val action = viewServiceDirections.actionViewServiceToCreateDeal(Constants.USER_LOGGED_IN,user,args.service)
             Navigation.findNavController(requireView()).navigate(action)
         }
     }
@@ -152,7 +152,7 @@ class viewService : Fragment() {
                     else binding.nameSurname.text = "@${user.username}"
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -164,7 +164,7 @@ class viewService : Fragment() {
                     UserConstants.USER_FAVORITE_SERVICES_IDS.add(args.service.id)
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -176,7 +176,7 @@ class viewService : Fragment() {
                     UserConstants.USER_FAVORITE_SERVICES_IDS.remove(args.service.id)
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit

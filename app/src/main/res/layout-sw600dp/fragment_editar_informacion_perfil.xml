@@ -43,8 +43,8 @@
 
             <ImageView
                 android:id="@+id/profile_image"
-                android:layout_width="156dp"
-                android:layout_height="156dp"
+                android:layout_width="@dimen/tablet_img_logo"
+                android:layout_height="@dimen/tablet_img_logo"
                 android:scaleType="centerCrop" />
         </androidx.cardview.widget.CardView>
 
