@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
@@ -90,7 +91,7 @@ class verListadoDeals : Fragment() {
                     if(historyDeals.size == 0 ) hideProgress()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> { showProgress() }
                 else -> Unit
@@ -118,7 +119,7 @@ class verListadoDeals : Fragment() {
                     if(historyDealsIndex >= historyDeals.size) return@Observer
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -134,7 +135,7 @@ class verListadoDeals : Fragment() {
                     }
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -147,7 +148,7 @@ class verListadoDeals : Fragment() {
                     if(services.size == userDeals.size) initView()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit

@@ -71,7 +71,10 @@ class ServiceAdapter(private var serviceList:ArrayList<Service>,val fragment: Fr
             filteredList.addAll(serviceList)
         } else {
             for (item in serviceList) {
-                if (item.title.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))) {
+                if (item.title.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))
+                    || item.category.id_category.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))
+                    || item.category.id_subcategory.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))
+                    || item.description.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))) {
                     filteredList.add(item)
                 }
             }

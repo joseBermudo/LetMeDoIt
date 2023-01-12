@@ -76,7 +76,6 @@ class AccountOptions : Fragment() {
         binding.nameSurname.text = "${user.name} ${user.surname} \n @${user.username} \n"
         binding.myRatingBar.rating = user.rating
         binding.ratingNum.text = "(${DecimalFormat("#.##").format(user.rating)})"
-        binding.darkThemeSwitch.isChecked = user.darkTheme == true
     }
 
 
@@ -99,7 +98,6 @@ class AccountOptions : Fragment() {
     private fun initListeners() {
         val languagesString = ArrayList<String>()
         LenguagesProvider.obtenerLenguages().map { x -> x.lenguage }.toCollection(languagesString)
-        binding.darkThemeSwitch.setOnCheckedChangeListener{  _, isChecked -> userViewModel.updateDarkTheme(isChecked) }
     }
 
     private fun initSpinner() {
@@ -127,25 +125,11 @@ class AccountOptions : Fragment() {
                     requireActivity().finish()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
             }
         } )
-        userViewModel.updateDarkThemeState.observe(viewLifecycleOwner, Observer { dataState ->
-            when(dataState){
-                is DataState.Success<Boolean> -> {
-                    binding.darkThemeSwitch.isEnabled = true
-                }
-                is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
-                    binding.darkThemeSwitch.isEnabled = true
-                }
-                is DataState.Loading -> { binding.darkThemeSwitch.isEnabled = false }
-                else -> Unit
-            }
-        } )
-
     }
 }

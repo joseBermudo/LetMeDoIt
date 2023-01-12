@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/marginTop_extra_big"
         android:text="@string/recovery_email_sent_title"
-        android:textSize="48sp"
+        android:textSize="@dimen/tabled_text_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,7 +28,7 @@
         android:layout_marginEnd="@dimen/margins_start_end"
         android:text="@string/recovery_email_text"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="@dimen/table_text_subtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tittleRecoveryCode" />
@@ -36,12 +36,12 @@
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/tablet_height_size"
         android:layout_marginStart="@dimen/margins_start_end"
         android:layout_marginTop="@dimen/marginTop"
         android:layout_marginEnd="@dimen/margins_start_end"
         android:text="@string/txt_login_signIn"
-        android:textSize="24sp"
+        android:textSize="@dimen/table_text_subtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_title_description" />

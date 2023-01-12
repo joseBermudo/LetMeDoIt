@@ -114,6 +114,7 @@ class NewService : Fragment() {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun initListeners() {
+        binding.btnArrowBack.setOnClickListener { requireActivity().onBackPressed() }
         binding.editDescription.setOnTouchListener(object : OnTouchListener {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 binding.scrollableLayout.requestDisallowInterceptTouchEvent(true)
@@ -128,11 +129,11 @@ class NewService : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val subCategoryNames = categoryList[position].subcategories.map { it.nombre } as ArrayList<String>
                 if(subCategoryNames.size <= 0) {
-                    binding.txtTitleSubcategory!!.visibility = View.GONE
+                    binding.txtTitleSubcategory.visibility = View.GONE
                     binding.containerSpinnerSubcategory.visibility = View.GONE
                 }
                 else{
-                    binding.txtTitleSubcategory!!.visibility = View.VISIBLE
+                    binding.txtTitleSubcategory.visibility = View.VISIBLE
                     binding.containerSpinnerSubcategory.visibility = View.VISIBLE
                 }
                 Utils.AsignarPopUpSpinner(requireContext(), subCategoryNames,binding.spinnerSubcategory)
@@ -147,6 +148,7 @@ class NewService : Fragment() {
 
 
     private fun initViewWithData(service: Service) {
+        binding.btnArrowBack.visibility = View.VISIBLE
         editMode = true
         binding.txtTitleChat.text = resources.getText(R.string.txt_edit_service)
         binding.editServiceTitle.setText(service.title)
@@ -189,7 +191,7 @@ class NewService : Fragment() {
                         serviceViewModel.getService(args.serviceID)
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -202,7 +204,7 @@ class NewService : Fragment() {
                     initViewWithData(service)
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> { binding.btnSave.isEnabled = false }
                 else -> binding.btnSave.isEnabled = true
@@ -216,7 +218,7 @@ class NewService : Fragment() {
                     else uploadImageSuccess(dataState.data)
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {}
                 else -> Unit
@@ -228,7 +230,7 @@ class NewService : Fragment() {
                     serviceViewModel.updateDescription(service.id,binding.editDescription.text.toString())
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> { showProgress() }
                 else -> Unit
@@ -240,7 +242,7 @@ class NewService : Fragment() {
                     serviceViewModel.updateEditedTime(service.id,LocalDate.now().format(DateTimeFormatter.ofPattern(("dd-MM-yyyy"))))
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {}
                 else -> Unit
@@ -252,7 +254,7 @@ class NewService : Fragment() {
                     serviceViewModel.updateCategory(service.id, CategoryMap(binding.spinnerCategory.selectedItem.toString(),binding.spinnerSubcategory.selectedItem.toString()))
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {}
                 else -> Unit
@@ -264,7 +266,7 @@ class NewService : Fragment() {
                     saveImages()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {}
                 else -> Unit
@@ -276,7 +278,7 @@ class NewService : Fragment() {
                     userViewModel.addService(dataState.data.id)
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> { }
                 else -> Unit
@@ -290,7 +292,7 @@ class NewService : Fragment() {
                     if(!editingImages && !removingImages) requireActivity().onBackPressed()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> { }
                 else -> Unit
@@ -305,7 +307,7 @@ class NewService : Fragment() {
                     if(!editingImages && !removingImages) requireActivity().onBackPressed()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> { }
                 else -> Unit
@@ -319,7 +321,7 @@ class NewService : Fragment() {
                     Utils.goToDestination(requireView(),R.id.homeFragment)
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> { }
                 else -> Unit
@@ -356,7 +358,7 @@ class NewService : Fragment() {
     private var imagesToDelete = 0
     private fun saveImages() {
         if(adapter.getItems().size == 0){
-            Utils.showOkDialog("Info:",requireContext(),"There must be at least one image. Images will not be edited.")
+            Utils.showOkDialog("Info:",requireContext(),resources.getString(R.string.noimageserror),requireActivity())
             return
         }
         var index = 0
@@ -387,15 +389,15 @@ class NewService : Fragment() {
 
     private fun isDataSet() : Boolean{
         if(binding.editDescription.text.isNullOrEmpty()){
-            Utils.showOkDialog("There must be a description",requireContext())
+            Utils.showOkDialog(resources.getString(R.string.error),requireContext(),resources.getString(R.string.nodescriptionerror),requireActivity())
             return false
         }
         if(binding.editServiceTitle.text.isNullOrEmpty()){
-            Utils.showOkDialog("There must be a Title",requireContext())
+            Utils.showOkDialog(resources.getString(R.string.error),requireContext(),resources.getString(R.string.notitleerror),requireActivity())
             return false
         }
         if(binding.listImages.size <= 0){
-            Utils.showOkDialog("You Must Add Images",requireContext())
+            Utils.showOkDialog(resources.getString(R.string.error),requireContext(),resources.getString(R.string.noimageserror),requireActivity())
             return false
         }
 

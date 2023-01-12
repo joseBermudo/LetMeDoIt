@@ -53,7 +53,7 @@ class Login : AppCompatActivity() {
                 }
                 is DataState.Error -> {
                     hideProgress()
-                    Utils.showOkDialog("Error: ",this,dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",this,dataState.exception.message.toString(),this)
                 }
                 is DataState.Loading -> { showProgress() }
                 else -> Unit
@@ -68,7 +68,7 @@ class Login : AppCompatActivity() {
 
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",this,dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",this,dataState.exception.message.toString(),this)
                 }
                 is DataState.Loading -> { showProgress() }
                 else -> Unit
@@ -102,13 +102,13 @@ class Login : AppCompatActivity() {
         var password = binding.editPassword.text.toString()
 
         if(email.isEmpty() or password.isEmpty()){
-            Utils.showOkDialog("Please fill out Email and Password !!!", this)
+            Utils.showOkDialog(resources.getString(R.string.error),this,resources.getString(R.string.emailemptyerror), this)
             return
         }
 
         val pattern: Pattern = Patterns.EMAIL_ADDRESS
         if (!pattern.matcher(email).matches()){
-            Utils.showOkDialog("Not a Valid Email !!!",this)
+            Utils.showOkDialog(resources.getString(R.string.error),this,resources.getString(R.string.notvalidemail), this)
             return
         }
 

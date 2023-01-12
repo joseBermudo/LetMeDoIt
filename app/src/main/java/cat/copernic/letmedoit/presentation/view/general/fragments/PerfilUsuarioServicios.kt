@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.UserConstants
 import cat.copernic.letmedoit.Utils.Utils
@@ -94,7 +95,7 @@ class PerfilUsuarioServicios(private val servicesId: ArrayList<UserServices>?) :
                     if(services.size == servicesId!!.size) showServices()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     hideProgress()
                 }
                 is DataState.Loading -> { showProgress() }
@@ -119,7 +120,7 @@ class PerfilUsuarioServicios(private val servicesId: ArrayList<UserServices>?) :
 
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     hideProgress()
                 }
                 is DataState.Loading -> { showProgress() }
@@ -135,7 +136,7 @@ class PerfilUsuarioServicios(private val servicesId: ArrayList<UserServices>?) :
                     hideProgress()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     hideProgress()
                 }
                 is DataState.Loading -> { showProgress() }

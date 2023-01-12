@@ -64,9 +64,10 @@ class AdminSubcategoryList : Fragment() {
                     }
                     is DataState.Error -> {
                         Utils.showOkDialog(
-                            "Error: ",
+                            "${resources.getString(R.string.error)}",
                             requireContext(),
-                            dataState.exception.message.toString()
+                            dataState.exception.message.toString(),
+                            requireActivity()
                         )
                         finishedProgress()
                     }
@@ -86,9 +87,10 @@ class AdminSubcategoryList : Fragment() {
                     }
                     is DataState.Error -> {
                         Utils.showOkDialog(
-                            "Error: ",
+                            "${resources.getString(R.string.error)}",
                             requireContext(),
-                            dataState.exception.message.toString()
+                            dataState.exception.message.toString(),
+                            requireActivity()
                         )
                         finishedProgress()
                     }
@@ -127,7 +129,7 @@ class AdminSubcategoryList : Fragment() {
         myDialog = Dialog(binding.root.context)
         myDialog.setContentView(dialogBinding)
         myDialog.setCancelable(true)
-        dialogBinding.findViewById<TextView>(R.id.txt_title).text = "New subcategory"
+        dialogBinding.findViewById<TextView>(R.id.txt_title).text = resources.getString(R.string.Newsubcategory)
         myDialog.show()
 
         val btn_cancel = dialogBinding.findViewById<Button>(R.id.btn_cancelCreateCategorie)
@@ -188,8 +190,7 @@ class AdminSubcategoryList : Fragment() {
         myDialog = Dialog(binding.root.context)
         myDialog.setContentView(dialogBinding)
         myDialog.setCancelable(true)
-        dialogBinding.findViewById<TextView>(R.id.txt_title_deleteCategory).text =
-            "Delete Subcategory"
+        dialogBinding.findViewById<TextView>(R.id.txt_title_deleteCategory).text = resources.getString(R.string.DeleteSubcategory)
         myDialog.show()
 
         val btn_cancel = dialogBinding.findViewById<Button>(R.id.btn_cancelDeleteCategory)

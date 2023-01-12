@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.FragmentProfileMoreInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -69,13 +70,13 @@ class ProfileMoreInfo(private val user: Users) : Fragment() {
         intent.data = Uri.parse("mailto:${address}") // only email apps should handle this
 
         startActivity(Intent.createChooser(intent,
-            "Send Email Using: "))
+            resources.getString(R.string.sendEmail)))
     }
     private fun callUser(telf : String){
         val dialIntent = Intent(Intent.ACTION_DIAL)
         dialIntent.data = Uri.parse("tel:${telf}")
         startActivity(Intent.createChooser(dialIntent,
-            "Call Using: "))
+            resources.getString(R.string.callusing)))
     }
     private fun openMaps(location : String){
         val gmmIntentUri =  Uri.parse("geo:0,0?q=${location}")
@@ -83,7 +84,7 @@ class ProfileMoreInfo(private val user: Users) : Fragment() {
 
         mapIntent.setPackage("com.google.android.apps.maps")
         startActivity(Intent.createChooser(mapIntent,
-            "Show Map Using: "))
+            resources.getString(R.string.showmapusing)))
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

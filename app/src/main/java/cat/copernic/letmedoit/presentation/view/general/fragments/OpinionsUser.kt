@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Opinion
@@ -78,7 +79,9 @@ class OpinionsUser(private val opinions: ArrayList<Opinion>) : Fragment() {
                         }
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),
+                        requireActivity()
+                    )
                 }
                 is DataState.Loading -> {
                 }
@@ -92,7 +95,7 @@ class OpinionsUser(private val opinions: ArrayList<Opinion>) : Fragment() {
                     if(services.size == opinions.size) initRecyclerView()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {
                 }

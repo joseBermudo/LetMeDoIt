@@ -122,7 +122,7 @@ class EditarInformacionPerfil : Fragment() {
 
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     hideImageProgressBar()
                 }
                 is DataState.Loading -> { showImageProgressBar() }
@@ -137,7 +137,7 @@ class EditarInformacionPerfil : Fragment() {
                     user.avatar = dataState.data
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     hideImageProgressBar()
                 }
                 is DataState.Loading -> { showImageProgressBar() }
@@ -153,7 +153,7 @@ class EditarInformacionPerfil : Fragment() {
                     hideImageProgressBar()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     hideImageProgressBar()
                 }
                 is DataState.Loading -> {  }
@@ -167,7 +167,7 @@ class EditarInformacionPerfil : Fragment() {
                     binding.aboutMeText.text = user.aboutMe
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
 
                     dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = false
                     val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
@@ -190,7 +190,7 @@ class EditarInformacionPerfil : Fragment() {
                     binding.btnEditCurriculum.isEnabled = true
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     binding.btnEditCurriculum.isEnabled = true
                     binding.btnPdf.isVisible = true
                     binding.curriculumLoading.isVisible = false
@@ -206,7 +206,7 @@ class EditarInformacionPerfil : Fragment() {
                     user.curriculum = dataState.data
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     binding.btnEditCurriculum.isEnabled = true
                     binding.btnPdf.isVisible = true
                     binding.curriculumLoading.isVisible = false
@@ -222,7 +222,7 @@ class EditarInformacionPerfil : Fragment() {
                     binding.curriculumLoading.isVisible = false
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     binding.btnEditCurriculum.isEnabled = true
                     binding.btnPdf.isVisible = true
                     binding.curriculumLoading.isVisible = false
@@ -241,7 +241,7 @@ class EditarInformacionPerfil : Fragment() {
                     binding.scheduleText.text = "${user.schedule?.initHour} - ${user.schedule?.endHour}"
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = false
 
                     val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
@@ -263,7 +263,7 @@ class EditarInformacionPerfil : Fragment() {
                     dialog.dismiss()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = false
 
                     val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
@@ -286,7 +286,7 @@ class EditarInformacionPerfil : Fragment() {
                     binding.locationText.text = user.location
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = false
 
                     val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
@@ -309,7 +309,7 @@ class EditarInformacionPerfil : Fragment() {
                     binding.nameSurname.text = "${user.name} ${user.surname} \n @${user.username}"
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = false
 
                     val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
@@ -331,7 +331,7 @@ class EditarInformacionPerfil : Fragment() {
                     dialog.dismiss()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = false
 
                     val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
@@ -483,7 +483,7 @@ class EditarInformacionPerfil : Fragment() {
             val textPhone = dialogBinding.findViewById<TextInputEditText>(R.id.textPhoneNumber).text.toString()
 
             if(textPhone.length < 9 || textPhone.length>12){
-                Utils.showOkDialog("Error", requireContext(),"Invalid Phone Number")
+                Utils.showOkDialog("${resources.getString(R.string.error)}", requireContext(),resources.getString(R.string.invalidPhone),requireActivity())
                 return@setOnClickListener
             }
             val contactInfo = ContactInfoMap(textEmail,textPhone)

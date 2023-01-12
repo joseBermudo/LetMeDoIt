@@ -22,14 +22,13 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/menu_inferior"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/tablet_height_size"
             android:layout_alignParentBottom="true"
-            app:itemIconSize="24dp"
-            app:labelVisibilityMode="labeled"
+            app:itemIconSize="@dimen/tabled_text_title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/menu_principal"></com.google.android.material.bottomnavigation.BottomNavigationView>
+            app:menu="@menu/menu_principal" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
