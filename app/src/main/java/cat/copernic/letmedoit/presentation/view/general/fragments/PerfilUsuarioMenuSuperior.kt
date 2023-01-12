@@ -70,7 +70,8 @@ class PerfilUsuarioMenuSuperior : Fragment() {
         initObservers()
 
         userViewModel.getUser(args.userID)
-        userViewModel.getFavoriteProfiles()
+        if(Constants.USER_LOGGED_IN_ID != "") userViewModel.getFavoriteProfiles()
+
 
         if(FirebaseAuth.getInstance().currentUser == null || args.userID == Constants.USER_LOGGED_IN_ID){
             binding.btnFavorites.visibility = View.INVISIBLE
