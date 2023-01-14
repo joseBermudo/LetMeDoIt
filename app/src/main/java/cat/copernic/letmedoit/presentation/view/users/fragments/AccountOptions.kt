@@ -26,7 +26,6 @@ import com.google.firebase.ktx.Firebase
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.*
 import cat.copernic.letmedoit.data.model.Users
-import cat.copernic.letmedoit.data.provider.LenguagesProvider
 import cat.copernic.letmedoit.presentation.view.general.activities.Home
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import com.squareup.picasso.Picasso
@@ -76,6 +75,7 @@ class AccountOptions : Fragment() {
         binding.nameSurname.text = "${user.name} ${user.surname} \n @${user.username} \n"
         binding.myRatingBar.rating = user.rating
         binding.ratingNum.text = "(${DecimalFormat("#.##").format(user.rating)})"
+
     }
 
 
@@ -96,12 +96,11 @@ class AccountOptions : Fragment() {
     }
 
     private fun initListeners() {
-        val languagesString = ArrayList<String>()
-        LenguagesProvider.obtenerLenguages().map { x -> x.lenguage }.toCollection(languagesString)
     }
 
     private fun initSpinner() {
         binding.btnUserProfile.setOnClickListener{ goToUserProfile()}
+        binding.btnMyServices.setOnClickListener{goToUserProfile()}
         binding.btnEditProfile.setOnClickListener{ goToEditProfile()}
         binding.btnSignOut.setOnClickListener{ loginViewModel.logOut() }
     }

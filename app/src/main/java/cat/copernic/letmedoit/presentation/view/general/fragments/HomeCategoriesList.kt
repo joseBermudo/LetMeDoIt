@@ -12,7 +12,6 @@ import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Category
-import cat.copernic.letmedoit.data.provider.CategoryProvider
 import cat.copernic.letmedoit.presentation.adapter.general.CategoryAdapter
 import cat.copernic.letmedoit.databinding.FragmentHomeCategoriesListBinding
 import cat.copernic.letmedoit.presentation.viewmodel.admin.CreateCategoryViewModel

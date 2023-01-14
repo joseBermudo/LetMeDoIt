@@ -711,9 +711,6 @@ class UserRepositoryImpl @Inject constructor(
                             throw Exception(it)
                         }
                 }
-                .addOnFailureListener {
-                    throw Exception(it)
-                }
                 .await()
             emit(DataState.Success(changeSuccesful))
             emit(DataState.Finished)

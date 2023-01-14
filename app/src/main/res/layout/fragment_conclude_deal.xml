@@ -184,6 +184,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/opinion_input" />
 
+            <Button
+                android:id="@+id/deny_conclude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/denegar"
+                android:text="@string/cancel"
+                app:layout_constraintEnd_toEndOf="@+id/opinion_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/conclude_btn" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

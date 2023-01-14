@@ -147,8 +147,11 @@ class ServiceAdapter(private var serviceList:ArrayList<Service>,val fragment: Fr
     }
 
     fun addFavService(service: Service) {
+        var numLikes = service.n_likes
+        if(numLikes <= -1) numLikes = 0
+        numLikes++
         userViewModel.addFavoriteService(service.id)
-        serviceViewModel.updateNLikes(service.id, ++service.n_likes)
+        serviceViewModel.updateNLikes(service.id, numLikes)
     }
 
     fun removeService(service: Service) {

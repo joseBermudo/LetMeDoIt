@@ -57,12 +57,11 @@ class ProfileMoreInfo(private val user: Users) : Fragment() {
     }
 
     private fun openPDF( url : String){
-
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        startActivity(browserIntent)
-
-
-        startActivity(browserIntent)
+        if(url != ""){
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(browserIntent)
+            startActivity(browserIntent)
+        }
     }
     private fun sendEmail(address : String){
 

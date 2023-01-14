@@ -208,5 +208,8 @@
     <string name="noreportcomment">\"You must make a comment for the report\"</string>
     <string name="userbannedmsg">This user has been banned</string>
     <string name="invalidPhone">Invalid Phone Number</string>
-    <string name="passwordNotMatch">Password do not match!</string>
+    <string name="passwordNotMatch">Passwords do not match!</string>
+    <string name="my_services">My Services</string>
+    <string name="initAndEndTime">Init and End time must be indicated</string>
+    <string name="usernameEmptyErro">Please fill out username</string>
 </resources>
