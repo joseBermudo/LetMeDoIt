@@ -29,6 +29,7 @@ import cat.copernic.letmedoit.databinding.ActivityHomeBinding
 import cat.copernic.letmedoit.presentation.view.admin.activities.MenuAdmin
 import cat.copernic.letmedoit.di.FirebaseModule
 import cat.copernic.letmedoit.presentation.view.general.fragments.Menu_Inferior
+import cat.copernic.letmedoit.presentation.view.users.fragments.CreateDealDirections
 import cat.copernic.letmedoit.presentation.view.visitante.activities.UserBanned
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import com.google.android.gms.tasks.OnCompleteListener
@@ -144,7 +145,6 @@ class Home : AppCompatActivity() {
                 if(currentDestination.label == "fragment_ver_conversaciones" && sourceDestination.label == "fragment_ver_deal") return
                 if(currentDestination.label == "fragment_ver_conversaciones" && sourceDestination.label == "fragment_conclude_deal") return
             }
-
             if(currentDestination.label == "fragment_rate_user") findNavController(R.id.navController).navigate(R.id.verConversaciones)
             if(currentDestination.label == "fragment_conclude_deal") findNavController(R.id.navController).navigate(R.id.verConversaciones)
             if(currentDestination.label == "fragment_rate_user") findNavController(R.id.navController).navigate(R.id.verConversaciones)

@@ -121,7 +121,7 @@
     <string name="txt_sign_off">Tanqueu la sessió</string>
     <string name="txt_num_services">Serveis</string>
     <string name="txt_num_opinions">Opinions</string>
-    <string name="txt_num_info">\nInformació</string>
+    <string name="txt_num_info">Informació</string>
     <string name="txt_about_me">Sobre mi</string>
     <string name="txt_aboutMe_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis torttor ut quam interdum dignissim. Nulla lobortis id tellus sed placerat. Curabitur varius metus magna, vitae ultrices orci gravida vel. Pellentesque vel erat vel lacus porta mattis vestibulum vel felis. In tellus arcu, pulvinar eget dolor id, ultrices egestas sem. Fusce finibus sapien vehicula nisl finibus, sed condimentum orci tempor. Cras viverra maximus massa, nec posuere velit commodo eget. Etiam in lacus venenatis, porttitor metus ut, pellentesque dolor. Donec et faucibus turpis. Duis eu dapibus turpis. Proin ultrices, neque lacinia hendrerit posuere, augue ipsum tincidunt nisi, at bibendum dui ipsum vitae metus.</string>
     <string name="txt_curriculum">Currículum</string>
@@ -207,4 +207,9 @@
     <string name="noreportreason">S\'ha de indicar la raó de l\'informe</string>
     <string name="noreportcomment">"Heu de fer un comentari per a l\'informe"</string>
     <string name="userbannedmsg">Aquest usuari ha estat bandejat</string>
+    <string name="invalidPhone">Número de telèfon no vàlid</string>
+    <string name="passwordNotMatch">Les contrasenyes no coincideixen!</string>
+    <string name="my_services">Els meus serveis</string>
+    <string name="initAndEndTime">S\`han d\`indicar l\`hora d\`inici i de finalització</string>
+    <string name="usernameEmptyErro">Si us plau, empleneu el nom d\'usuari</string>
 </resources>

@@ -166,7 +166,8 @@ class CreateDeal : Fragment() {
                     addedHistoryDeals++
                     if (addedHistoryDeals == 2){
                         hideProgress()
-                        requireActivity().onBackPressed()
+                        val action = CreateDealDirections.actionCreateDealToHomeFragment(-1,null)
+                        Navigation.findNavController(requireView()).navigate(action)
                     }
                 }
                 is DataState.Error -> {
@@ -192,6 +193,7 @@ class CreateDeal : Fragment() {
     }
     private fun initSpinner(services: ArrayList<Service>, spinner: Spinner) {
         Utils.AsignarPopUpSpinner(requireContext(), ArrayList(services.map { it.title }),spinner)
+        hideProgress()
     }
 
 

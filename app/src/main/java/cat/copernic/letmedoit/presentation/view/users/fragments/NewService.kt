@@ -32,7 +32,6 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.Utils.datahepers.CategoryMap
 import cat.copernic.letmedoit.data.model.Image
 import cat.copernic.letmedoit.data.model.Service
-import cat.copernic.letmedoit.data.provider.CategoryProvider
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
@@ -192,6 +191,7 @@ class NewService : Fragment() {
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
+                    hideProgress()
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -205,6 +205,7 @@ class NewService : Fragment() {
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
+                    hideProgress()
                 }
                 is DataState.Loading -> { binding.btnSave.isEnabled = false }
                 else -> binding.btnSave.isEnabled = true
@@ -219,6 +220,7 @@ class NewService : Fragment() {
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
+                    hideProgress()
                 }
                 is DataState.Loading -> {}
                 else -> Unit
@@ -231,6 +233,7 @@ class NewService : Fragment() {
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
+                    hideProgress()
                 }
                 is DataState.Loading -> { showProgress() }
                 else -> Unit
@@ -243,6 +246,7 @@ class NewService : Fragment() {
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
+                    hideProgress()
                 }
                 is DataState.Loading -> {}
                 else -> Unit
@@ -255,6 +259,7 @@ class NewService : Fragment() {
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
+                    hideProgress()
                 }
                 is DataState.Loading -> {}
                 else -> Unit
@@ -267,6 +272,7 @@ class NewService : Fragment() {
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
+                    hideProgress()
                 }
                 is DataState.Loading -> {}
                 else -> Unit
@@ -279,6 +285,7 @@ class NewService : Fragment() {
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
+                    hideProgress()
                 }
                 is DataState.Loading -> { }
                 else -> Unit
@@ -293,6 +300,7 @@ class NewService : Fragment() {
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
+                    hideProgress()
                 }
                 is DataState.Loading -> { }
                 else -> Unit
@@ -308,6 +316,7 @@ class NewService : Fragment() {
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
+                    hideProgress()
                 }
                 is DataState.Loading -> { }
                 else -> Unit
@@ -322,6 +331,7 @@ class NewService : Fragment() {
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
+                    hideProgress()
                 }
                 is DataState.Loading -> { }
                 else -> Unit

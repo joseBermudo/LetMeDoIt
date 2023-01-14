@@ -121,7 +121,7 @@
     <string name="txt_sign_off">cerrar sesión</string>
     <string name="txt_num_services">Servicios</string>
     <string name="txt_num_opinions">Opiniones</string>
-    <string name="txt_num_info">\nInformación</string>
+    <string name="txt_num_info">Información</string>
     <string name="txt_about_me">Acerca de mí</string>
     <string name="txt_aboutMe_description">El cliente es muy importante, el cliente será seguido por el cliente. Pero con las flechas del torturador como a veces dignissim. No hay una política para invertir en ese país. Hablé mucho del miedo, del ciclo de vida del embarazo clínico o. Los niños estaban en la puerta de la propiedad o en la puerta. En la tierra del arco, la almohada necesita dolor, la pelota de baloncesto lo necesita. Los límites clínicos de los vehículos son limitados, pero la historia clínica es temporal. Mañana la caricatura será la misa más grande, y él no quiere dejarla. Incluso en el lago venenoso, la aerolínea teme que los niños estén enfermos. Desafortunadamente, la garganta es fea. Dos clubes de fútbol. No metió a Lacinia Hendrerit en el terreno del baloncesto, ni impulsó la idea de tincidunt, sino que el miedo a la vida misma hay que beberlo.</string>
     <string name="txt_curriculum">Curriculum</string>
@@ -207,4 +207,10 @@
     <string name="noreportreason">Debe indicar el motivo del reporte</string>
     <string name="noreportcomment">"Debes hacer un comentario para el reporte"</string>
     <string name="userbannedmsg">Este usuario ha sido banneado</string>
+
+    <string name="invalidPhone">Número de teléfono no válido</string>
+    <string name="passwordNotMatch">¡Las contraseñas no coinciden!</string>
+    <string name="my_services">Mis servicios</string>
+    <string name="initAndEndTime">Se deben indicar la hora de inicio y de finalización.</string>
+    <string name="usernameEmptyErro">Por favor, rellene el nombre de usuario</string>
 </resources>

@@ -89,6 +89,7 @@ class UserReport : Fragment() {
             when(dataState){
                 is DataState.Success<Boolean> -> {
                     Utils.showOkDialog(resources.getString(R.string.reportinfo),requireContext(),resources.getString(R.string.userreportedtmsg),requireActivity())
+                    requireActivity().onBackPressed()
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())

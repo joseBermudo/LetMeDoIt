@@ -27,6 +27,7 @@ import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.FragmentViewServiceBinding
 import cat.copernic.letmedoit.presentation.adapter.general.SliderImagesAdapter
+import cat.copernic.letmedoit.presentation.view.users.fragments.CreateDealDirections
 import cat.copernic.letmedoit.presentation.view.visitante.activities.Login
 import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
@@ -71,7 +72,6 @@ class viewService : Fragment() {
         binding = FragmentViewServiceBinding.inflate(inflater,container,false)
         return binding.root
     }
-
 
     private val userViewModel : UserViewModel by viewModels()
     private val args: viewServiceArgs by navArgs()

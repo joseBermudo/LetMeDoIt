@@ -21,7 +21,6 @@ import cat.copernic.letmedoit.presentation.viewmodel.admin.CreateCategoryViewMod
 import cat.copernic.letmedoit.presentation.adapter.admin.AdminCategoryAdapter
 import cat.copernic.letmedoit.data.model.Category
 import cat.copernic.letmedoit.data.model.Subcategory
-import cat.copernic.letmedoit.data.provider.CategoryProvider
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils

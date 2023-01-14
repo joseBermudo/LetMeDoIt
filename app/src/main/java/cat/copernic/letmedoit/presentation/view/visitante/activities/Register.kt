@@ -93,7 +93,15 @@ class Register : AppCompatActivity() {
         var confirmPassword = binding.editConfirmPassword.text.toString()
         val username = binding.editUsername.text.toString().trim()
 
-        if (email.isEmpty() or password.isEmpty() or confirmPassword.isEmpty()) {
+        if(username.isEmpty()){
+            Utils.showOkDialog(resources.getString(R.string.error),this,resources.getString(R.string.usernameEmptyErro), this)
+            return
+        }
+        if(email.isEmpty()){
+            Utils.showOkDialog(resources.getString(R.string.error),this,resources.getString(R.string.emailemptyerror), this)
+            return
+        }
+        if (password.isEmpty() or confirmPassword.isEmpty()) {
             Utils.showOkDialog(resources.getString(R.string.error),this,resources.getString(R.string.emailorPasswordEmpty), this)
             return
         }
