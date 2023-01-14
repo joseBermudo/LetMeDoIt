@@ -205,6 +205,7 @@ class ViewDeal : Fragment() {
         if(Constants.USER_LOGGED_IN_ID == deal.users.userOneId) {
             binding.btnAccept.isEnabled = false
             binding.btnAccept.setBackgroundColor(resources.getColor(R.color.secundario_gris_50))
+            binding.btnDeny.text == resources.getString(R.string.cancel)
         }
         else{
             binding.btnAccept.isEnabled = true
