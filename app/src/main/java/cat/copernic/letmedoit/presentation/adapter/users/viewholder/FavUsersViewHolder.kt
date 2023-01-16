@@ -19,7 +19,7 @@ class FavUsersViewHolder(val binding: ItemViewFavUserBinding): RecyclerView.View
     fun render(userModel: Users){
 
         user_name.text = "${userModel.name} ${userModel.surname} \n @${userModel.username}"
-        Picasso.get().load(userModel.avatar).into(binding.imgFaUserProfile)
+        if(!userModel.avatar.isEmpty()) Picasso.get().load(userModel.avatar).into(binding.imgFaUserProfile)
         favBtn.setOnClickListener { (this.bindingAdapter as FavUsersAdapter).deleteFavUser(userModel) }
         binding.favUserLayout.setOnClickListener{ userModel.id?.let { it1 -> goToUserTopMenu(it1) } }
     }

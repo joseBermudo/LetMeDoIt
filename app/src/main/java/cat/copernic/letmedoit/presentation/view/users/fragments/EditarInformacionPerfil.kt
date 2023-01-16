@@ -3,11 +3,14 @@ package cat.copernic.letmedoit.presentation.view.users.fragments
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
+import android.telephony.PhoneNumberUtils
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,8 +43,12 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -122,7 +129,7 @@ class EditarInformacionPerfil : Fragment() {
 
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     hideImageProgressBar()
                 }
                 is DataState.Loading -> { showImageProgressBar() }
@@ -137,7 +144,7 @@ class EditarInformacionPerfil : Fragment() {
                     user.avatar = dataState.data
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     hideImageProgressBar()
                 }
                 is DataState.Loading -> { showImageProgressBar() }
@@ -153,7 +160,7 @@ class EditarInformacionPerfil : Fragment() {
                     hideImageProgressBar()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     hideImageProgressBar()
                 }
                 is DataState.Loading -> {  }
@@ -167,7 +174,7 @@ class EditarInformacionPerfil : Fragment() {
                     binding.aboutMeText.text = user.aboutMe
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
 
                     dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = false
                     val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
@@ -190,7 +197,7 @@ class EditarInformacionPerfil : Fragment() {
                     binding.btnEditCurriculum.isEnabled = true
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     binding.btnEditCurriculum.isEnabled = true
                     binding.btnPdf.isVisible = true
                     binding.curriculumLoading.isVisible = false
@@ -206,7 +213,7 @@ class EditarInformacionPerfil : Fragment() {
                     user.curriculum = dataState.data
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     binding.btnEditCurriculum.isEnabled = true
                     binding.btnPdf.isVisible = true
                     binding.curriculumLoading.isVisible = false
@@ -218,20 +225,20 @@ class EditarInformacionPerfil : Fragment() {
         userViewModel.updateCurriculumState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Boolean> -> {
-                    binding.btnPdf.isVisible = true
-                    binding.curriculumLoading.isVisible = false
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
-                    binding.btnEditCurriculum.isEnabled = true
-                    binding.btnPdf.isVisible = true
-                    binding.curriculumLoading.isVisible = false
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
+
                 }
                 is DataState.Loading -> {
                     binding.btnPdf.isVisible = false
                     binding.curriculumLoading.isVisible = true
                 }
-                else -> Unit
+                else -> {
+                    binding.btnEditCurriculum.isEnabled = true
+                    binding.btnPdf.isVisible = true
+                    binding.curriculumLoading.isVisible = false
+                }
             }
         })
         userViewModel.updateScheduleState.observe(viewLifecycleOwner, Observer { dataState ->
@@ -241,7 +248,7 @@ class EditarInformacionPerfil : Fragment() {
                     binding.scheduleText.text = "${user.schedule?.initHour} - ${user.schedule?.endHour}"
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = false
 
                     val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
@@ -263,7 +270,7 @@ class EditarInformacionPerfil : Fragment() {
                     dialog.dismiss()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = false
 
                     val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
@@ -286,7 +293,7 @@ class EditarInformacionPerfil : Fragment() {
                     binding.locationText.text = user.location
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = false
 
                     val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
@@ -309,7 +316,7 @@ class EditarInformacionPerfil : Fragment() {
                     binding.nameSurname.text = "${user.name} ${user.surname} \n @${user.username}"
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = false
 
                     val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
@@ -331,7 +338,7 @@ class EditarInformacionPerfil : Fragment() {
                     dialog.dismiss()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     dialogBinding.findViewById<ProgressBar>(R.id.progress).isVisible = false
 
                     val btn = dialogBinding.findViewById<Button>(R.id.btn_done)
@@ -482,14 +489,18 @@ class EditarInformacionPerfil : Fragment() {
             val textEmail = dialogBinding.findViewById<TextInputEditText>(R.id.textEmail).text.toString()
             val textPhone = dialogBinding.findViewById<TextInputEditText>(R.id.textPhoneNumber).text.toString()
 
-            if(textPhone.length < 9 || textPhone.length>12){
-                Utils.showOkDialog("Error", requireContext(),"Invalid Phone Number")
-                return@setOnClickListener
-            }
-            val contactInfo = ContactInfoMap(textEmail,textPhone)
-            userViewModel.updateContactInfo(contactInfo)
-            user.contactInfo = contactInfo
+            val phoneRegex = "^\\+?\\(?[0-9]{1,3}\\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})?".toRegex()
+            val validPhone = textPhone.matches(phoneRegex)
+            val validEmail = Patterns.EMAIL_ADDRESS.matcher(textEmail).matches()
 
+            if(!validPhone && !validEmail) Utils.showOkDialog(resources.getString(R.string.error),requireContext(),resources.getString(R.string.invalidPhone) +"\n" +resources.getString(R.string.notvalidemail),requireActivity())
+            else if(!validPhone) Utils.showOkDialog(resources.getString(R.string.error),requireContext(),resources.getString(R.string.invalidPhone),requireActivity())
+            else if(!validEmail) Utils.showOkDialog(resources.getString(R.string.error),requireContext(),resources.getString(R.string.notvalidemail),requireActivity())
+            else{
+                val contactInfo = ContactInfoMap(textEmail,textPhone)
+                userViewModel.updateContactInfo(contactInfo)
+                user.contactInfo = contactInfo
+            }
         }
         dialogBinding.findViewById<Button>(R.id.btn_cancel).setOnClickListener { dialog.dismiss() }
     }
@@ -507,17 +518,46 @@ class EditarInformacionPerfil : Fragment() {
         dialog.setCancelable(true)
         dialog.show()
 
+
+        val textInitHour = dialogBinding.findViewById<TextInputEditText>(R.id.textInitHour)
+        val textEndHour = dialogBinding.findViewById<TextInputEditText>(R.id.textEndHour)
+        textInitHour.setOnClickListener {
+            timePicker(textInitHour,null)
+        }
+        textEndHour.setOnClickListener{
+            timePicker(null,textEndHour)
+        }
         dialogBinding.findViewById<Button>(R.id.btn_done).setOnClickListener{
-            val textInitHour = dialogBinding.findViewById<TextInputEditText>(R.id.textInitHour).text.toString()
-            val textEndHour = dialogBinding.findViewById<TextInputEditText>(R.id.textEndHour).text.toString()
-
-            val schedule = ScheduleMap(textInitHour,textEndHour)
-            userViewModel.updateSchedule(schedule)
-            user.schedule = schedule
-
+            if(initTime != "" && endTime != ""){
+                val schedule = ScheduleMap(initTime,endTime)
+                userViewModel.updateSchedule(schedule)
+                user.schedule = schedule
+            }else{
+                Utils.showOkDialog(resources.getString(R.string.txt_num_info),requireContext(),resources.getString(R.string.initAndEndTime),requireActivity())
+            }
         }
         dialogBinding.findViewById<Button>(R.id.btn_cancel).setOnClickListener { dialog.dismiss() }
+    }
 
+    private fun timePicker(textInitHour: TextInputEditText?,textEndHour: TextInputEditText?) {
+        val c = Calendar.getInstance()
+        val hour = c.get(Calendar.HOUR_OF_DAY)
+        val minute = c.get(Calendar.MINUTE)
+        TimePickerDialog(requireContext(), timeIsSet(textInitHour,textEndHour), hour, minute, true).show()
+    }
+
+    private var initTime = ""
+    private var endTime = ""
+    private fun timeIsSet(textInitHour: TextInputEditText?, textEndHour: TextInputEditText?) = TimePickerDialog.OnTimeSetListener() { _, hour, minute ->
+        val  timeString = String.format("%02d:%02d",hour,minute)
+        if(textInitHour != null){
+            textInitHour.setText(timeString)
+            initTime = textInitHour.text.toString()
+        }
+        if(textEndHour != null){
+            textEndHour.setText(timeString)
+            endTime = textEndHour.text.toString()
+        }
     }
 
     private fun editPassword() {
@@ -529,7 +569,7 @@ class EditarInformacionPerfil : Fragment() {
         dialog.show()
 
         dialogBinding.findViewById<Button>(R.id.btn_done).setOnClickListener{
-            val textEmail = dialogBinding.findViewById<TextInputEditText>(R.id.textEmail).text.toString()
+            val textEmail = dialogBinding.findViewById<TextInputEditText>(R.id.textEmail).text.toString().trim()
             val textOldPassword = dialogBinding.findViewById<TextInputEditText>(R.id.editOldPassword).text.toString()
             val textNewPassword = dialogBinding.findViewById<TextInputEditText>(R.id.editNewPassword).text.toString()
 

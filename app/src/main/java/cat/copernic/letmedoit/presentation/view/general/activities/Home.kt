@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Build.VERSION_CODES.S
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.os.LocaleListCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -26,6 +28,8 @@ import cat.copernic.letmedoit.data.model.Users
 import cat.copernic.letmedoit.databinding.ActivityHomeBinding
 import cat.copernic.letmedoit.presentation.view.admin.activities.MenuAdmin
 import cat.copernic.letmedoit.di.FirebaseModule
+import cat.copernic.letmedoit.presentation.view.general.fragments.Menu_Inferior
+import cat.copernic.letmedoit.presentation.view.users.fragments.CreateDealDirections
 import cat.copernic.letmedoit.presentation.view.visitante.activities.UserBanned
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import com.google.android.gms.tasks.OnCompleteListener
@@ -42,6 +46,8 @@ class Home : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //binding.loadingHome.isVisible = true
+        (supportFragmentManager.fragments[1] as Menu_Inferior).binding.menuInferior.isVisible = false
         askPermissions()
 
         val currentUser = FirebaseModule.firebaseAuthProvider().currentUser
@@ -51,7 +57,7 @@ class Home : AppCompatActivity() {
             userViewModel.getUser(Constants.USER_LOGGED_IN_ID)
             FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful) {
-                    Utils.showOkDialog("Error", this ,"Fetching FCM registration token failed ${task.exception}")
+                    Utils.showOkDialog("${resources.getString(R.string.error)}", this ,"Fetching FCM registration token failed ${task.exception}",this)
                     return@OnCompleteListener
                 }
 
@@ -89,7 +95,7 @@ class Home : AppCompatActivity() {
                     manageUserNavigation(user)
                 }
                 is DataState.Error -> {
-                    //Utils.showOkDialog("Error: ",this,dataState.exception.message.toString())
+                    //Utils.showOkDialog("${resources.getString(R.string.error)}",this,dataState.exception.message.toString())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -119,6 +125,8 @@ class Home : AppCompatActivity() {
         else{
             binding.navController.getFragment<Fragment>().findNavController().setGraph(R.navigation.app_navigation_leogeado)
         }
+        (supportFragmentManager.fragments[1] as Menu_Inferior).binding.menuInferior.isVisible = true
+        //binding.loadingHome.isVisible = false
     }
     //Control para volver hacia atras en los recyclerviews, si el destino actual es la primera pantalla no vuelve hacia atras
     override fun onBackPressed() {
@@ -137,7 +145,6 @@ class Home : AppCompatActivity() {
                 if(currentDestination.label == "fragment_ver_conversaciones" && sourceDestination.label == "fragment_ver_deal") return
                 if(currentDestination.label == "fragment_ver_conversaciones" && sourceDestination.label == "fragment_conclude_deal") return
             }
-
             if(currentDestination.label == "fragment_rate_user") findNavController(R.id.navController).navigate(R.id.verConversaciones)
             if(currentDestination.label == "fragment_conclude_deal") findNavController(R.id.navController).navigate(R.id.verConversaciones)
             if(currentDestination.label == "fragment_rate_user") findNavController(R.id.navController).navigate(R.id.verConversaciones)

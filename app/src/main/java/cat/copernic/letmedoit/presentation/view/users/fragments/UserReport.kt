@@ -78,7 +78,7 @@ class UserReport : Fragment() {
                     initView()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {
                 }
@@ -88,10 +88,11 @@ class UserReport : Fragment() {
         reportViewModel.createReportState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
                 is DataState.Success<Boolean> -> {
-                    Utils.showOkDialog("User reported",requireContext(),"User has been reported.")
+                    Utils.showOkDialog(resources.getString(R.string.reportinfo),requireContext(),resources.getString(R.string.userreportedtmsg),requireActivity())
+                    requireActivity().onBackPressed()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> { binding.btnReport.isEnabled = false }
                 else -> Unit
@@ -111,11 +112,11 @@ class UserReport : Fragment() {
 
     private fun isDataSet(): Boolean {
         if(binding.reportReason.checkedRadioButtonId == -1){
-            Utils.showOkDialog("Unfilled information",requireContext(),"Report reason must be indicated")
+            Utils.showOkDialog(resources.getString(R.string.unfilledInfo),requireContext(),resources.getString(R.string.noreportreason),requireActivity())
             return false
         }
         if(binding.editCommentText.text.toString().isBlank()){
-            Utils.showOkDialog("Unfilled information",requireContext(),"You must make a comment for the report")
+            Utils.showOkDialog(resources.getString(R.string.unfilledInfo),requireContext(),resources.getString(R.string.noreportcomment),requireActivity())
             return false
         }
         return true

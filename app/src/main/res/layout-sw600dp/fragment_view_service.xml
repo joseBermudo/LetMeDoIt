@@ -15,8 +15,8 @@
         <TextView
             android:id="@+id/btn_back"
             style="@style/IconoClickable"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/seventwoDP"
+            android:layout_height="@dimen/seventwoDP"
             android:layout_marginStart="@dimen/margins_start_end"
             android:background="@drawable/arrow_back"
             android:contentDescription="@string/txt_volver_atras"
@@ -25,8 +25,8 @@
 
         <ImageView
             android:id="@+id/btn_fav"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/seventwoDP"
+            android:layout_height="@dimen/seventwoDP"
             android:layout_marginEnd="@dimen/margins_start_end"
             android:contentDescription="@string/txt_add_to_favorites"
             android:src="@drawable/favorites_ion_colored"
@@ -35,8 +35,8 @@
 
         <ImageView
             android:id="@+id/btn_report"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/seventwoDP"
+            android:layout_height="@dimen/seventwoDP"
             android:layout_marginEnd="@dimen/margins_start_end"
             android:contentDescription="@string/txt_report_service"
             android:src="@drawable/ic_baseline_report_24"
@@ -48,8 +48,8 @@
             android:id="@+id/btn_edit"
             android:visibility="invisible"
             android:contentDescription="@string/txt_edit_service"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/seventwoDP"
+            android:layout_height="@dimen/seventwoDP"
             android:layout_marginEnd="@dimen/margins_start_end"
             android:src="@drawable/edit_icon"
             app:layout_constraintEnd_toEndOf="parent"
@@ -172,14 +172,12 @@
 
                 <RatingBar
                     android:id="@+id/user_rating"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:contentDescription="@string/app_name"
                     android:isIndicator="true"
                     android:numStars="5"
                     android:rating="3"
-                    android:scaleX="0.5"
-                    android:scaleY="0.5"
                     android:stepSize="0.1"
                     android:theme="@style/RatingBar.Style"
                     android:transformPivotX="0dp" />
@@ -189,7 +187,7 @@
                     style="@style/Widget.LetMeDoIt.subtext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-15dp"
+                    android:layout_marginTop="@dimen/divider_16dp_margin_top"
                     android:layout_marginBottom="@dimen/padding_vertical_start_end_8"
                     android:text="(5.0)"
                     android:textSize="24sp" />
@@ -309,7 +307,7 @@
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="8dp"
             android:text="@string/txt_chat"
-            android:textSize="24sp"
+            android:textSize="@dimen/tabled_text_title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

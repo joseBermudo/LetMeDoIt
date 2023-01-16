@@ -49,7 +49,7 @@ class Register : AppCompatActivity() {
                 }
                 is DataState.Error -> {
                     hideProgress()
-                    Utils.showOkDialog("Error: ", this, dataState.exception.message.toString())
+                    Utils.showOkDialog(resources.getString(R.string.error), this, dataState.exception.message.toString(),this)
                 }
                 is DataState.Loading -> {
                     showProgress()
@@ -65,7 +65,7 @@ class Register : AppCompatActivity() {
                     finish()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ", this, dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}", this, dataState.exception.message.toString(),this)
                 }
                 is DataState.Loading -> {
                     showProgress()
@@ -93,18 +93,26 @@ class Register : AppCompatActivity() {
         var confirmPassword = binding.editConfirmPassword.text.toString()
         val username = binding.editUsername.text.toString().trim()
 
-        if (email.isEmpty() or password.isEmpty() or confirmPassword.isEmpty()) {
-            Utils.showOkDialog("Please fill out Email and Password !!!", this)
+        if(username.isEmpty()){
+            Utils.showOkDialog(resources.getString(R.string.error),this,resources.getString(R.string.usernameEmptyErro), this)
+            return
+        }
+        if(email.isEmpty()){
+            Utils.showOkDialog(resources.getString(R.string.error),this,resources.getString(R.string.emailemptyerror), this)
+            return
+        }
+        if (password.isEmpty() or confirmPassword.isEmpty()) {
+            Utils.showOkDialog(resources.getString(R.string.error),this,resources.getString(R.string.emailorPasswordEmpty), this)
             return
         }
         if (password != confirmPassword) {
-            Utils.showOkDialog("Passwords don't match !!!", this)
+            Utils.showOkDialog(resources.getString(R.string.error),this,resources.getString(R.string.passwordNotMatch), this)
             return
         }
 
         val pattern: Pattern = Patterns.EMAIL_ADDRESS
         if (!pattern.matcher(email).matches()) {
-            Utils.showOkDialog("Not a valid email !!!", this)
+            Utils.showOkDialog(resources.getString(R.string.error),this,resources.getString(R.string.notvalidemail), this)
             return
         }
 

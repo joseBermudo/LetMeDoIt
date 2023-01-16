@@ -70,7 +70,7 @@
 
                 <RatingBar
                     android:id="@+id/my_rating_bar"
-                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    style="@style/Widget.AppCompat.RatingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:rating="5"
@@ -101,7 +101,7 @@
                 android:id="@+id/btn_edit_profile"
                 style="@style/LinearLayoutPaddingVerticalStartEnd"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/tablet_height_size"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -115,7 +115,7 @@
                     android:layout_marginTop="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:layout_marginBottom="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:text="@string/edit_profile"
-                    android:textSize="34sp" />
+                    android:textSize="@dimen/table_text_subtitle" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -133,6 +133,46 @@
                 </LinearLayout>
             </LinearLayout>
             <!-- Divider !-->
+            <View
+                android:id="@+id/dividerEditProfile"
+                style="@style/Divider"
+                android:layout_marginTop="@dimen/divider_16dp_margin_top" />
+            <!-- Apartado Mis Servicios !-->
+            <LinearLayout
+                android:id="@+id/btn_my_services"
+                style="@style/LinearLayoutPaddingVerticalStartEnd"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tablet_height_size"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/myServices"
+                    style="@style/Widget.LetMeDoIt.text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/table_text_subtitle"
+                    android:layout_marginStart="@dimen/ocho"
+                    android:layout_marginTop="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
+                    android:layout_marginBottom="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
+                    android:text="@string/my_services" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/arrowMyServices"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="@string/txt_edit_profile"
+
+                        android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+                </LinearLayout>
+            </LinearLayout>
 
             <View
                 android:id="@+id/divider_editProfile_lenguage"
@@ -151,8 +191,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/ratingBar3" />
 
             <!-- Apartado Dark Theme !-->
+<!--
 
-            <!-- Divider !-->
+            &lt;!&ndash; Divider !&ndash;&gt;
             <LinearLayout
                 android:id="@+id/btn_dark_theme"
                 style="@style/LinearLayoutPaddingVerticalStartEnd"
@@ -193,13 +234,14 @@
                 android:layout_height="@dimen/divider_height"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ratingBar3" />
+-->
 
             <!-- Apartado Sign Off !-->
             <LinearLayout
                 android:id="@+id/btn_sign_out"
                 style="@style/LinearLayoutPaddingVerticalStartEnd"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/tablet_height_size"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -213,7 +255,7 @@
                     android:layout_marginTop="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:layout_marginBottom="@dimen/opciones_cuenta_margin_top_bot_intolayouts"
                     android:text="@string/sign_off"
-                    android:textSize="34sp" />
+                    android:textSize="@dimen/table_text_subtitle" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

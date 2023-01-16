@@ -175,7 +175,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
                     android:focusable="false"
-                    android:textSize="24sp" />
+                    android:textSize="@dimen/table_text_subtitle" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -183,14 +183,27 @@
             <Button
                 android:id="@+id/conclude_btn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/tablet_height_size"
                 android:layout_marginStart="@dimen/margins_start_end"
                 android:layout_marginTop="@dimen/marginTop"
                 android:text="@string/conclude"
-                android:textSize="24sp"
+                android:textSize="@dimen/table_text_subtitle"
                 app:layout_constraintEnd_toEndOf="@+id/opinion_input"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/opinion_input" />
+
+            <Button
+                android:id="@+id/deny_conclude"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tablet_height_size"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/denegar"
+                android:text="@string/cancel"
+                android:textSize="@dimen/table_text_subtitle"
+                app:layout_constraintEnd_toEndOf="@+id/opinion_input"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/conclude_btn" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

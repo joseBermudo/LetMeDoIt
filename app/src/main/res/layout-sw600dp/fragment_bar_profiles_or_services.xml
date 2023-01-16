@@ -26,6 +26,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:clipToPadding="false"
+            app:tabMaxWidth="0dp"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
             android:paddingLeft="0dp"
             android:scrollbarSize="4dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +37,6 @@
             app:tabIndicator="@drawable/tablayoud_indicator"
             app:tabIndicatorFullWidth="false"
             app:tabIndicatorHeight="40dp"
-
             app:tabPadding="0dp"
             app:tabRippleColor="@null"
             app:tabSelectedTextColor="@color/principal_blanco"

@@ -75,7 +75,7 @@ class ViewDeal : Fragment() {
                         myUser = dataState.data
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -90,7 +90,7 @@ class ViewDeal : Fragment() {
                     if(services.size == 2) initView()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -105,7 +105,7 @@ class ViewDeal : Fragment() {
                     }
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -119,7 +119,7 @@ class ViewDeal : Fragment() {
                     if(deal.accepted) goToConcludeDeal()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -131,7 +131,7 @@ class ViewDeal : Fragment() {
                     userViewModel.deleteDealFromHistory(deal.id,Constants.USER_LOGGED_IN_ID,user.id)
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -147,7 +147,7 @@ class ViewDeal : Fragment() {
                     else requireActivity().onBackPressed()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -187,7 +187,7 @@ class ViewDeal : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun initView() {
         if(user.banned){
-            binding.nameSurname.text = "This user has been banned"
+            binding.nameSurname.text = resources.getString(R.string.userbannedmsg)
             binding.btnAccept.isEnabled = false
             return
         }
@@ -205,9 +205,10 @@ class ViewDeal : Fragment() {
         if(Constants.USER_LOGGED_IN_ID == deal.users.userOneId) {
             binding.btnAccept.isEnabled = false
             binding.btnAccept.setBackgroundColor(resources.getColor(R.color.secundario_gris_50))
+            binding.btnDeny.text == resources.getString(R.string.cancel)
         }
         else{
-            binding.btnAccept.isEnabled = false
+            binding.btnAccept.isEnabled = true
             binding.btnAccept.setBackgroundColor(resources.getColor(R.color.azul_marino))
             binding.btnAccept.setTextColor(resources.getColor(R.color.principal_blanco))
         }

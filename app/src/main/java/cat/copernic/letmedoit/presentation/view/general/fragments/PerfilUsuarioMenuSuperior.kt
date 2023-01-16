@@ -70,7 +70,8 @@ class PerfilUsuarioMenuSuperior : Fragment() {
         initObservers()
 
         userViewModel.getUser(args.userID)
-        userViewModel.getFavoriteProfiles()
+        if(Constants.USER_LOGGED_IN_ID != "") userViewModel.getFavoriteProfiles()
+
 
         if(FirebaseAuth.getInstance().currentUser == null || args.userID == Constants.USER_LOGGED_IN_ID){
             binding.btnFavorites.visibility = View.INVISIBLE
@@ -124,7 +125,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
                     userViewModel.getServices(args.userID)
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -138,7 +139,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
                     userViewModel.getOpinions(args.userID)
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -151,7 +152,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
                     initView()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -164,7 +165,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
                     manageFavIcon()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {
                 }
@@ -178,7 +179,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
                     isUserFav = true
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     binding.btnFavorites.isEnabled = true
                 }
                 is DataState.Loading -> {
@@ -193,7 +194,7 @@ class PerfilUsuarioMenuSuperior : Fragment() {
                     binding.btnFavorites.isEnabled = true
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     binding.btnFavorites.isEnabled = true
                 }
                 is DataState.Loading -> {
@@ -228,9 +229,9 @@ class PerfilUsuarioMenuSuperior : Fragment() {
             TabLayoutMediator.TabConfigurationStrategy { tab, position ->
                 //Configure tabs..
                 when (position) {
-                    0 -> { tab.text = "%s \n Services"}
-                    1 -> { tab.text = "%s \n Opinions"}
-                    2 -> { tab.text = "+ \n info"}
+                    0 -> { tab.text = "${resources.getText(R.string.txt_services)}"}
+                    1 -> { tab.text = "${resources.getText(R.string.txt_num_opinions)}"}
+                    2 -> { tab.text = "${resources.getText(R.string.txt_num_info)}"}
                 }
             }).attach()
     }

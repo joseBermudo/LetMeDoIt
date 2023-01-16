@@ -26,9 +26,11 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInitHour"
+            android:clickable="true"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:hint="@string/init_hour" />
+            android:hint="@string/init_hour"
+            android:focusable="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -42,6 +44,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textEndHour"
+            android:clickable="true"
+            android:focusable="false"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:hint="@string/end_hour" />

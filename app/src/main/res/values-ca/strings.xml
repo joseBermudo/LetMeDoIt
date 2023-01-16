@@ -96,7 +96,7 @@
     <string name="sign_in">Inicieu la sessió</string>
     <string name="no_messages_yet">Encara no hi ha missatges</string>
     <string name="messagesVis_desp">Xatejar a LetMeDoIt és sovint l\'inici d\'un bon tracte.</string>
-    <string name="messagesVis_desp_a">Inicia sessió i obre la teva primera conversa!</string>
+    <string name="messagesVis_desp_a">Inicia sessió i obre la crea el teu primer tracte!</string>
     <string name="UploadServicesVis_desp">Inicieu la sessió per començar a penjar serveis a LetMeDoIt.</string>
     <string name="create_user">Crea usuari</string>
     <string name="create_account">Crear compte</string>
@@ -119,9 +119,9 @@
     <string name="txt_edit_profile">Edita el perfil</string>
     <string name="txt_show_languages">Mostra idiomes</string>
     <string name="txt_sign_off">Tanqueu la sessió</string>
-    <string name="txt_num_services">%s\n Serveis</string>
-    <string name="txt_num_opinions">%s\n Opinions</string>
-    <string name="txt_num_info">+\n Informació</string>
+    <string name="txt_num_services">Serveis</string>
+    <string name="txt_num_opinions">Opinions</string>
+    <string name="txt_num_info">Informació</string>
     <string name="txt_about_me">Sobre mi</string>
     <string name="txt_aboutMe_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis torttor ut quam interdum dignissim. Nulla lobortis id tellus sed placerat. Curabitur varius metus magna, vitae ultrices orci gravida vel. Pellentesque vel erat vel lacus porta mattis vestibulum vel felis. In tellus arcu, pulvinar eget dolor id, ultrices egestas sem. Fusce finibus sapien vehicula nisl finibus, sed condimentum orci tempor. Cras viverra maximus massa, nec posuere velit commodo eget. Etiam in lacus venenatis, porttitor metus ut, pellentesque dolor. Donec et faucibus turpis. Duis eu dapibus turpis. Proin ultrices, neque lacinia hendrerit posuere, augue ipsum tincidunt nisi, at bibendum dui ipsum vitae metus.</string>
     <string name="txt_curriculum">Currículum</string>
@@ -163,7 +163,7 @@
     <string name="search_user_name">Cerca el nom d\'usuari</string>
     <string name="bottom_menu_home_text">Casa</string>
     <string name="bottom_menu_favorites_text">Preferits</string>
-    <string name="bottom_menu_upload_text">Carrega</string>
+    <string name="bottom_menu_upload_text">Puja</string>
     <string name="bottom_menu_email_text">Tractes</string>
     <string name="bottom_menu_profile_text">Perfil</string>
     <string name="recovery_email_text">S\'ha enviat un correu electrònic de recuperació.\nCanvia la teva contrasenya i torna a iniciar sessió.</string>
@@ -182,4 +182,34 @@
     <string name="new_password">nova contrasenya</string>
     <string name="deals">Tractes</string>
     <string name="sign_in_to_make_deals">Inicieu sessió per fer tractes</string>
+
+    <string name="Newsubcategory">Nova subcategoria</string>
+    <string name="DeleteSubcategory">Esborrar Subcategoria</string>
+    <string name="ServiceName">Nom del servei</string>
+    <string name="DateNewest">Data (Més recent)</string>
+    <string name="DateOldest">Data (Més antiga)</string>
+    <string name="error">"Error: "</string>
+    <string name="emailorpassword">Si us plau, ompliu Email i Password!!!</string>
+    <string name="notvalidemail">No és un Email vàlid!!!</string>
+    <string name="noimageserror">Hi ha dhaver almenys una imatge. Les imatges no es modificaran.</string>
+    <string name="nodescriptionerror">Hi ha d\'haver una descripció</string>
+    <string name="notitleerror">Hi ha d\'haver un títol</string>
+    <string name="noimageserror_new">Heu d\'afegir imatges</string>
+    <string name="sendEmail">"Enviar Email amb: "</string>
+    <string name="callusing">"Trucar amb: "</string>
+    <string name="showmapusing">"Mostrar mapa amb: "</string>
+    <string name="errorResetPassword">La recuperació ha fallat :(</string>
+    <string name="emailemptyerror">Si us plau, ompliu Email!!!</string>
+    <string name="emailorPasswordEmpty">Si us plau, ompliu email i password</string>
+    <string name="reportinfo">Usuari informat</string>
+    <string name="userreportedtmsg">L\'usuari ha estat informat.</string>
+    <string name="unfilledInfo">Informació sense omplir</string>
+    <string name="noreportreason">S\'ha de indicar la raó de l\'informe</string>
+    <string name="noreportcomment">"Heu de fer un comentari per a l\'informe"</string>
+    <string name="userbannedmsg">Aquest usuari ha estat bandejat</string>
+    <string name="invalidPhone">Número de telèfon no vàlid</string>
+    <string name="passwordNotMatch">Les contrasenyes no coincideixen!</string>
+    <string name="my_services">Els meus serveis</string>
+    <string name="initAndEndTime">S\`han d\`indicar l\`hora d\`inici i de finalització</string>
+    <string name="usernameEmptyErro">Si us plau, empleneu el nom d\'usuari</string>
 </resources>

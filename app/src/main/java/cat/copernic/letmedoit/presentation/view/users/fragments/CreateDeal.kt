@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.Utils.datahepers.ServicesMap
@@ -78,7 +79,7 @@ class CreateDeal : Fragment() {
         showProgress()
         deal = Deal(
             users = UsersMap(args.userOne.id,args.userTwo.id),
-            services = ServicesMap(servicesUserOne[binding.spinnerMyService.selectedItemPosition].id,servicesUserTwo[binding.spinnerHisService.selectedItemPosition].id),
+            services = ServicesMap(servicesUserOne[binding.spinnerMyService.selectedItemPosition].id,args.serviceToDealWith.id),
             description = binding.textAreaDescription.text.toString(),
             conclude = 0,
             accepted = false
@@ -120,7 +121,7 @@ class CreateDeal : Fragment() {
                     }
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -137,14 +138,9 @@ class CreateDeal : Fragment() {
                         gettingUserOneServices = false
                         args.userTwo.id.let { userViewModel.getServices(it) }
                     }
-
-                    if(servicesUserTwo.size == servicesUserTwoIds.size && servicesUserTwo.size >= 1){
-                        initSpinner(servicesUserTwo,binding.spinnerHisService)
-                        binding.btnCreate.isEnabled = true
-                    }
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -157,7 +153,7 @@ class CreateDeal : Fragment() {
                     userViewModel.addHistoryDeal(args.userTwo.id,args.userOne.id,deal.id)
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     hideProgress()
                 }
                 is DataState.Loading -> {   }
@@ -170,11 +166,12 @@ class CreateDeal : Fragment() {
                     addedHistoryDeals++
                     if (addedHistoryDeals == 2){
                         hideProgress()
-                        requireActivity().onBackPressed()
+                        val action = CreateDealDirections.actionCreateDealToHomeFragment(-1,null)
+                        Navigation.findNavController(requireView()).navigate(action)
                     }
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                     hideProgress()
                 }
                 is DataState.Loading -> {  }
@@ -196,6 +193,7 @@ class CreateDeal : Fragment() {
     }
     private fun initSpinner(services: ArrayList<Service>, spinner: Spinner) {
         Utils.AsignarPopUpSpinner(requireContext(), ArrayList(services.map { it.title }),spinner)
+        hideProgress()
     }
 
 
@@ -211,6 +209,7 @@ class CreateDeal : Fragment() {
             binding.nameSurnameText.text = "${user.name} ${user.surname} \n @${user.username}"
         }
         args.userOne.id?.let { userViewModel.getServices(it) }
+        binding.txtHisService.setText(args.serviceToDealWith.title)
     }
 
     override fun onResume() {

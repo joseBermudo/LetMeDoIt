@@ -13,7 +13,6 @@ import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Report
 import cat.copernic.letmedoit.data.model.Users
-import cat.copernic.letmedoit.data.provider.UsersProvider
 import cat.copernic.letmedoit.presentation.view.general.fragments.*
 import cat.copernic.letmedoit.databinding.FragmentAdminViewUsersBinding
 import cat.copernic.letmedoit.presentation.adapter.general.UsersAdapter
@@ -61,9 +60,10 @@ class admin_view_users : Fragment() {
                     }
                     is DataState.Error -> {
                         Utils.showOkDialog(
-                            "Error: ",
+                            "${resources.getString(R.string.error)}",
                             requireContext(),
-                            dataState.exception.message.toString()
+                            dataState.exception.message.toString(),
+                            requireActivity()
                         )
 
 
