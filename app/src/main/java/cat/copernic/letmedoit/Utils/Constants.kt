@@ -2,6 +2,9 @@ package cat.copernic.letmedoit.Utils
 
 import cat.copernic.letmedoit.data.model.Users
 
+/**
+ * Variables constantes generales
+ */
 object Constants {
     const val DEALS_COLLECTION = "deals"
     const val USERS_COLLECTION = "users"

@@ -2,8 +2,10 @@ package cat.copernic.letmedoit.Utils
 
 import cat.copernic.letmedoit.data.model.Service
 
+/**
+ * Contiene todas las constantes respectivas a un usuario
+ */
 object UserConstants {
-    const val FAVORITE = "favorite"
     const val FAVORITE_PROFILES = "fav_profiles"
     const val FAVORITE_SERVICES = "fav_services"
     const val CHATS = "chats"
@@ -13,7 +15,6 @@ object UserConstants {
     const val SERVICES = "services"
     const val NAME = "name"
     const val SURNAME = "surname"
-    const val EMAIL = "email"
     const val LANGUAGE ="language"
     const val DARK_THEME = "darkTheme"
     const val AVATAR = "avatar"
