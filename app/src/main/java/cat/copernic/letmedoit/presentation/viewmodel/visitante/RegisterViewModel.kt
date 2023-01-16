@@ -15,25 +15,43 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * viewModel que conecta la vista con el repositorio de usuarios
+ * Registra y guarda usuarios en la bd
+ * @param registerUseCase useCase que invoca la funcion para registrar un usuario en la bd
+ * @param saveUserUseCase useCase que invoca la funcio para guardar un usuario en la coleccion Users de labd
+ */
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
     private val registerUseCase: RegisterUseCase,
     private val saveUserUseCase: SaveUserUseCase
 ) : ViewModel() {
 
-    //Estado del Registro
+    /**
+     * Estado del registro
+     * Puede contener 4 valores (DataState)
+     */
     private val mSignUpState: MutableLiveData<DataState<Users>> = MutableLiveData()
     val registerState : LiveData<DataState<Users>>
         get() = mSignUpState
 
-    //Estado de guardar el usuario
+    /**
+     * Estado del la insersion de un usuario en la coleccion Users de bd
+     * Puede contener 4 valores (DataState)
+     */
     private val mSaveUserState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val saveUserState : LiveData<DataState<Boolean>>
         get() = mSaveUserState
 
-    //Al registrar el usuario mandamos una corrutina que ejecuta el use case del registro.
-    //El use case ejecuta el flow y este es escuchado con el oneach
-    //en cada estado del flow guardamos en la variable signupstate el valor del estado.
+    /**
+     * Funcion que registra un usuario
+     * Al registrar el usuario mandamos una corrutina que ejecuta el use case del registro.
+     * El use case ejecuta el flow y este es escuchado con el oneach.
+     * En cada estado del flow guardamos en la variable signupstate el valor del estado.
+     * @param user usurio que se registra
+     * @param password contraseña que se registra
+     */
+
     fun register(user : Users, password : String){
         viewModelScope.launch {
             registerUseCase(user, password)
@@ -43,6 +61,10 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Funcio que guarda un usuario en la bd
+     * @param user Usuario que guardamos
+     */
     fun saveUser(user: Users){
         viewModelScope.launch {
             saveUserUseCase(user)
