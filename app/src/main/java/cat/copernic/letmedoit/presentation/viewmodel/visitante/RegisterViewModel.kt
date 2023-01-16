@@ -18,6 +18,7 @@ import javax.inject.Inject
 /**
  * viewModel que conecta la vista con el repositorio de usuarios
  * Registra y guarda usuarios en la bd
+ * Proporciona objetos LiveData para mostrar el estado actual de las operaciones
  * @param registerUseCase useCase que invoca la funcion para registrar un usuario en la bd
  * @param saveUserUseCase useCase que invoca la funcio para guardar un usuario en la coleccion Users de labd
  */

@@ -17,6 +17,7 @@ import javax.inject.Inject
 /**
  * viewModel que conecta la vista con el repositorio de Users.
  * Se encarga del login
+ * Proporciona objetos LiveData para mostrar el estado actual de las operaciones
  * @param loginUseCase useCase que invoca la funcion para iniciar sesion
  * @param getUserDataUseCase useCase que invoca la funcion para leer un usuario
  * @param logOutUseCase useCase que cierra sesion
