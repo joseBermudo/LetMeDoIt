@@ -383,8 +383,8 @@ class NewService : Fragment() {
             val deletedImages = service.image.minus(adapter.getItems().toSet())
             imagesToDelete = deletedImages.size
             deletedImages.forEach{
-                    serviceViewModel.removeImage(service.id,it.id.toInt(),it.img_link)
-                    totalImagesEdited--
+                serviceViewModel.removeImage(service.id,it.id.toInt(),it.img_link)
+                totalImagesEdited--
             }
             return
         }
@@ -502,10 +502,10 @@ class NewService : Fragment() {
     var cameraPermission = false
     private fun checkPermissions(permissions: Map<String, @JvmSuppressWildcards Boolean>) {
         permissions.forEach{
-            actionMap -> when(actionMap.key){
-                CAMERA -> { cameraPermission = actionMap.value }
-                READ_EXTERNAL_STORAGE ->  { storagePermission = actionMap.value }
-            }
+                actionMap -> when(actionMap.key){
+            CAMERA -> { cameraPermission = actionMap.value }
+            READ_EXTERNAL_STORAGE ->  { storagePermission = actionMap.value }
+        }
         }
     }
 
@@ -523,6 +523,8 @@ class NewService : Fragment() {
         }
         if(cameraPermission && storagePermission){
             openGallery()
+        }else{
+            Utils.showOkDialog(resources.getString(R.string.error),requireContext(), resources.getString(R.string.noImagePermission),requireActivity())
         }
 
     }
