@@ -18,7 +18,6 @@ import javax.inject.Singleton
 /**
  * Módulo que proporciona diferentes instancias de funciones de Firebase como Singleton
  */
-
 @Module
 @InstallIn(SingletonComponent::class)
 object FirebaseModule {
