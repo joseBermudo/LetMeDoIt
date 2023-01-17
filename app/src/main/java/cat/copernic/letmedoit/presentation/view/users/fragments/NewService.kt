@@ -523,6 +523,8 @@ class NewService : Fragment() {
         }
         if(cameraPermission && storagePermission){
             openGallery()
+        }else{
+            Utils.showOkDialog(resources.getString(R.string.error),requireContext(), resources.getString(R.string.noImagePermission),requireActivity())
         }
 
     }

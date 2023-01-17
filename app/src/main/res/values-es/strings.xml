@@ -213,4 +213,5 @@
     <string name="my_services">Mis servicios</string>
     <string name="initAndEndTime">Se deben indicar la hora de inicio y de finalización.</string>
     <string name="usernameEmptyErro">Por favor, rellene el nombre de usuario</string>
+    <string name="noImagePermission">Activa los permisos de almacenamiento para subir fotos.</string>
 </resources>

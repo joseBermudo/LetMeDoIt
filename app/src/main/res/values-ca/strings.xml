@@ -212,4 +212,5 @@
     <string name="my_services">Els meus serveis</string>
     <string name="initAndEndTime">S\`han d\`indicar l\`hora d\`inici i de finalització</string>
     <string name="usernameEmptyErro">Si us plau, empleneu el nom d\'usuari</string>
+    <string name="noImagePermission">Activa els permisos d\'emmagatzematge per pujar fotografies.</string>
 </resources>
