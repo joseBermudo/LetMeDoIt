@@ -15,6 +15,10 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * Esta clase es Un ViewModel que conecta la vista con el repositorio de Chats.
+ * En este momento no se utilza hasta futuras versiones.
+ */
 @HiltViewModel
 class ChatViewModel @Inject constructor(
     private val createChatUseCase: CreateChatUseCase,

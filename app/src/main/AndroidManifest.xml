@@ -105,14 +105,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".Utils.CustomSpinner"
-            android:exported="false"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity> <!-- Adjust pan hace que no se muevan la vista hacia arriba al salir el teclado -->
+
         <activity
             android:name=".presentation.view.general.activities.Home"
             android:exported="false"
