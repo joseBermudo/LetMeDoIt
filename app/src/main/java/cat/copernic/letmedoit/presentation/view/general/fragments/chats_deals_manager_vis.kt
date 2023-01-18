@@ -13,7 +13,6 @@ import androidx.viewpager2.widget.ViewPager2
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.presentation.adapter.general.BarChatsOrDealsAdapter
 import cat.copernic.letmedoit.databinding.FragmentChatsDealsManagerVisBinding
-import cat.copernic.letmedoit.presentation.view.users.fragments.verConversaciones
 import cat.copernic.letmedoit.presentation.view.users.fragments.verListadoDeals
 import cat.copernic.letmedoit.presentation.viewmodel.general.BarChatsOrDealsViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.general.ChatsDealsManagerViewModel
@@ -42,7 +41,6 @@ class chats_deals_manager_vis : Fragment() {
 
 
         val fragments : ArrayList<Fragment> = arrayListOf(
-            verConversaciones(),
             verListadoDeals(),
         )
 
@@ -68,10 +66,6 @@ class chats_deals_manager_vis : Fragment() {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
             }
         })
-        binding.viewPagerChatsOrDeals.currentItem = 0
-        val currentDestinationLabel =  findNavController().previousBackStackEntry?.destination?.label
-        if(currentDestinationLabel == "fragment_rate_user" || currentDestinationLabel == "fragment_ver_deal" || currentDestinationLabel == "fragment_conclude_deal")
-            binding.viewPagerChatsOrDeals.currentItem = 1
         return binding.root
     }
 

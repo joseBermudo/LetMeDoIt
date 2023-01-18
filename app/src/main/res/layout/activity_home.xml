@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".presentation.view.general.activities.Home">
 
+<!--    <ProgressBar
+        android:id="@+id/loading_home"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:visibility="invisible"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/azul_marino"
+        android:translationZ="90dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>-->
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/navController"

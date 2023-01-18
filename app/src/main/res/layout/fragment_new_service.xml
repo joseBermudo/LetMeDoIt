@@ -17,13 +17,23 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_horizontal_cl">
 
+            <Button
+                android:id="@+id/btnArrowBack"
+                android:visibility="gone"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/txt_title_chat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/divider_16dp_margin_top"
                 android:text="@string/txt_new_service"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/btnArrowBack" />
 
             <TextView
                 android:id="@+id/txt_title_title"
@@ -78,7 +88,7 @@
             </FrameLayout>
 
             <TextView
-                android:id="@+id/txt_title_category"
+                android:id="@+id/txt_title_subcategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/marginTop_extra"
@@ -93,8 +103,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/new_service_margin_top"
-                app:layout_constraintStart_toStartOf="@+id/txt_title_category"
-                app:layout_constraintTop_toBottomOf="@+id/txt_title_category"
+                app:layout_constraintStart_toStartOf="@+id/txt_title_subcategory"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title_subcategory"
                 tools:ignore="MissingConstraints">
 
                 <Spinner
@@ -142,6 +152,7 @@
             <TextView
                 android:id="@+id/btn_add_image"
                 style="@style/IconoClickable"
+                android:contentDescription="@string/add_image"
                 android:layout_width="@dimen/dimen_newService_width"
                 android:layout_height="@dimen/dimen_newService_width"
                 android:layout_marginTop="@dimen/marginTop_extra"
@@ -152,6 +163,7 @@
 
             <TextView
                 android:id="@+id/btn_remove_image"
+                android:contentDescription="@string/remove_image"
                 style="@style/IconoClickable"
                 android:layout_width="@dimen/dimen_newService_width"
                 android:layout_height="@dimen/dimen_newService_width"
@@ -163,6 +175,7 @@
 
             <CheckBox
                 android:id="@+id/select_all"
+                android:contentDescription="@string/select_all"
                 style="@style/Widget.LetMeDoIt.CheckBox"
                 android:layout_width="48dp"
                 android:layout_height="48dp"

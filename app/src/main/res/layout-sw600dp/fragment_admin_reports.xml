@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.view.admin.fragments.admin_reports">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnBackArrow"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtTitleRerports"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="64dp"
+            android:text="@string/reports"
+            android:textSize="48sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <SearchView
+            android:visibility="invisible"
+            android:id="@+id/searchView_adminReports"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/spinner_frame_layout_style"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search user"
+            android:searchIcon="@drawable/search_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitleRerports" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxAllReports">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_AdminReportList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="112dp"
+                android:layout_marginBottom="@dimen/recyclerView_default_marginBottom"
+                android:clipToPadding="false"
+                android:padding="@dimen/adm_category_recyclerView_padding"
+                android:scrollbars="vertical"
+                app:layoutManager="LinearLayoutManager" />
+
+        </FrameLayout>
+
+        <CheckBox
+            android:id="@+id/checkBoxAllReports"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView_adminReports" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/flbutton_openMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/azul_marino"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_baseline_add_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/principal_blanco" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/flbutton_archived"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/azul_marino"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_baseline_archive_24"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/flbutton_openMenu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/principal_blanco" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/flbutton_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:visibility="invisible"
+            android:layout_marginEnd="112dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/azul_marino"
+            android:clickable="true"
+            android:src="@drawable/ic_baseline_delete_24"
+            app:layout_constraintBottom_toTopOf="@+id/flbutton_openMenu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/principal_blanco" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/flbutton_ban"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="112dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/azul_marino"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_baseline_person_off_24"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/flbutton_openMenu"
+            app:layout_constraintEnd_toStartOf="@+id/flbutton_archived"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/principal_blanco" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

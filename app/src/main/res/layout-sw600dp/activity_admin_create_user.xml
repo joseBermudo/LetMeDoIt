@@ -43,8 +43,8 @@
 
                     <ImageView
                         android:id="@+id/img_logo"
-                        android:layout_width="@dimen/logo_dimen"
-                        android:layout_height="@dimen/logo_dimen"
+                        android:layout_width="256dp"
+                        android:layout_height="256dp"
                         android:contentDescription="@string/txt_logo_app"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/logo_letmedoit" />
@@ -58,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padding_horizontal_cl"
                 android:text="@string/create_user"
+                android:textSize="@dimen/tabled_text_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contenedor_logo" />
@@ -67,6 +68,7 @@
                 style="@style/Widget.LetMeDoIt.subtext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="40sp"
                 android:text="@string/create_account"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -87,6 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/txt_username"
+                    android:textSize="@dimen/tablet_textInput_text"
                     android:inputType="textEmailAddress"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -106,6 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/txt_email"
+                    android:textSize="30sp"
                     android:inputType="textEmailAddress"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -128,6 +132,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/txt_password"
+                    android:textSize="30dp"
                     android:inputType="textPassword"
                     tools:ignore="TextContrastCheck" />
 
@@ -151,6 +156,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/txt_confirm_password"
+                    android:textSize="30sp"
                     android:inputType="textPassword"
                     tools:ignore="TextContrastCheck" />
 
@@ -162,6 +168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/marginTop"
                 android:layoutDirection="rtl"
+                android:textSize="30sp"
                 android:text="@string/txt_administrador"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_confirm_password"
@@ -170,7 +177,9 @@
             <Button
                 android:id="@+id/btn_sign_in"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_height"
+                android:layout_height="@dimen/tablet_height_size"
+                android:layout_marginTop="16dp"
+                android:textSize="@dimen/table_text_subtitle"
                 android:text="@string/txt_create"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -182,8 +191,8 @@
 
     <ImageView
         android:id="@+id/btn_back_createUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:contentDescription="@string/txt_volver_atras"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

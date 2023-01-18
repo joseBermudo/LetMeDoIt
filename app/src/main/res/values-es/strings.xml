@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="save">Salvar</string>
+    <string name="save">Guardar</string>
     <string name="type_here">Escriba aquí</string>
     <string name="coment">Comentario:</string>
-    <string name="deny">Denegar</string>
+    <string name="deny">Cancelar</string>
     <string name="accept">Aceptar</string>
     <string name="descriptionContent">Lorem Ipsum es simplemente un texto ficticio de la industria de la impresión y la composición tipográfica.</string>
     <string name="description">Descripción</string>
@@ -18,8 +18,8 @@
     <string name="string_splash_screen_loading">Cargando</string>
     <string name="txt_home_welcome">¡Hola! Qué gusto verte de nuevo.</string>
     <string name="txt_login_forgotPassword">¿Has olvidado tu contraseña?</string>
-    <string name="txt_login_signIn">Registrarse</string>
-    <string name="txt_login_signUp">Inscribirse</string>
+    <string name="txt_login_signIn">Iniciar Sesión</string>
+    <string name="txt_login_signUp">Registrarse</string>
     <string name="txt_password">Contraseña</string>
     <string name="txt_username">Nombre de usuario</string>
     <string name="txt_register_title">¡Empecemos!</string>
@@ -31,7 +31,7 @@
     <string name="txt_create">Crear</string>
 
     <string name="btn_paleta_calcular">Calcular</string>
-    <string name="paleta_texto">Dejame hacerlo</string>
+    <string name="paleta_texto">LetMeDoIt</string>
     <string name="paleta_text_imput_hint">Email</string>
 
     <string name="recover_password_a">Recuperar contraseña</string>
@@ -45,11 +45,11 @@
     <string name="get_recovery_code">Obtener código de recuperación</string>
     <string name="admin_users">Usuarios</string>
     <string name="banned_users">Usuarios baneados</string>
-    <string name="reports">Informes</string>
-    <string name="archived_reports">Informes archivados</string>
+    <string name="reports">Reportes</string>
+    <string name="archived_reports">Reportes Archivados</string>
     <string name="categories">Categorías</string>
     <string name="create_admin">Crear administrador</string>
-    <string name="sign_off">cerrar sesión</string>
+    <string name="sign_off">Cerrar sesión</string>
     <string name="create_deal">Crear trato</string>
 
     <string name="txt_new_service">Nuevo servicio</string>
@@ -60,12 +60,12 @@
     <string name="txt_new_service_description">Descripción</string>
     <string name="txt_new_service_images">Imágenes</string>
     <string name="txt_edit_service_editService">Editar servicio</string>
-    <string name="name_username">Nombre Nombre de usuario</string>
+    <string name="name_username">Nombre de usuario</string>
     <string name="password_example">Ejemplo de contraseña</string>
     <string name="about_me">Acerca de mí</string>
     <string name="lorem_text">El cliente es muy importante, el cliente será seguido por el cliente. Pero con las flechas del torturador como a veces dignissim. No hay una política para invertir en ese país. Hablé mucho del miedo, del ciclo de vida del embarazo clínico o. Los niños estaban en la puerta de la propiedad o en la puerta. En la tierra del arco, la almohada necesita dolor, la pelota de baloncesto lo necesita. Los límites clínicos de los vehículos son limitados, pero la historia clínica es temporal. Mañana la caricatura será la misa más grande, y él no quiere dejarla. Incluso en el lago venenoso, la aerolínea teme que los niños estén enfermos. Desafortunadamente, la garganta es fea. Dos clubes de fútbol. No metió a Lacinia Hendrerit en el terreno del baloncesto, ni impulsó la idea de tincidunt, sino que el miedo a la vida misma hay que beberlo.</string>
-    <string name="curriculum_title">Plan de estudios</string>
-    <string name="schedule_title">Calendario</string>
+    <string name="curriculum_title">Currículum</string>
+    <string name="schedule_title">Horario</string>
     <string name="schedule_text">10:00 - 20:00</string>
     <string name="contact_info">Datos de contacto</string>
     <string name="location_title">Localización</string>
@@ -83,20 +83,20 @@
 
     <string name="filter">Filtrar</string>
     <string name="category">Categoría</string>
-    <string name="order_by">ordenar por</string>
+    <string name="order_by">Ordenar por</string>
     <string name="done">Hecho</string>
     <string name="by">Por:</string>
-    <string name="report">Informe</string>
-    <string name="sign_in_or_register">Ingresa o Registro</string>
+    <string name="report">Reporte</string>
+    <string name="sign_in_or_register">Inicia Sesión o Registrate</string>
     <string name="visFav_descrtiption_title">Perfiles que te gustan</string>
     <string name="visFavSev_descrtiption_title">Servicios que te gustan</string>
     <string name="visFav_desp_a">que marques como Favoritos mediante el icono</string>
     <string name="visFav_desp">Desde aquí accederás a los perfiles</string>
     <string name="visFavSev_desp">Desde aquí accederá a los servicios</string>
-    <string name="sign_in">Registrarse</string>
-    <string name="no_messages_yet">Aún no hay mensajes</string>
-    <string name="messagesVis_desp">Chatear en LetMeDoIt suele ser el comienzo de un buen trato.</string>
-    <string name="messagesVis_desp_a">¡Inicia sesión y abre tu primera conversación!</string>
+    <string name="sign_in">Inicia Sesión</string>
+    <string name="no_messages_yet">Aún no hay tratos</string>
+    <string name="messagesVis_desp" />
+    <string name="messagesVis_desp_a">¡Inicia sesión y empieza a hacer tratos!</string>
     <string name="UploadServicesVis_desp">Inicie sesión para comenzar a cargar servicios en LetMeDoIt.</string>
     <string name="create_user">Crear usuario</string>
     <string name="create_account">Crear una cuenta</string>
@@ -107,7 +107,7 @@
     <string name="txt_close_window">Cerrar ventana</string>
     <string name="txt_profiles">Perfiles</string>
     <string name="txt_services">Servicios</string>
-    <string name="txt_deal">Negociar</string>
+    <string name="txt_deal">Trato</string>
     <string name="txt_deal_progress">0/2</string>
     <string name="txt_profile_image">Imagen de perfil</string>
     <string name="txt_my_service">mi servicio</string>
@@ -119,13 +119,13 @@
     <string name="txt_edit_profile">Editar perfil</string>
     <string name="txt_show_languages">Mostrar idiomas</string>
     <string name="txt_sign_off">cerrar sesión</string>
-    <string name="txt_num_services">%s\nServicios</string>
-    <string name="txt_num_opinions">%s\nOpiniones</string>
-    <string name="txt_num_info">\nInformación</string>
+    <string name="txt_num_services">Servicios</string>
+    <string name="txt_num_opinions">Opiniones</string>
+    <string name="txt_num_info">Información</string>
     <string name="txt_about_me">Acerca de mí</string>
     <string name="txt_aboutMe_description">El cliente es muy importante, el cliente será seguido por el cliente. Pero con las flechas del torturador como a veces dignissim. No hay una política para invertir en ese país. Hablé mucho del miedo, del ciclo de vida del embarazo clínico o. Los niños estaban en la puerta de la propiedad o en la puerta. En la tierra del arco, la almohada necesita dolor, la pelota de baloncesto lo necesita. Los límites clínicos de los vehículos son limitados, pero la historia clínica es temporal. Mañana la caricatura será la misa más grande, y él no quiere dejarla. Incluso en el lago venenoso, la aerolínea teme que los niños estén enfermos. Desafortunadamente, la garganta es fea. Dos clubes de fútbol. No metió a Lacinia Hendrerit en el terreno del baloncesto, ni impulsó la idea de tincidunt, sino que el miedo a la vida misma hay que beberlo.</string>
-    <string name="txt_curriculum">Plan de estudios</string>
-    <string name="txt_schedule">Calendario</string>
+    <string name="txt_curriculum">Curriculum</string>
+    <string name="txt_schedule">Horario</string>
     <string name="txt_time">10:00 - 20:00</string>
     <string name="txt_contact_info">Datos de contacto</string>
     <string name="txt_location">Localización</string>
@@ -137,11 +137,11 @@
     <string name="txt_comment">Comentario:</string>
     <string name="txt_misbehaviour">Mal comportamiento</string>
     <string name="txt_fraud">Fraude</string>
-    <string name="txt_ofensive_content">contenido ofensivo</string>
+    <string name="txt_ofensive_content">Contenido Ofensivo</string>
     <string name="txt_conclude_progress">1/2</string>
     <string name="txt_deal_progress_1">1/2</string>
-    <string name="txt_add_to_favorites">Agregar a los favoritos</string>
-    <string name="txt_report_service">Servicio de informes</string>
+    <string name="txt_add_to_favorites">Agregar a favoritos</string>
+    <string name="txt_report_service">Servicio de Reportes</string>
     <string name="txt_edited_x_time_ago">Editado hace X tiempo</string>
     <string name="txt_num_favorites">100</string>
     <string name="txt_chat">Chat</string>
@@ -164,7 +164,7 @@
     <string name="bottom_menu_home_text">Casa</string>
     <string name="bottom_menu_favorites_text">Favoritos</string>
     <string name="bottom_menu_upload_text">Subir</string>
-    <string name="bottom_menu_email_text">Correo electrónico</string>
+    <string name="bottom_menu_email_text">Tratos</string>
     <string name="bottom_menu_profile_text">Perfil</string>
     <string name="recovery_email_text">Se ha enviado el correo electrónico de recuperación. \nCambie su contraseña y vuelva a iniciar sesión.</string>
     <string name="recovery_email_sent_title">Correo electrónico de recuperación enviado</string>
@@ -180,4 +180,52 @@
     <string name="name">Nombre</string>
     <string name="old_password">Contraseña anterior</string>
     <string name="new_password">Nueva contraseña</string>
-</resources>
+    <string name="deals">Tratos</string>
+    <string name="sign_in_to_make_deals">Inicia Sesión para hacer tratos</string>
+
+    <string name="Newsubcategory">Nueva subcategoría</string>
+    <string name="DeleteSubcategory">Eliminar Subcategoría</string>
+    <string name="ServiceName">Nombre del Servicio</string>
+    <string name="DateNewest">Fecha (Más reciente)</string>
+    <string name="DateOldest">Fecha (Más antigua)</string>
+    <string name="error">"Error: "</string>
+    <string name="emailorpassword">Por favor, rellene Email y Password!!!</string>
+    <string name="notvalidemail">No es un Email válido!!!</string>
+    <string name="noimageserror">Debe haber al menos una imagen. Las imágenes no serán editadas.</string>
+    <string name="nodescriptionerror">Debe haber una descripción</string>
+    <string name="notitleerror">Debe haber un Título</string>
+    <string name="noimageserror_new">Debes Añadir Imágenes</string>
+    <string name="sendEmail">"Enviar Email Usando: "</string>
+    <string name="callusing">"Llamar Usando: "</string>
+    <string name="showmapusing">"Mostrar Mapa Usando: "</string>
+    <string name="errorResetPassword">Error al recuperar la contraseña :(</string>
+    <string name="emailemptyerror">Por favor, rellene Email!!!</string>
+    <string name="emailorPasswordEmpty">Por favor, rellene email y contraseña</string>
+    <string name="reportinfo">Usuario reportado</string>
+    <string name="userreportedtmsg">El usuario ha sido reportado.</string>
+    <string name="unfilledInfo">Información no completada</string>
+    <string name="noreportreason">Debe indicar el motivo del reporte</string>
+    <string name="noreportcomment">"Debes hacer un comentario para el reporte"</string>
+    <string name="userbannedmsg">Este usuario ha sido banneado</string>
+
+    <string name="invalidPhone">Número de teléfono no válido</string>
+    <string name="passwordNotMatch">¡Las contraseñas no coinciden!</string>
+    <string name="my_services">Mis servicios</string>
+    <string name="initAndEndTime">Se deben indicar la hora de inicio y de finalización.</string>
+    <string name="usernameEmptyErro">Por favor, rellene el nombre de usuario</string>
+    <string name="noImagePermission">Activa los permisos de almacenamiento para subir fotos.</string>
+
+    <string name="clear_filter">Quitar filtro</string>
+    <string name="add_service_to_favorites">Añadir servicio a favoritos</string>
+    <string name="add_image">Añadir Imagen</string>
+    <string name="remove_image">Eliminar imagen</string>
+    <string name="select_all">Selecionar todo</string>
+    <string name="open_curriculum_pdf">Abrir pdf del curriculum</string>
+    <string name="send_email">Enviar correo</string>
+    <string name="call_user">Llamar al usuario</string>
+    <string name="open_google_maps_location">Abrir la ubicación en Google Maps</string>
+    <string name="manage_reports">Manejar reporter</string>
+    <string name="ban_user">Banear Usuario</string>
+    <string name="archive_report">Archivar reportes</string>
+    <string name="remove_report">Eliminar reporte</string>
+</resources>clear filter
