@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.view.general.fragments.FiltroCategorias">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/padding_horizontal_cl"
+        android:paddingVertical="@dimen/padding_vertical_cl"
+        tools:context=".Users.FiltroCategoriasTest">
+
+        <TextView
+            android:id="@+id/back_arrow"
+            style="@style/IconoClickable"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/arrow_back"
+            android:contentDescription="@string/txt_volver_atras"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/filter_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margins_start_end_extra_plus"
+            android:text="@string/filter"
+            android:textSize="48sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/category_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop_extra"
+            android:text="@string/category"
+            android:textSize="48sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filter_title" />
+
+        <FrameLayout
+            android:id="@+id/layout_spinner_category"
+            style="@style/CustomSpinnerLayout"
+            android:layout_width="@dimen/spinner_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop_extra"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/category_title"
+            tools:ignore="MissingConstraints">
+
+            <Spinner
+                android:id="@+id/spinner_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/subCategory_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop_extra"
+            android:text="@string/txt_subcategory"
+            android:textSize="48sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_spinner_category" />
+
+        <FrameLayout
+            android:id="@+id/layout_spinner_subcategory"
+            style="@style/CustomSpinnerLayout"
+            android:layout_width="@dimen/spinner_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop_extra"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subCategory_title"
+            tools:ignore="MissingConstraints">
+
+            <Spinner
+                android:id="@+id/spinner_subcategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/orderBy_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop_extra"
+            android:text="@string/order_by"
+            android:textSize="48sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_spinner_subcategory" />
+
+        <FrameLayout
+            android:id="@+id/layout_spinner_orderby"
+            style="@style/CustomSpinnerLayout"
+            android:layout_width="@dimen/spinner_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop_extra"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orderBy_title"
+            tools:ignore="MissingConstraints">
+
+            <Spinner
+                android:id="@+id/spinner_orderby"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btn_done"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margins_start_end_extra"
+            android:layout_marginTop="@dimen/logo_dimen"
+            android:layout_marginEnd="@dimen/margins_start_end_extra"
+            android:text="@string/done"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_spinner_orderby" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
+</FrameLayout>

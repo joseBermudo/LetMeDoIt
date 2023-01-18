@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -24,6 +25,10 @@ import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Fragment que infla y gestiona la pantalla para concluir un trato
+ * Utiliza el ViewModel para comunicarse con los repositorios corresponidentes
+ */
 @AndroidEntryPoint
 class concludeDeal : Fragment() {
 
@@ -54,7 +59,7 @@ class concludeDeal : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentConcludeDealBinding.inflate(inflater,container,false)
-
+        binding.concludeBtn.isVisible = false
         services.clear()
         serviceViewModel.getService(deal.services.serviceOneId)
         initListeners()
@@ -65,8 +70,13 @@ class concludeDeal : Fragment() {
     private var goToOpinions = true
     private lateinit var myService: Service
     private lateinit var  hisService: Service
+
+    /**
+     * Inicia la vista
+     */
     @SuppressLint("SetTextI18n")
     private fun initView() {
+        binding.concludeBtn.isVisible = true
         if(deal.users.userOneId == Constants.USER_LOGGED_IN_ID){
             myService = services[0]
             hisService = services[1]
@@ -85,6 +95,9 @@ class concludeDeal : Fragment() {
         dealViewModel.suscribeForUpdates(deal.id)
     }
 
+    /**
+     * Configura la vista segun los datos del trato
+     */
     private fun manageDealProgress(){
         binding.dealProgress.text =
             when(deal.conclude){
@@ -98,11 +111,17 @@ class concludeDeal : Fragment() {
                 || deal.conclude == 3)
     }
 
+    /**
+     * Lleva al usuario a la pantalla para dar una opinion tras finalizar el trato
+     */
     private fun goToAddOpinion(){
         val action  = concludeDealDirections.concludeDealToRateUser(user,hisService.id,deal.id)
         requireView().findNavController().navigate(action)
     }
 
+    /**
+     * Inicia los obsevers que monitorizan el proceso de las operaciones con la base de datos
+     */
     @SuppressLint("SetTextI18n")
     private fun initObservers() {
         serviceViewModel.getServiceState.observe(viewLifecycleOwner, Observer { dataState ->
@@ -114,7 +133,7 @@ class concludeDeal : Fragment() {
                     if(services.size == 2) initView()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -128,7 +147,7 @@ class concludeDeal : Fragment() {
                     if(deal.conclude == 3) userViewModel.getOpinions(user.id)
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -144,7 +163,35 @@ class concludeDeal : Fragment() {
                     if (goToOpinions) goToAddOpinion()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
+                }
+                is DataState.Loading -> {  }
+                else -> Unit
+            }
+        } )
+        dealViewModel.denyState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                    userViewModel.deleteDealFromHistory(deal.id,Constants.USER_LOGGED_IN_ID,user.id)
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
+                }
+                is DataState.Loading -> {  }
+                else -> Unit
+            }
+        } )
+        userViewModel.deleteDealFromHistoryState.observe(viewLifecycleOwner, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boolean> -> {
+                    if (firstDelete) {
+                        userViewModel.deleteDealFromHistory(deal.id,user.id,Constants.USER_LOGGED_IN_ID)
+                        firstDelete = false
+                    }
+                    else requireActivity().onBackPressed()
+                }
+                is DataState.Error -> {
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -152,17 +199,36 @@ class concludeDeal : Fragment() {
         } )
     }
 
+    var firstDelete = true
+
+    /**
+     * Inicia los listeners
+     */
     private fun initListeners() {
         binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
         binding.seeMyService.setOnClickListener { goToViewService(myService) }
         binding.seeHisService.setOnClickListener { goToViewService(hisService) }
         binding.concludeBtn.setOnClickListener { dealConclude() }
+        binding.denyConclude.setOnClickListener { cancelDeny() }
     }
 
+    /**
+     * Rechaza un trato
+     */
+    private fun cancelDeny() {
+        dealViewModel.deny(deal.id)
+    }
+
+    /**
+     * Conluye un trato
+     */
     private fun dealConclude() {
         dealViewModel.conclude(deal.id)
     }
 
+    /**
+     * Lleva al usuario a la pantalla para ver el servicio del otro usuario
+     */
     private fun goToViewService(service: Service) {
         val action  = concludeDealDirections.actionConcludeDealToViewService(service)
         requireView().findNavController().navigate(action)

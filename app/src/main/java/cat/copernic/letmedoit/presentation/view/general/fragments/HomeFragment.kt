@@ -1,5 +1,7 @@
 package cat.copernic.letmedoit.presentation.view.general.fragments
 
+import android.Manifest
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,15 +11,12 @@ import androidx.navigation.fragment.navArgs
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.FragmentHomeBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 /**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * Fragment que carga todos los fragments del home
  */
 class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
@@ -41,6 +40,7 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
         //pasamos el sorting a servicelist
+        //askPermissions()
         val servicesFragment = childFragmentManager.findFragmentById(R.id.fragment_newServices)
         val bundle = Bundle()
         bundle.putInt("sortingType",args.sortingType)
@@ -51,6 +51,7 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
+
     companion object {
         /**
          * Use this factory method to create a new instance of

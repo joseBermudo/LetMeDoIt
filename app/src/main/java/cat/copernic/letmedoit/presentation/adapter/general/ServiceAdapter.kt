@@ -71,7 +71,10 @@ class ServiceAdapter(private var serviceList:ArrayList<Service>,val fragment: Fr
             filteredList.addAll(serviceList)
         } else {
             for (item in serviceList) {
-                if (item.title.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))) {
+                if (item.title.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))
+                    || item.category.id_category.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))
+                    || item.category.id_subcategory.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))
+                    || item.description.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))) {
                     filteredList.add(item)
                 }
             }
@@ -144,8 +147,11 @@ class ServiceAdapter(private var serviceList:ArrayList<Service>,val fragment: Fr
     }
 
     fun addFavService(service: Service) {
+        var numLikes = service.n_likes
+        if(numLikes <= -1) numLikes = 0
+        numLikes++
         userViewModel.addFavoriteService(service.id)
-        serviceViewModel.updateNLikes(service.id, ++service.n_likes)
+        serviceViewModel.updateNLikes(service.id, numLikes)
     }
 
     fun removeService(service: Service) {

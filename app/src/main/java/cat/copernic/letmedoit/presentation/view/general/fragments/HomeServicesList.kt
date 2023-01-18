@@ -11,9 +11,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.letmedoit.R
+import cat.copernic.letmedoit.Utils.Constants
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.UserConstants
 import cat.copernic.letmedoit.Utils.Utils
@@ -27,15 +29,13 @@ import cat.copernic.letmedoit.presentation.viewmodel.general.ServiceViewModel
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 /**
- * A simple [Fragment] subclass.
- * Use the [HomeServicesList.newInstance] factory method to
- * create an instance of this fragment.
+ * Fragment que muestra los servicios de la base de datos en el home
+ * Utiliza el viewModel para comunicarse con el repositorio de servicios
  */
 @AndroidEntryPoint
 class HomeServicesList : Fragment() {
@@ -87,7 +87,7 @@ class HomeServicesList : Fragment() {
 
     private var totalFavServices = 0
     private var obtainedFavServices = 0
-    private lateinit var services: List<Service>
+    private var services =  ArrayList<Service>()
     private var searchView: Fragment? = null
     private var iconFilter: TextView? = null
     private var iconClearFilter: TextView? = null
@@ -95,18 +95,24 @@ class HomeServicesList : Fragment() {
         serviceViewModel.getServicesState.observe(viewLifecycleOwner, Observer { dataState ->
             when (dataState) {
                 is DataState.Success<List<Service>> -> {
-                    dataState.data.forEach {
-                        if (UserConstants.USER_FAVORITE_SERVICES_IDS.contains(it.id)) it.defaultFav = true
+                    services.clear()
+                    if(Constants.USER_LOGGED_IN_ID != ""){
+                        dataState.data.forEach {
+                            if (UserConstants.USER_FAVORITE_SERVICES_IDS.contains(it.id)) it.defaultFav = true
+                            if(it.userid != Constants.USER_LOGGED_IN_ID) services.add(it)
+                        }
                     }
-                    services = dataState.data
+                    else services = ArrayList(dataState.data)
+
                     inicializarRecyclerView()
                     hideProgress()
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog(
-                        "Error: ",
+                        "${resources.getString(R.string.error)}",
                         requireContext(),
-                        dataState.exception.message.toString()
+                        dataState.exception.message.toString(),
+                        requireActivity()
                     )
                     hideProgress()
                 }
@@ -124,9 +130,10 @@ class HomeServicesList : Fragment() {
                 }
                 is DataState.Error -> {
                     Utils.showOkDialog(
-                        "Error: ",
+                        "${resources.getString(R.string.error)}",
                         requireContext(),
-                        dataState.exception.message.toString()
+                        dataState.exception.message.toString(),
+                        requireActivity()
                     )
                 }
                 is DataState.Loading -> {}
@@ -135,10 +142,16 @@ class HomeServicesList : Fragment() {
         })
     }
 
+    /**
+     * Oculta la barra de carga
+     */
     private fun hideProgress() {
         binding.loadingServices.isVisible = false
     }
 
+    /**
+     * Muestra la barra de carga mientras se leen los servicios de la base de datos
+     */
     private fun showProgress() {
         binding.loadingServices.isVisible = true
     }
@@ -150,6 +163,7 @@ class HomeServicesList : Fragment() {
     lateinit var serviceRecyclerView: RecyclerView
     lateinit var adapter: ServiceAdapter
 
+    private var filterCleared = false
     /**
      * Inicializa el RecyclerView
      * */
@@ -170,17 +184,20 @@ class HomeServicesList : Fragment() {
             iconFilter!!.background = ResourcesCompat.getDrawable(resources,R.drawable.filter_icon,null)
         }
         val args = arguments
-        val sortingType = args?.getInt("sortingType")
+        var sortingType = args?.getInt("sortingType")
+        if(filterCleared) sortingType = -1
         val category = args?.getParcelable<Category>("category")
-        if (sortingType != null) {
+        if (sortingType != null && sortingType != -1) {
             iconClearFilter?.setOnClickListener {
                 adapter.clearFilters()
                 if (iconFilter != null) {
                     iconFilter!!.visibility = View.VISIBLE
                     iconClearFilter!!.visibility = View.GONE
+                    filterCleared = true
                 }
             }
             if (sortingType >= 0) {
+                filterCleared = false
                 when (sortingType) {
                     0 -> {
                         adapter.orderByName(category)

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/padding_vertical_cl"
+    android:paddingVertical="@dimen/padding_vertical_cl"
+    tools:context=".presentation.view.users.activities.RecoveryCode">
+
+    <TextView
+        android:id="@+id/tittleRecoveryCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginTop_extra_big"
+        android:text="@string/recovery_email_sent_title"
+        android:textSize="@dimen/tabled_text_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_title_description"
+        style="@style/Widget.LetMeDoIt.subtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_forgot_password"
+        android:layout_marginEnd="@dimen/margins_start_end"
+        android:text="@string/recovery_email_text"
+        android:textAlignment="center"
+        android:textSize="@dimen/table_text_subtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tittleRecoveryCode" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tablet_height_size"
+        android:layout_marginStart="@dimen/margins_start_end"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_marginEnd="@dimen/margins_start_end"
+        android:text="@string/txt_login_signIn"
+        android:textSize="@dimen/table_text_subtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title_description" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

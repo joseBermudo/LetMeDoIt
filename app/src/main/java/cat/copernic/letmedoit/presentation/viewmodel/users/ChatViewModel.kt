@@ -9,13 +9,16 @@ import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.data.model.Chat
 import cat.copernic.letmedoit.data.model.Message
 import cat.copernic.letmedoit.domain.usecases.chats.*
-import cat.copernic.letmedoit.presentation.view.users.fragments.chat
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * Esta clase es Un ViewModel que conecta la vista con el repositorio de Chats.
+ * En este momento no se utilza hasta futuras versiones.
+ */
 @HiltViewModel
 class ChatViewModel @Inject constructor(
     private val createChatUseCase: CreateChatUseCase,

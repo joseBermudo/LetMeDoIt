@@ -15,7 +15,7 @@
     <item
         android:id="@+id/verConversaciones"
         android:title="@string/bottom_menu_email_text"
-        android:icon="@drawable/bottom_menu_email_selector"/>
+        android:icon="@drawable/deal_icon"/>
     <item
         android:id="@+id/accountOptions"
         android:title="@string/bottom_menu_profile_text"

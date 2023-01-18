@@ -180,6 +180,14 @@
     <dimen name="new_service_margin_top">10dp</dimen>
     <dimen name="width_recycler_view_390">390dp</dimen>
     <dimen name="recyclerView_marginBot_menuInferior">48dp</dimen>
+    <dimen name="table_text_subtitle">40sp</dimen>
+    <dimen name="tabled_text_title">50sp</dimen>
+    <dimen name="tablet_textInput_text">30sp</dimen>
+    <dimen name="tablet_height_size">100dp</dimen>
+    <dimen name="tablet_img_logo">256dp</dimen>
+    <dimen name="tablet_card_template">600dp</dimen>
+    <dimen name="tablet_card_template_height">380dp</dimen>
+    <dimen name="seventwoDP">72dp</dimen>
 
 
 </resources>

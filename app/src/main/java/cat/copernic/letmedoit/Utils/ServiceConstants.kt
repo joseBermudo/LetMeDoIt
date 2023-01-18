@@ -1,5 +1,8 @@
 package cat.copernic.letmedoit.Utils
 
+/**
+ * Consatantes respectivas a un servicio
+ */
 object ServiceConstants {
     const val TITLE = "title"
     const val DESCRIPTION = "description"

@@ -8,7 +8,10 @@ import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.databinding.ActivityLoginBinding
 import cat.copernic.letmedoit.databinding.ActivityUserBannedBinding
 
-
+/**
+ * Activity que infla la pantalla cuando el usuario intenta iniciar sesion
+ * y esta baneado
+ */
 class UserBanned : AppCompatActivity() {
 
     lateinit var binding: ActivityUserBannedBinding
@@ -17,17 +20,25 @@ class UserBanned : AppCompatActivity() {
         binding = ActivityUserBannedBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         binding.emailIcon.setOnClickListener { sendEmail() }
     }
 
+    /**
+     * Envia un email de informacion
+     */
     private fun sendEmail(){
         val intent = Intent(Intent.ACTION_SEND)
         intent.data = Uri.parse("mailto:contact@letmedoit.com") // only email apps should handle this
 
         startActivity(
             Intent.createChooser(intent,
-            "Send Email Using: "))
+            resources.getString(R.string.sendEmail)))
     }
+
+    /**
+     * Retrocede a la pantalla anterior
+     */
     override fun onBackPressed() {
         return
     }

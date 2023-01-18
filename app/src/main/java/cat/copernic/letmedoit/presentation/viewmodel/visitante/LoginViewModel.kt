@@ -14,25 +14,51 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * viewModel que conecta la vista con el repositorio de Users.
+ * Se encarga del login
+ * Proporciona objetos LiveData para mostrar el estado actual de las operaciones
+ * @param loginUseCase useCase que invoca la funcion para iniciar sesion
+ * @param getUserDataUseCase useCase que invoca la funcion para leer un usuario
+ * @param logOutUseCase useCase que cierra sesion
+ */
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
     private val getUserDataUseCase: GetUserDataUseCase,
     private val logOutUseCase: LogOutUseCase
 ): ViewModel() {
-
+    /**
+     * Estado del login
+     * Puede contener 4 valores (DataState)
+     */
     private val mLoginState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val loginState: LiveData<DataState<Boolean>>
         get() = mLoginState
 
+    /**
+     * Estado de la lectura de Users
+     * Puede contener 4 valores (DataState)
+     */
     private val mUserDataState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val userDataState: LiveData<DataState<Boolean>>
         get() = mUserDataState
 
+    /**
+     * Estado del cierre de sesion
+     * Puede contener 4 valores (DataState)
+     */
     private val mLogOutState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val logOutState: LiveData<DataState<Boolean>>
         get() = mLogOutState
 
+    /**
+     * Funcion que inicia sesion
+     * Utiliza un corrutina para ejecutar el useCase
+     * Obtenemos el estado del proceso desde el flow
+     * @param email correo electronico del usuario
+     * @param password contraseña del usuario
+     */
     fun login(email: String, password: String){
         viewModelScope.launch() {
             loginUseCase(email, password)
@@ -41,7 +67,11 @@ class LoginViewModel @Inject constructor(
                 }.launchIn(viewModelScope)
         }
     }
-
+    /**
+     * Funcion que lee un usuario
+     * Utiliza un corrutina para ejecutar el useCase
+     * Obtenemos el estado del proceso desde el flow
+     */
     fun getUserData(){
         viewModelScope.launch {
             getUserDataUseCase()
@@ -50,7 +80,11 @@ class LoginViewModel @Inject constructor(
                 }.launchIn(viewModelScope)
         }
     }
-
+    /**
+     * Funcion que cierra sesion
+     * Utiliza un corrutina para ejecutar el useCase
+     * Obtenemos el estado del proceso desde el flow
+     */
     fun logOut(){
         viewModelScope.launch {
             logOutUseCase()

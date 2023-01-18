@@ -19,6 +19,9 @@ import cat.copernic.letmedoit.databinding.FragmentAdminMenuBinding
 import cat.copernic.letmedoit.presentation.view.general.activities.Home
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Fragment que infla el menu administrador
+ */
 @AndroidEntryPoint
 class admin_menu : Fragment() {
 
@@ -73,6 +76,9 @@ class admin_menu : Fragment() {
         return binding.root
     }
 
+    /**
+     * Iniciar observers
+     */
     private fun initObservers() {
         loginViewModel.logOutState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
@@ -82,7 +88,7 @@ class admin_menu : Fragment() {
                     requireActivity().finish()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(), requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit

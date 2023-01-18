@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Category
@@ -19,17 +20,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import kotlin.collections.ArrayList
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-
 /**
- * A simple [Fragment] subclass.
- * Use the [FiltroCategorias.newInstance] factory method to
- * create an instance of this fragment.
+ * Fragment que infla y gestiona la pantalla del filtro de categorias
  */
 @AndroidEntryPoint
 class FiltroCategorias : Fragment() {
@@ -66,6 +63,9 @@ class FiltroCategorias : Fragment() {
     private lateinit var categoryList : List<Category>
     private lateinit var  categoryNameList : List<String>
 
+    /**
+     * Incializa los listeners
+     */
     private fun initListeners() {
         binding.backArrow.setOnClickListener { requireActivity().onBackPressed() }
         binding.btnDone.setOnClickListener{ applyFilter() }
@@ -82,12 +82,18 @@ class FiltroCategorias : Fragment() {
         }
     }
 
+    /**
+     * Aplica el filtro seleccionado por el usuario
+     */
     private fun applyFilter() {
         val action = FiltroCategoriasDirections
             .filterBackToHome(binding.spinnerOrderby.selectedItemPosition, Category(nombre = binding.spinnerCategory.selectedItem.toString(), subcategories = arrayListOf(Subcategory(nombre = binding.spinnerSubcategory.selectedItem.toString()))))
         Navigation.findNavController(requireView()).navigate(action)
     }
 
+    /**
+     * Inicaliza los observers
+     */
     private fun initObserver() {
         categoryViewModel.getCategoriesState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
@@ -97,7 +103,7 @@ class FiltroCategorias : Fragment() {
                     initView()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {  }
                 else -> Unit
@@ -109,7 +115,7 @@ class FiltroCategorias : Fragment() {
         categoryNameList = categoryList.map { it.nombre }.toList()
         Utils.AsignarPopUpSpinner(requireContext(), ArrayList(categoryNameList),binding.spinnerCategory)
         val orderByList = ArrayList<String>()
-        orderByList.addAll(listOf("Service Name","Date (Newest)","Date (Oldest)"))
+        orderByList.addAll(listOf(resources.getString(R.string.ServiceName),resources.getString(R.string.DateNewest),resources.getString(R.string.DateOldest)))
         Utils.AsignarPopUpSpinner(requireContext(), orderByList,binding.spinnerOrderby)
     }
 

@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.DataState
 import cat.copernic.letmedoit.Utils.Utils
 import cat.copernic.letmedoit.data.model.Opinion
@@ -21,15 +22,12 @@ import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 /**
- * A simple [Fragment] subclass.
- * Use the [OpinionsUser.newInstance] factory method to
- * create an instance of this fragment.
+ * Fragment que muestra las opninones de un usuario
  */
 @AndroidEntryPoint
 class OpinionsUser(private val opinions: ArrayList<Opinion>) : Fragment() {
@@ -67,6 +65,9 @@ class OpinionsUser(private val opinions: ArrayList<Opinion>) : Fragment() {
         return binding.root
     }
 
+    /**
+     * Inicia los observers
+     */
     private fun initObservers() {
         userViewModel.getUserState.observe(viewLifecycleOwner, Observer { dataState ->
             when(dataState){
@@ -78,7 +79,9 @@ class OpinionsUser(private val opinions: ArrayList<Opinion>) : Fragment() {
                         }
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),
+                        requireActivity()
+                    )
                 }
                 is DataState.Loading -> {
                 }
@@ -92,7 +95,7 @@ class OpinionsUser(private val opinions: ArrayList<Opinion>) : Fragment() {
                     if(services.size == opinions.size) initRecyclerView()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog("${resources.getString(R.string.error)}",requireContext(),dataState.exception.message.toString(),requireActivity())
                 }
                 is DataState.Loading -> {
                 }
@@ -101,6 +104,9 @@ class OpinionsUser(private val opinions: ArrayList<Opinion>) : Fragment() {
         } )
     }
 
+    /**
+     * Inicia el recycelr view que muestra las opniones
+     */
     private fun initRecyclerView() {
 
         opinionsRecyclerView = binding.RecyclerOpinions

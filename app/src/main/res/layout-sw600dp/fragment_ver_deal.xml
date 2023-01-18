@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.view.users.fragments.ViewDeal">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/padding_vertical_cl"
+            android:paddingVertical="@dimen/padding_vertical_cl">
+
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/txt_volver_atras"
+                android:src="@drawable/arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="@dimen/marginTop"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_back">
+
+                <TextView
+                    android:id="@+id/deal_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/txt_deal"
+                    android:textSize="48sp" />
+
+                <TextView
+                    android:id="@+id/txt_progress_deal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end" />
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/icon_user_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                app:cardCornerRadius="100dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                <ImageView
+                    android:id="@+id/icon_user"
+                    android:layout_width="156dp"
+                    android:layout_height="156dp"
+                    android:contentDescription="@string/txt_profile_image"
+                    android:scaleType="centerCrop" />
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/nameSurname"
+                style="@style/Widget.LetMeDoIt.title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/icon_user_layout" />
+
+            <TextView
+                android:id="@+id/myService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="14dp"
+                android:text="@string/my_service"
+                android:textSize="34sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameSurname" />
+
+            <TextView
+                android:id="@+id/seeMyService"
+                style="@style/IconoClickable"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="@dimen/marginTop"
+                android:background="@drawable/eye"
+                app:layout_constraintBottom_toBottomOf="@id/myService"
+                app:layout_constraintStart_toEndOf="@id/myService"
+                app:layout_constraintTop_toTopOf="@id/myService" />
+
+            <TextView
+                android:id="@+id/myServiceSubText"
+                style="@style/Widget.LetMeDoIt.subtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/myService" />
+
+            <TextView
+                android:id="@+id/seeHisService"
+                style="@style/IconoClickable"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="@dimen/marginTop"
+                android:background="@drawable/eye"
+                app:layout_constraintBottom_toBottomOf="@id/hisService"
+                app:layout_constraintStart_toEndOf="@id/hisService"
+                app:layout_constraintTop_toTopOf="@id/hisService" />
+
+            <TextView
+                android:id="@+id/hisService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="14dp"
+                android:text="@string/his_service"
+                android:textSize="34sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/myServiceSubText" />
+
+            <TextView
+                android:id="@+id/hisServiceSubText"
+                style="@style/Widget.LetMeDoIt.subtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hisService" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="14dp"
+                android:text="@string/description"
+                android:textSize="34sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hisServiceSubText" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/opinion_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                app:boxStrokeColor="#008db1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/description">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/deal_description"
+                    style="@style/Widget.LetMeDoIt.TextArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:focusable="false"
+                    android:textSize="24sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_accept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                android:text="@string/accept"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/opinion_input" />
+
+            <Button
+                android:id="@+id/btn_deny"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margins_start_end"
+                android:layout_marginEnd="@dimen/margins_start_end"
+                android:backgroundTint="@color/denegar"
+                android:text="@string/deny"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_accept" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>

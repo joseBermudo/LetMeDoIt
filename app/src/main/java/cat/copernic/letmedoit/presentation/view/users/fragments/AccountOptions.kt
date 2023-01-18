@@ -26,7 +26,6 @@ import com.google.firebase.ktx.Firebase
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.Utils.*
 import cat.copernic.letmedoit.data.model.Users
-import cat.copernic.letmedoit.data.provider.LenguagesProvider
 import cat.copernic.letmedoit.presentation.view.general.activities.Home
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import com.squareup.picasso.Picasso
@@ -34,16 +33,13 @@ import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormat
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+/**
+ * Fragment que infla y gestiona la pantalla de opciones de cuenta
+ * Utiliza ViewModel para comunicarse con los respectivos repositorios
+ */
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AccountOptions.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class AccountOptions : Fragment() {
 
@@ -54,29 +50,32 @@ class AccountOptions : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
-    private val  userViewModel  : UserViewModel  by viewModels()
-    private val  loginViewModel : LoginViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
+    private val loginViewModel: LoginViewModel by viewModels()
 
-    private lateinit var binding :FragmentOpcionesDeCuentaBinding
+    private lateinit var binding: FragmentOpcionesDeCuentaBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentOpcionesDeCuentaBinding.inflate(inflater,container,false)
+        binding = FragmentOpcionesDeCuentaBinding.inflate(inflater, container, false)
         initView()
         return binding.root
     }
 
+    /**
+     * Inicia la vista
+     */
     private fun initView() {
-        val user =  Constants.USER_LOGGED_IN
+        val user = Constants.USER_LOGGED_IN
 
-        if(user.avatar != "")
+        if (user.avatar != "")
             Picasso.get().load(user.avatar).into(binding.imageUser)
-        
+
         binding.nameSurname.text = "${user.name} ${user.surname} \n @${user.username} \n"
         binding.myRatingBar.rating = user.rating
         binding.ratingNum.text = "(${DecimalFormat("#.##").format(user.rating)})"
-        binding.darkThemeSwitch.isChecked = user.darkTheme == true
+
     }
 
 
@@ -97,55 +96,57 @@ class AccountOptions : Fragment() {
     }
 
     private fun initListeners() {
-        val languagesString = ArrayList<String>()
-        LenguagesProvider.obtenerLenguages().map { x -> x.lenguage }.toCollection(languagesString)
-        binding.darkThemeSwitch.setOnCheckedChangeListener{  _, isChecked -> userViewModel.updateDarkTheme(isChecked) }
     }
 
+    /**
+     * Inicia el spinner de opciones
+     */
     private fun initSpinner() {
-        binding.btnUserProfile.setOnClickListener{ goToUserProfile()}
-        binding.btnEditProfile.setOnClickListener{ goToEditProfile()}
-        binding.btnSignOut.setOnClickListener{ loginViewModel.logOut() }
+        binding.btnUserProfile.setOnClickListener { goToUserProfile() }
+        binding.btnMyServices.setOnClickListener { goToUserProfile() }
+        binding.btnEditProfile.setOnClickListener { goToEditProfile() }
+        binding.btnSignOut.setOnClickListener { loginViewModel.logOut() }
     }
 
+    /**
+     * Lleva al usuario a la pantalla de editar perfil
+     */
     private fun goToEditProfile() {
         val action = AccountOptionsDirections.opcionesCuentaToEditarPerfil(Constants.USER_LOGGED_IN)
         Navigation.findNavController(requireView()).navigate(action)
     }
 
+    /**
+     * Lleva al usuario a ver su perfil
+     */
     private fun goToUserProfile() {
-        val action = AccountOptionsDirections.accountOptionsToPerfilUser(Constants.USER_LOGGED_IN_ID)
+        val action =
+            AccountOptionsDirections.accountOptionsToPerfilUser(Constants.USER_LOGGED_IN_ID)
         Navigation.findNavController(requireView()).navigate(action)
     }
 
+    /**
+     * Inicia los observes que monitorizan el proceso de las operaciones con la base de datos
+     */
     private fun initObservers() {
         loginViewModel.logOutState.observe(viewLifecycleOwner, Observer { dataState ->
-            when(dataState){
+            when (dataState) {
                 is DataState.Success<Boolean> -> {
                     Constants.USER_LOGGED_IN_ID = ""
                     startActivity(Intent(requireActivity(), Home::class.java))
                     requireActivity().finish()
                 }
                 is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
+                    Utils.showOkDialog(
+                        "${resources.getString(R.string.error)}",
+                        requireContext(),
+                        dataState.exception.message.toString(),
+                        requireActivity()
+                    )
                 }
-                is DataState.Loading -> {  }
+                is DataState.Loading -> {}
                 else -> Unit
             }
-        } )
-        userViewModel.updateDarkThemeState.observe(viewLifecycleOwner, Observer { dataState ->
-            when(dataState){
-                is DataState.Success<Boolean> -> {
-                    binding.darkThemeSwitch.isEnabled = true
-                }
-                is DataState.Error -> {
-                    Utils.showOkDialog("Error: ",requireContext(),dataState.exception.message.toString())
-                    binding.darkThemeSwitch.isEnabled = true
-                }
-                is DataState.Loading -> { binding.darkThemeSwitch.isEnabled = false }
-                else -> Unit
-            }
-        } )
-
+        })
     }
 }
