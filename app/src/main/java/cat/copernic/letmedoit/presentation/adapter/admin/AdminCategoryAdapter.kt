@@ -27,6 +27,7 @@ class AdminCategoryAdapter(
     override fun onBindViewHolder(holder: AdminCategoryViewHolder, position: Int) {
         val item = categoryList[position]
         holder.render(item, onClickListener, onClickDelete,onClickEdit)
+
     }
 
     override fun getItemCount(): Int = categoryList.size

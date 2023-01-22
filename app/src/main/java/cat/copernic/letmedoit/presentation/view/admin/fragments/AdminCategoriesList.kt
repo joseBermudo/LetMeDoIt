@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.SearchView
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -246,7 +247,8 @@ class AdminCategoriesList : Fragment() {
         myDialog.setContentView(dialogBinding)
         myDialog.setCancelable(true)
         myDialog.show()
-
+        var spinner = dialogBinding.findViewById<Spinner>(R.id.spinner_icon)
+        Utils.AsignarPopUpSpinner(dialogBinding.context, Utils.getCategoryIcons(), spinner)
         val btn_cancel = dialogBinding.findViewById<Button>(R.id.btn_cancelCreateCategorie)
         btn_cancel.setOnClickListener {
             myDialog.dismiss()
@@ -261,8 +263,9 @@ class AdminCategoriesList : Fragment() {
                 dialogBinding.findViewById<TextInputEditText>(R.id.txtInput_categoryDesc)
             val name = txtInput_name.text.toString().trim()
             val desc = txtInput_desc.text.toString().trim()
+            val icon = spinner.selectedItem.toString()
             if (!name.isEmpty() && !name.isBlank() && !desc.isEmpty() && !desc.isBlank()) {
-                val category = creteCategoryF(name, desc)
+                val category = creteCategoryF(name, desc, icon)
                 viewModel.insertCategory(category)
                 categoryMutableList.add(index = 0, category)
                 adapter.notifyItemInserted(0)
@@ -297,6 +300,8 @@ class AdminCategoriesList : Fragment() {
         val myDialog = Dialog(binding.root.context)
         myDialog.setContentView(dialogBinding)
         myDialog.setCancelable(true)
+        var spinner = dialogBinding.findViewById<Spinner>(R.id.spinner_icon_edit)
+        Utils.AsignarPopUpSpinner(dialogBinding.context, Utils.getCategoryIcons(), spinner)
         dialogBinding.findViewById<TextView>(R.id.textInput_categoryName).text = category.nombre
         dialogBinding.findViewById<TextView>(R.id.textInput_categoryDesc).text =
             category.description
@@ -312,10 +317,13 @@ class AdminCategoriesList : Fragment() {
                 dialogBinding.findViewById<TextInputEditText>(R.id.textInput_categoryDesc)
             val name = txtInput_name.text.toString().trim()
             val desc = txtInput_desc.text.toString().trim()
+            val icon = spinner.selectedItem.toString()
 
             if (!name.isEmpty() && !name.isBlank() && !desc.isEmpty() && !desc.isBlank()) {
                 category.nombre = name
                 category.description = desc
+                category.image = icon
+                viewModel.updateIcon(category.id, icon)
                 viewModel.updateName(category.id, category.nombre)
                 viewModel.updateDesc(category.id, category.description)
 
@@ -371,14 +379,14 @@ class AdminCategoriesList : Fragment() {
      * Crea un instancia de Category
      * @return Category
      */
-    private fun creteCategoryF(name: String, desc: String): Category {
+    private fun creteCategoryF(name: String, desc: String, icon: String): Category {
         //hace: crear una categoria
         //return: devuelve una categoria
         return Category(
             name,
             desc,
             arrayListOf<Subcategory>(),
-            "favorites_icon",
+            icon,
         )
     }
 

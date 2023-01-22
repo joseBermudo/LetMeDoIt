@@ -14,13 +14,13 @@ import kotlin.collections.ArrayList
 * @param subcategorías las subcategorías de la categoría.
 * @param image la url de la imagen de la categoría.
 * @param id el id único de la categoría generado con UUID.randomUUID().toString()
- * */
+ */
 @Keep
 @Parcelize
 data class Category(
     var nombre: String = "",
     var description: String = "",
     @get:Exclude var subcategories: ArrayList<Subcategory> = arrayListOf(Subcategory("","","")),
-    val image: String = "",
+    var image: String = "",
     val id : String = UUID.randomUUID().toString(),
 ) : Parcelable

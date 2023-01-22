@@ -57,6 +57,26 @@
             android:textSize="24sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
+    <FrameLayout
+        android:id="@+id/layout_spinner_icon"
+        style="@style/CustomSpinnerLayout"
+        android:layout_width="@dimen/spinner_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInputLayout_categoryDesc"
+        tools:ignore="MissingConstraints">
+
+        <Spinner
+            android:id="@+id/spinner_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
+
     <Button
         android:id="@+id/btn_doneCreate"
         android:layout_width="200dp"
@@ -68,7 +88,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/btn_cancelCreateCategorie"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtInputLayout_categoryDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_spinner_icon" />
 
     <Button
         android:id="@+id/btn_cancelCreateCategorie"
@@ -82,7 +102,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_doneCreate"
-        app:layout_constraintTop_toBottomOf="@+id/txtInputLayout_categoryDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_spinner_icon" />
 
     <ProgressBar
         android:id="@+id/newCategoryLoading"
