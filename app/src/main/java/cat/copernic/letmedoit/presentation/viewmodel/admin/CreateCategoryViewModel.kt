@@ -19,6 +19,7 @@ import javax.inject.Inject
  * Proporciona objetos LiveData para mostrar el estado actual de las operaciones.
  * Todas las funciones de esta clase actuan sobre la base de datos.
  * Utiliza los UseCase para comunicarse con el repositorio
+ * @param updateIconCategoryUseCase instancia de UpdateIconCategoryUseCase
  * @param newCategoryUseCase instancia de InsertCategoryUseCase
  * @param insertSubcategoryUseCase instancia de InsertSubcategoryUseCase
  * @param getCategoriesUseCase instancia de GetCategoriesUseCase
@@ -29,6 +30,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class CreateCategoryViewModel @Inject constructor(
+    val updateIconCategoryUseCase: UpdateIconCategoryUseCase,
     val newCategoryUseCase: InsertCategoryUseCase,
     val insertSubcategoryUseCase: InsertSubcategoryUseCase,
     val getCategoriesUseCase: GetCategoriesUseCase,
@@ -50,6 +52,13 @@ class CreateCategoryViewModel @Inject constructor(
      */
     private val mUpdateDescCategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
     val updateDescCategoryState: LiveData<DataState<Boolean>> get() = mUpdateDescCategoryState
+
+    /**
+     * Estado de la actualizacion del icono de una categoria en la base de datos
+     * Puede contener 4 valores (DataState)
+     */
+    private val mUpdateIconCategoryState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val updateIconCategoryState: LiveData<DataState<Boolean>> get() = mUpdateIconCategoryState
 
     /**
      * Estado de insertar una subcategoria en la subcoleccion de la base de datos
@@ -85,6 +94,21 @@ class CreateCategoryViewModel @Inject constructor(
      */
     private val mGetCategoriesState: MutableLiveData<DataState<List<Category>>> = MutableLiveData()
     val getCategoriesState: LiveData<DataState<List<Category>>> get() = mGetCategoriesState
+
+
+    /**
+     * Funcion que actualiza el icono de una categoria en la base de datos
+     * Utiliza updateIconCategoryUseCase para invocar la funcion del repositorio
+     * @param id id de la categoria
+     * @param icon nuevo icono
+     */
+    fun updateIcon(id: String, icon: String) {
+        viewModelScope.launch {
+            updateIconCategoryUseCase(id, icon).onEach { dataState ->
+                mUpdateIconCategoryState.value = dataState
+            }.launchIn(viewModelScope)
+        }
+    }
 
     /**
      * Funcion que actualiza el nombre de una categoria en la base de datos

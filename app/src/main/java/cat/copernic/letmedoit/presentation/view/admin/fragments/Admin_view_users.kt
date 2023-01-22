@@ -18,6 +18,7 @@ import cat.copernic.letmedoit.databinding.FragmentAdminViewUsersBinding
 import cat.copernic.letmedoit.presentation.adapter.general.UsersAdapter
 import cat.copernic.letmedoit.presentation.viewmodel.users.UserViewModel
 import com.bumptech.glide.Glide.init
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,7 +34,7 @@ class admin_view_users : Fragment() {
     private var usersList = ArrayList<Users>()
     private val viewModel: UserViewModel by viewModels()
     private lateinit var adapter: UsersAdapter
-    private lateinit var btnBan: FloatingActionButton
+    private lateinit var btnBan: ExtendedFloatingActionButton
 
 
 

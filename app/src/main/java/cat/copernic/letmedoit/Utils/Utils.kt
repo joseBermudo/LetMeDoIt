@@ -2,6 +2,7 @@ package cat.copernic.letmedoit.Utils
 
 import android.app.Activity
 import android.content.Context
+
 import android.util.DisplayMetrics
 import android.view.View
 import android.widget.ArrayAdapter
@@ -9,6 +10,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.Navigation
+import cat.copernic.letmedoit.R.layout
 import cat.copernic.letmedoit.R
 import cat.copernic.letmedoit.presentation.view.general.fragments.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -21,7 +23,7 @@ abstract class Utils {
     //Companion Object --> permite llamar a la función sin instanciar la clase
 
 
-    companion object{
+    companion object {
         /**
          * Función que asigna el PopUp al spinner.
          *  PopUp: Cuadro que aparece al clicar sobre el desplegable del spinner.
@@ -32,10 +34,12 @@ abstract class Utils {
          */
         fun AsignarPopUpSpinner(
             context: Context,
-            list: ArrayList<String>, spinner: Spinner, layout: Int= R.layout.spinner_items
+            list: ArrayList<String>, spinner: Spinner, layout: Int = R.layout.spinner_items
         ) {
-            val adapter: ArrayAdapter<String> = ArrayAdapter<String>(context,
-                R.layout.spinner_items, list)
+            val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
+                context,
+                R.layout.spinner_items, list
+            )
             spinner.adapter = adapter
         }
 
@@ -46,9 +50,15 @@ abstract class Utils {
          * @param message El mensage que mostrara el AlertDialog
          * @param activity Activity donde abre el AlertDialog
          */
-        fun showOkDialog(title : String,context: Context, message : String = "", activity: Activity) {
+        fun showOkDialog(
+            title: String,
+            context: Context,
+            message: String = "",
+            activity: Activity
+        ) {
             val alertDialog: AlertDialog = context.let {
-                val builder = MaterialAlertDialogBuilder(context,R.style.Widget_LetMeDoIt_AlertDialogTheme)
+                val builder =
+                    MaterialAlertDialogBuilder(context, R.style.Widget_LetMeDoIt_AlertDialogTheme)
                 builder.apply {
                     this.setTitle(title)
                     this.setMessage(message)
@@ -62,10 +72,13 @@ abstract class Utils {
             }
             val isTablet = checkIfTablet(activity)
             alertDialog.show()
-            if(isTablet){
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).textSize = context.resources.getDimension(R.dimen.tablet_textInput_text)
-                alertDialog.findViewById<TextView>(androidx.appcompat.R.id.alertTitle)?.textSize = context.resources.getDimension(R.dimen.tablet_textInput_text)
-                alertDialog.findViewById<TextView>(android.R.id.message)?.textSize = context.resources.getDimension(R.dimen.tablet_textInput_text)
+            if (isTablet) {
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).textSize =
+                    context.resources.getDimension(R.dimen.tablet_textInput_text)
+                alertDialog.findViewById<TextView>(androidx.appcompat.R.id.alertTitle)?.textSize =
+                    context.resources.getDimension(R.dimen.tablet_textInput_text)
+                alertDialog.findViewById<TextView>(android.R.id.message)?.textSize =
+                    context.resources.getDimension(R.dimen.tablet_textInput_text)
             }
 
 
@@ -79,7 +92,7 @@ abstract class Utils {
         private fun checkIfTablet(activity: Activity): Boolean {
             val metrics = DisplayMetrics()
             //Esto es compatible con API 21, la función que no está deprecated no (es API 30)
-             activity.windowManager.defaultDisplay.getMetrics(metrics)
+            activity.windowManager.defaultDisplay.getMetrics(metrics)
 
             val yInches = metrics.heightPixels / metrics.ydpi
             val xInches = metrics.widthPixels / metrics.xdpi
@@ -92,7 +105,7 @@ abstract class Utils {
          * @param view la vista actual
          * @param destination Fragment al que vamos
          */
-        fun goToDestination(view: View, destination : Int) {
+        fun goToDestination(view: View, destination: Int) {
             Navigation.findNavController(view).navigate(destination)
         }
 
@@ -104,12 +117,50 @@ abstract class Utils {
         fun goToUserReport(view: View, id: String) {
             val destinationLabel = Navigation.findNavController(view).currentDestination?.label
 
-            val action = when(destinationLabel){
+            val action = when (destinationLabel) {
                 "fragment_view_service" -> viewServiceDirections.actionViewServiceToUserReport(id)
-                else -> PerfilUsuarioMenuSuperiorDirections.actionPerfilUsuarioMenuSuperiorToUserReport(id)
+                else -> PerfilUsuarioMenuSuperiorDirections.actionPerfilUsuarioMenuSuperiorToUserReport(
+                    id
+                )
             }
 
             Navigation.findNavController(view).navigate(action)
+        }
+
+        fun getCategoryIcons(): ArrayList<String> {
+            return arrayListOf(
+                "ic_baseline_computer_24",
+                "ic_baseline_sports_basketball_24",
+                "ic_baseline_cast_for_education_24",
+                "ic_baseline_construction_24",
+                "ic_baseline_draw_24",
+                "ic_baseline_music_note_24",
+                "ic_baseline_local_bar_24",
+                "ic_baseline_business_center_24",
+                "ic_baseline_album_24",
+                "ic_baseline_agriculture_24",
+                "ic_baseline_snowmobile_24",
+                "ic_baseline_pets_24",
+                "ic_baseline_card_travel_24",
+                "ic_baseline_directions_car_24",
+                "ic_baseline_dining_24",
+                "ic_baseline_desktop_windows_24",
+                "ic_baseline_description_24",
+                "ic_baseline_deck_24",
+                "ic_baseline_cruelty_free_24",
+                "ic_baseline_admin_panel_settings_24",
+                "ic_baseline_add_alert_24",
+                "ic_baseline_accessible_forward_24",
+                "ic_baseline_accessibility_24",
+                "ic_baseline_ac_unit_24",
+                "ic_baseline_anchor_24",
+                "ic_baseline_airplanemode_active_24",
+                "ic_baseline_monetization_on_24",
+                "ic_baseline_mic_24",
+                "ic_baseline_camera_alt_24",
+                "ic_baseline_videogame_asset_24",
+                "ic_baseline_health_and_safety_24"
+            )
         }
 
 

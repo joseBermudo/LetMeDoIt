@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
+
 /**
  * Clase que implementa la interfaz CategoryRepository que permite conectarse a la base de datos remota de Firebase y realizar operaciones CRUD en las categorías y subcategorías.
  * Utiliza la librería de coroutines de Kotlin para manejar operaciones asíncronas y emitir flujos de datos (flow) para informar el estado de las operaciones.
@@ -26,6 +27,33 @@ import javax.inject.Inject
 class CategoryRepositoryImpl @Inject constructor(
     @FirebaseModule.CategoryCollection val categoryCollection: CollectionReference
 ) : CategoryRepository {
+
+
+    /**
+     * Actualiza el icono de la categoría.
+     * @param idCategory id de la categoría.
+     * @param icon nuevo icono mediante el cual se actualizará la categoría.
+     */
+    override suspend fun updateIcon(
+        idCategory: String,
+        icon: String
+    ): Flow<DataState<Boolean>> = flow {
+        emit(DataState.Loading)
+        try {
+            var updateStatus: Boolean = false
+            idCategory.let {
+                categoryCollection.document(it).update(CategoryConstants.ICON, icon)
+                    .addOnFailureListener { updateStatus = false }
+                    .addOnSuccessListener { updateStatus = true }
+                    .await()
+            }
+            emit(DataState.Success(updateStatus))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }.flowOn(Dispatchers.IO)
 
 
     /**
