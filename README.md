@@ -8,7 +8,8 @@ Ha sido desarollada en kotlin mediante Android Studio. Tambien se ha utilizado F
 https://youtu.be/ytjOF7T2O30
 
 # Descargar aplicación de GooglePlayStore
-![image](https://user-images.githubusercontent.com/99873069/214166626-5cc7686b-fdd3-4c7c-a8cb-3e1f1c99cca2.png)
+
+https://play.google.com/store/apps/details?id=cat.copernic.letmedoit&hl=es
 
 
 # Dokka
